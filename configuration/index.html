@@ -1,0 +1,2343 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation for MatrAIx — a population-scale, persona-driven infrastructure for evaluating AI systems and interactive products with simulated users.">
+      
+      
+      
+      
+        <link rel="prev" href="../quickstart/">
+      
+      
+        <link rel="next" href="../persona/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Configuration - MatrAIx Handbook</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#configuration" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="MatrAIx Handbook" class="md-header__button md-logo" aria-label="MatrAIx Handbook" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MatrAIx Handbook
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Configuration
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/MatrAIx-ai/MatrAIx" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="MatrAIx Handbook" class="md-nav__button md-logo" aria-label="MatrAIx Handbook" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    MatrAIx Handbook
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/MatrAIx-ai/MatrAIx" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Start here
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Start here
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quickstart
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#preferred-cli-path-mode-auto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preferred CLI path (Mode auto)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#job-recipe-anatomy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Job recipe anatomy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#yaml-fields-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        YAML fields reference
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="YAML fields reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#job-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Job metadata
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Environment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agent
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#persona-agents-and-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Persona agents and models
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Persona agents and models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agent-and-model-pairing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agent and model pairing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#persona-model-resolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Persona model resolution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#supported-model-providers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Supported model providers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-keys-and-environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API keys and environment variables
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API keys and environment variables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#auto-mode-agents-most-flexible" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auto-mode agents (most flexible)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cli-harness-agents-vendor-locked" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CLI harness agents (vendor-locked)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#web-and-computer-use-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Web and computer-use agents
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setting-api-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setting API keys
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#web-interaction-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Web interaction modes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Web interaction modes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-playwright-web-task" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: Playwright web task
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-browser-use-web-task" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: browser-use web task
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#persona-profile-and-default-sample" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Persona profile and default sample
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#job-recipe-conventions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Job recipe conventions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Job recipe conventions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recipe-directories" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recipe directories
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-recipes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example recipes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#batch-job-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Batch job generation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#survey-chat-with-mode-auto-preferred" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Survey / chat with Mode auto (preferred)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#web-browser-use-one-liner" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Web (browser-use) one-liner
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chatbot-host-auto-after-generating-a-recipe-or-manual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chatbot host auto (after generating a recipe, or manual)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#force-docker-cli-survey-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Force Docker CLI survey (optional)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#computer-use-task-macos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Computer-use task (macOS)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no-api-key-required-smoke-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        No API key required (smoke test)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../persona/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Persona
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Persona
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../persona/pipeline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pipeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../persona/validation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Validation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../application/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Application
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../application/task-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Task guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../application/playground-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Playground API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../environment/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Environment
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../environment/agents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../environment/web-interaction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web interaction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../environment/runtime/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Runtime
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../environment/large-scale-runs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Large-scale runs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Packages
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#preferred-cli-path-mode-auto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preferred CLI path (Mode auto)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#job-recipe-anatomy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Job recipe anatomy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#yaml-fields-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        YAML fields reference
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="YAML fields reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#job-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Job metadata
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Environment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agent
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#persona-agents-and-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Persona agents and models
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Persona agents and models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agent-and-model-pairing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agent and model pairing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#persona-model-resolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Persona model resolution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#supported-model-providers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Supported model providers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-keys-and-environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API keys and environment variables
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API keys and environment variables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#auto-mode-agents-most-flexible" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auto-mode agents (most flexible)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cli-harness-agents-vendor-locked" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CLI harness agents (vendor-locked)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#web-and-computer-use-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Web and computer-use agents
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setting-api-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setting API keys
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#web-interaction-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Web interaction modes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Web interaction modes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-playwright-web-task" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: Playwright web task
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-browser-use-web-task" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: browser-use web task
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#persona-profile-and-default-sample" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Persona profile and default sample
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#job-recipe-conventions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Job recipe conventions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Job recipe conventions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recipe-directories" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recipe directories
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-recipes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example recipes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#batch-job-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Batch job generation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#survey-chat-with-mode-auto-preferred" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Survey / chat with Mode auto (preferred)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#web-browser-use-one-liner" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Web (browser-use) one-liner
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chatbot-host-auto-after-generating-a-recipe-or-manual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chatbot host auto (after generating a recipe, or manual)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#force-docker-cli-survey-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Force Docker CLI survey (optional)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#computer-use-task-macos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Computer-use task (macOS)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no-api-key-required-smoke-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        No API key required (smoke test)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h1>
+<p>A MatrAIx run is fully described by a <strong>job recipe</strong> — a YAML file that specifies the task, persona agent, language model, and persona profile(s) to instantiate. Job recipes live under <code>configs/jobs/</code>.</p>
+<h2 id="preferred-cli-path-mode-auto">Preferred CLI path (Mode <strong>auto</strong>)<a class="headerlink" href="#preferred-cli-path-mode-auto" title="Permanent link">&para;</a></h2>
+<p>For survey, chat, web, and os-app, generate a recipe that matches Playground
+<strong>Mode → auto</strong>, then run it:</p>
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>application/scripts/generate_application_job.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--task<span class="w"> </span>application/tasks/example-survey_product-feedback<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--execution-mode<span class="w"> </span>auto<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--persona-ids<span class="w"> </span><span class="m">0042</span><span class="w">   </span><span class="c1"># or --sample-size N for batch</span>
+
+uv<span class="w"> </span>run<span class="w"> </span>harbor<span class="w"> </span>run<span class="w"> </span>-c<span class="w"> </span>configs/jobs/application-task-job-recipe/&lt;generated&gt;.yaml
+</code></pre></div>
+<p>Walkthrough for all four types: <a href="../quickstart/#6-one-persona--cli-with-mode-auto-default">quickstart.md §6–7</a>.
+Agent matrix: <a href="../environment/agents/">environment/agents.md</a>.</p>
+<p>Hand-point Matraix Playground at a <strong>checked-in</strong> recipe with <code>-c</code> only when you intentionally
+want a Docker harness smoke (often <code>force_docker</code>-style for survey/chat):</p>
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>run<span class="w"> </span>harbor<span class="w"> </span>run<span class="w"> </span>-c<span class="w"> </span>configs/jobs/example-job-recipe/appSim-example-survey-local.yaml
+</code></pre></div>
+<h2 id="job-recipe-anatomy">Job recipe anatomy<a class="headerlink" href="#job-recipe-anatomy" title="Permanent link">&para;</a></h2>
+<p>A recipe has four main sections — run settings, environment, persona agent, and task(s):</p>
+<div class="highlight"><pre><span></span><code><span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example-survey-product-feedback-auto-n1</span>
+<span class="nt">jobs_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">jobs</span>
+<span class="nt">n_attempts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="nt">n_concurrent_trials</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="nt">timeout_multiplier</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
+<span class="nt">quiet</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+
+<span class="nt">environment</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">host</span><span class="w">                             </span><span class="c1"># auto survey/chat; docker for web/os-app</span>
+<span class="w">  </span><span class="nt">delete</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+
+<span class="nt">agents</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">persona-json-survey</span><span class="w">            </span><span class="c1"># auto picks this for survey</span>
+<span class="w">    </span><span class="nt">model_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">anthropic/claude-sonnet-4-6</span>
+<span class="w">    </span><span class="nt">kwargs</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">persona_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">persona/datasets/matraix-persona-dev-sample/persona_0042.yaml</span>
+
+<span class="nt">tasks</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">application/tasks/example-survey_product-feedback</span>
+</code></pre></div>
+<h2 id="yaml-fields-reference">YAML fields reference<a class="headerlink" href="#yaml-fields-reference" title="Permanent link">&para;</a></h2>
+<h3 id="job-metadata">Job metadata<a class="headerlink" href="#job-metadata" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>job_name</code></td>
+<td>string</td>
+<td>Label for this run. Output artifacts appear in <code>jobs/&lt;job_name&gt;/</code>.</td>
+</tr>
+<tr>
+<td><code>jobs_dir</code></td>
+<td>string</td>
+<td>Base directory where Matraix Playground writes results (default: <code>jobs/</code>).</td>
+</tr>
+<tr>
+<td><code>n_attempts</code></td>
+<td>int</td>
+<td>Repeat each trial N times. Useful for measuring variance or pass@k.</td>
+</tr>
+<tr>
+<td><code>n_concurrent_trials</code></td>
+<td>int</td>
+<td>Number of trials to run in parallel. 1 for serial; increase for faster bulk runs.</td>
+</tr>
+<tr>
+<td><code>timeout_multiplier</code></td>
+<td>float</td>
+<td>Multiply all per-task timeouts by this factor. 1.0 is standard.</td>
+</tr>
+<tr>
+<td><code>quiet</code></td>
+<td>bool</td>
+<td>If <code>true</code>, suppress detailed logs during execution.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="environment">Environment<a class="headerlink" href="#environment" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>environment.type</code></td>
+<td>string</td>
+<td><code>host</code> for Mode <strong>auto</strong> survey/chat; <code>docker</code> for web/os-app (and force_docker survey/chat); <code>use-computer</code> for macOS/iOS CUA.</td>
+</tr>
+<tr>
+<td><code>environment.delete</code></td>
+<td>bool</td>
+<td>If <code>true</code>, remove the Docker container after the run completes.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="agent">Agent<a class="headerlink" href="#agent" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>agents[].name</code></td>
+<td>string</td>
+<td>Persona agent name (e.g., <code>persona-claude-code</code>, <code>persona-browser-use</code>).</td>
+</tr>
+<tr>
+<td><code>agents[].model_name</code></td>
+<td>string</td>
+<td>Provider-prefixed model identifier (e.g., <code>anthropic/claude-sonnet-4-6</code>, <code>openai/gpt-4o-mini</code>, <code>dashscope/qwen3.7-max</code>).</td>
+</tr>
+<tr>
+<td><code>agents[].kwargs.persona_path</code></td>
+<td>string</td>
+<td>Path to persona YAML profile (e.g., <code>persona/datasets/matraix-persona-dev-sample/persona_0042.yaml</code>).</td>
+</tr>
+<tr>
+<td><code>agents[].env</code></td>
+<td>object</td>
+<td>Optional environment variable overrides (e.g., <code>agents[].env.ANTHROPIC_API_KEY</code>).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="task">Task<a class="headerlink" href="#task" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tasks[].path</code></td>
+<td>string</td>
+<td>Path to task directory under <code>application/tasks/</code> (e.g., <code>application/tasks/example-survey_product-feedback</code>).</td>
+</tr>
+</tbody>
+</table>
+<h2 id="persona-agents-and-models">Persona agents and models<a class="headerlink" href="#persona-agents-and-models" title="Permanent link">&para;</a></h2>
+<p>Every run specifies a <strong>persona agent</strong> (the automation harness), a <strong>persona LLM</strong> (which model plays the simulated user), and optionally the persona profile itself.</p>
+<h3 id="agent-and-model-pairing">Agent and model pairing<a class="headerlink" href="#agent-and-model-pairing" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Agent</th>
+<th>Application</th>
+<th>Persona model</th>
+<th>Example recipe</th>
+<th>API key on host</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>persona-json-survey</code></td>
+<td>Survey (<strong>auto</strong>)</td>
+<td>Any</td>
+<td>generated <code>*-auto-n*.yaml</code></td>
+<td><code>ANTHROPIC_API_KEY</code>, <code>OPENAI_API_KEY</code>, or <code>DASHSCOPE_API_KEY</code></td>
+</tr>
+<tr>
+<td><code>persona-user-sim</code></td>
+<td>Chatbot (<strong>auto</strong>)</td>
+<td>Any</td>
+<td>generated <code>*-auto-n*.yaml</code></td>
+<td>Persona key + often <code>OPENAI_API_KEY</code> for SUT</td>
+</tr>
+<tr>
+<td><code>persona-claude-code</code></td>
+<td>Survey, Chatbot (<code>force_docker</code>)</td>
+<td><code>anthropic/claude-*</code></td>
+<td><code>appSim-example-survey-local.yaml</code>, <code>appSim-example-chat-local.yaml</code></td>
+<td><code>ANTHROPIC_API_KEY</code></td>
+</tr>
+<tr>
+<td><code>persona-gemini-cli</code></td>
+<td>Survey, Chatbot (<code>force_docker</code>)</td>
+<td><code>google/gemini-*</code></td>
+<td><code>appSim-example-survey-local.yaml</code></td>
+<td><code>GEMINI_API_KEY</code></td>
+</tr>
+<tr>
+<td><code>persona-codex</code></td>
+<td>Survey, Chatbot (<code>force_docker</code>)</td>
+<td><code>openai/gpt-*</code></td>
+<td><code>appSim-example-survey-local.yaml</code></td>
+<td><code>OPENAI_API_KEY</code></td>
+</tr>
+<tr>
+<td><code>persona-openhands-sdk</code></td>
+<td>Web (Playwright)</td>
+<td>Any</td>
+<td><code>appSim-example-web-playwright-local.yaml</code></td>
+<td><code>LLM_API_KEY</code> (or <code>DASHSCOPE_API_KEY</code> for DashScope models)</td>
+</tr>
+<tr>
+<td><code>persona-browser-use</code></td>
+<td>Web (browser automation)</td>
+<td>Any</td>
+<td><code>appSim-example-web-browser-use-local.yaml</code></td>
+<td><code>ANTHROPIC_API_KEY</code>, <code>OPENAI_API_KEY</code>, <code>DASHSCOPE_API_KEY</code>, or <code>LLM_API_KEY</code></td>
+</tr>
+<tr>
+<td><code>persona-cocoa</code></td>
+<td>Web (browser + shell)</td>
+<td>Any</td>
+<td><code>appSim-example-web-cocoa-local.yaml</code></td>
+<td><code>ANTHROPIC_API_KEY</code>, <code>OPENAI_API_KEY</code>, <code>DASHSCOPE_API_KEY</code>, or <code>LLM_API_KEY</code></td>
+</tr>
+<tr>
+<td><code>persona-computer-1</code></td>
+<td>Web / Computer-use (macOS, iOS, Linux)</td>
+<td><code>anthropic/claude-*</code> or <code>dashscope/*</code></td>
+<td><code>appSim-example-computer-use-macos-local.yaml</code></td>
+<td><code>ANTHROPIC_API_KEY</code>, <code>DASHSCOPE_API_KEY</code>, and optionally <code>USE_COMPUTER_API_KEY</code> (macOS/iOS)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="persona-model-resolution">Persona model resolution<a class="headerlink" href="#persona-model-resolution" title="Permanent link">&para;</a></h3>
+<p>The <strong>persona LLM</strong> is separate from the chat sidecar backend (e.g., <code>MATRIX_CHATBOT_ENGINE</code>). Matraix Playground resolves the model in this order:</p>
+<ol>
+<li><strong>Job YAML <code>agents[].model_name</code></strong> (highest priority)</li>
+<li><strong>CLI flag <code>-m</code> or <code>--model-name</code></strong> (when generating recipes)</li>
+<li>Environment variables (checked per agent; see table below)</li>
+<li>Default: <code>anthropic/claude-haiku-4-5</code></li>
+</ol>
+<h3 id="supported-model-providers">Supported model providers<a class="headerlink" href="#supported-model-providers" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Anthropic:</strong> <code>anthropic/claude-haiku-4-5</code>, <code>anthropic/claude-sonnet-4-6</code>, etc.</li>
+<li><strong>OpenAI:</strong> <code>openai/gpt-4o-mini</code>, <code>openai/gpt-4o</code>, etc.</li>
+<li><strong>Google Gemini:</strong> <code>google/gemini-2.5-pro</code> (with <code>persona-gemini-cli</code>)</li>
+<li><strong>DashScope (Alibaba):</strong> <code>dashscope/qwen3.7-max</code>, <code>dashscope/deepseek-v4-pro</code>, etc.</li>
+</ul>
+<h3 id="api-keys-and-environment-variables">API keys and environment variables<a class="headerlink" href="#api-keys-and-environment-variables" title="Permanent link">&para;</a></h3>
+<p>Set these in your shell before running a job. Each agent reads keys differently:</p>
+<h4 id="auto-mode-agents-most-flexible">Auto-mode agents (most flexible)<a class="headerlink" href="#auto-mode-agents-most-flexible" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Agent</th>
+<th>Required keys on host</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>persona-json-survey</code></td>
+<td><code>ANTHROPIC_API_KEY</code>, <code>OPENAI_API_KEY</code>, or <code>DASHSCOPE_API_KEY</code> (match <code>-m</code>)</td>
+</tr>
+<tr>
+<td><code>persona-user-sim</code></td>
+<td>Persona: <code>ANTHROPIC_API_KEY</code>, <code>OPENAI_API_KEY</code>, or <code>DASHSCOPE_API_KEY</code>; chat sidecar: often <code>OPENAI_API_KEY</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="cli-harness-agents-vendor-locked">CLI harness agents (vendor-locked)<a class="headerlink" href="#cli-harness-agents-vendor-locked" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Agent</th>
+<th>Required key on host</th>
+<th>Example model</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>persona-claude-code</code></td>
+<td><code>ANTHROPIC_API_KEY</code></td>
+<td><code>anthropic/claude-sonnet-4-6</code></td>
+</tr>
+<tr>
+<td><code>persona-gemini-cli</code></td>
+<td><code>GEMINI_API_KEY</code></td>
+<td><code>google/gemini-2.5-pro</code></td>
+</tr>
+<tr>
+<td><code>persona-codex</code></td>
+<td><code>OPENAI_API_KEY</code></td>
+<td><code>openai/gpt-4o</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="web-and-computer-use-agents">Web and computer-use agents<a class="headerlink" href="#web-and-computer-use-agents" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Agent</th>
+<th>Required keys on host</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>persona-openhands-sdk</code></td>
+<td><code>LLM_API_KEY</code> (or <code>ANTHROPIC_API_KEY</code>/<code>OPENAI_API_KEY</code>/<code>DASHSCOPE_API_KEY</code>; map to <code>LLM_API_KEY</code> if needed)</td>
+</tr>
+<tr>
+<td><code>persona-browser-use</code></td>
+<td><code>ANTHROPIC_API_KEY</code>, <code>OPENAI_API_KEY</code>, <code>DASHSCOPE_API_KEY</code>, or <code>LLM_API_KEY</code></td>
+</tr>
+<tr>
+<td><code>persona-cocoa</code></td>
+<td><code>ANTHROPIC_API_KEY</code>, <code>OPENAI_API_KEY</code>, <code>DASHSCOPE_API_KEY</code>, or <code>LLM_API_KEY</code></td>
+</tr>
+<tr>
+<td><code>persona-computer-1</code></td>
+<td><code>ANTHROPIC_API_KEY</code> or <code>DASHSCOPE_API_KEY</code> (+ <code>USE_COMPUTER_API_KEY</code> for macOS/iOS via use.computer)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="setting-api-keys">Setting API keys<a class="headerlink" href="#setting-api-keys" title="Permanent link">&para;</a></h3>
+<p>Export keys in your shell before launching a run:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">ANTHROPIC_API_KEY</span><span class="o">=</span><span class="s2">&quot;sk-ant-...&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">OPENAI_API_KEY</span><span class="o">=</span><span class="s2">&quot;sk-...&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">GEMINI_API_KEY</span><span class="o">=</span><span class="s2">&quot;...&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">DASHSCOPE_API_KEY</span><span class="o">=</span><span class="s2">&quot;...&quot;</span>
+
+<span class="c1"># If using persona-openhands-sdk, map to LLM_API_KEY</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">LLM_API_KEY</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">ANTHROPIC_API_KEY</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="c1"># If using persona-computer-1 on macOS or iOS</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">USE_COMPUTER_API_KEY</span><span class="o">=</span><span class="s2">&quot;...&quot;</span>
+</code></pre></div>
+<p>You can also add these to your shell profile (<code>~/.zshrc</code>, <code>~/.bashrc</code>) to make them persistent.</p>
+<p>Alternatively, set keys per-agent in the job YAML via <code>agents[].env</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">agents</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">persona-claude-code</span>
+<span class="w">    </span><span class="nt">model_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">anthropic/claude-sonnet-4-6</span>
+<span class="w">    </span><span class="nt">env</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">ANTHROPIC_API_KEY</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${ANTHROPIC_API_KEY}</span>
+<span class="w">    </span><span class="nt">kwargs</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">persona_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">persona/datasets/matraix-persona-dev-sample/persona_0042.yaml</span>
+</code></pre></div>
+<h2 id="web-interaction-modes">Web interaction modes<a class="headerlink" href="#web-interaction-modes" title="Permanent link">&para;</a></h2>
+<p>Web tasks support four Docker-based execution modes and computer-use (CUA):</p>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Agent</th>
+<th>How the agent sees the page</th>
+<th>Best for</th>
+<th>Trade-off</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Playwright</strong></td>
+<td><code>persona-openhands-sdk</code></td>
+<td>Terminal agent writes Python; reads via Playwright DOM API</td>
+<td>Lower cost, CI-friendly, repeatable</td>
+<td>Agent must write working scripts</td>
+</tr>
+<tr>
+<td><strong>browser-use</strong></td>
+<td><code>persona-browser-use</code></td>
+<td>Dedicated browser loop with page structure (DOM); optional screenshots</td>
+<td>Purpose-built web agent</td>
+<td>Slower than hand-written Playwright scripts</td>
+</tr>
+<tr>
+<td><strong>Cocoa</strong></td>
+<td><code>persona-cocoa</code></td>
+<td>Same browser loop as browser-use; also shell + files in one container</td>
+<td>All-in-one digital agent without CUA licensing</td>
+<td>Heavier Docker base image</td>
+</tr>
+<tr>
+<td><strong>CUA (computer-use)</strong></td>
+<td><code>persona-computer-1</code></td>
+<td>Screenshot each turn of a real remote desktop; mouse/keyboard actions</td>
+<td>Highest human fidelity (screen-based)</td>
+<td>Slowest, highest LLM cost</td>
+</tr>
+</tbody>
+</table>
+<h3 id="example-playwright-web-task">Example: Playwright web task<a class="headerlink" href="#example-playwright-web-task" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">LLM_API_KEY</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">ANTHROPIC_API_KEY</span><span class="si">}</span><span class="s2">&quot;</span>
+
+uv<span class="w"> </span>run<span class="w"> </span>harbor<span class="w"> </span>run<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-a<span class="w"> </span>persona-openhands-sdk<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-m<span class="w"> </span>anthropic/claude-sonnet-4-6<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--ak<span class="w"> </span><span class="nv">persona_path</span><span class="o">=</span>persona/datasets/matraix-persona-dev-sample/persona_0042.yaml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span>application/tasks/example-web-playwright_quote-choice
+</code></pre></div>
+<p>Or use the checked-in recipe:</p>
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>run<span class="w"> </span>harbor<span class="w"> </span>run<span class="w"> </span>-c<span class="w"> </span>configs/jobs/example-job-recipe/appSim-example-web-playwright-local.yaml
+</code></pre></div>
+<h3 id="example-browser-use-web-task">Example: browser-use web task<a class="headerlink" href="#example-browser-use-web-task" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>run<span class="w"> </span>harbor<span class="w"> </span>run<span class="w"> </span>-c<span class="w"> </span>configs/jobs/example-job-recipe/appSim-example-web-browser-use-local.yaml
+</code></pre></div>
+<p>See <a href="../environment/web-interaction/">web-interaction.md</a> for detailed mode comparison, web submission contracts, and how to author new web tasks.</p>
+<h2 id="persona-profile-and-default-sample">Persona profile and default sample<a class="headerlink" href="#persona-profile-and-default-sample" title="Permanent link">&para;</a></h2>
+<p>Personas are instantiated via the YAML path in <code>agents[].kwargs.persona_path</code>. The recommended smoke profile for testing is:</p>
+<div class="highlight"><pre><span></span><code>persona/datasets/matraix-persona-dev-sample/persona_0042.yaml
+</code></pre></div>
+<p>This lightweight profile requires no external data and is suitable for smoke tests, demos, and development.</p>
+<p>For larger studies, use the <a href="https://huggingface.co/datasets/MatrAIx2026/MatrAIx_Persona_1M_Public_Release">public 1M coreset</a> on Hugging Face or the in-repo sample dataset at <code>persona/datasets/matraix-persona-dev-sample/</code>.</p>
+<h2 id="job-recipe-conventions">Job recipe conventions<a class="headerlink" href="#job-recipe-conventions" title="Permanent link">&para;</a></h2>
+<p>All job recipes live under <code>configs/jobs/</code> and follow these guidelines:</p>
+<ul>
+<li>Use paths that exist in this repository.</li>
+<li>Reference personas from the checked-in sample dataset or document external data dependencies in the recipe README.</li>
+<li>Do not commit generated <code>jobs/</code> outputs; they are gitignored.</li>
+<li>Keep generated or bulk recipes separate from hand-curated examples.</li>
+</ul>
+<h3 id="recipe-directories">Recipe directories<a class="headerlink" href="#recipe-directories" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>example-job-recipe/</code> — local application task examples backed by <code>application/tasks/</code> and the sample persona dataset; includes smoke recipe <code>harbor-smoke-local.yaml</code> for API-key-free testing.</li>
+<li><code>application-task-job-recipe/</code> — generated application job recipes from Playground UI launches and <code>application/scripts/generate_application_job.py</code>; most files are gitignored; a small set of curated fixtures is checked in.</li>
+<li><code>persona-job-recipe/</code> — generated persona job YAMLs from <code>persona/scripts/generate_persona_job.py</code> (gitignored).</li>
+</ul>
+<h3 id="example-recipes">Example recipes<a class="headerlink" href="#example-recipes" title="Permanent link">&para;</a></h3>
+<p>Run any example recipe from the repository root with:</p>
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>run<span class="w"> </span>harbor<span class="w"> </span>run<span class="w"> </span>-c<span class="w"> </span>configs/jobs/example-job-recipe/&lt;recipe&gt;.yaml
+</code></pre></div>
+<p>The example recipes use the checked-in sample persona <code>persona/datasets/matraix-persona-dev-sample/persona_0042.yaml</code>.
+<strong>Note:</strong> <code>appSim-example-survey-local.yaml</code> / <code>appSim-example-chat-local.yaml</code> use
+Docker CLI harnesses (<code>persona-claude-code</code>) — they are <strong>not</strong> Mode auto. Prefer
+<code>generate_application_job.py --execution-mode auto</code> for day-to-day survey/chat.</p>
+<ul>
+<li><code>harbor-smoke-local.yaml</code> — no-API-key smoke check using the generic <code>hello-world</code> task and built-in <code>oracle</code> agent (preferred quick check).</li>
+<li><code>appSim-example-survey-local.yaml</code> — Docker CLI survey smoke (<code>force_docker</code>-style)</li>
+<li><code>appSim-example-chat-local.yaml</code> — Docker CLI chat smoke</li>
+<li><code>appSim-example-debug-local.yaml</code></li>
+<li><code>appSim-example-web-playwright-local.yaml</code></li>
+<li><code>appSim-example-web-browser-use-local.yaml</code></li>
+<li><code>appSim-example-web-cocoa-local.yaml</code></li>
+<li><code>appSim-example-web-linux-cua-local.yaml</code></li>
+<li><code>appSim-example-computer-use-linux-local.yaml</code></li>
+<li><code>appSim-example-computer-use-macos-local.yaml</code></li>
+<li><code>appSim-example-computer-use-ios-local.yaml</code></li>
+</ul>
+<p>Some recipes require API keys, local Docker, use-computer, Apple container runtime support, or browser/Cocoa-specific task images.</p>
+<h2 id="batch-job-generation">Batch job generation<a class="headerlink" href="#batch-job-generation" title="Permanent link">&para;</a></h2>
+<p>To generate job recipes for many personas or tasks at once, use the job generator script:</p>
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>application/scripts/generate_application_job.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--task<span class="w"> </span>application/tasks/example-survey_product-feedback<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--execution-mode<span class="w"> </span>auto<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--model-name<span class="w"> </span>anthropic/claude-sonnet-4-6<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--persona-ids<span class="w"> </span><span class="m">0042</span>,0100,0200
+</code></pre></div>
+<p>The script outputs a YAML recipe and a Matraix Playground command to run it. The recipe pins <code>agents[].model_name</code> so you can edit it or pass <code>--model-name</code> on regenerate to change the persona LLM.</p>
+<p>Generated recipes land under <code>configs/jobs/application-task-job-recipe/</code> (see <a href="#recipe-directories">Recipe directories</a> above).</p>
+<h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
+<h3 id="survey-chat-with-mode-auto-preferred">Survey / chat with Mode auto (preferred)<a class="headerlink" href="#survey-chat-with-mode-auto-preferred" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>application/scripts/generate_application_job.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--task<span class="w"> </span>application/tasks/example-survey_product-feedback<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--execution-mode<span class="w"> </span>auto<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--persona-ids<span class="w"> </span><span class="m">0042</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--model-name<span class="w"> </span>anthropic/claude-sonnet-4-6
+<span class="c1"># Follow printed exports + harbor run -c …</span>
+</code></pre></div>
+<h3 id="web-browser-use-one-liner">Web (browser-use) one-liner<a class="headerlink" href="#web-browser-use-one-liner" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">ANTHROPIC_API_KEY</span><span class="o">=</span><span class="s2">&quot;sk-ant-...&quot;</span>
+
+uv<span class="w"> </span>run<span class="w"> </span>harbor<span class="w"> </span>run<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-a<span class="w"> </span>persona-browser-use<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-m<span class="w"> </span>anthropic/claude-sonnet-4-6<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--ak<span class="w"> </span><span class="nv">persona_path</span><span class="o">=</span>persona/datasets/matraix-persona-dev-sample/persona_0042.yaml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span>application/tasks/example-web-browser-use_laptop-choice
+</code></pre></div>
+<h3 id="chatbot-host-auto-after-generating-a-recipe-or-manual">Chatbot host auto (after generating a recipe, or manual)<a class="headerlink" href="#chatbot-host-auto-after-generating-a-recipe-or-manual" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">ANTHROPIC_API_KEY</span><span class="o">=</span><span class="s2">&quot;sk-ant-...&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">OPENAI_API_KEY</span><span class="o">=</span><span class="s2">&quot;sk-...&quot;</span><span class="w">  </span><span class="c1"># sidecar / SUT when required</span>
+
+uv<span class="w"> </span>run<span class="w"> </span>harbor<span class="w"> </span>run<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-a<span class="w"> </span>persona-user-sim<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-m<span class="w"> </span>anthropic/claude-sonnet-4-6<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--ak<span class="w"> </span><span class="nv">persona_path</span><span class="o">=</span>persona/datasets/matraix-persona-dev-sample/persona_0042.yaml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span>application/tasks/chat_recai
+</code></pre></div>
+<h3 id="force-docker-cli-survey-optional">Force Docker CLI survey (optional)<a class="headerlink" href="#force-docker-cli-survey-optional" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">ANTHROPIC_API_KEY</span><span class="o">=</span><span class="s2">&quot;sk-ant-...&quot;</span>
+
+uv<span class="w"> </span>run<span class="w"> </span>harbor<span class="w"> </span>run<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-a<span class="w"> </span>persona-claude-code<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-m<span class="w"> </span>anthropic/claude-sonnet-4-6<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--ak<span class="w"> </span><span class="nv">persona_path</span><span class="o">=</span>persona/datasets/matraix-persona-dev-sample/persona_0042.yaml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span>application/tasks/example-survey_product-feedback
+</code></pre></div>
+<h3 id="computer-use-task-macos">Computer-use task (macOS)<a class="headerlink" href="#computer-use-task-macos" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">ANTHROPIC_API_KEY</span><span class="o">=</span><span class="s2">&quot;sk-ant-...&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">USE_COMPUTER_API_KEY</span><span class="o">=</span><span class="s2">&quot;...&quot;</span>
+
+uv<span class="w"> </span>run<span class="w"> </span>harbor<span class="w"> </span>run<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-a<span class="w"> </span>persona-computer-1<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-m<span class="w"> </span>anthropic/claude-sonnet-4-6<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--ak<span class="w"> </span><span class="nv">persona_path</span><span class="o">=</span>persona/datasets/matraix-persona-dev-sample/persona_0042.yaml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span>application/tasks/example-computer-use-macos_calendar-reminder-handoff
+</code></pre></div>
+<p>Or use the pre-configured recipe:</p>
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>run<span class="w"> </span>harbor<span class="w"> </span>run<span class="w"> </span>-c<span class="w"> </span>configs/jobs/example-job-recipe/appSim-example-computer-use-macos-local.yaml
+</code></pre></div>
+<h3 id="no-api-key-required-smoke-test">No API key required (smoke test)<a class="headerlink" href="#no-api-key-required-smoke-test" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>run<span class="w"> </span>harbor<span class="w"> </span>run<span class="w"> </span>-c<span class="w"> </span>configs/jobs/example-job-recipe/harbor-smoke-local.yaml
+</code></pre></div>
+<p>This uses the <code>oracle</code> reference agent (not a real LLM) and is useful for verifying setup before using API keys.</p>
+<h2 id="related">Related<a class="headerlink" href="#related" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../">Handbook</a> — docs home</li>
+<li><a href="../README.md">Project README</a> — install and short overview</li>
+<li><a href="../quickstart/">Quickstart</a> — terminal → batch → Playground</li>
+<li><a href="../environment/agents/">Agents</a> — agent, model, and API-key matrix</li>
+<li><a href="../environment/web-interaction/">Web interaction</a> — browser modes and web contracts</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.top", "navigation.indexes", "search.highlight", "content.code.copy", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

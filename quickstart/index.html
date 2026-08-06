@@ -1,0 +1,2400 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation for MatrAIx — a population-scale, persona-driven infrastructure for evaluating AI systems and interactive products with simulated users.">
+      
+      
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../configuration/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Quickstart - MatrAIx Handbook</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#quickstart" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="MatrAIx Handbook" class="md-header__button md-logo" aria-label="MatrAIx Handbook" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MatrAIx Handbook
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Quickstart
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/MatrAIx-ai/MatrAIx" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="MatrAIx Handbook" class="md-nav__button md-logo" aria-label="MatrAIx Handbook" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    MatrAIx Handbook
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/MatrAIx-ai/MatrAIx" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Start here
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Start here
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quickstart
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quickstart
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-you-need" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What you need
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-install-docker-and-confirm-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Install Docker and confirm it works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-install-uv-clone-and-sync" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Install uv, clone, and sync
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-smoke-test-no-api-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Smoke test (no API key)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-set-your-api-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Set your API key
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-look-at-a-persona-optional-but-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Look at a persona (optional but recommended)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#matraix-playground-vocabulary-application-runs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Matraix Playground vocabulary (Application runs)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-one-persona-cli-with-mode-auto-default" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. One persona — CLI with Mode auto (default)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. One persona — CLI with Mode auto (default)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#survey-auto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Survey (auto)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chat-auto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chat (auto)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#web-os-app-auto-still-uses-docker-or-usecomputer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Web / OS-app (auto still uses Docker or use.computer)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-checked-in-docker-recipes-force_docker-style" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional: checked-in Docker recipes (force_docker-style)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-batch-sample-many-personas-job" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Batch — sample many personas (job)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Batch — sample many personas (job)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generate-your-own-batch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generate your own batch
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-find-your-output-on-disk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Find your output on disk
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-browse-runs-in-the-viewer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Browse runs in the viewer
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-playground-play-tasks-visually" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Playground — play tasks visually
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Playground — play tasks visually">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#start-the-ui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Start the UI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#in-the-playground" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        In the Playground
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#register-a-new-task-for-playground" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Register a new task for Playground
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-create-a-new-application-task" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Create a new application task
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Create a new application task">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-understand-task-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Understand task structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-view-other-scenario-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. View other scenario types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-scaffold-a-new-task" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Scaffold a new task
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-edit-the-task" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Edit the task
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-smoke-with-one-persona-terminal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Smoke with one persona (terminal)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-iterate-in-playground" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Iterate in Playground
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-batch-of-personas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Batch of personas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-view-outputs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. View outputs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-docs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related docs
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../persona/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Persona
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Persona
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../persona/pipeline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pipeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../persona/validation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Validation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../application/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Application
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../application/task-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Task guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../application/playground-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Playground API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../environment/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Environment
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../environment/agents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../environment/web-interaction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web interaction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../environment/runtime/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Runtime
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../environment/large-scale-runs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Large-scale runs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Packages
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-you-need" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What you need
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-install-docker-and-confirm-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Install Docker and confirm it works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-install-uv-clone-and-sync" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Install uv, clone, and sync
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-smoke-test-no-api-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Smoke test (no API key)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-set-your-api-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Set your API key
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-look-at-a-persona-optional-but-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Look at a persona (optional but recommended)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#matraix-playground-vocabulary-application-runs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Matraix Playground vocabulary (Application runs)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-one-persona-cli-with-mode-auto-default" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. One persona — CLI with Mode auto (default)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. One persona — CLI with Mode auto (default)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#survey-auto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Survey (auto)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chat-auto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chat (auto)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#web-os-app-auto-still-uses-docker-or-usecomputer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Web / OS-app (auto still uses Docker or use.computer)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-checked-in-docker-recipes-force_docker-style" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional: checked-in Docker recipes (force_docker-style)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-batch-sample-many-personas-job" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Batch — sample many personas (job)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Batch — sample many personas (job)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generate-your-own-batch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generate your own batch
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-find-your-output-on-disk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Find your output on disk
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-browse-runs-in-the-viewer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Browse runs in the viewer
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-playground-play-tasks-visually" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Playground — play tasks visually
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Playground — play tasks visually">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#start-the-ui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Start the UI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#in-the-playground" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        In the Playground
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#register-a-new-task-for-playground" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Register a new task for Playground
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-create-a-new-application-task" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Create a new application task
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Create a new application task">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-understand-task-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Understand task structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-view-other-scenario-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. View other scenario types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-scaffold-a-new-task" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Scaffold a new task
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-edit-the-task" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Edit the task
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-smoke-with-one-persona-terminal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Smoke with one persona (terminal)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-iterate-in-playground" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Iterate in Playground
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-batch-of-personas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Batch of personas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-view-outputs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. View outputs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-docs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related docs
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="quickstart">Quickstart<a class="headerlink" href="#quickstart" title="Permanent link">&para;</a></h1>
+<p>A step-by-step path from zero to your first multi-persona survey run, then into
+the <strong>Playground</strong> for interactive task play. No prior Matraix Playground experience
+required. More docs: the <a href="../">MatrAIx Handbook</a>.</p>
+<p><strong>What you are doing:</strong> loading a synthetic user profile (persona), putting that
+user in a product scenario (survey, chat, web, …), and inspecting what they
+“said” — all inside a reproducible sandbox.</p>
+<p><strong>Time:</strong> ~30–60 minutes the first time (mostly Docker image build on web/CUA tasks).</p>
+<hr />
+<h2 id="what-you-need">What you need<a class="headerlink" href="#what-you-need" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><a href="https://docs.docker.com/get-docker/">Docker</a></strong></td>
+<td>Web, CUA, and some smoke recipes use containers</td>
+</tr>
+<tr>
+<td><strong>uv</strong></td>
+<td>Python + <code>harbor</code> CLI — <a href="#2-install-uv-clone-and-sync">install in step 2</a></td>
+</tr>
+<tr>
+<td><strong>Node.js 20+</strong></td>
+<td>Playground frontend (optional but recommended)</td>
+</tr>
+<tr>
+<td><strong>Anthropic API key</strong></td>
+<td>Persona agents (step 6+). <a href="https://console.anthropic.com/">Create one</a> if needed</td>
+</tr>
+<tr>
+<td><strong>OpenAI API key</strong></td>
+<td>Some chat tasks and alternate LLM backends</td>
+</tr>
+</tbody>
+</table>
+<p>Persona pool for local runs: <code>persona/datasets/matraix-persona-dev-sample/</code> (200 profiles;
+smoke persona <strong><code>0042</code></strong>). For population-scale eval, import the public <strong>Persona 1M</strong>
+coreset — <a href="../#3-persona-1m-optional">Handbook § Persona 1M</a> ·
+<a href="../persona/#setup-and-usage">Persona setup</a>.</p>
+<hr />
+<h2 id="1-install-docker-and-confirm-it-works">1. Install Docker and confirm it works<a class="headerlink" href="#1-install-docker-and-confirm-it-works" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Install <a href="https://docs.docker.com/get-docker/">Docker Desktop</a> (or Docker Engine on Linux).</li>
+<li><strong>Start Docker</strong> and wait until it reports “running”.</li>
+<li>In a terminal:</li>
+</ol>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>hello-world
+</code></pre></div>
+<p>You should see a “Hello from Docker!” message. If this fails, fix Docker before continuing.</p>
+<hr />
+<h2 id="2-install-uv-clone-and-sync">2. Install uv, clone, and sync<a class="headerlink" href="#2-install-uv-clone-and-sync" title="Permanent link">&para;</a></h2>
+<p><strong>Install <a href="https://docs.astral.sh/uv/">uv</a></strong>:</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-LsSf<span class="w"> </span>https://astral.sh/uv/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
+</code></pre></div>
+<p>Open a <strong>new terminal</strong> (or run <code>source $HOME/.local/bin/env</code> if the installer says so). Check:</p>
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>--version
+</code></pre></div>
+<p>On macOS you can also use Homebrew: <code>brew install uv</code>.</p>
+<p><strong>Clone the repo and install dependencies:</strong></p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/matraix-ai/matraix.git<span class="w">   </span><span class="c1"># or your fork</span>
+<span class="nb">cd</span><span class="w"> </span>matraix
+uv<span class="w"> </span>sync
+</code></pre></div>
+<p>Check the CLI:</p>
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>run<span class="w"> </span>harbor<span class="w"> </span>--help
+</code></pre></div>
+<hr />
+<h2 id="3-smoke-test-no-api-key">3. Smoke test (no API key)<a class="headerlink" href="#3-smoke-test-no-api-key" title="Permanent link">&para;</a></h2>
+<p>Confirms Docker and Matraix Playground with the upstream <strong>hello-world</strong> task (reference
+solution, no LLM call):</p>
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>run<span class="w"> </span>harbor<span class="w"> </span>run<span class="w"> </span>-c<span class="w"> </span>configs/jobs/example-job-recipe/harbor-smoke-local.yaml
+</code></pre></div>
+<p>First run builds the Docker image (several minutes).</p>
+<p><strong>Success:</strong> the command finishes without error and writes output under
+<code>jobs/harbor-smoke-local/</code>.</p>
+<hr />
+<h2 id="4-set-your-api-key">4. Set your API key<a class="headerlink" href="#4-set-your-api-key" title="Permanent link">&para;</a></h2>
+<p><strong>Auto</strong> survey / chat / most web agents read provider keys from your <strong>shell</strong>
+(not committed to git). For Anthropic persona models:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">ANTHROPIC_API_KEY</span><span class="o">=</span><span class="s2">&quot;sk-ant-...&quot;</span><span class="w">   </span><span class="c1"># replace with your key</span>
+</code></pre></div>
+<p>Also set <code>OPENAI_API_KEY</code> when the chat <strong>sidecar</strong> needs it, and
+<code>LLM_API_KEY="$ANTHROPIC_API_KEY"</code> for Playwright (<code>persona-openhands-sdk</code>).
+macOS/iOS computer-use also needs <code>USE_COMPUTER_API_KEY</code>.</p>
+<p>To keep keys across terminal sessions, add the same lines to <code>~/.zshrc</code> or
+<code>~/.bashrc</code>, then open a new terminal.</p>
+<p>Full agent ↔ key matrix: <a href="../environment/agents/">choosing-an-agent.md</a>.</p>
+<hr />
+<h2 id="5-look-at-a-persona-optional-but-recommended">5. Look at a persona (optional but recommended)<a class="headerlink" href="#5-look-at-a-persona-optional-but-recommended" title="Permanent link">&para;</a></h2>
+<p>A <strong>persona</strong> is a YAML profile — demographics, preferences, communication style,
+etc. The agent reads it and tries to answer <em>as that person</em>.</p>
+<div class="highlight"><pre><span></span><code>head<span class="w"> </span>-40<span class="w"> </span>persona/datasets/matraix-persona-dev-sample/persona_0042.yaml
+</code></pre></div>
+<p>You will pass this file path on the command line as <code>persona_path=...</code>. Swap
+<code>persona_0042</code> for any <code>persona_XXXX.yaml</code> in the dataset to simulate a different
+person.</p>
+<hr />
+<h2 id="matraix-playground-vocabulary-application-runs">Matraix Playground vocabulary (Application runs)<a class="headerlink" href="#matraix-playground-vocabulary-application-runs" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>In this guide</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Task</strong></td>
+<td>The scenario — e.g. <a href="../application/tasks/example-survey_product-feedback/">example-survey_product-feedback</a> (product brief + survey questions + verifier). Same task for every persona.</td>
+</tr>
+<tr>
+<td><strong>Trial</strong></td>
+<td>One full run: <strong>one persona</strong> + <strong>one task</strong> → agent acts → verifier scores. Step 6 is a single trial.</td>
+</tr>
+<tr>
+<td><strong>Job</strong></td>
+<td>A batch container: Matraix Playground runs <strong>many trials</strong> from one YAML (step 7). Output lands in <code>jobs/&lt;job_name&gt;/</code> with one subfolder per trial.</td>
+</tr>
+<tr>
+<td><strong>Agent</strong></td>
+<td>How the simulated user is driven — under <strong>auto</strong>: <code>persona-json-survey</code> / <code>persona-user-sim</code> (host), or web/os-app Docker agents.</td>
+</tr>
+<tr>
+<td><strong>Model</strong></td>
+<td>Which LLM plays the persona — e.g. <code>anthropic/claude-sonnet-4-6</code>. Independent of the agent harness.</td>
+</tr>
+<tr>
+<td><strong>Persona</strong></td>
+<td>Which synthetic user profile — <code>persona_path=persona/datasets/matraix-persona-dev-sample/persona_0042.yaml</code>.</td>
+</tr>
+<tr>
+<td><strong>Execution mode</strong></td>
+<td>Playground <strong>Mode</strong> / <code>generate_application_job.py --execution-mode</code>. Default <strong><code>auto</code></strong>.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 6 vs 7:</strong> Step 6 = <strong>one persona</strong> (<code>--persona-ids</code>). Step 7 =
+<code>generate_application_job.py</code> <strong>samples N personas</strong> (seed + pool) into a job
+YAML, then you <code>harbor run -c</code> that file once.</p>
+<p><strong>Terminal vs Playground:</strong> Steps 6–9 use the terminal (good for CI and smoke).
+<a href="#10-playground-play-tasks-visually">Section 10</a> uses the Playground UI —
+same Matraix Playground contracts, better for exploring trajectories and iterating on new tasks.</p>
+<hr />
+<h2 id="6-one-persona-cli-with-mode-auto-default">6. One persona — CLI with Mode <strong>auto</strong> (default)<a class="headerlink" href="#6-one-persona-cli-with-mode-auto-default" title="Permanent link">&para;</a></h2>
+<p><strong>Prefer this path for all four application types.</strong> It matches Playground
+<strong>Mode → auto</strong>.</p>
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>application/scripts/generate_application_job.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--task<span class="w"> </span>&lt;task_path&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--execution-mode<span class="w"> </span>auto<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--persona-ids<span class="w"> </span><span class="m">0042</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--model-name<span class="w"> </span>anthropic/claude-sonnet-4-6
+<span class="c1"># Then run the printed export lines and:</span>
+<span class="c1"># uv run harbor run -c configs/jobs/application-task-job-recipe/&lt;generated&gt;-auto-n1.yaml</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Auto picks</th>
+<th>Runs on</th>
+<th>Example <code>--task</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Survey</strong></td>
+<td><code>persona-json-survey</code></td>
+<td><strong>host</strong> (no task image build)</td>
+<td><code>application/tasks/example-survey_product-feedback</code></td>
+</tr>
+<tr>
+<td><strong>Chat</strong></td>
+<td><code>persona-user-sim</code></td>
+<td><strong>host</strong> (+ sidecar env the script prints)</td>
+<td><code>application/tasks/chat_meal-planning-nutrition</code></td>
+</tr>
+<tr>
+<td><strong>Web</strong></td>
+<td>path heuristic (OpenHands / browser-use / Cocoa / computer-1)</td>
+<td><strong>docker</strong></td>
+<td><code>…/example-web-playwright_quote-choice</code>, <code>…/example-web-browser-use_laptop-choice</code>, …</td>
+</tr>
+<tr>
+<td><strong>OS-app</strong></td>
+<td><code>persona-computer-1</code></td>
+<td>Linux <strong>docker</strong>; macOS/iOS <strong>use-computer</strong></td>
+<td><code>…/example-computer-use-linux_note-to-csv</code>, <code>…/example-computer-use-macos_calendar-reminder-handoff</code></td>
+</tr>
+</tbody>
+</table>
+<p>Web agent under auto (same as Playground): <code>*browser-use*</code> → <code>persona-browser-use</code>;
+<code>*cocoa*</code> → <code>persona-cocoa</code>; <code>*cua*</code> / <code>*os-app*</code> / <code>*computer-use*</code> →
+<code>persona-computer-1</code>; else → <code>persona-openhands-sdk</code>.</p>
+<h3 id="survey-auto">Survey (auto)<a class="headerlink" href="#survey-auto" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>application/scripts/generate_application_job.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--task<span class="w"> </span>application/tasks/example-survey_product-feedback<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--execution-mode<span class="w"> </span>auto<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--persona-ids<span class="w"> </span><span class="m">0042</span>
+
+<span class="nb">export</span><span class="w"> </span><span class="nv">ANTHROPIC_API_KEY</span><span class="o">=</span><span class="s2">&quot;sk-ant-...&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">MATRIX_SURVEY_TASK_PATH</span><span class="o">=</span>application/tasks/example-survey_product-feedback
+uv<span class="w"> </span>run<span class="w"> </span>harbor<span class="w"> </span>run<span class="w"> </span>-c<span class="w"> </span>configs/jobs/application-task-job-recipe/example-survey-product-feedback-auto-n1.yaml
+</code></pre></div>
+<h3 id="chat-auto">Chat (auto)<a class="headerlink" href="#chat-auto" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>application/scripts/generate_application_job.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--task<span class="w"> </span>application/tasks/chat_meal-planning-nutrition<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--execution-mode<span class="w"> </span>auto<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--persona-ids<span class="w"> </span><span class="m">0042</span>
+
+<span class="nb">export</span><span class="w"> </span><span class="nv">ANTHROPIC_API_KEY</span><span class="o">=</span><span class="s2">&quot;sk-ant-...&quot;</span>
+<span class="c1"># Use the MATRIX_CHATBOT_* export lines the script prints, then:</span>
+uv<span class="w"> </span>run<span class="w"> </span>harbor<span class="w"> </span>run<span class="w"> </span>-c<span class="w"> </span>configs/jobs/application-task-job-recipe/&lt;generated&gt;-auto-n1.yaml
+</code></pre></div>
+<h3 id="web-os-app-auto-still-uses-docker-or-usecomputer">Web / OS-app (auto still uses Docker or use.computer)<a class="headerlink" href="#web-os-app-auto-still-uses-docker-or-usecomputer" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Playwright web</span>
+uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>application/scripts/generate_application_job.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--task<span class="w"> </span>application/tasks/example-web-playwright_quote-choice<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--execution-mode<span class="w"> </span>auto<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--persona-ids<span class="w"> </span><span class="m">0042</span>
+
+<span class="nb">export</span><span class="w"> </span><span class="nv">LLM_API_KEY</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$ANTHROPIC_API_KEY</span><span class="s2">&quot;</span>
+uv<span class="w"> </span>run<span class="w"> </span>harbor<span class="w"> </span>run<span class="w"> </span>-c<span class="w"> </span>configs/jobs/application-task-job-recipe/example-web-playwright-quote-choice-auto-n1.yaml
+
+<span class="c1"># Linux computer-use (macOS/iOS need USE_COMPUTER_API_KEY)</span>
+uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>application/scripts/generate_application_job.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--task<span class="w"> </span>application/tasks/example-computer-use-linux_note-to-csv<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--execution-mode<span class="w"> </span>auto<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--persona-ids<span class="w"> </span><span class="m">0042</span>
+</code></pre></div>
+<p>The generator always prints the exact <code>export</code> lines and recipe path.
+Script reference: <a href="../application/">Job Generation Scripts</a>.
+Agent / key details: <a href="../environment/agents/">choosing-an-agent.md</a>.</p>
+<p><strong>What happens</strong></p>
+<ol>
+<li>Survey/chat <strong>auto</strong>: host-native agent (no application image build).</li>
+<li>Web/os-app <strong>auto</strong>: Matraix Playground builds the task Docker image the first time
+   (or starts a use.computer sandbox for macOS/iOS).</li>
+<li>The agent reads the persona + task materials and writes <code>/app/output/…</code>.</li>
+<li>The verifier runs; Matraix Playground writes one trial under <code>jobs/</code>.</li>
+</ol>
+<p><strong>Success:</strong> command ends without error; you see a path under <code>jobs/</code>.</p>
+<h3 id="optional-checked-in-docker-recipes-force_docker-style">Optional: checked-in Docker recipes (<code>force_docker</code>-style)<a class="headerlink" href="#optional-checked-in-docker-recipes-force_docker-style" title="Permanent link">&para;</a></h3>
+<p>Hand-written YAMLs under <code>configs/jobs/example-job-recipe/appSim-*-local.yaml</code>
+are <strong>smoke / Docker harness</strong> examples (often <code>persona-claude-code</code> for
+survey/chat). They are <strong>not</strong> Mode auto. Prefer the generator above unless you
+intentionally want the CLI harness in Docker:</p>
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>run<span class="w"> </span>harbor<span class="w"> </span>run<span class="w"> </span>-c<span class="w"> </span>configs/jobs/example-job-recipe/appSim-example-survey-local.yaml
+uv<span class="w"> </span>run<span class="w"> </span>harbor<span class="w"> </span>run<span class="w"> </span>-c<span class="w"> </span>configs/jobs/example-job-recipe/appSim-example-web-playwright-local.yaml
+</code></pre></div>
+<p>To force Docker CLI agents from the generator: <code>--execution-mode force_docker</code>.</p>
+<hr />
+<h2 id="7-batch-sample-many-personas-job">7. Batch — sample many personas (job)<a class="headerlink" href="#7-batch-sample-many-personas-job" title="Permanent link">&para;</a></h2>
+<p>Same generator as step 6; swap <code>--persona-ids</code> for <strong><code>--sample-size N</code></strong>
+(or keep strategy filters). Works for <strong>survey, chat, web, and os-app</strong> —
+auto still picks host vs Docker the same way.</p>
+<p><strong><code>generate_application_job.py</code></strong> samples personas, pins <strong>agent</strong>, <strong>model</strong>,
+and <strong>seed</strong>, and writes a <strong>job YAML</strong> under
+<code>configs/jobs/application-task-job-recipe/</code> (gitignored except curated examples).</p>
+<p>Batch ≠ parallel: N personas = N trials. Edit <code>n_concurrent_trials</code> in the YAML
+to run trials in parallel (generator often writes <code>1</code>; Playground defaults higher).</p>
+<h3 id="generate-your-own-batch">Generate your own batch<a class="headerlink" href="#generate-your-own-batch" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>application/scripts/generate_application_job.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--task<span class="w"> </span>application/tasks/example-survey_product-feedback<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--execution-mode<span class="w"> </span>auto<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--sample-size<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--seed<span class="w"> </span><span class="m">42</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dataset<span class="w"> </span>persona/datasets/matraix-persona-dev-sample
+</code></pre></div>
+<p><strong>Persona 1M pool</strong> (after
+<a href="../#3-persona-1m-optional">importing the public coreset</a>):</p>
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>application/scripts/generate_application_job.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--task<span class="w"> </span>application/tasks/example-survey_product-feedback<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--execution-mode<span class="w"> </span>auto<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dataset<span class="w"> </span>persona/datasets/matraix-persona-1m<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--sample-size<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--seed<span class="w"> </span><span class="m">42</span>
+</code></pre></div>
+<p><strong>Playground-parity retrieval</strong> (sources / dimension filters / task strategy / cohorts):</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Uses &lt;task&gt;/persona_strategy.json by default (filters + stratify + sampleSize).</span>
+uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>application/scripts/generate_application_job.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--task<span class="w"> </span>application/tasks/example-survey_product-feedback<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--execution-mode<span class="w"> </span>auto
+
+<span class="c1"># Explicit filters (same semantics as Persona World Filters).</span>
+uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>application/scripts/generate_application_job.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--task<span class="w"> </span>application/tasks/example-survey_product-feedback<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--execution-mode<span class="w"> </span>auto<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--sample-size<span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--sources<span class="w"> </span>wiki<span class="w"> </span>amazon<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--filter<span class="w"> </span><span class="nv">age_bracket</span><span class="o">=</span><span class="m">25</span>-34,35-44<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--filter<span class="w"> </span><span class="nv">economic_motivation</span><span class="o">=</span>Cost-sensitive<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--no-strategy
+</code></pre></div>
+<p><strong>Stratify</strong> when you need balanced representation across a persona field:</p>
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>application/scripts/generate_application_job.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--task<span class="w"> </span>application/tasks/example-survey_product-feedback<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--execution-mode<span class="w"> </span>auto<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--sample-size<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--seed<span class="w"> </span><span class="m">42</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--stratify<span class="w"> </span>dimensions.age_bracket
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Default</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--sample-size</code></td>
+<td>strategy / <code>1</code></td>
+<td>How many personas (= how many trials in the job)</td>
+</tr>
+<tr>
+<td><code>--persona-ids</code></td>
+<td>(none)</td>
+<td>Explicit IDs instead of retrieval sampling</td>
+</tr>
+<tr>
+<td><code>--seed</code></td>
+<td>strategy / <code>42</code></td>
+<td>Random seed — same seed + pool → same persona IDs</td>
+</tr>
+<tr>
+<td><code>--dataset</code></td>
+<td>strategy / <code>matraix-persona-dev-sample</code></td>
+<td>Persona pool (also supports <code>matraix-persona-1m</code>)</td>
+</tr>
+<tr>
+<td><code>--sources</code></td>
+<td>strategy</td>
+<td>Restrict to source chips (<code>wiki</code>, <code>amazon</code>, …)</td>
+</tr>
+<tr>
+<td><code>--filter DIM=VAL</code></td>
+<td>strategy</td>
+<td>Dimension filter; repeatable; <code>a,b</code> for multi-value</td>
+</tr>
+<tr>
+<td><code>--filters-json</code></td>
+<td>(none)</td>
+<td>JSON object form of dimension filters</td>
+</tr>
+<tr>
+<td><code>--strategy</code> / <code>--no-strategy</code></td>
+<td>auto-load task file</td>
+<td>Apply or skip <code>persona_strategy.json</code></td>
+</tr>
+<tr>
+<td><code>--cohort-id</code></td>
+<td>strategy</td>
+<td>Saved Playground cohort</td>
+</tr>
+<tr>
+<td><code>--execution-mode</code></td>
+<td><code>auto</code></td>
+<td>Same as Playground; use <code>force_docker</code> to always run in Docker</td>
+</tr>
+<tr>
+<td><code>--stratify</code></td>
+<td>strategy</td>
+<td>Balance across a field, e.g. <code>dimensions.age_bracket</code></td>
+</tr>
+<tr>
+<td><code>--name</code></td>
+<td>(derived)</td>
+<td>Job basename</td>
+</tr>
+</tbody>
+</table>
+<p>Run the generated job (paths are also in the YAML header):</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">ANTHROPIC_API_KEY</span><span class="o">=</span><span class="s2">&quot;sk-ant-...&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">MATRIX_SURVEY_TASK_PATH</span><span class="o">=</span>application/tasks/example-survey_product-feedback
+uv<span class="w"> </span>run<span class="w"> </span>harbor<span class="w"> </span>run<span class="w"> </span>-c<span class="w"> </span>configs/jobs/application-task-job-recipe/example-survey-product-feedback-auto-n10.yaml
+</code></pre></div>
+<p><strong>What a job means here:</strong> one <strong>task</strong>, <strong>N trials</strong> — each trial uses a
+different <code>persona_path</code> from the YAML. All trials share the same agent and model.</p>
+<p>Each trial is one Matraix Playground run. Edit <code>n_concurrent_trials</code> in the YAML to run trials
+in parallel.</p>
+<p><strong>Cost note:</strong> 10 trials ≈ 10 LLM calls. Use <code>--sample-size 3</code> while testing.</p>
+<hr />
+<h2 id="8-find-your-output-on-disk">8. Find your output on disk<a class="headerlink" href="#8-find-your-output-on-disk" title="Permanent link">&para;</a></h2>
+<p>After a job finishes:</p>
+<div class="highlight"><pre><span></span><code>jobs/&lt;job_name&gt;/
+├── result.json           # Summary stats
+├── job.log
+└── &lt;trial_name&gt;/
+    ├── results.json      # Reward / verifier outcome
+    ├── persona_meta.json # Which persona was used (if persona agent)
+    └── artifacts/
+        └── app/output/   # The agent&#39;s submission JSON
+</code></pre></div>
+<p>Open the submission JSON to read what that simulated user chose.</p>
+<p>Refresh batch reporting:</p>
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>application/scripts/report_job.py<span class="w"> </span>jobs/&lt;job_name&gt;
+</code></pre></div>
+<p>For a <strong>task PR</strong>, also open the job in Playground <strong>Runs</strong> and download the
+persona-task batch report with <strong>Download PDF</strong>. Attach that UI PDF to the PR —
+not the server text <code>…/report.pdf</code> export. See
+<a href="../application/tasks/README.md#pr-batch-evidence-required">tasks/README.md — PR batch evidence</a>.</p>
+<hr />
+<h2 id="9-browse-runs-in-the-viewer">9. Browse runs in the viewer<a class="headerlink" href="#9-browse-runs-in-the-viewer" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>run<span class="w"> </span>harbor<span class="w"> </span>view<span class="w"> </span><span class="nb">jobs</span><span class="w"> </span>--build
+</code></pre></div>
+<p>Opens a local web UI listing jobs and trials — transcripts, artifacts, verifier
+logs. Use this to compare personas side by side.</p>
+<p>To explore without spending API credits, browse checked-in examples under <code>jobs/</code>
+if present, or run the no-key smoke recipe from step 3.</p>
+<p>Job recipe layout: <a href="../configuration/#job-recipe-conventions">../docs/configuration.md</a>.</p>
+<hr />
+<h2 id="10-playground-play-tasks-visually">10. Playground — play tasks visually<a class="headerlink" href="#10-playground-play-tasks-visually" title="Permanent link">&para;</a></h2>
+<p>After smoke passes, use the <strong>Playground</strong> to pick tasks, sample personas, launch
+Matraix Playground jobs, and inspect trajectories live — without hand-writing job YAML each
+time.</p>
+<h3 id="start-the-ui">Start the UI<a class="headerlink" href="#start-the-ui" title="Permanent link">&para;</a></h3>
+<p><strong>Terminal A — API</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nv">VENV</span><span class="o">=</span>.venv<span class="w"> </span>bash<span class="w"> </span>application/playground/backend/run_dev.sh
+</code></pre></div>
+<p><strong>Terminal B — frontend (hot reload)</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>application/playground/frontend<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>npm<span class="w"> </span>ci<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>npm<span class="w"> </span>run<span class="w"> </span>dev
+</code></pre></div>
+<p>Open <strong>http://localhost:5173</strong> (proxies <code>/api</code> → <code>:8765</code>).</p>
+<p>Check the footer <strong>Preflight</strong> chip before blaming a task. Green = keys, Docker
+(when needed), and catalogs look ready.</p>
+<p>One-shot (API serves built frontend, no Vite):</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>application/playground/frontend<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>npm<span class="w"> </span>ci<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>npm<span class="w"> </span>run<span class="w"> </span>build
+<span class="nb">cd</span><span class="w"> </span>../../..<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>application/playground/run_demo.sh
+<span class="c1"># → http://127.0.0.1:8765</span>
+</code></pre></div>
+<p>More detail: <a href="../application/">docs/application/README.md § Playground App</a>,
+<a href="../application/playground-api/">rest-api.md</a>.</p>
+<h3 id="in-the-playground">In the Playground<a class="headerlink" href="#in-the-playground" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Open the <strong>Playground</strong> tab.</li>
+<li>Switch task kind: <strong>Survey</strong> · <strong>Chat</strong> · <strong>Web</strong> · <strong>OS app</strong>.</li>
+<li>Pick a task card; read instruction/context in the right panel.</li>
+<li>Sample personas — <strong>Quick pick</strong> (<code>0042</code> is the default smoke id), <strong>Random</strong>,
+   or <strong>Stratified</strong>.</li>
+<li>Leave <strong>Mode → auto</strong> (default) and click <strong>Run eval</strong>.</li>
+<li>Watch live progress; open a trial debrief for trajectory, scorecard, and verifier output.</li>
+<li>Use <strong>Runs</strong> in the top bar to reopen past jobs.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Task kind</th>
+<th>First-run notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Survey</td>
+<td>Fast — host auto mode, no task image build</td>
+</tr>
+<tr>
+<td>Chat</td>
+<td>Host auto; toggle <strong>Start sidecar</strong> if the task card shows the sidecar down</td>
+</tr>
+<tr>
+<td>Web</td>
+<td>Docker image build on first run; pick the web agent driver that matches the task stack</td>
+</tr>
+<tr>
+<td>OS app</td>
+<td>Docker or use.computer depending on platform</td>
+</tr>
+</tbody>
+</table>
+<p>Playground launches the same Matraix Playground jobs as <code>generate_application_job.py --execution-mode auto</code>.
+Chat env exports (<code>MATRIX_CHATBOT_*</code>) are applied automatically from the UI.</p>
+<h3 id="register-a-new-task-for-playground">Register a new task for Playground<a class="headerlink" href="#register-a-new-task-for-playground" title="Permanent link">&para;</a></h3>
+<p>New tasks must be indexed before they appear in the task picker. See
+<a href="../application/task-guide/#playground-registration">task-guide.md § Playground registration</a>.</p>
+<hr />
+<h2 id="11-create-a-new-application-task">11. Create a new application task<a class="headerlink" href="#11-create-a-new-application-task" title="Permanent link">&para;</a></h2>
+<h3 id="1-understand-task-structure">1. Understand task structure<a class="headerlink" href="#1-understand-task-structure" title="Permanent link">&para;</a></h3>
+<p>Read <a href="../application/task-guide/">task-guide.md</a> — <code>task.toml</code>, <code>instruction.md</code>, <code>input/</code>,
+shared runtimes under <code>environment/task-environments/application/</code>, <code>tests/</code>.</p>
+<h3 id="2-view-other-scenario-types">2. View other scenario types<a class="headerlink" href="#2-view-other-scenario-types" title="Permanent link">&para;</a></h3>
+<p>Survey is only one <strong>form</strong>. Chat, web, and computer-use use different runtimes
+and agents — under Mode <strong>auto</strong> the generator picks them
+(<a href="../environment/agents/">choosing-an-agent.md</a>).</p>
+<p>Browse the example table in <a href="../application/task-guide/#reference-scenarios">task-guide.md § Reference scenarios</a>,
+run any example with the suggested agent, then inspect with Playground or
+<code>harbor view</code>.</p>
+<p>Web stack choice: <a href="../environment/web-interaction/">web-interaction.md</a>.</p>
+<h3 id="3-scaffold-a-new-task">3. Scaffold a new task<a class="headerlink" href="#3-scaffold-a-new-task" title="Permanent link">&para;</a></h3>
+<p>Copy the closest <strong>example</strong> task, then put your copy at
+<strong><code>application/tasks/&lt;your-task-name&gt;</code></strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># survey</span>
+cp<span class="w"> </span>-R<span class="w"> </span>application/tasks/example-survey_product-feedback<span class="w"> </span>application/tasks/&lt;your-task-name&gt;
+
+<span class="c1"># chat (REST API sidecar) — persona talks HTTP /v1/messages</span>
+cp<span class="w"> </span>-R<span class="w"> </span>application/tasks/example-chat-api_support_chatbot<span class="w"> </span>application/tasks/&lt;your-task-name&gt;
+
+<span class="c1"># chat (MCP sidecar) — persona talks MCP chat tools directly</span>
+cp<span class="w"> </span>-R<span class="w"> </span>application/tasks/example-chat-mcp_support_chatbot<span class="w"> </span>application/tasks/&lt;your-task-name&gt;
+
+<span class="c1"># For real benchmark tasks, rename to survey_* / chat_&lt;sut&gt; (see tasks/README.md).</span>
+<span class="c1"># HTTP adapter over an internal MCP data layer still uses chatbot-api-sidecar_*</span>
+<span class="c1"># (example: chat_openbb-corporate-action-honesty → chatbot-api-sidecar_openbb).</span>
+
+<span class="c1"># web — pick one example-web-* stack (see web-interaction.md)</span>
+cp<span class="w"> </span>-R<span class="w"> </span>application/tasks/example-web-playwright_quote-choice<span class="w"> </span>application/tasks/&lt;your-task-name&gt;
+
+<span class="c1"># computer-use (macOS / iOS / Linux — copy the matching example)</span>
+cp<span class="w"> </span>-R<span class="w"> </span>application/tasks/example-computer-use-macos_calendar-reminder-handoff<span class="w"> </span>application/tasks/&lt;your-task-name&gt;
+</code></pre></div>
+<h3 id="4-edit-the-task">4. Edit the task<a class="headerlink" href="#4-edit-the-task" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong><code>task.toml</code></strong> — metadata (<code>type</code>, <code>domain</code>, <code>tags</code>), timeouts, <code>[environment].definition</code>.</li>
+<li><strong><code>instruction.md</code></strong> — scenario and required <code>/app/output/</code> format (<strong>persona-facing only</strong> — no agent names).</li>
+<li><strong><code>input/</code></strong> — context, schemas, questionnaire (survey), chatbot config (chat).</li>
+<li><strong><code>tests/</code></strong> — verifier; trajectory / submission fields for metrics.</li>
+<li><strong><code>reporting.json</code></strong> — batch reporting policy.</li>
+</ol>
+<p>Runtime Dockerfiles live under <code>environment/task-environments/application/</code>
+(prefer <code>shared-*</code> when the execution model matches).</p>
+<h3 id="5-smoke-with-one-persona-terminal">5. Smoke with one persona (terminal)<a class="headerlink" href="#5-smoke-with-one-persona-terminal" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>application/scripts/generate_application_job.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--task<span class="w"> </span>application/tasks/&lt;your-task-name&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--execution-mode<span class="w"> </span>auto<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--persona-ids<span class="w"> </span><span class="m">0042</span>
+<span class="c1"># Run the printed harbor command + exports</span>
+</code></pre></div>
+<p>Use the agent from <a href="../environment/agents/">choosing-an-agent.md</a> for your form.</p>
+<h3 id="6-iterate-in-playground">6. Iterate in Playground<a class="headerlink" href="#6-iterate-in-playground" title="Permanent link">&para;</a></h3>
+<p>Register the task (<a href="../application/task-guide/">task-guide.md</a>), restart the backend, then
+play with Quick pick personas before scaling sample size.</p>
+<h3 id="7-batch-of-personas">7. Batch of personas<a class="headerlink" href="#7-batch-of-personas" title="Permanent link">&para;</a></h3>
+<p>Same as <a href="#7-batch--sample-many-personas-job">step 7</a> with your task path.</p>
+<h3 id="8-view-outputs">8. View outputs<a class="headerlink" href="#8-view-outputs" title="Permanent link">&para;</a></h3>
+<p>Playground <strong>Runs</strong> tab, or:</p>
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>run<span class="w"> </span>harbor<span class="w"> </span>view<span class="w"> </span>jobs/&lt;job_name&gt;<span class="w"> </span>--build
+</code></pre></div>
+<p>Full task checklist: <a href="../application/tasks/README.md">tasks/README.md</a>.</p>
+<hr />
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Goal</th>
+<th>Tool</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Explore / debug visually</td>
+<td>Playground (Mode <strong>auto</strong>)</td>
+<td><code>jobs/</code></td>
+</tr>
+<tr>
+<td>Any of 4 types (terminal, single or batch)</td>
+<td><code>generate_application_job.py --execution-mode auto</code> + <code>harbor run -c</code></td>
+<td><code>jobs/&lt;job_name&gt;/</code></td>
+</tr>
+<tr>
+<td>Validate Docker/Matraix Playground only</td>
+<td><code>harbor-smoke-local.yaml</code></td>
+<td>smoke task image</td>
+</tr>
+<tr>
+<td>Docker CLI harness (survey/chat)</td>
+<td><code>--execution-mode force_docker</code> or <code>appSim-*-local.yaml</code></td>
+<td>Docker trials</td>
+</tr>
+<tr>
+<td>Browse trajectories</td>
+<td><code>harbor view</code> or Playground <strong>Runs</strong></td>
+<td>local viewer</td>
+</tr>
+<tr>
+<td>New scenario</td>
+<td>copy <code>example-*</code> + register for Playground</td>
+<td><code>application/tasks/&lt;name&gt;/</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="related-docs">Related docs<a class="headerlink" href="#related-docs" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Doc</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../application/task-guide/">task-guide.md</a></td>
+<td>Task folder structure and reference scenarios</td>
+</tr>
+<tr>
+<td><a href="../environment/web-interaction/">web-interaction.md</a></td>
+<td>Playwright vs browser-use vs Cocoa vs CUA</td>
+</tr>
+<tr>
+<td><a href="../environment/agents/">choosing-an-agent.md</a></td>
+<td>Agent ↔ form mapping and API keys</td>
+</tr>
+<tr>
+<td><a href="../application/tasks/README.md">tasks/README.md</a></td>
+<td>Task-authoring checklist and reporting</td>
+</tr>
+<tr>
+<td><a href="../application/">docs/application/README.md § Job Generation Scripts</a></td>
+<td>Job generator and reporting scripts</td>
+</tr>
+<tr>
+<td><a href="../environment/runtime/">unified-runtime.md</a></td>
+<td>Matraix Playground vs remote execution plane</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.top", "navigation.indexes", "search.highlight", "content.code.copy", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

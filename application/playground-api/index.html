@@ -1,0 +1,2213 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation for MatrAIx — a population-scale, persona-driven infrastructure for evaluating AI systems and interactive products with simulated users.">
+      
+      
+      
+      
+        <link rel="prev" href="../task-guide/">
+      
+      
+        <link rel="next" href="../../environment/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Playground API - MatrAIx Handbook</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#playground-rest-api" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="MatrAIx Handbook" class="md-header__button md-logo" aria-label="MatrAIx Handbook" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MatrAIx Handbook
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Playground API
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/MatrAIx-ai/MatrAIx" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="MatrAIx Handbook" class="md-nav__button md-logo" aria-label="MatrAIx Handbook" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    MatrAIx Handbook
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/MatrAIx-ai/MatrAIx" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Start here
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Start here
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quickstart
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../persona/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Persona
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Persona
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../persona/pipeline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pipeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../persona/validation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Validation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Application
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../task-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Task guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Playground API
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Playground API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#conventions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conventions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#runtime-boundary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Runtime boundary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#endpoint-index" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Endpoint index
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#health" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Health
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Health">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apihealth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/health
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apipreflight" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/preflight
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apichatbot-sidecars" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/chatbot-sidecars
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apichatbot-sidecarsapplication_idstart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/chatbot-sidecars/{application_id}/start
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Config
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Config">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apiconfigoptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/config/options
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#personas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Personas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Personas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apiplaygroundpersonas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/playground/personas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiplaygroundpersonaspersona_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/playground/personas/{persona_id}
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#matraix-playground-batch-jobs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Matraix Playground batch jobs
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Matraix Playground batch jobs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apiharborjobs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/harbor/jobs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apiharborjobs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/harbor/jobs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiharborjobsjob_name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/harbor/jobs/{job_name}
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete-apiharborjobsjob_name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DELETE /api/harbor/jobs/{job_name}
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiharborjobsjob_nameaggregation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/harbor/jobs/{job_name}/aggregation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiharborjobsjob_namelive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/harbor/jobs/{job_name}/live
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trial-inspection-routes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trial inspection routes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#persona-pool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Persona pool
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Persona pool">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apipersona-poolcatalogpool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/persona-pool/catalog?pool=...
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apipersona-poolsample" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/persona-pool/sample
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apipersona-poolpersonas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/persona-pool/personas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apipersona-poolpersonaspersona_idpool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/persona-pool/personas/{persona_id}?pool=...
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apipersona-poolcohorts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/persona-pool/cohorts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apipersona-poolcohorts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/persona-pool/cohorts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apipersona-poolcohortscohort_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/persona-pool/cohorts/{cohort_id}
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-catalogs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task catalogs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-docs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related docs
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../environment/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Environment
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../environment/agents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../environment/web-interaction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web interaction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../environment/runtime/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Runtime
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../environment/large-scale-runs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Large-scale runs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../packages/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Packages
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#conventions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conventions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#runtime-boundary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Runtime boundary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#endpoint-index" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Endpoint index
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#health" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Health
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Health">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apihealth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/health
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apipreflight" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/preflight
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apichatbot-sidecars" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/chatbot-sidecars
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apichatbot-sidecarsapplication_idstart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/chatbot-sidecars/{application_id}/start
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Config
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Config">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apiconfigoptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/config/options
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#personas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Personas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Personas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apiplaygroundpersonas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/playground/personas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiplaygroundpersonaspersona_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/playground/personas/{persona_id}
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#matraix-playground-batch-jobs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Matraix Playground batch jobs
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Matraix Playground batch jobs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apiharborjobs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/harbor/jobs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apiharborjobs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/harbor/jobs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiharborjobsjob_name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/harbor/jobs/{job_name}
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete-apiharborjobsjob_name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DELETE /api/harbor/jobs/{job_name}
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiharborjobsjob_nameaggregation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/harbor/jobs/{job_name}/aggregation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiharborjobsjob_namelive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/harbor/jobs/{job_name}/live
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trial-inspection-routes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trial inspection routes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#persona-pool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Persona pool
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Persona pool">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apipersona-poolcatalogpool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/persona-pool/catalog?pool=...
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apipersona-poolsample" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/persona-pool/sample
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apipersona-poolpersonas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/persona-pool/personas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apipersona-poolpersonaspersona_idpool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/persona-pool/personas/{persona_id}?pool=...
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apipersona-poolcohorts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/persona-pool/cohorts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apipersona-poolcohorts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/persona-pool/cohorts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apipersona-poolcohortscohort_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/persona-pool/cohorts/{cohort_id}
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-catalogs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task catalogs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-docs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related docs
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="playground-rest-api">Playground REST API<a class="headerlink" href="#playground-rest-api" title="Permanent link">&para;</a></h1>
+<p>This document describes the Playground HTTP API exposed by
+<code>backend.api.app:app</code>. All application endpoints are mounted under <code>/api</code>.</p>
+<p>Interactive OpenAPI documentation is also available at <code>/docs</code> when the backend
+is running.</p>
+<h2 id="conventions">Conventions<a class="headerlink" href="#conventions" title="Permanent link">&para;</a></h2>
+<ul>
+<li>JSON uses camelCase field names.</li>
+<li>The API does not require authentication in local development.</li>
+<li>Long-running work is launched through <code>POST /api/harbor/jobs</code>. Clients poll
+  <code>GET /api/harbor/jobs/{job_name}</code> until <code>launch.status</code> is <code>completed</code> or
+  <code>failed</code>.</li>
+<li>Common Matraix Playground launch statuses are <code>queued</code>, <code>running</code>, <code>completed</code>, and
+  <code>failed</code>.</li>
+<li>FastAPI may return <code>422</code> for malformed requests or failed validation.</li>
+<li>Application handlers return <code>404</code> for unknown jobs, trials, personas, cohorts,
+  screenshots, recordings, or tasks where applicable.</li>
+</ul>
+<h2 id="runtime-boundary">Runtime boundary<a class="headerlink" href="#runtime-boundary" title="Permanent link">&para;</a></h2>
+<p>Playground launches evaluations through Matraix Playground batch jobs. The Playground and
+<code>POST /api/harbor/jobs</code> share the same artifact layout under <code>jobs/</code>.</p>
+<p>Execution can stay on the API host or dispatch to a Remote Runner worker:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">MATRIX_EXECUTION_PLANE</span><span class="o">=</span>harbor<span class="w">    </span><span class="c1"># default — local harbor run</span>
+<span class="nv">MATRIX_EXECUTION_PLANE</span><span class="o">=</span>remote<span class="w">    </span><span class="c1"># HTTP dispatch to Remote Runner</span>
+<span class="nv">REMOTE_RUNNER_API_URL</span><span class="o">=</span>http://127.0.0.1:9100
+<span class="nv">REMOTE_RUNNER_API_KEY</span><span class="o">=</span>...<span class="w">        </span><span class="c1"># optional bearer token for the worker API</span>
+</code></pre></div>
+<p>Survey, chatbot, web, and os-app jobs share the same API regardless of plane.
+See <a href="../../environment/runtime/">unified-runtime.md</a> for worker setup and remote payload
+fields.</p>
+<p>Optional per-request override: <code>"plane": "harbor"</code> or <code>"plane": "remote"</code> on
+<code>POST /api/harbor/jobs</code>.</p>
+<h2 id="endpoint-index">Endpoint index<a class="headerlink" href="#endpoint-index" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/health</code></td>
+<td>Backend liveness.</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/preflight</code></td>
+<td>Environment and resource readiness checks.</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/chatbot-sidecars</code></td>
+<td>List chat sidecar statuses.</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/api/chatbot-sidecars/{application_id}/start</code></td>
+<td>Start one chat sidecar.</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/config/options</code></td>
+<td>Editable config knobs, defaults, and runtime facts.</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/playground/personas</code></td>
+<td>List persona profiles (searchable).</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/playground/personas/{persona_id}</code></td>
+<td>Read one full persona profile.</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/harbor/jobs</code></td>
+<td>List Matraix Playground batch jobs.</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/api/harbor/jobs</code></td>
+<td>Launch a Matraix Playground batch job.</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/harbor/jobs/{job_name}</code></td>
+<td>Read one job detail view.</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><code>/api/harbor/jobs/{job_name}</code></td>
+<td>Delete one job and its artifacts.</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/harbor/jobs/{job_name}/aggregation</code></td>
+<td>Read refreshed job aggregation JSON.</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/harbor/jobs/{job_name}/live</code></td>
+<td>Live job/trial progress for the Playground.</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/harbor/jobs/{job_name}/trials/{trial_name}/events</code></td>
+<td>Incremental trial event stream.</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/harbor/jobs/{job_name}/trials/{trial_name}/debrief</code></td>
+<td>Post-run debrief for one trial.</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/harbor/jobs/{job_name}/trials/{trial_name}/instruction</code></td>
+<td>Persona-facing instruction for one trial.</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/harbor/jobs/{job_name}/trials/{trial_name}/trace</code></td>
+<td>Web trace payload for one trial.</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/harbor/jobs/{job_name}/trials/{trial_name}/screenshots/{filename}</code></td>
+<td>Fetch one web trace screenshot.</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/harbor/jobs/{job_name}/trials/{trial_name}/recording</code></td>
+<td>Fetch one os-app screen recording.</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/persona-pool/catalog</code></td>
+<td>Persona pool dimension catalog.</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/api/persona-pool/sample</code></td>
+<td>Sample personas from a pool.</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/persona-pool/personas</code></td>
+<td>List persona cards from a pool.</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/persona-pool/personas/{persona_id}</code></td>
+<td>Read one persona card/detail from a pool.</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/persona-pool/cohorts</code></td>
+<td>List saved persona cohorts.</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/api/persona-pool/cohorts</code></td>
+<td>Save a persona cohort.</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/persona-pool/cohorts/{cohort_id}</code></td>
+<td>Read one saved cohort.</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/tasks/detail</code></td>
+<td>Task detail for Playground setup (<code>taskPath</code> query).</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/survey-eval/instruments</code></td>
+<td>List task-backed survey questionnaires.</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/survey-eval/harbor-tasks</code></td>
+<td>List survey Harbor tasks for the Playground.</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/chatbot-eval/tasks</code></td>
+<td>List chatbot Harbor tasks for the Playground.</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/web-eval/tasks</code></td>
+<td>List web Harbor tasks for the Playground.</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/os-app-eval/tasks</code></td>
+<td>List os-app Harbor tasks for the Playground.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="health">Health<a class="headerlink" href="#health" title="Permanent link">&para;</a></h2>
+<h3 id="get-apihealth"><code>GET /api/health</code><a class="headerlink" href="#get-apihealth" title="Permanent link">&para;</a></h3>
+<p>Returns a process liveness response.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="get-apipreflight"><code>GET /api/preflight</code><a class="headerlink" href="#get-apipreflight" title="Permanent link">&para;</a></h3>
+<p>Returns user-facing readiness checks for credentials, catalogs, optional
+sidecars, and eval surfaces.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;ready&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;checks&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;group&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Core&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;OpenAI credentials&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;ok&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;detail&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Configured.&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;optional&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>ready</code> ignores checks marked <code>optional</code>.</p>
+<h3 id="get-apichatbot-sidecars"><code>GET /api/chatbot-sidecars</code><a class="headerlink" href="#get-apichatbot-sidecars" title="Permanent link">&para;</a></h3>
+<p>Returns sidecar container status for supported chat applications.</p>
+<h3 id="post-apichatbot-sidecarsapplication_idstart"><code>POST /api/chatbot-sidecars/{application_id}/start</code><a class="headerlink" href="#post-apichatbot-sidecarsapplication_idstart" title="Permanent link">&para;</a></h3>
+<p>Starts the sidecar for one supported <code>application_id</code> when it is not already
+running. Returns <code>404</code> for unknown application ids.</p>
+<h2 id="config">Config<a class="headerlink" href="#config" title="Permanent link">&para;</a></h2>
+<h3 id="get-apiconfigoptions"><code>GET /api/config/options</code><a class="headerlink" href="#get-apiconfigoptions" title="Permanent link">&para;</a></h3>
+<p>Returns the available config knobs, canonical defaults, and fixed runtime
+environment metadata used by the Playground.</p>
+<h2 id="personas">Personas<a class="headerlink" href="#personas" title="Permanent link">&para;</a></h2>
+<h3 id="get-apiplaygroundpersonas"><code>GET /api/playground/personas</code><a class="headerlink" href="#get-apiplaygroundpersonas" title="Permanent link">&para;</a></h3>
+<p>Query parameters:</p>
+<ul>
+<li><code>q</code> — optional substring search</li>
+<li><code>limit</code> — optional result cap</li>
+<li><code>domain</code> — accepted for backwards compatibility; no domain-specific blurb is
+  returned</li>
+</ul>
+<h3 id="get-apiplaygroundpersonaspersona_id"><code>GET /api/playground/personas/{persona_id}</code><a class="headerlink" href="#get-apiplaygroundpersonaspersona_id" title="Permanent link">&para;</a></h3>
+<p>Returns the full persona record (<code>id</code>, <code>name</code>, <code>source</code>, <code>context</code>).</p>
+<h2 id="matraix-playground-batch-jobs">Matraix Playground batch jobs<a class="headerlink" href="#matraix-playground-batch-jobs" title="Permanent link">&para;</a></h2>
+<p>Matraix Playground jobs are the canonical launch path. Artifacts are written under
+<code>jobs/{job_name}/</code>.</p>
+<h3 id="get-apiharborjobs"><code>GET /api/harbor/jobs</code><a class="headerlink" href="#get-apiharborjobs" title="Permanent link">&para;</a></h3>
+<p>Returns a list of job summaries (<code>jobName</code>, trial counts, status, timestamps).</p>
+<h3 id="post-apiharborjobs"><code>POST /api/harbor/jobs</code><a class="headerlink" href="#post-apiharborjobs" title="Permanent link">&para;</a></h3>
+<p>Launch a multi-trial Matraix Playground job from one application task.</p>
+<p>Request body:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;taskPath&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;application/tasks/example-survey_product-feedback&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;sampleSize&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;seed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;personaPool&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;persona/datasets/matraix-persona-dev-sample&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;personaIds&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;0042&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;plane&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;harbor&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;personaModel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;anthropic/claude-haiku-4-5&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;nConcurrentTrials&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Common optional fields:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>agentName</code></td>
+<td>Override resolved Matraix Playground agent</td>
+</tr>
+<tr>
+<td><code>jobName</code></td>
+<td>Explicit job basename; if omitted, defaults to <code>pg-{task_slug}-{8 hex chars}</code></td>
+</tr>
+<tr>
+<td><code>cohortId</code></td>
+<td>Launch from a saved persona cohort</td>
+</tr>
+<tr>
+<td><code>personaSources</code> / <code>personaFilters</code></td>
+<td>Pool sampling filters</td>
+</tr>
+<tr>
+<td><code>chatDomain</code>, <code>chatApplicationId</code>, <code>chatApplicationContext</code>, <code>chatMaxTurns</code></td>
+<td>Chatbot / user-sim tasks</td>
+</tr>
+<tr>
+<td><code>osAppSubmissionProfile</code>, <code>osAppBackend</code></td>
+<td>os-app / CUA tasks</td>
+</tr>
+</tbody>
+</table>
+<p><code>mode</code> must be one of <code>auto</code>, <code>force_docker</code>, or <code>smoke</code>.
+<code>plane</code> must be <code>harbor</code> or <code>remote</code>.</p>
+<p>Response:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;jobName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pg-example-survey-product-feedback-abc123&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;configPath&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;configs/jobs/application-task-job-recipe/pg-example-survey-product-feedback-abc123.yaml&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;jobsDir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;jobs&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;agentName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;persona-json-survey&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;taskType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;survey&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;trialProfile&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;json_survey&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;plane&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;harbor&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Poll <code>GET /api/harbor/jobs/{job_name}</code> until <code>launch.status</code> is terminal.</p>
+<h3 id="get-apiharborjobsjob_name"><code>GET /api/harbor/jobs/{job_name}</code><a class="headerlink" href="#get-apiharborjobsjob_name" title="Permanent link">&para;</a></h3>
+<p>Returns the job detail view: launch metadata, generated config path, trial list,
+and per-trial result summaries when available.</p>
+<h3 id="delete-apiharborjobsjob_name"><code>DELETE /api/harbor/jobs/{job_name}</code><a class="headerlink" href="#delete-apiharborjobsjob_name" title="Permanent link">&para;</a></h3>
+<p>Deletes the job directory and generated config when present.</p>
+<h3 id="get-apiharborjobsjob_nameaggregation"><code>GET /api/harbor/jobs/{job_name}/aggregation</code><a class="headerlink" href="#get-apiharborjobsjob_nameaggregation" title="Permanent link">&para;</a></h3>
+<p>Returns <code>jobs/{job_name}/aggregation.json</code>, refreshing it when needed.</p>
+<h3 id="get-apiharborjobsjob_namelive"><code>GET /api/harbor/jobs/{job_name}/live</code><a class="headerlink" href="#get-apiharborjobsjob_namelive" title="Permanent link">&para;</a></h3>
+<p>Returns live progress for the Playground: launch status, trial phases, and basic
+persona labels.</p>
+<h3 id="trial-inspection-routes">Trial inspection routes<a class="headerlink" href="#trial-inspection-routes" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET .../trials/{trial_name}/events?after=0</code></td>
+<td>Incremental event stream</td>
+</tr>
+<tr>
+<td><code>GET .../trials/{trial_name}/debrief</code></td>
+<td>Structured post-run debrief</td>
+</tr>
+<tr>
+<td><code>GET .../trials/{trial_name}/instruction</code></td>
+<td>Persona-facing instruction text</td>
+</tr>
+<tr>
+<td><code>GET .../trials/{trial_name}/trace</code></td>
+<td>Web trajectory / trace JSON</td>
+</tr>
+<tr>
+<td><code>GET .../trials/{trial_name}/screenshots/{filename}</code></td>
+<td>Binary screenshot</td>
+</tr>
+<tr>
+<td><code>GET .../trials/{trial_name}/recording</code></td>
+<td>Binary screen recording (mp4)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="persona-pool">Persona pool<a class="headerlink" href="#persona-pool" title="Permanent link">&para;</a></h2>
+<p>Used by the Playground setup rails for sampling and cohort management.</p>
+<h3 id="get-apipersona-poolcatalogpool"><code>GET /api/persona-pool/catalog?pool=...</code><a class="headerlink" href="#get-apipersona-poolcatalogpool" title="Permanent link">&para;</a></h3>
+<p>Returns dimension metadata for one persona pool.</p>
+<h3 id="post-apipersona-poolsample"><code>POST /api/persona-pool/sample</code><a class="headerlink" href="#post-apipersona-poolsample" title="Permanent link">&para;</a></h3>
+<p>Samples personas from a pool with optional filters and stratification.</p>
+<h3 id="get-apipersona-poolpersonas"><code>GET /api/persona-pool/personas</code><a class="headerlink" href="#get-apipersona-poolpersonas" title="Permanent link">&para;</a></h3>
+<p>Lists persona cards. Supports <code>limit</code>, <code>offset</code>, <code>seed</code>, <code>personaIds</code>, <code>detail</code>,
+and <code>all</code>.</p>
+<h3 id="get-apipersona-poolpersonaspersona_idpool"><code>GET /api/persona-pool/personas/{persona_id}?pool=...</code><a class="headerlink" href="#get-apipersona-poolpersonaspersona_idpool" title="Permanent link">&para;</a></h3>
+<p>Returns one persona card or detail record from the requested pool.</p>
+<h3 id="get-apipersona-poolcohorts"><code>GET /api/persona-pool/cohorts</code><a class="headerlink" href="#get-apipersona-poolcohorts" title="Permanent link">&para;</a></h3>
+<p>Lists saved cohorts.</p>
+<h3 id="post-apipersona-poolcohorts"><code>POST /api/persona-pool/cohorts</code><a class="headerlink" href="#post-apipersona-poolcohorts" title="Permanent link">&para;</a></h3>
+<p>Saves a cohort from explicit persona ids or a sampled/filtered selection.</p>
+<h3 id="get-apipersona-poolcohortscohort_id"><code>GET /api/persona-pool/cohorts/{cohort_id}</code><a class="headerlink" href="#get-apipersona-poolcohortscohort_id" title="Permanent link">&para;</a></h3>
+<p>Returns one saved cohort definition.</p>
+<h2 id="task-catalogs">Task catalogs<a class="headerlink" href="#task-catalogs" title="Permanent link">&para;</a></h2>
+<p>Read-only catalogs for Playground task pickers. Each route returns a <code>tasks</code> array
+with task metadata plus optional profile markdown when available.</p>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th>Surface</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET /api/tasks/detail?taskPath=...</code></td>
+<td>One task detail record (includes <code>personaStrategy</code> from <code>persona_strategy.json</code>)</td>
+</tr>
+<tr>
+<td><code>GET /api/survey-eval/instruments</code></td>
+<td>Survey questionnaires</td>
+</tr>
+<tr>
+<td><code>GET /api/survey-eval/harbor-tasks</code></td>
+<td>Survey Matraix Playground tasks</td>
+</tr>
+<tr>
+<td><code>GET /api/chatbot-eval/tasks</code></td>
+<td>Chatbot Matraix Playground tasks</td>
+</tr>
+<tr>
+<td><code>GET /api/web-eval/tasks</code></td>
+<td>Web Matraix Playground tasks</td>
+</tr>
+<tr>
+<td><code>GET /api/os-app-eval/tasks</code></td>
+<td>os-app Matraix Playground tasks</td>
+</tr>
+</tbody>
+</table>
+<h2 id="related-docs">Related docs<a class="headerlink" href="#related-docs" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../../environment/runtime/">unified-runtime.md</a> — Matraix Playground vs remote execution planes</li>
+<li><a href="../../quickstart/">quickstart.md</a> — terminal smoke and Playground setup</li>
+<li>OpenAPI <code>/docs</code> — generated from FastAPI models in <code>backend/api/schemas.py</code></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "navigation.indexes", "search.highlight", "content.code.copy", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
