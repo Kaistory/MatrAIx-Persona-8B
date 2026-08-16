@@ -69,11 +69,11 @@ people**.
 
 ## Requirements
 
-- [Docker](https://docs.docker.com/get-docker/) (Web / OS-app tasks and the Docker smoke lane)
+- [Docker](https://docs.docker.com/get-docker/) (container lane: Web / OS-app under Mode **auto**)
 - [uv](https://docs.astral.sh/uv/) and Python 3.12
 - Node.js 20+ (Playground / viewer frontends only)
 - Model API keys for persona-agent examples — see [agents.md](docs/environment/agents.md)
-  (host Survey smoke via `matraix smoke` needs none)
+  (the two onboarding smokes below need none)
 > **Windows users**: run everything inside
 > [WSL2](https://learn.microsoft.com/windows/wsl/install) — open PowerShell,
 > run `wsl --install` (installs Ubuntu), then clone this repo **inside the WSL
@@ -95,14 +95,14 @@ uv pip install -e packages/rewardkit
 ```
 
 Run jobs and tasks with **`uv run matraix run …`** — it sets up the full
-launch environment and delegates to the Harbor runtime. Check a Survey task
-with **`uv run matraix smoke <task>`** (host / `json_survey`, no Docker, no API
-key). Summarize a finished job with **`uv run matraix results <job>`** (text /
-JSON / CSV, no extra LLM call). Runtime utilities (e.g. `harbor view`,
-`harbor upload`) stay under `uv run harbor …`.
+launch environment and delegates to the Harbor runtime. Prove the two Mode
+**auto** runtimes with the [smoke tests](#smoke-tests) below (no API key).
+Summarize a finished job with **`uv run matraix results <job>`** (text / JSON /
+CSV, no extra LLM call). Runtime utilities (e.g. `harbor view`, `harbor upload`)
+stay under `uv run harbor …`.
 
 Set the model API key matching your provider before GUI or CLI task runs
-(smokes above do not need one):
+(onboarding smokes do not need one):
 
 ```bash
 export ANTHROPIC_API_KEY="sk-ant-..."   # anthropic/claude-* models
@@ -130,21 +130,18 @@ Details: [Handbook § Persona 1M](docs/README.md#3-persona-1m-recommended).
 
 ### Smoke tests
 
-No API key required. Two lanes:
+Under Mode **auto**, all four application types share **two runtimes**. The
+onboarding smokes prove those runtimes are ready (no API key):
 
-**Host Survey** (no Docker) — questionnaire + fake-client `json_survey` path:
+| Lane | Covers under **auto** | Command |
+|------|------------------------|---------|
+| **Host** | Survey + Chat | `uv run matraix smoke application/tasks/example-survey_product-feedback` |
+| **Container** | Web + OS-app | `uv run matraix run -c configs/jobs/example-job-recipe/harbor-smoke-local.yaml` |
 
-```bash
-uv run matraix smoke application/tasks/example-survey_product-feedback
-```
+Host smoke uses a Survey task as the representative (zero-cost fake client).
+Container smoke uses the Harbor hello-world image (first run may take several
+minutes to build). Details: [quickstart §3](docs/quickstart.md#3-smoke-tests-two-lanes).
 
-**Docker / Harbor** — hello-world stack check (`environment.type: docker`):
-
-```bash
-uv run matraix run -c configs/jobs/example-job-recipe/harbor-smoke-local.yaml
-```
-
-Details: [quickstart §3](docs/quickstart.md#3-smoke-tests-two-lanes).
 ### GUI task runs
 
 Playground picks tasks, samples personas, and launches the same Matraix Playground jobs as CLI auto mode.

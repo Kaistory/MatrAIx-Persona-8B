@@ -109,21 +109,14 @@ Playground：Dataset → **`matraix-persona-1m`**。CLI：`--dataset persona/dat
 
 ### 冒煙測試（smoke tests）
 
-無需 API Key。兩條車道：
+Mode **auto** 下，四類應用任務共用 **兩條 runtime**。Onboarding smoke 驗證這兩條車道（無需 API Key）即表示四類基本可跑：
 
-**Host Survey**（無需 Docker）— 問卷 + fake-client `json_survey` 路徑：
+| 車道 | **auto** 覆蓋 | 命令 |
+|------|---------------|------|
+| **Host** | Survey + Chat | `uv run matraix smoke application/tasks/example-survey_product-feedback` |
+| **Container** | Web + OS-app | `uv run matraix run -c configs/jobs/example-job-recipe/harbor-smoke-local.yaml` |
 
-```bash
-uv run matraix smoke application/tasks/example-survey_product-feedback
-```
-
-**Docker / Harbor** — hello-world 棧檢查（`environment.type: docker`）：
-
-```bash
-uv run matraix run -c configs/jobs/example-job-recipe/harbor-smoke-local.yaml
-```
-
-詳情：[quickstart §3](../quickstart.md#3-smoke-tests-two-lanes)。
+Host 以 Survey 為代表（零成本 fake client）；Container 用 Harbor hello-world 映像（首次可能需幾分鐘建置）。詳情：[quickstart §3](../quickstart.md#3-smoke-tests-two-lanes)。
 ### GUI 任務執行
 
 Playground 可選擇任務、抽樣人格，並啟動與 CLI auto 模式相同的 Matraix Playground job。

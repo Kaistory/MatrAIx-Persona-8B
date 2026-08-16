@@ -126,21 +126,14 @@ Detalles: [Handbook § Persona 1M](../README.md#3-persona-1m-recommended).
 
 ### Pruebas de humo (smoke tests)
 
-No se requiere clave de API. Dos vías:
+En Mode **auto**, los cuatro tipos de aplicación comparten **dos runtimes**. Las pruebas de humo de onboarding certifican esos carriles (sin clave de API) y dejan listos los cuatro tipos:
 
-**Host Survey** (sin Docker) — cuestionario + ruta `json_survey` con cliente fake:
+| Carril | Cubre en **auto** | Comando |
+|--------|-------------------|---------|
+| **Host** | Survey + Chat | `uv run matraix smoke application/tasks/example-survey_product-feedback` |
+| **Container** | Web + OS-app | `uv run matraix run -c configs/jobs/example-job-recipe/harbor-smoke-local.yaml` |
 
-```bash
-uv run matraix smoke application/tasks/example-survey_product-feedback
-```
-
-**Docker / Harbor** — comprobación hello-world (`environment.type: docker`):
-
-```bash
-uv run matraix run -c configs/jobs/example-job-recipe/harbor-smoke-local.yaml
-```
-
-Detalles: [quickstart §3](../quickstart.md#3-smoke-tests-two-lanes).
+Host usa Survey como representante (cliente fake, coste 0). Container usa la imagen hello-world de Harbor (la primera ejecución puede tardar minutos en construir). Detalles: [quickstart §3](../quickstart.md#3-smoke-tests-two-lanes).
 ### Ejecuciones de tareas por GUI
 
 Playground elige tareas, muestrea personas y lanza los mismos jobs de

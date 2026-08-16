@@ -121,21 +121,14 @@ Playground: Dataset → **`matraix-persona-1m`**。CLI: `--dataset persona/datas
 
 ### スモークテスト（smoke tests）
 
-API キー不要。2 つのレーン：
+Mode **auto** では、4 種類型のアプリタスクが **2 つのランタイム** を共有します。オンボーディング用スモークで両レーンを確認すれば（API キー不要）、4 種類は基本的に実行可能です：
 
-**Host Survey**（Docker 不要）— アンケート + fake-client の `json_survey` パス：
+| レーン | **auto** がカバー | コマンド |
+|--------|-------------------|----------|
+| **Host** | Survey + Chat | `uv run matraix smoke application/tasks/example-survey_product-feedback` |
+| **Container** | Web + OS-app | `uv run matraix run -c configs/jobs/example-job-recipe/harbor-smoke-local.yaml` |
 
-```bash
-uv run matraix smoke application/tasks/example-survey_product-feedback
-```
-
-**Docker / Harbor** — hello-world スタック確認（`environment.type: docker`）：
-
-```bash
-uv run matraix run -c configs/jobs/example-job-recipe/harbor-smoke-local.yaml
-```
-
-詳細: [quickstart §3](../quickstart.md#3-smoke-tests-two-lanes)。
+Host は Survey を代表に使用（ゼロコストの fake client）。Container は Harbor hello-world イメージ（初回は数分のビルドあり）。詳細: [quickstart §3](../quickstart.md#3-smoke-tests-two-lanes)。
 ### GUI でのタスク実行
 
 Playground はタスク選択・ペルソナサンプリングを行い、CLI auto モードと同じ
