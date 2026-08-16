@@ -69,11 +69,11 @@ people**.
 
 ## Requirements
 
-- [Docker](https://docs.docker.com/get-docker/)
+- [Docker](https://docs.docker.com/get-docker/) (Web / OS-app tasks and the Docker smoke lane)
 - [uv](https://docs.astral.sh/uv/) and Python 3.12
 - Node.js 20+ (Playground / viewer frontends only)
 - Model API keys for persona-agent examples — see [agents.md](docs/environment/agents.md)
-
+  (host Survey smoke via `matraix smoke` needs none)
 > **Windows users**: run everything inside
 > [WSL2](https://learn.microsoft.com/windows/wsl/install) — open PowerShell,
 > run `wsl --install` (installs Ubuntu), then clone this repo **inside the WSL
@@ -128,15 +128,23 @@ Details: [Handbook § Persona 1M](docs/README.md#3-persona-1m-recommended).
 
 ## Quick start
 
-### Smoke test
+### Smoke tests
 
-No API key required. **Requires Docker** (the smoke job uses
-`environment.type: docker`):
+No API key required. Two lanes:
+
+**Host Survey** (no Docker) — questionnaire + fake-client `json_survey` path:
+
+```bash
+uv run matraix smoke application/tasks/example-survey_product-feedback
+```
+
+**Docker / Harbor** — hello-world stack check (`environment.type: docker`):
 
 ```bash
 uv run matraix run -c configs/jobs/example-job-recipe/harbor-smoke-local.yaml
 ```
 
+Details: [quickstart §3](docs/quickstart.md#3-smoke-tests-two-lanes).
 ### GUI task runs
 
 Playground picks tasks, samples personas, and launches the same Matraix Playground jobs as CLI auto mode.

@@ -107,14 +107,23 @@ Playground：Dataset → **`matraix-persona-1m`**。CLI：`--dataset persona/dat
 
 ## 快速开始
 
-### 冒烟测试（smoke test）
+### 冒烟测试（smoke tests）
 
-无需 API Key。**需要 Docker**（冒烟测试 job 使用 `environment.type: docker`）：
+无需 API Key。两条车道：
+
+**Host Survey**（无需 Docker）— 问卷 + fake-client `json_survey` 路径：
+
+```bash
+uv run matraix smoke application/tasks/example-survey_product-feedback
+```
+
+**Docker / Harbor** — hello-world 栈检查（`environment.type: docker`）：
 
 ```bash
 uv run matraix run -c configs/jobs/example-job-recipe/harbor-smoke-local.yaml
 ```
 
+详情：[quickstart §3](../quickstart.md#3-smoke-tests-two-lanes)。
 ### GUI 任务运行
 
 Playground 可选择任务、抽样人格，并启动与 CLI auto 模式相同的 Matraix Playground job。
