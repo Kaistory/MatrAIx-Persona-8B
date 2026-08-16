@@ -123,15 +123,23 @@ Detalhes: [Handbook § Persona 1M](../README.md#3-persona-1m-recommended).
 
 ## Início rápido
 
-### Teste de fumaça (smoke test)
+### Testes de fumaça (smoke tests)
 
-Nenhuma chave de API necessária. **Requer Docker** (o job de teste de fumaça usa
-`environment.type: docker`):
+Nenhuma chave de API necessária. Duas faixas:
+
+**Host Survey** (sem Docker) — questionário + caminho `json_survey` com cliente fake:
+
+```bash
+uv run matraix smoke application/tasks/example-survey_product-feedback
+```
+
+**Docker / Harbor** — verificação hello-world (`environment.type: docker`):
 
 ```bash
 uv run matraix run -c configs/jobs/example-job-recipe/harbor-smoke-local.yaml
 ```
 
+Detalhes: [quickstart §3](../quickstart.md#3-smoke-tests-two-lanes).
 ### Execuções de tarefa via GUI
 
 O Playground escolhe tarefas, amostra personas e lança os mesmos jobs do

@@ -118,14 +118,23 @@ Playground: Dataset → **`matraix-persona-1m`**. CLI: `--dataset persona/datase
 
 ## 빠른 시작
 
-### 스모크 테스트(smoke test)
+### 스모크 테스트(smoke tests)
 
-API 키 불필요. **Docker 필요**(스모크 테스트 job은 `environment.type: docker` 사용):
+API 키 불필요. 두 가지 레인:
+
+**Host Survey**(Docker 불필요) — 설문 + fake-client `json_survey` 경로:
+
+```bash
+uv run matraix smoke application/tasks/example-survey_product-feedback
+```
+
+**Docker / Harbor** — hello-world 스택 확인(`environment.type: docker`):
 
 ```bash
 uv run matraix run -c configs/jobs/example-job-recipe/harbor-smoke-local.yaml
 ```
 
+자세한 내용: [quickstart §3](../quickstart.md#3-smoke-tests-two-lanes).
 ### GUI 태스크 실행
 
 Playground는 태스크를 고르고 페르소나를 샘플링한 뒤, CLI auto 모드와 동일한

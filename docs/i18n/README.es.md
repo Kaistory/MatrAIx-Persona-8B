@@ -124,15 +124,23 @@ Detalles: [Handbook § Persona 1M](../README.md#3-persona-1m-recommended).
 
 ## Inicio rápido
 
-### Prueba de humo (smoke test)
+### Pruebas de humo (smoke tests)
 
-No se requiere clave de API. **Requiere Docker** (el job de prueba de humo usa
-`environment.type: docker`):
+No se requiere clave de API. Dos vías:
+
+**Host Survey** (sin Docker) — cuestionario + ruta `json_survey` con cliente fake:
+
+```bash
+uv run matraix smoke application/tasks/example-survey_product-feedback
+```
+
+**Docker / Harbor** — comprobación hello-world (`environment.type: docker`):
 
 ```bash
 uv run matraix run -c configs/jobs/example-job-recipe/harbor-smoke-local.yaml
 ```
 
+Detalles: [quickstart §3](../quickstart.md#3-smoke-tests-two-lanes).
 ### Ejecuciones de tareas por GUI
 
 Playground elige tareas, muestrea personas y lanza los mismos jobs de
