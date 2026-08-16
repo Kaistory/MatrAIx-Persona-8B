@@ -97,41 +97,35 @@ uv run matraix --help
 
 ## 3. Smoke tests (two lanes)
 
-Under Mode **auto**, Survey / Chat / Web / OS-app share **two runtimes**.
-Onboarding smokes prove those lanes — together they mean the four types are
-ready to run for real (no API key):
+After install, run **both** checks below (no API key). Together they confirm
+the default path for **Survey, Chat, Web, and OS-app** is ready before you
+spend on a real model:
 
-| Lane | Covers under **auto** | What the smoke checks |
-|------|------------------------|------------------------|
-| **Host** | Survey + Chat | Launch env, persona render, host agent path (no Docker) |
-| **Container** | Web + OS-app | Docker + Harbor task image path |
+| Check | Confirms you can run | Needs Docker? |
+|-------|----------------------|---------------|
+| Without Docker | Survey and Chat | No |
+| With Docker | Web and OS-app | Yes |
 
-### Host lane
-
-Representative command (Survey task, fake client, $0):
+### Without Docker — Survey & Chat
 
 ```bash
 uv run matraix smoke application/tasks/example-survey_product-feedback
 ```
 
-**Success:** prints `Smoke: ok` with `cost $0`. Does not call a provider.
+**Success:** prints `Smoke: ok` and does not call a model provider.
 
-### Container lane
-
-Representative command (Harbor hello-world, no LLM):
+### With Docker — Web & OS-app
 
 ```bash
 uv run matraix run -c configs/jobs/example-job-recipe/harbor-smoke-local.yaml
 ```
 
-First run builds the Docker image (several minutes).
+First run builds a small local image (a few minutes).
 
-**Success:** finishes without error and writes output under
-`jobs/harbor-smoke-local/`.
+**Success:** finishes without error and writes under `jobs/harbor-smoke-local/`.
 
-These smokes certify the **shared runtimes**, not every Chat sidecar or every
-OS-app CUA backend. After both pass, use Mode **auto** examples in §6 for each
-of the four types with a real model.
+When both pass, continue to §6 to run any of the four types with Mode **auto**
+and a real model.
 ---
 
 ## 4. Set your API key
@@ -631,8 +625,8 @@ Full task checklist: [tasks/README.md](../application/tasks/README.md).
 | Any of 4 types (terminal, single or batch) | `generate_application_job.py --execution-mode auto` + `matraix run -c` | `jobs/<job_name>/` |
 | Deterministic job summary / export | `matraix results <job>` | text / JSON / CSV |
 | Persona narrative batch PDF | Playground **Runs** → **Download PDF** | UI PDF |
-| Host lane smoke (Survey+Chat runtime) | `matraix smoke <survey-task>` | fake envelope, $0 |
-| Container lane smoke (Web+OS-app runtime) | `harbor-smoke-local.yaml` | smoke task image |
+| Install check — Survey & Chat (no Docker) | `matraix smoke <survey-task>` | `Smoke: ok` |
+| Install check — Web & OS-app (Docker) | `harbor-smoke-local.yaml` | `jobs/harbor-smoke-local/` |
 | Docker CLI harness (survey/chat) | `--execution-mode force_docker` or `appSim-*-local.yaml` | Docker trials |
 | Browse trajectories | `harbor view` or Playground **Runs** | local viewer |
 | New scenario | copy `example-*` + register for Playground | `application/tasks/<name>/` |

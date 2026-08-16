@@ -120,14 +120,15 @@ Playground: Dataset → **`matraix-persona-1m`**. CLI: `--dataset persona/datase
 
 ### 스모크 테스트(smoke tests)
 
-Mode **auto**에서 네 가지 앱 타입은 **두 런타임**을 공유합니다. 온보딩 스모크로 두 레인을 확인하면(API 키 불필요) 네 타입이 기본적으로 실행 가능한 상태입니다:
+설치 후 아래 두 검사를 실행하세요(API 키 불필요). 함께 돌리면 Survey / Chat / Web / OS-app
+기본 실행 경로가 준비되었는지 확인할 수 있습니다:
 
-| 레인 | **auto** 범위 | 명령 |
-|------|---------------|------|
-| **Host** | Survey + Chat | `uv run matraix smoke application/tasks/example-survey_product-feedback` |
-| **Container** | Web + OS-app | `uv run matraix run -c configs/jobs/example-job-recipe/harbor-smoke-local.yaml` |
+| 검사 | 확인할 수 있는 것 | 명령 |
+|------|-------------------|------|
+| **Docker 없이** | Survey와 Chat | `uv run matraix smoke application/tasks/example-survey_product-feedback` |
+| **Docker 사용** | Web와 OS-app | `uv run matraix run -c configs/jobs/example-job-recipe/harbor-smoke-local.yaml` |
 
-Host는 Survey를 대표로 사용(제로 비용 fake client). Container는 Harbor hello-world 이미지(첫 실행 시 수 분 빌드 가능). 자세한 내용: [quickstart §3](../quickstart.md#3-smoke-tests-two-lanes).
+첫 번째는 보통 몇 초 안에 `Smoke: ok`를 출력합니다. 두 번째는 첫 실행 시 로컬 이미지를 빌드합니다(수 분). 성공 시 출력은 `jobs/harbor-smoke-local/`. 단계: [quickstart §3](../quickstart.md#3-smoke-tests-two-lanes).
 ### GUI 태스크 실행
 
 Playground는 태스크를 고르고 페르소나를 샘플링한 뒤, CLI auto 모드와 동일한

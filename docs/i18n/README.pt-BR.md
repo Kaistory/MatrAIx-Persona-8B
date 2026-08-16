@@ -125,14 +125,15 @@ Detalhes: [Handbook § Persona 1M](../README.md#3-persona-1m-recommended).
 
 ### Testes de fumaça (smoke tests)
 
-No Mode **auto**, os quatro tipos de aplicação compartilham **dois runtimes**. Os smokes de onboarding certificam essas faixas (sem chave de API) e deixam os quatro tipos basicamente prontos:
+Após instalar, rode estas duas verificações (sem chave de API). Juntas elas
+confirmam o caminho padrão de Survey, Chat, Web e OS-app:
 
-| Faixa | Cobre no **auto** | Comando |
-|-------|-------------------|---------|
-| **Host** | Survey + Chat | `uv run matraix smoke application/tasks/example-survey_product-feedback` |
-| **Container** | Web + OS-app | `uv run matraix run -c configs/jobs/example-job-recipe/harbor-smoke-local.yaml` |
+| Verificação | Confirma que você pode rodar | Comando |
+|-------------|------------------------------|---------|
+| **Sem Docker** | Survey e Chat | `uv run matraix smoke application/tasks/example-survey_product-feedback` |
+| **Com Docker** | Web e OS-app | `uv run matraix run -c configs/jobs/example-job-recipe/harbor-smoke-local.yaml` |
 
-Host usa Survey como representante (cliente fake, custo $0). Container usa a imagem hello-world do Harbor (a primeira execução pode levar minutos para build). Detalhes: [quickstart §3](../quickstart.md#3-smoke-tests-two-lanes).
+A primeira costuma terminar em segundos com `Smoke: ok`. A segunda constrói uma imagem local na primeira execução (alguns minutos) e grava em `jobs/harbor-smoke-local/`. Passos: [quickstart §3](../quickstart.md#3-smoke-tests-two-lanes).
 ### Execuções de tarefa via GUI
 
 O Playground escolhe tarefas, amostra personas e lança os mesmos jobs do

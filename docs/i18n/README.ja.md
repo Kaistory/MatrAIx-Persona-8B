@@ -121,14 +121,15 @@ Playground: Dataset → **`matraix-persona-1m`**。CLI: `--dataset persona/datas
 
 ### スモークテスト（smoke tests）
 
-Mode **auto** では、4 種類型のアプリタスクが **2 つのランタイム** を共有します。オンボーディング用スモークで両レーンを確認すれば（API キー不要）、4 種類は基本的に実行可能です：
+インストール後に、次の 2 つのチェックを実行してください（API キー不要）。
+あわせて Survey / Chat / Web / OS-app のデフォルト実行パスが使えることを確認できます：
 
-| レーン | **auto** がカバー | コマンド |
-|--------|-------------------|----------|
-| **Host** | Survey + Chat | `uv run matraix smoke application/tasks/example-survey_product-feedback` |
-| **Container** | Web + OS-app | `uv run matraix run -c configs/jobs/example-job-recipe/harbor-smoke-local.yaml` |
+| チェック | 確認できること | コマンド |
+|----------|----------------|----------|
+| **Docker なし** | Survey と Chat | `uv run matraix smoke application/tasks/example-survey_product-feedback` |
+| **Docker あり** | Web と OS-app | `uv run matraix run -c configs/jobs/example-job-recipe/harbor-smoke-local.yaml` |
 
-Host は Survey を代表に使用（ゼロコストの fake client）。Container は Harbor hello-world イメージ（初回は数分のビルドあり）。詳細: [quickstart §3](../quickstart.md#3-smoke-tests-two-lanes)。
+1 つ目は数秒で `Smoke: ok` と表示されます。2 つ目は初回にローカルイメージをビルドします（数分）。成功時の出力は `jobs/harbor-smoke-local/`。手順: [quickstart §3](../quickstart.md#3-smoke-tests-two-lanes)。
 ### GUI でのタスク実行
 
 Playground はタスク選択・ペルソナサンプリングを行い、CLI auto モードと同じ

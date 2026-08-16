@@ -109,14 +109,15 @@ Playground：Dataset → **`matraix-persona-1m`**。CLI：`--dataset persona/dat
 
 ### 冒烟测试（smoke tests）
 
-Mode **auto** 下，四类应用任务共用 **两条 runtime**。Onboarding smoke 验证这两条车道（无需 API Key）即表示四类基本可跑：
+安装后先跑这两条检查（无需 API Key）。合在一起就覆盖默认路径下的四类任务
+（Survey、Chat、Web、OS-app）：
 
-| 车道 | **auto** 覆盖 | 命令 |
-|------|---------------|------|
-| **Host** | Survey + Chat | `uv run matraix smoke application/tasks/example-survey_product-feedback` |
-| **Container** | Web + OS-app | `uv run matraix run -c configs/jobs/example-job-recipe/harbor-smoke-local.yaml` |
+| 检查 | 确认你可以跑 | 命令 |
+|------|--------------|------|
+| **不用 Docker** | Survey、Chat | `uv run matraix smoke application/tasks/example-survey_product-feedback` |
+| **需要 Docker** | Web、OS-app | `uv run matraix run -c configs/jobs/example-job-recipe/harbor-smoke-local.yaml` |
 
-Host 以 Survey 为代表（零成本 fake client）；Container 用 Harbor hello-world 镜像（首次可能需几分钟构建）。详情：[quickstart §3](../quickstart.md#3-smoke-tests-two-lanes)。
+第一条通常几秒内打印 `Smoke: ok`。第二条首次会构建本地镜像（几分钟），成功后输出在 `jobs/harbor-smoke-local/`。步骤说明：[quickstart §3](../quickstart.md#3-smoke-tests-two-lanes)。
 ### GUI 任务运行
 
 Playground 可选择任务、抽样人格，并启动与 CLI auto 模式相同的 Matraix Playground job。
