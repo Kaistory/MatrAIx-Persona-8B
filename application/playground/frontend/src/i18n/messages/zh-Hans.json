@@ -1477,5 +1477,7 @@
   "personaSetup.filters.contrastSharedOptional": "未设共享筛选 — 全池可用。",
   "personaSetup.tabs.byCount": "按人数",
   "personaSetup.tabs.byCombo": "按组合",
-  "personaSetup.tabs.byShare": "按占比"
+  "personaSetup.tabs.byShare": "按占比",
+  "personaSetup.progress.independentDataset": "独立数据集",
+  "personaSetup.progress.waiting": "等待中…"
 }

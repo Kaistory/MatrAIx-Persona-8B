@@ -1193,6 +1193,23 @@ def test_generate_synthetic_pool_writes_contrast_clones(tmp_path, monkeypatch):
         "study_trust": "Low",
         "ad_arm": "Banner",
     }
+    # Parent is the base arm (values not in the contrast extras).
+    assert result["contrastStamps"] == {
+        "study_trust": "High",
+        "ad_arm": "None",
+    }
+    assert result["label"].startswith("Contrast ·")
+    assert "品牌信任=High" in result["label"]
+    assert "广告=None" in result["label"]
+    assert "contrast-" in Path(result["pool"]).name
+    assert clones[0]["label"].startswith("Contrast ·")
+    assert "品牌信任=Low" in clones[0]["label"]
+    assert "广告=Banner" in clones[0]["label"]
+    parent = yaml.safe_load(
+        (tmp_path / result["pool"] / "persona_0001.yaml").read_text(encoding="utf-8")
+    )
+    assert parent["dimensions"]["study_trust"] == "High"
+    assert parent["dimensions"]["ad_arm"] == "None"
     combo = yaml.safe_load(
         (tmp_path / clones[0]["pool"] / "persona_0001-c-low-banner.yaml").read_text(
             encoding="utf-8"

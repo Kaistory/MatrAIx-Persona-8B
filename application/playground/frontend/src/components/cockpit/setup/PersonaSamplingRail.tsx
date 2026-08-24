@@ -26,10 +26,13 @@ import {
   type TaskPersonaStrategy,
 } from "@/lib/types";
 import {
+  contrastBaseStamps,
+  contrastCombinations,
   contrastCopyCount,
   contrastDatasetCount,
   contrastDraftFromPlan,
   contrastSequenceLabel,
+  contrastStampLabel,
   overlayContrastPlan,
 } from "./personaContrast";
 import {
@@ -595,30 +598,71 @@ function fallbackQuickPickCards(): PersonaPoolPersonaCard[] {
 function GenerateProgressBar({
   progress,
 }: {
-  progress: Pick<PersonaPoolGenerateProgress, "ratio" | "label" | "stage">;
+  progress: Pick<
+    PersonaPoolGenerateProgress,
+    "ratio" | "label" | "stage"
+  > & { datasetLabel?: string };
 }) {
   const pct = Math.max(0, Math.min(100, Math.round(progress.ratio * 100)));
+  const title = progress.datasetLabel || progress.label;
   return (
     <div className="space-y-1" aria-live="polite">
       <div className="flex items-center justify-between gap-2 text-[11px] leading-snug">
-        <span className="min-w-0 truncate text-text-variant">
-          {progress.label}
+        <span className="min-w-0 truncate text-text-variant" title={title}>
+          {title}
         </span>
         <span className="shrink-0 font-mono text-text-dim">{pct}%</span>
       </div>
+      {progress.datasetLabel && progress.label !== progress.datasetLabel ? (
+        <p className="truncate text-[10px] leading-snug text-text-dim">
+          {progress.label}
+        </p>
+      ) : null}
       <div
         className="h-1.5 overflow-hidden rounded-full bg-outline/35"
         role="progressbar"
         aria-valuemin={0}
         aria-valuemax={100}
         aria-valuenow={pct}
-        aria-label={progress.label}
+        aria-label={title}
       >
         <div
           className="h-full rounded-full bg-primary transition-[width] duration-200 ease-out"
           style={{ width: `${pct}%` }}
         />
       </div>
+    </div>
+  );
+}
+
+type GenerateTrack = {
+  key: string;
+  label: string;
+  ratio: number;
+  detail: string;
+  status: "pending" | "active" | "done";
+};
+
+function GenerateProgressTracks({ tracks }: { tracks: GenerateTrack[] }) {
+  if (tracks.length === 0) return null;
+  return (
+    <div className="space-y-2" aria-live="polite">
+      {tracks.map((track) => (
+        <GenerateProgressBar
+          key={track.key}
+          progress={{
+            ratio:
+              track.status === "done"
+                ? 1
+                : track.status === "pending"
+                  ? 0
+                  : track.ratio,
+            label: track.detail || track.label,
+            datasetLabel: track.label,
+            stage: track.status === "done" ? "done" : "write",
+          }}
+        />
+      ))}
     </div>
   );
 }
@@ -696,6 +740,7 @@ export function PersonaSamplingRail({
   disabled,
 }: PersonaSamplingRailProps) {
   const { t } = useI18n();
+  const dimLabels = useDimensionLabels();
   const [filterOpen, setFilterOpen] = useState(false);
   const [filterTarget, setFilterTarget] = useState<"dataset" | "generation">(
     "dataset",
@@ -753,6 +798,7 @@ export function PersonaSamplingRail({
   const [generateError, setGenerateError] = useState<string | null>(null);
   const [generateProgress, setGenerateProgress] =
     useState<PersonaPoolGenerateProgress | null>(null);
+  const [generateTracks, setGenerateTracks] = useState<GenerateTrack[]>([]);
   /** Task-default strategy detail — collapses after a successful pull / synthesize. */
   const [strategySummaryOpen, setStrategySummaryOpen] = useState(true);
 
@@ -1179,12 +1225,7 @@ export function PersonaSamplingRail({
   const handleGenerate = useCallback(async () => {
     setGenerating(true);
     setGenerateError(null);
-    setGenerateProgress({
-      type: "progress",
-      stage: "prepare",
-      ratio: 0.02,
-      label: t("personaSetup.progress.startingGeneration"),
-    });
+    setGenerateProgress(null);
     try {
       const hasOverlay = genOverlay.length > 0;
       const hasContrast = contrastPlan.length > 0;
@@ -1205,9 +1246,81 @@ export function PersonaSamplingRail({
         throw new ApiError(422, t("personaSetup.errors.pickGenerateFilters"));
       }
 
+      const dimLabel = (id: string) =>
+        genOverlayLabels[id] ||
+        dimLabels.dimLabel(id, humanizeToken(id));
+
+      const tracks: GenerateTrack[] = [];
+      if (writeIndependent) {
+        tracks.push({
+          key: "independent",
+          label: t("personaSetup.progress.independentDataset"),
+          ratio: 0,
+          detail: t("personaSetup.progress.waiting"),
+          status: "pending",
+        });
+      }
+      if (writeContrastFamily) {
+        tracks.push({
+          key: "contrast-base",
+          label: contrastStampLabel(contrastBaseStamps(contrastPlan), dimLabel),
+          ratio: 0,
+          detail: t("personaSetup.progress.waiting"),
+          status: "pending",
+        });
+        for (const [index, stamps] of contrastCombinations(
+          contrastPlan,
+        ).entries()) {
+          tracks.push({
+            key: `contrast-${index}`,
+            label: contrastStampLabel(stamps, dimLabel),
+            ratio: 0,
+            detail: t("personaSetup.progress.waiting"),
+            status: "pending",
+          });
+        }
+      }
+      setGenerateTracks(tracks);
+
+      const patchTracks = (
+        offset: number,
+        event: PersonaPoolGenerateProgress,
+      ) => {
+        setGenerateTracks((prev) => {
+          if (prev.length === 0) return prev;
+          const index =
+            offset +
+            (typeof event.datasetIndex === "number" ? event.datasetIndex : 0);
+          return prev.map((track, trackIndex) => {
+            if (trackIndex < offset) {
+              return track.status === "done"
+                ? track
+                : { ...track, status: "done", ratio: 1, detail: track.label };
+            }
+            if (trackIndex !== index) {
+              if (trackIndex > index && track.status === "pending") return track;
+              if (trackIndex < index && track.status !== "done") {
+                return { ...track, status: "done", ratio: 1 };
+              }
+              return track;
+            }
+            const done = event.stage === "done" || event.ratio >= 0.999;
+            return {
+              ...track,
+              label: event.datasetLabel || track.label,
+              ratio: done ? 1 : event.ratio,
+              detail: event.label || track.detail,
+              status: done ? "done" : "active",
+            };
+          });
+        });
+        setGenerateProgress(event);
+      };
+
       const runOnce = async (
         peopleFilters: PersonaDimensionFilters,
         withContrast: boolean,
+        trackOffset: number,
       ) => {
         const generateAxes = filterAxisIds(peopleFilters);
         const needsFilters = genMode === "perCell" || genMode === "total";
@@ -1272,27 +1385,38 @@ export function PersonaSamplingRail({
                 ? contrastPlan
                 : undefined,
           },
-          { onProgress: setGenerateProgress },
+          { onProgress: (event) => patchTracks(trackOffset, event) },
         );
       };
 
       let lastResult: Awaited<ReturnType<typeof api.generatePersonaPool>> | null =
         null;
       let contrastPools = 0;
+      let trackOffset = 0;
       if (writeIndependent) {
-        lastResult = await runOnce(genFilters, false);
+        lastResult = await runOnce(genFilters, false, trackOffset);
         contrastPools += lastResult.contrastPools?.length ?? 0;
         await applyGeneratedPool(lastResult, { selectCohort: false });
+        trackOffset += 1;
       }
       if (writeContrastFamily) {
-        lastResult = await runOnce(contrastSharedFilters, true);
-        contrastPools += lastResult.contrastPools?.length ?? 0;
+        lastResult = await runOnce(contrastSharedFilters, true, trackOffset);
+        const clones = lastResult.contrastPools ?? [];
+        // Base-value pool + stamped extras — all named by contrast attributes.
+        contrastPools += 1 + clones.length;
         await applyGeneratedPool(lastResult, { selectCohort: false });
       }
       if (!lastResult) {
         throw new ApiError(422, t("personaSetup.errors.pickGenerateFilters"));
       }
       setContrastWroteCount(contrastPools);
+      setGenerateTracks((prev) =>
+        prev.map((track) => ({
+          ...track,
+          status: "done",
+          ratio: 1,
+        })),
+      );
     } catch (err) {
       setGenerateError(
         err instanceof ApiError
@@ -1308,12 +1432,14 @@ export function PersonaSamplingRail({
     contrastMarginals,
     contrastPlan,
     contrastSharedFilters,
+    dimLabels,
     genAxes,
     genCount,
     genFilters,
     genMarginals,
     genMode,
     genOverlay,
+    genOverlayLabels,
     genPerCell,
     genSampleSize,
     genSeed,
@@ -1819,7 +1945,9 @@ export function PersonaSamplingRail({
                       : t("personaSetup.generate")}
                   </button>
                 </div>
-                {generating && generateProgress ? (
+                {generateTracks.length > 0 ? (
+                  <GenerateProgressTracks tracks={generateTracks} />
+                ) : generating && generateProgress ? (
                   <GenerateProgressBar progress={generateProgress} />
                 ) : (
                   <p className="text-[11px] leading-snug text-text-dim">

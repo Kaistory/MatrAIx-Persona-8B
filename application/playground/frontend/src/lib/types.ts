@@ -1048,11 +1048,18 @@ export interface PersonaPoolGenerateResult {
 /** NDJSON progress line from ``POST /api/persona-pool/generate?stream=1``. */
 export interface PersonaPoolGenerateProgress {
   type: "progress";
-  stage: "prepare" | "sample" | "write" | "manifest" | "done" | string;
+  stage: "prepare" | "sample" | "write" | "manifest" | "done" | "contrast" | string;
+  /** Progress within the current dataset (0..1). */
   ratio: number;
   label: string;
   done?: number;
   total?: number;
+  /** 0-based index of the dataset being written in this generate call. */
+  datasetIndex?: number;
+  /** How many datasets this generate call will write (base + contrast arms). */
+  datasetTotal?: number;
+  /** Display name for the dataset bar (e.g. Contrast · Brand=Low). */
+  datasetLabel?: string;
 }
 
 export interface PersonaPoolSampleResult {

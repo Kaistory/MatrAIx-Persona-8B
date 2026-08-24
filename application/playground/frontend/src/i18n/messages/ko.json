@@ -1477,5 +1477,7 @@
   "personaSetup.filters.contrastSharedOptional": "공유 필터 없음 — 전체 풀 대상.",
   "personaSetup.tabs.byCount": "인원수",
   "personaSetup.tabs.byCombo": "조합별",
-  "personaSetup.tabs.byShare": "비중"
+  "personaSetup.tabs.byShare": "비중",
+  "personaSetup.progress.independentDataset": "독립",
+  "personaSetup.progress.waiting": "대기 중…"
 }

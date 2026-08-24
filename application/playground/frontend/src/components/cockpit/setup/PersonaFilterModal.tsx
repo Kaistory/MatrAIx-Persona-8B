@@ -1371,7 +1371,7 @@ export function PersonaFilterModal({
       const adding = !prev.sources.includes(source);
       if (adding) pendingRevealKey.current = `source:${source}`;
       return {
-        ...prev,
+      ...prev,
         sources: adding
           ? [...prev.sources, source]
           : prev.sources.filter((item) => item !== source),
@@ -2125,8 +2125,8 @@ export function PersonaFilterModal({
             </div>
             {renderSelected()}
           </div>
-            </div>
           </div>
+        </div>
 
         <div className="flex shrink-0 flex-col items-stretch gap-1.5 border-t border-outline/40 bg-surface/40 px-5 py-3 sm:flex-row sm:items-center sm:justify-end">
               <div className="flex shrink-0 items-center justify-end gap-2 sm:ml-auto">
@@ -2172,9 +2172,9 @@ export function PersonaFilterModal({
               >
                 {t("personaSetup.filters.apply")}
               </button>
-              </div>
-        </div>
+            </div>
           </div>
+        </div>
       </div>
     </div>,
     document.body,

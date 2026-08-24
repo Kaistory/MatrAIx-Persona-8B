@@ -1,29 +1,23 @@
 #!/usr/bin/env python3
 """Write a synthetic persona pool you can pick in Playground Dataset.
 
-Same generate path as Playground Generation: Full-DAG sample, then stamp custom
-dimensions into YAML and ``manifest.overlay_dimensions``.
-
-Default: ``--count`` rows (2000) into
+Same path as Playground Generation. Default: ``--count`` rows (2000) into
 ``persona/datasets/generated-persona-dev-<count>/``.
 
-``--overlay id[:label]=v1,v2`` adds study dimensions that are not in the persona
-schema. ``--filter dim=v1,v2`` sets Independent filters. ``--contrast-filter``
-sets optional Contrast shared filters. ``--contrast id=v1,v2`` (repeatable) sets
-contrast attributes (one extra dataset per value combination; schema stamps are
-Full-DAG-checked without resampling).
+``--overlay id[:label]=v1,v2`` adds custom dimensions. ``--filter`` is
+Independent; ``--contrast-filter`` / ``--contrast`` are Contrast (base-value
+pool + one dataset per selected value combination). Progress: one bar per
+dataset.
 
-Sampling (same labels as Playground Generation):
-``--count`` (By count), ``--per-cell`` (By combo), ``--sample-size`` (By share).
-``--marginal dim=v1:w1,v2:w2`` sets Independent By-share weights;
-``--contrast-marginal`` sets Contrast shared By-share weights. Omit either for
-equal shares (Playground default).
+Sampling (same labels as the UI): ``--count`` (By count), ``--per-cell``
+(By combo), ``--sample-size`` (By share). Optional ``--marginal`` /
+``--contrast-marginal`` for By-share weights (omit = equal).
 
-``--strategy PATH`` fills the task's stratified cells so a later Playground draw
-will not run short. ``--task PATH --per-cell N`` fills grounding probe cells.
+``--strategy PATH`` / ``--task PATH --per-cell N`` fill task cells.
+``--contrast-from POOL`` clones an existing dataset (``--contrast-dim`` /
+``--contrast-value`` for a single arm).
 
-``--contrast-from POOL`` clones an existing dataset with ``--contrast`` arms.
-Single-arm shorthand: ``--contrast-dim`` / ``--contrast-value``.
+See docs/persona/README.md § Playground Generation.
 """
 
 from __future__ import annotations
@@ -32,6 +26,7 @@ import argparse
 import json
 import random
 import re
+import sys
 from pathlib import Path
 
 from matraix.persona_dimension_catalog import values_for_dimension
@@ -39,8 +34,10 @@ from matraix.persona_consistency import load_dev_dimension_ids
 from matraix.persona_generator import (
     GENERATE_COUNT_DEFAULT,
     GENERATE_COUNT_MAX,
+    apply_dimension_stamps,
     build_probe_strata,
     clone_contrast_personas,
+    contrast_base_stamps,
     contrast_stamp_combinations,
     fill_overlay_filters,
     generate_persona_pool,
@@ -96,14 +93,77 @@ def _progress(stage: str, message: str) -> None:
     print(f"[{stage}] {message}", flush=True)
 
 
-def _wipe_stale_personas(out: Path) -> int:
-    if not out.is_dir():
-        return 0
-    removed = 0
-    for stale in out.glob("persona_*.yaml"):
-        stale.unlink()
-        removed += 1
-    return removed
+class _DatasetProgressBars:
+    """N terminal progress bars — one per dataset being written."""
+
+    def __init__(self, labels: list[str]) -> None:
+        self.labels = [str(label) for label in labels]
+        self.ratios = [0.0] * len(self.labels)
+        self.details = ["waiting"] * len(self.labels)
+        self._drawn = 0
+        self._last_printed_pct = [-1] * len(self.labels)
+        self._tty = sys.stdout.isatty()
+        if self.labels:
+            print(f"[plan] Writing {len(self.labels)} dataset(s):", flush=True)
+            for index, label in enumerate(self.labels, start=1):
+                print(f"  {index}. {label}", flush=True)
+
+    def update(
+        self,
+        index: int,
+        *,
+        ratio: float,
+        detail: str | None = None,
+        label: str | None = None,
+    ) -> None:
+        if index < 0 or index >= len(self.labels):
+            return
+        self.ratios[index] = max(0.0, min(1.0, float(ratio)))
+        if detail:
+            self.details[index] = str(detail)
+        if label:
+            self.labels[index] = str(label)
+        self._render()
+
+    def complete(self, index: int) -> None:
+        self.update(index, ratio=1.0, detail="done")
+
+    def _bar(self, ratio: float, width: int = 20) -> str:
+        filled = int(round(ratio * width))
+        return "█" * filled + "░" * (width - filled)
+
+    def _line(self, index: int) -> str:
+        pct = int(round(self.ratios[index] * 100))
+        label = self.labels[index]
+        short = label if len(label) <= 36 else label[:33] + "..."
+        return (
+            f"  [{index + 1}/{len(self.labels)}] {short:<36} "
+            f"|{self._bar(self.ratios[index])}| {pct:3d}%  {self.details[index]}"
+        )
+
+    def _render(self) -> None:
+        if not self.labels:
+            return
+        if self._tty:
+            if self._drawn:
+                sys.stdout.write(f"\033[{self._drawn}A")
+            block = "\n".join(self._line(i) for i in range(len(self.labels)))
+            sys.stdout.write(block + "\n")
+            sys.stdout.flush()
+            self._drawn = len(self.labels)
+            return
+        # Non-TTY: print each bar at 0/25/50/75/100 milestones.
+        for index in range(len(self.labels)):
+            pct = int(round(self.ratios[index] * 100))
+            milestone = (
+                pct
+                if pct in {0, 25, 50, 75, 100} or self.ratios[index] >= 1.0
+                else None
+            )
+            if milestone is None or milestone == self._last_printed_pct[index]:
+                continue
+            self._last_printed_pct[index] = milestone
+            print(self._line(index), flush=True)
 
 
 def _write_progress(stage: str, payload: dict) -> None:
@@ -116,6 +176,16 @@ def _write_progress(stage: str, payload: dict) -> None:
             _progress("write", f"{label} ({pct}%)")
             return
     _progress(stage, label)
+
+
+def _wipe_stale_personas(out: Path) -> int:
+    if not out.is_dir():
+        return 0
+    removed = 0
+    for stale in out.glob("persona_*.yaml"):
+        stale.unlink()
+        removed += 1
+    return removed
 
 
 def _stratum_top_up_from_task(
@@ -261,31 +331,55 @@ def _remap_overlay_marginal_keys(
     return remapped
 
 
-def _contrast_arms_from_args(args: argparse.Namespace) -> list[dict[str, object]]:
+def _contrast_arms_from_args(
+    args: argparse.Namespace,
+    overlay: list[dict[str, object]] | None = None,
+) -> list[dict[str, object]]:
+    """Build contrast arms. Selected values are stamped clones; base is complementary."""
+    overlay_by_id = {
+        str(row["id"]): row for row in (overlay or []) if str(row.get("id") or "").strip()
+    }
+
+    def _arm(dim_id: str, extras: list[str]) -> dict[str, object] | None:
+        values = [text for text in extras if str(text).strip()]
+        if not values:
+            return None
+        slug = dim_id.strip().lower().replace("-", "_")
+        dim = overlay_by_id.get(slug) or overlay_by_id.get(dim_id)
+        domain: list[str] = []
+        if dim is not None:
+            domain = [str(v).strip() for v in (dim.get("values") or []) if str(v).strip()]
+        if not domain:
+            domain = [
+                str(v).strip()
+                for v in values_for_dimension(dim_id)
+                if str(v).strip()
+            ]
+        base = next((v for v in domain if v not in values), None)
+        if base is None:
+            base = domain[0] if domain else values[0]
+        return {
+            "overlayId": dim_id,
+            "baseValue": base,
+            "values": values,
+        }
+
     arms: list[dict[str, object]] = []
     for item in args.contrast or []:
         try:
             dim_id, values = parse_filter_cli(item)
         except ValueError as exc:
             raise SystemExit(f"--contrast {item!r}: {exc}") from exc
-        arms.append(
-            {
-                "overlayId": dim_id,
-                "baseValue": values[0],
-                "values": values,
-            }
-        )
+        arm = _arm(dim_id, values)
+        if arm is not None:
+            arms.append(arm)
     if args.contrast_dim and args.contrast_value is not None:
         text = str(args.contrast_value).strip()
         if not text:
             raise SystemExit("--contrast-value must not be empty")
-        arms.append(
-            {
-                "overlayId": str(args.contrast_dim).strip(),
-                "baseValue": text,
-                "values": [text],
-            }
-        )
+        arm = _arm(str(args.contrast_dim).strip(), [text])
+        if arm is not None:
+            arms.append(arm)
     return arms
 
 
@@ -355,6 +449,17 @@ def _resolve_stamp_map(
     return resolved
 
 
+def _contrast_label_from_stamps(
+    stamps: dict[str, str],
+    overlay: list[dict[str, object]],
+) -> str:
+    labels = {str(row["id"]): str(row.get("label") or row["id"]) for row in overlay}
+    bits = [
+        f"{labels.get(dim, dim)}={value}" for dim, value in sorted(stamps.items())
+    ]
+    return f"Contrast · {', '.join(bits)}" if bits else "Contrast"
+
+
 def _write_contrast_clones(
     *,
     personas: list[dict],
@@ -362,6 +467,8 @@ def _write_contrast_clones(
     plan: list[dict[str, object]],
     parent_pool: str,
     out: Path | None = None,
+    progress_bars: _DatasetProgressBars | None = None,
+    progress_offset: int = 0,
 ) -> list[Path]:
     combos = contrast_stamp_combinations(plan)
     if not combos:
@@ -374,6 +481,15 @@ def _write_contrast_clones(
     schema_ids = _schema_ids()
     written: list[Path] = []
     for index, stamps in enumerate(combos):
+        dataset_index = progress_offset + index
+        dataset_label = _contrast_label_from_stamps(stamps, overlay)
+        if progress_bars is not None:
+            progress_bars.update(
+                dataset_index,
+                ratio=0.05,
+                detail="stamping",
+                label=dataset_label,
+            )
         try:
             resolved = _resolve_stamp_map(overlay, stamps)
             stamp_map = {row["id"]: row["value"] for row in resolved}
@@ -391,15 +507,37 @@ def _write_contrast_clones(
         else:
             dest = _unique_dataset_dir(f"contrast-{'-'.join(slug_parts)}")
         label = ", ".join(f"{row['id']}={row['value']}" for row in resolved)
-        _progress(
-            "contrast",
-            f"[{index + 1}/{len(combos)}] {label} → "
-            f"{dest.relative_to(REPO_ROOT) if dest.is_relative_to(REPO_ROOT) else dest}",
-        )
+        if progress_bars is None:
+            _progress(
+                "contrast",
+                f"[{index + 1}/{len(combos)}] {label} → "
+                f"{dest.relative_to(REPO_ROOT) if dest.is_relative_to(REPO_ROOT) else dest}",
+            )
         removed = _wipe_stale_personas(dest)
-        if removed:
+        if removed and progress_bars is None:
             _progress("prepare", f"Removed {removed} stale persona_*.yaml")
-        first = resolved[0]
+
+        def _clone_write_progress(stage: str, payload: dict) -> None:
+            if progress_bars is None:
+                _write_progress(stage, payload)
+                return
+            if stage == "write":
+                done = int(payload.get("done") or 0)
+                total = max(1, int(payload.get("total") or 1))
+                progress_bars.update(
+                    dataset_index,
+                    ratio=0.15 + 0.75 * (done / total),
+                    detail=f"writing {done}/{total}",
+                    label=dataset_label,
+                )
+            elif stage == "manifest":
+                progress_bars.update(
+                    dataset_index,
+                    ratio=0.95,
+                    detail="manifest",
+                    label=dataset_label,
+                )
+
         write_persona_dataset(
             out_dir=dest,
             personas=cloned,
@@ -408,29 +546,25 @@ def _write_contrast_clones(
             seed=0,
             smoke_persona_id=str(cloned[0]["persona_id"]),
             overlay_dimensions=overlay or None,
+            on_progress=_clone_write_progress,
             extra_manifest={
                 "parent_pool": parent_pool,
                 "contrast": {
-                    "dimension": first["id"],
-                    "label": first["label"],
-                    "value": first["value"],
-                    "stamps": {row["id"]: row["value"] for row in resolved},
+                    "dimension": resolved[0]["id"],
+                    "label": resolved[0]["label"],
+                    "value": resolved[0]["value"],
+                    "stamps": stamp_map,
                     "source_pool": parent_pool,
                 },
             },
-            on_progress=_write_progress,
         )
+        if progress_bars is not None:
+            progress_bars.complete(dataset_index)
         written.append(dest)
     return written
 
 
 def _run_contrast(args: argparse.Namespace) -> None:
-    arms = _contrast_arms_from_args(args)
-    if not arms:
-        raise SystemExit(
-            "--contrast-from requires --contrast id=v1,v2 "
-            "(or --contrast-dim / --contrast-value)"
-        )
     src = Path(args.contrast_from)
     if not src.is_absolute():
         src = REPO_ROOT / src
@@ -447,6 +581,13 @@ def _run_contrast(args: argparse.Namespace) -> None:
         payload = json.loads(manifest_path.read_text(encoding="utf-8"))
         overlay = overlay_dimensions_from_manifest(payload)
 
+    arms = _contrast_arms_from_args(args, overlay)
+    if not arms:
+        raise SystemExit(
+            "--contrast-from requires --contrast id=v1,v2 "
+            "(or --contrast-dim / --contrast-value)"
+        )
+
     plan = _contrast_plan_for(overlay, arms)
     personas = _load_pool_personas(src)
     if not personas:
@@ -455,12 +596,19 @@ def _run_contrast(args: argparse.Namespace) -> None:
     out = None
     if args.out is not None:
         out = args.out if args.out.is_absolute() else REPO_ROOT / args.out
+    labels = [
+        _contrast_label_from_stamps(stamps, overlay)
+        for stamps in contrast_stamp_combinations(plan)
+    ]
+    progress_bars = _DatasetProgressBars(labels) if labels else None
     written = _write_contrast_clones(
         personas=personas,
         overlay=overlay,
         plan=plan,
         parent_pool=src_rel,
         out=out,
+        progress_bars=progress_bars,
+        progress_offset=0,
     )
     _progress("done", f"Wrote {len(written)} contrast dataset(s)")
 
@@ -546,6 +694,8 @@ def _generate_pool_once(
     contrast_plan: list[dict[str, object]] | None,
     drop_overlay_contrast_axes: bool,
     marginals: dict[str, dict[str, float]] | None = None,
+    progress_bars: _DatasetProgressBars | None = None,
+    progress_offset: int = 0,
 ) -> tuple[Path, list[dict], list[dict[str, object]], dict]:
     """Sample + write one pool; optionally write contrast clones. Returns parent info."""
     overlay_ids = {str(row["id"]) for row in overlay}
@@ -574,18 +724,40 @@ def _generate_pool_once(
                 work_allocation = None
                 work_marginals = None
 
-    _progress(
-        "prepare",
-        f"Output → {out.relative_to(REPO_ROOT) if out.is_relative_to(REPO_ROOT) else out}",
-    )
+    parent_label = "Independent"
+    if contrast_plan:
+        base_preview = contrast_base_stamps(contrast_plan)
+        parent_label = (
+            _contrast_label_from_stamps(base_preview, overlay)
+            if base_preview
+            else "Contrast"
+        )
+
+    def _set_parent(ratio: float, detail: str) -> None:
+        if progress_bars is not None:
+            progress_bars.update(
+                progress_offset,
+                ratio=ratio,
+                detail=detail,
+                label=parent_label,
+            )
+        else:
+            _progress("sample" if ratio < 0.15 else "write", detail)
+
+    if progress_bars is None:
+        _progress(
+            "prepare",
+            f"Output → {out.relative_to(REPO_ROOT) if out.is_relative_to(REPO_ROOT) else out}",
+        )
+    _set_parent(0.02, "preparing")
     removed = _wipe_stale_personas(out)
-    if removed:
+    if removed and progress_bars is None:
         _progress("prepare", f"Removed {removed} stale persona_*.yaml")
 
     if args.task and stratum_top_up is not None:
-        _progress(
-            "sample",
-            f"Sampling grounding cells ({len(stratum_top_up)} × {work_per_cell})…",
+        _set_parent(
+            0.05,
+            f"sampling grounding ({len(stratum_top_up)} × {work_per_cell})",
         )
         personas = generate_persona_pool(
             count=work_count or 0,
@@ -605,7 +777,7 @@ def _generate_pool_once(
         folder_count = work_count or 0
         resolved_overlay = overlay
     else:
-        _progress("sample", "Sampling Full DAG…")
+        _set_parent(0.05, "sampling Full DAG")
         try:
             generated = generate_synthetic_personas(
                 count=work_count,
@@ -628,14 +800,52 @@ def _generate_pool_once(
 
     if not personas:
         raise SystemExit("generation produced no personas")
-    _progress("sample", f"Sampled {len(personas)} personas")
+
+    if contrast_plan:
+        base_stamps = contrast_base_stamps(contrast_plan)
+        if base_stamps:
+            try:
+                validate_contrast_stamps_against_dag(
+                    personas,
+                    base_stamps,
+                    schema_ids=_schema_ids(),
+                )
+            except ValueError as exc:
+                raise SystemExit(str(exc)) from exc
+            apply_dimension_stamps(personas, base_stamps)
+            parent_label = _contrast_label_from_stamps(base_stamps, resolved_overlay)
+
+    _set_parent(0.12, f"sampled {len(personas)}")
 
     kind = (
         f"{DEFAULT_POOL_PREFIX}-strategy-{_slug(strategy_path.parent.name)}"
         if strategy_path is not None
         else f"{DEFAULT_POOL_PREFIX}-{folder_count if folder_count > 0 else len(personas)}"
     )
-    _progress("write", f"Writing {len(personas)} YAML files…")
+
+    def _parent_write_progress(stage: str, payload: dict) -> None:
+        if progress_bars is None:
+            _write_progress(stage, payload)
+            return
+        if stage == "write":
+            done = int(payload.get("done") or 0)
+            total = max(1, int(payload.get("total") or 1))
+            progress_bars.update(
+                progress_offset,
+                ratio=0.15 + 0.75 * (done / total),
+                detail=f"writing {done}/{total}",
+                label=parent_label,
+            )
+        elif stage == "manifest":
+            progress_bars.update(
+                progress_offset,
+                ratio=0.95,
+                detail="manifest",
+                label=parent_label,
+            )
+
+    if progress_bars is None:
+        _progress("write", f"Writing {len(personas)} YAML files…")
     manifest = write_persona_dataset(
         out_dir=out,
         personas=personas,
@@ -644,8 +854,10 @@ def _generate_pool_once(
         seed=args.seed,
         smoke_persona_id=args.smoke_id,
         overlay_dimensions=resolved_overlay or None,
-        on_progress=_write_progress,
+        on_progress=_parent_write_progress,
     )
+    if progress_bars is not None:
+        progress_bars.complete(progress_offset)
     if strategy_meta is not None:
         manifest["stratum_top_up"] = {
             "strategy": strategy_meta,
@@ -667,17 +879,19 @@ def _generate_pool_once(
             encoding="utf-8",
         )
 
-    _print_generate_summary(
-        out=out,
-        manifest=manifest,
-        overlay=resolved_overlay,
-        folder_count=folder_count,
-        grounding_meta=grounding_meta,
-        strategy_path=strategy_path,
-        task=args.task,
-        stratum_top_up=stratum_top_up,
-        per_cell=work_per_cell,
-    )
+    # Avoid interleaving summary prints with in-place TTY progress bars.
+    if progress_bars is None:
+        _print_generate_summary(
+            out=out,
+            manifest=manifest,
+            overlay=resolved_overlay,
+            folder_count=folder_count,
+            grounding_meta=grounding_meta,
+            strategy_path=strategy_path,
+            task=args.task,
+            stratum_top_up=stratum_top_up,
+            per_cell=work_per_cell,
+        )
 
     if contrast_plan:
         try:
@@ -689,8 +903,14 @@ def _generate_pool_once(
             overlay=resolved_overlay,
             plan=contrast_plan,
             parent_pool=parent_rel,
+            progress_bars=progress_bars,
+            progress_offset=progress_offset + 1,
         )
-        _progress("done", f"Wrote {len(clones)} contrast dataset(s) from {parent_rel}")
+        if progress_bars is None:
+            _progress(
+                "done",
+                f"Wrote {len(clones)} contrast dataset(s) from {parent_rel}",
+            )
 
     return out, personas, resolved_overlay, manifest
 
@@ -881,7 +1101,7 @@ def main() -> None:
         _parse_marginals(args.contrast_marginal, flag="--contrast-marginal"),
         overlay_ids,
     )
-    contrast_arms = _contrast_arms_from_args(args)
+    contrast_arms = _contrast_arms_from_args(args, overlay)
     contrast_plan = _contrast_plan_for(overlay, contrast_arms) if contrast_arms else []
     has_contrast = bool(contrast_plan)
     independent_selected = bool(independent_filters)
@@ -964,6 +1184,23 @@ def main() -> None:
     else:
         primary_out = _default_out_dir(default_count)
 
+    progress_labels: list[str] = []
+    if write_independent:
+        progress_labels.append("Independent")
+    if write_contrast_family:
+        base_preview = contrast_base_stamps(contrast_plan)
+        progress_labels.append(
+            _contrast_label_from_stamps(base_preview, overlay)
+            if base_preview
+            else "Contrast"
+        )
+        for stamps in contrast_stamp_combinations(contrast_plan):
+            progress_labels.append(_contrast_label_from_stamps(stamps, overlay))
+    progress_bars = (
+        _DatasetProgressBars(progress_labels) if progress_labels else None
+    )
+    progress_offset = 0
+
     if write_independent:
         ind_fields = list(fields)
         if (
@@ -989,7 +1226,10 @@ def main() -> None:
             contrast_plan=None,
             drop_overlay_contrast_axes=False,
             marginals=independent_marginals or None,
+            progress_bars=progress_bars,
+            progress_offset=progress_offset,
         )
+        progress_offset += 1
 
     if write_contrast_family:
         shared = dict(contrast_shared_filters)
@@ -1000,11 +1240,21 @@ def main() -> None:
                 for field in args.stratify
                 if str(field).strip()
             ]
-        contrast_out = (
-            primary_out
-            if not write_independent
-            else _unique_dataset_dir(f"{default_count}-contrast-shared")
-        )
+        base_stamps = contrast_base_stamps(contrast_plan)
+        if args.out is not None and not write_independent:
+            contrast_out = primary_out
+        elif base_stamps:
+            slug_parts = [
+                f"{_slug(dim)}-{_slug(value)}"
+                for dim, value in sorted(base_stamps.items())
+            ]
+            contrast_out = _unique_dataset_dir(f"contrast-{'-'.join(slug_parts)}")
+        else:
+            contrast_out = (
+                primary_out
+                if not write_independent
+                else _unique_dataset_dir(str(default_count))
+            )
         _generate_pool_once(
             args,
             filters=shared,
@@ -1022,7 +1272,12 @@ def main() -> None:
             contrast_plan=contrast_plan,
             drop_overlay_contrast_axes=True,
             marginals=contrast_marginals or None,
+            progress_bars=progress_bars,
+            progress_offset=progress_offset,
         )
+
+    if progress_bars is not None:
+        _progress("done", f"Wrote {len(progress_labels)} dataset(s)")
 
 
 if __name__ == "__main__":

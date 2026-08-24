@@ -230,135 +230,94 @@ and job launches that need real coverage. This is the canonical public coreset;
 prefer it over the ~200-persona smoke fixture.
 
 ### Local synthetic pools
-Sample Full-DAG personas for Playground experiments. Output is listed in the Dataset picker and is **gitignored**. Playground **Generation** and `generate_dev_personas.py` share one path: DAG sample, then stamp custom dimensions into each YAML and `manifest.overlay_dimensions`.
+
+Sample Full-DAG personas for Playground experiments. Output appears in the
+Dataset picker and is **gitignored**. Playground **Generation** and
+`generate_dev_personas.py` share the same path.
 
 ```bash
 uv run python persona/scripts/generate_dev_personas.py
-# staged progress: [prepare] → [sample] → [write] → [manifest] → [done]
 # → persona/datasets/generated-persona-dev-2000/
 ```
 
-Each YAML is labeled `source: synthetic`. This is a raw Full-DAG sample from
-`persona/synthesis/graph/full_dag.json`. It does **not** run quality filter,
-dedup, or calibration — those steps belong to the published
-[`matraix-persona-1m`](pipeline.md#1m-coreset) coreset.
+Each YAML is `source: synthetic` from `persona/synthesis/graph/full_dag.json`.
+This is a raw Full-DAG sample — it does **not** run quality filter, dedup, or
+calibration (those belong to the published
+[`matraix-persona-1m`](pipeline.md#1m-coreset) coreset).
 
-Custom dimensions (not in the persona schema) use the same flags as Playground
-Generation. IDs must start with a letter and use only letters, numbers, and
-underscores, and must not collide with an existing dimension:
+Custom dimensions (not in the persona schema) use
+`--overlay id[:label]=v1,v2`. IDs must start with a letter, use only letters /
+numbers / underscores, and must not collide with an existing schema dimension.
+Schema `--filter` values pin the DAG; overlay values are applied after sampling.
 
-```bash
-# By count — schema filter + one custom dimension
-uv run python persona/scripts/generate_dev_personas.py \
-  --count 200 \
-  --filter age_bracket=25-34 \
-  --overlay brand_trust:"Brand trust"=Low,High \
-  --filter brand_trust=High
-
-# By combo — N rows per filter combination (schema × custom)
-uv run python persona/scripts/generate_dev_personas.py \
-  --per-cell 10 \
-  --filter gender_identity=Man,Woman \
-  --overlay brand_trust:"Brand trust"=Low,High
-```
-
-Playground **Generation** writes the same pools and switches **Dataset** to the
-new folder (it does **not** auto-select the whole draw as the launch cohort).
-If **Task default** is on and Pull cannot cover `persona_strategy.json`,
-**Synthesize to fill this task** does the `--strategy` equivalent and selects
-that fill cohort.
-
-`--strategy` reads the task `persona_strategy.json` and fills the same cells
-Playground will draw from. You can still add `--overlay` / `--filter` on top.
-
-- **perCell** — `N` rows in every filter cell (`--per-cell` / By combo)
-- **equalTotal** — `ceil(sampleSize / #cells)` per cell (then the draw clips to `sampleSize`)
-- **proportional** — same floor so every cell exists and the pool is ≥ `sampleSize`
-- **independentMarginal** — By share: Hamilton allocation from `--sample-size` and optional `--marginal` weights
-
-Schema `--filter` values pin the DAG. Custom `--overlay` values are stamped after
-sampling. Cells the DAG cannot pin are dropped.
+After Generate, Dataset switches to the new pool (it does **not** auto-select
+the draw as the launch cohort). If **Task default** is on and Pull cannot cover
+`persona_strategy.json`, **Synthesize to fill this task** (CLI: `--strategy`)
+fills those cells.
 
 ### Playground Generation (Independent / Contrast)
 
-Playground **Generation** has three sampling modes (tooltips on hover):
+Three sampling modes (hover the UI tabs for tooltips):
 
-| UI | CLI | What it does |
-|----|-----|--------------|
-| **By count** | `--count N` | Draw N personas (optional filters) |
-| **By combo** | `--per-cell N` | N personas for every selected filter combination |
-| **By share** | `--sample-size N` | Allocate N from per-dimension shares (equal by default) |
+| UI | CLI | Meaning |
+|----|-----|---------|
+| **By count** | `--count N` | N personas per written dataset |
+| **By combo** | `--per-cell N` | N personas per selected filter combination |
+| **By share** | `--sample-size N` | Allocate N from per-dimension shares (equal unless you set weights) |
 
-Persona filters are two independent workspaces:
+**N is per dataset.** Contrast copies reuse one shared draw, so every contrast
+dataset has the same size. UI and CLI show **one progress bar per dataset**.
 
-- **Independent dataset** — who is in that mix. By share: edit dimension shares in the filter modal (`--marginal` on CLI).
-- **Contrast datasets** — optional **shared filters** (By share: their own shares via `--contrast-marginal`) plus **contrast attributes**; one extra dataset per value combination. Shared filters may be empty (free draw, then stamp). Schema (1290) stamps are Full-DAG-checked after stamp; invalid combinations error without resampling. Custom overlay stamps skip DAG.
+Two filter workspaces:
 
-CLI mirrors the same Independent / Contrast split:
+- **Independent** — one mix (`--filter`; By share weights via `--marginal`).
+- **Contrast** — optional shared filters (`--contrast-filter` /
+  `--contrast-marginal`) plus **contrast attributes** (`--contrast`). Writes the
+  complementary **base-value** pool plus one dataset per selected value
+  combination. Labels look like `Contrast · Brand=Low`. After Generate, Dataset
+  selects the base-value pool first.
+
+Invalid schema contrast stamps (Full-DAG) error out without resampling; custom
+overlay stamps skip the DAG check.
 
 ```bash
-# Independent only (By count)
+# Independent
 uv run python persona/scripts/generate_dev_personas.py \
   --count 100 \
   --filter age_bracket=25-34
 
-# Contrast only — shared filters optional; stamps after the draw
+# Contrast (shared filters optional)
 uv run python persona/scripts/generate_dev_personas.py \
   --count 100 \
   --overlay brand_trust:Brand=High,Low \
-  --contrast brand_trust=Low
+  --contrast brand_trust=High
 
-# Contrast with shared filters (By combo)
-uv run python persona/scripts/generate_dev_personas.py \
-  --per-cell 2 \
-  --contrast-filter age_bracket=25-34,35-44 \
-  --overlay brand_trust:Brand=High,Low \
-  --contrast brand_trust=Low
-
-# Independent + Contrast together (By share / equal shares)
-uv run python persona/scripts/generate_dev_personas.py \
-  --sample-size 100 \
-  --filter region=US \
-  --contrast-filter age_bracket=25-34 \
-  --overlay brand_trust:Brand=High,Low \
-  --contrast brand_trust=Low
-
-# By share with custom weights (Independent + Contrast shared)
+# Independent + Contrast (By share with weights)
 uv run python persona/scripts/generate_dev_personas.py \
   --sample-size 100 \
   --filter gender_identity=Man,Woman \
   --marginal gender_identity=Man:70,Woman:30 \
-  --contrast-filter age_bracket=25-34,35-44 \
-  --contrast-marginal age_bracket=25-34:60,35-44:40 \
+  --contrast-filter age_bracket=25-34 \
   --overlay brand_trust:Brand=High,Low \
-  --contrast brand_trust=Low
+  --contrast brand_trust=High
 
-# Clone an existing pool (multi-arm; DAG-validated)
+# Clone an existing pool into contrast copies
 uv run python persona/scripts/generate_dev_personas.py \
   --contrast-from persona/datasets/generated-persona-dev-200 \
-  --contrast brand_trust=Low \
-  --contrast age_bracket=18-24
+  --contrast brand_trust=High
 ```
 
-Other flags:
-- `--count N` — By count (default 2000, max 5000)
-- `--per-cell N` — By combo
-- `--sample-size N` — By share total
-- `--marginal dim=v1:w1,v2:w2` — Independent By-share weights (repeatable; omit = equal)
-- `--contrast-marginal …` — Contrast shared By-share weights
-- `--strategy <path>` — fill the task's stratified cells
-- `--task <path> --per-cell N` — fill grounding probe cells
-- `--allocation` — `perCell` / `equalTotal` / `proportional` / `independentMarginal`
-- `--stratify FIELD` — grid axes; default is every `--filter` / `--contrast-filter` id when using `--per-cell` or `--sample-size`
-- `--filter` / `--contrast-filter` / `--contrast` — Independent vs Contrast (above)
-- `--contrast-from` / `--contrast` — clone a pool and stamp combinations (`--contrast-dim` / `--contrast-value` for a single arm)
+Also useful: `--strategy`, `--task … --per-cell`, `--stratify`,
+`--contrast-dim` / `--contrast-value` (single-arm shorthand). Defaults:
+`--count` 2000 (max 5000).
 
 ### Job Generation
 Create a Matraix Playground job YAML from a task and persona pool by passing an
 application or validation task path to `persona/scripts/generate_persona_job.py`.
-The CLI prints staged progress (`[prepare]` → `[load]` → `[sample]` → `[write]` → `[done]`).
 
-This reads `grounding.toml` to sample stratified cohorts and filter on confounders when present. Use `--controlled-probe` for anchor-based cohorts (default for catalog tasks); `--no-controlled-probe` to disable.
+This reads `grounding.toml` to sample stratified cohorts and filter on
+confounders when present. Use `--controlled-probe` for anchor-based cohorts
+(default for catalog tasks); `--no-controlled-probe` to disable.
 
 See scripts under `../../persona/scripts/` for full options.
 
@@ -424,8 +383,9 @@ result = t.match("senior software engineer in Silicon Valley with ML expertise")
 **Sample synthetic personas for Playground:**
 ```bash
 uv run python persona/scripts/generate_dev_personas.py \
-  --overlay brand_trust:"Brand trust"=Low,High
-# pick persona/datasets/generated-persona-dev-2000 in Dataset
+  --overlay brand_trust:Brand=High,Low \
+  --contrast brand_trust=High
+# Dataset picks the base-value pool (Contrast · Brand=Low)
 ```
 
 **Launch a grounding evaluation:**

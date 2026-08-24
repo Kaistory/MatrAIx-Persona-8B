@@ -54,7 +54,7 @@ export function contrastCopyCount(plan: OverlayContrastArm[]): number {
 }
 
 /**
- * Contrast-family dataset count: shared-filter pool plus one stamped copy
+ * Contrast-family dataset count: base-value pool plus one stamped copy
  * per attribute combination.
  */
 export function contrastDatasetCount(plan: OverlayContrastArm[]): number {
@@ -74,4 +74,27 @@ export function contrastCombinations(
       arm.values.map((value) => ({ ...row, [arm.overlayId]: value })),
     );
   }, []);
+}
+
+export function contrastBaseStamps(
+  plan: OverlayContrastArm[],
+): Record<string, string> {
+  const out: Record<string, string> = {};
+  for (const arm of plan) {
+    if (arm.overlayId && arm.baseValue) {
+      out[arm.overlayId] = arm.baseValue;
+    }
+  }
+  return out;
+}
+
+/** ``Contrast · Brand=Low`` for progress / dataset labels. */
+export function contrastStampLabel(
+  stamps: Record<string, string>,
+  dimLabel: (id: string) => string,
+): string {
+  const bits = Object.entries(stamps).map(
+    ([id, value]) => `${dimLabel(id)}=${value}`,
+  );
+  return bits.length > 0 ? `Contrast · ${bits.join(", ")}` : "Contrast";
 }

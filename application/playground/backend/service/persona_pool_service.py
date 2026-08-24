@@ -161,7 +161,7 @@ def _generated_pool_folder(kind_slug: str, datasets_root: Path) -> str:
 
 
 def _generated_pool_label(folder: str, path: Path | None = None) -> str:
-    """``stratified · 2026-08-23 19:28:47`` — from the folder name, else mtime."""
+    """``Contrast shared · 2026-08-23 19:28:47`` — from the folder name, else mtime."""
     prefix = f"{GENERATED_POOL_PREFIX}-"
     if not folder.startswith(prefix):
         return folder
@@ -170,7 +170,7 @@ def _generated_pool_label(folder: str, path: Path | None = None) -> str:
     if match:
         kind, day, tod = match.group(1), match.group(2), match.group(3)
         stamp = f"{day[:4]}-{day[4:6]}-{day[6:]} {tod[:2]}:{tod[2:4]}:{tod[4:]}"
-        return f"{kind} · {stamp}"
+        return f"{_humanize_generated_kind(kind)} · {stamp}"
     when = None
     if path is not None:
         try:
@@ -182,8 +182,35 @@ def _generated_pool_label(folder: str, path: Path | None = None) -> str:
         except OSError:
             when = None
     if when:
-        return f"{rest} · {when}"
+        return f"{_humanize_generated_kind(rest)} · {when}"
     return folder
+
+
+def _humanize_generated_kind(kind: str) -> str:
+    text = str(kind or "").strip()
+    if not text:
+        return text
+    if text.startswith("contrast-"):
+        return f"Contrast · {text[len('contrast-'):]}"
+    return text
+
+
+def _contrast_clone_label(folder: str, resolved: list[dict[str, Any]]) -> str:
+    """Dropdown label: ``Contrast · Brand=Low · 2026-08-24 03:23:25``."""
+    bits = [
+        f"{row.get('label') or row.get('id')}={row.get('value')}"
+        for row in resolved
+        if row.get("value")
+    ]
+    stamp = None
+    prefix = f"{GENERATED_POOL_PREFIX}-"
+    if folder.startswith(prefix):
+        match = _GENERATED_RUN_TS.match(folder[len(prefix):])
+        if match:
+            day, tod = match.group(2), match.group(3)
+            stamp = f"{day[:4]}-{day[4:6]}-{day[6:]} {tod[:2]}:{tod[2:4]}:{tod[4:]}"
+    head = f"Contrast · {', '.join(bits)}" if bits else "Contrast"
+    return f"{head} · {stamp}" if stamp else head
 
 
 def _sampled_cohort_pool(parent_pool: str, digest: str) -> str:
@@ -931,11 +958,13 @@ class PersonaPoolService:
         """
         from matraix.persona_consistency import load_dev_dimension_ids
         from matraix.persona_generator import (
+            apply_dimension_stamps,
+            contrast_base_stamps,
+            contrast_stamp_combinations,
             generate_synthetic_personas,
             normalize_generate_contrast,
             normalize_overlay_dimensions,
             write_persona_dataset,
-            contrast_stamp_combinations,
         )
 
         def emit(
@@ -945,6 +974,9 @@ class PersonaPoolService:
             label: str,
             done: int | None = None,
             total: int | None = None,
+            dataset_index: int | None = None,
+            dataset_total: int | None = None,
+            dataset_label: str | None = None,
         ) -> None:
             if on_progress is None:
                 return
@@ -958,6 +990,12 @@ class PersonaPoolService:
                 payload["done"] = int(done)
             if total is not None:
                 payload["total"] = int(total)
+            if dataset_index is not None:
+                payload["datasetIndex"] = int(dataset_index)
+            if dataset_total is not None:
+                payload["datasetTotal"] = int(dataset_total)
+            if dataset_label is not None:
+                payload["datasetLabel"] = str(dataset_label)
             on_progress(payload)
 
         filters = self._filters_as_lists(self._normalize_dimension_filters(dimension_filters))
@@ -1042,8 +1080,16 @@ class PersonaPoolService:
                         sample_n = None
                         alloc = None
 
-        emit("prepare", ratio=0.02, label="Preparing output folder…")
-        emit("sample", ratio=0.08, label="Sampling Full DAG…")
+        combos = contrast_stamp_combinations(contrast_plan)
+        dataset_total = 1 + len(combos)
+        emit(
+            "prepare",
+            ratio=0.02,
+            label="Sampling Full DAG…",
+            dataset_index=0,
+            dataset_total=dataset_total,
+            dataset_label="Sampling…",
+        )
         generated = generate_synthetic_personas(
             count=count,
             seed=seed,
@@ -1061,8 +1107,46 @@ class PersonaPoolService:
         overlay = generated.overlay
         pool_count = generated.folder_count
 
+        base_stamps = contrast_base_stamps(contrast_plan)
+        base_resolved: list[dict[str, Any]] = []
+        if base_stamps:
+            catalog = self.repo_root / "persona/schema/dimensions.json"
+            schema_ids = (
+                set(load_dev_dimension_ids(catalog_path=str(catalog)))
+                if catalog.is_file()
+                else None
+            )
+            for dim_id, text in base_stamps.items():
+                dim = resolve_contrast_overlay(
+                    overlay,
+                    dim_id,
+                    text,
+                    schema_ids=schema_ids,
+                )
+                base_resolved.append(
+                    {
+                        "id": str(dim["id"]),
+                        "label": dim.get("label") or dim_id,
+                        "value": str(text).strip(),
+                    }
+                )
+            stamp_map = {row["id"]: row["value"] for row in base_resolved}
+            validate_contrast_stamps_against_dag(
+                personas,
+                stamp_map,
+                schema_ids=schema_ids,
+            )
+            apply_dimension_stamps(personas, stamp_map)
+
         if not kind_slug:
-            kind_slug = str(pool_count if pool_count > 0 else "stratified")
+            if base_resolved:
+                slug_parts = [
+                    f"{_cohort_slug(row['id'])}-{_cohort_slug(row['value'])}"
+                    for row in base_resolved
+                ]
+                kind_slug = f"contrast-{'-'.join(slug_parts)}"
+            else:
+                kind_slug = str(pool_count if pool_count > 0 else "stratified")
         folder = _generated_pool_folder(kind_slug, self.repo_root / DATASETS_DIR)
         rel_pool = f"{DATASETS_DIR}/{folder}"
         out_dir = self.repo_root / rel_pool
@@ -1070,31 +1154,87 @@ class PersonaPoolService:
             for stale in out_dir.glob("persona_*.yaml"):
                 stale.unlink()
 
-        emit(
+        combos = contrast_stamp_combinations(contrast_plan)
+        parent_label = (
+            _contrast_clone_label(folder, base_resolved)
+            if base_resolved
+            else _generated_pool_label(folder)
+        )
+        parent_progress_label = (
+            "Contrast · "
+            + ", ".join(f"{row['label']}={row['value']}" for row in base_resolved)
+            if base_resolved
+            else parent_label.split(" · ")[0]
+        )
+
+        def _emit_dataset(
+            stage: str,
+            *,
+            dataset_index: int,
+            dataset_label: str,
+            ratio: float,
+            label: str,
+            done: int | None = None,
+            total: int | None = None,
+        ) -> None:
+            emit(
+                stage,
+                ratio=ratio,
+                label=label,
+                done=done,
+                total=total,
+                dataset_index=dataset_index,
+                dataset_total=dataset_total,
+                dataset_label=dataset_label,
+            )
+
+        _emit_dataset(
             "sample",
-            ratio=0.18,
+            dataset_index=0,
+            dataset_label=parent_progress_label,
+            ratio=0.12,
             label=f"Sampled {len(personas)} personas",
             done=len(personas),
             total=len(personas),
         )
 
-        def _write_progress(stage: str, payload: dict[str, Any]) -> None:
-            if stage == "write":
-                done = int(payload.get("done") or 0)
-                total = max(1, int(payload.get("total") or 1))
-                # Write dominates wall time — map 18% → 90%.
-                ratio = 0.18 + 0.72 * (done / total)
-                emit(
-                    "write",
-                    ratio=ratio,
-                    label=str(payload.get("label") or "Writing personas…"),
-                    done=done,
-                    total=total,
-                )
-                return
-            if stage == "manifest":
-                emit("manifest", ratio=0.90, label=str(payload.get("label") or "Writing manifest…"))
+        def _write_progress_for(
+            dataset_index: int,
+            dataset_label: str,
+        ) -> Callable[[str, dict[str, Any]], None]:
+            def _write_progress(stage: str, payload: dict[str, Any]) -> None:
+                if stage == "write":
+                    done = int(payload.get("done") or 0)
+                    total = max(1, int(payload.get("total") or 1))
+                    ratio = 0.15 + 0.75 * (done / total)
+                    _emit_dataset(
+                        "write",
+                        dataset_index=dataset_index,
+                        dataset_label=dataset_label,
+                        ratio=ratio,
+                        label=str(payload.get("label") or "Writing personas…"),
+                        done=done,
+                        total=total,
+                    )
+                    return
+                if stage == "manifest":
+                    _emit_dataset(
+                        "manifest",
+                        dataset_index=dataset_index,
+                        dataset_label=dataset_label,
+                        ratio=0.95,
+                        label=str(payload.get("label") or "Writing manifest…"),
+                    )
 
+            return _write_progress
+
+        _emit_dataset(
+            "write",
+            dataset_index=0,
+            dataset_label=parent_progress_label,
+            ratio=0.15,
+            label="Writing personas…",
+        )
         manifest = write_persona_dataset(
             out_dir=out_dir,
             personas=personas,
@@ -1103,42 +1243,85 @@ class PersonaPoolService:
             seed=seed,
             smoke_persona_id="0042",
             overlay_dimensions=overlay or None,
-            on_progress=_write_progress if on_progress is not None else None,
+            on_progress=(
+                _write_progress_for(0, parent_progress_label)
+                if on_progress is not None
+                else None
+            ),
         )
+        _emit_dataset(
+            "done",
+            dataset_index=0,
+            dataset_label=parent_progress_label,
+            ratio=1.0,
+            label=f"Wrote {int(manifest['count'])} personas",
+        )
+
         contrast_pools: list[dict[str, Any]] = []
-        combos = contrast_stamp_combinations(contrast_plan)
-        extra_total = len(combos)
-        if extra_total:
-            done_extra = 0
-            for stamps in combos:
-                done_extra += 1
-                label = ", ".join(f"{key}={value}" for key, value in stamps.items())
-                emit(
-                    "contrast",
-                    ratio=0.90 + 0.08 * (done_extra / extra_total),
-                    label=f"Writing contrast {label}…",
-                    done=done_extra,
-                    total=extra_total,
+        for combo_index, stamps in enumerate(combos):
+            dataset_index = 1 + combo_index
+            resolved_preview = [
+                {
+                    "id": key,
+                    "label": next(
+                        (
+                            str(row.get("label") or key)
+                            for row in overlay
+                            if str(row.get("id")) == key
+                        ),
+                        key,
+                    ),
+                    "value": value,
+                }
+                for key, value in stamps.items()
+            ]
+            dataset_label = "Contrast · " + ", ".join(
+                f"{row['label']}={row['value']}" for row in resolved_preview
+            )
+            _emit_dataset(
+                "contrast",
+                dataset_index=dataset_index,
+                dataset_label=dataset_label,
+                ratio=0.05,
+                label=f"Stamping {dataset_label}…",
+                done=combo_index + 1,
+                total=len(combos),
+            )
+            contrast_pools.append(
+                self._write_contrast_clone(
+                    personas=personas,
+                    overlay=overlay,
+                    stamps=stamps,
+                    parent_pool=rel_pool,
+                    on_progress=(
+                        _write_progress_for(dataset_index, dataset_label)
+                        if on_progress is not None
+                        else None
+                    ),
                 )
-                contrast_pools.append(
-                    self._write_contrast_clone(
-                        personas=personas,
-                        overlay=overlay,
-                        stamps=stamps,
-                        parent_pool=rel_pool,
-                    )
-                )
-        emit("done", ratio=1.0, label=f"Generated {int(manifest['count'])} personas")
+            )
+            _emit_dataset(
+                "done",
+                dataset_index=dataset_index,
+                dataset_label=dataset_label,
+                ratio=1.0,
+                label=f"Wrote contrast {combo_index + 1}/{len(combos)}",
+            )
         persona_ids = [str(entry["persona_id"]) for entry in personas]
         return {
             "pool": rel_pool,
-            "label": _generated_pool_label(folder),
+            "label": parent_label,
             "count": int(manifest["count"]),
             "dimensionCount": int(manifest.get("dimension_count") or 0),
             "source": "synthetic",
             "kind": "dataset",
             "personaIds": persona_ids,
             "seed": seed,
+            "contrastStamps": (
+                {row["id"]: row["value"] for row in base_resolved}
+                if base_resolved
+                else None
+            ),
             "contrastPools": contrast_pools,
         }
 
@@ -1194,6 +1377,7 @@ class PersonaPoolService:
         stamps: dict[str, str] | None = None,
         parent_pool: str,
         name: str | None = None,
+        on_progress: Callable[[str, dict[str, Any]], None] | None = None,
     ) -> dict[str, Any]:
         from matraix.persona_consistency import load_dev_dimension_ids
         from matraix.persona_generator import write_persona_dataset
@@ -1245,6 +1429,7 @@ class PersonaPoolService:
             seed=0,
             smoke_persona_id=str(cloned[0]["persona_id"]),
             overlay_dimensions=overlay,
+            on_progress=on_progress,
             extra_manifest={
                 "parent_pool": parent_pool,
                 "contrast": {
@@ -1258,7 +1443,7 @@ class PersonaPoolService:
         )
         return {
             "pool": rel_pool,
-            "label": _generated_pool_label(folder),
+            "label": _contrast_clone_label(folder, resolved),
             "count": int(manifest["count"]),
             "dimensionCount": int(manifest.get("dimension_count") or 0),
             "source": "synthetic",

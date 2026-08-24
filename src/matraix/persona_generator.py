@@ -975,6 +975,39 @@ def contrast_stamp_combinations(
     ]
 
 
+def contrast_base_stamps(plan: list[dict[str, Any]] | None) -> dict[str, str]:
+    """Stamp map for the first contrast pool (each arm's ``base`` value)."""
+    if not plan:
+        return {}
+    out: dict[str, str] = {}
+    for arm in plan:
+        dim_id = str(arm.get("id") or "").strip()
+        base = str(arm.get("base") or "").strip()
+        if dim_id and base:
+            out[dim_id] = base
+    return out
+
+
+def apply_dimension_stamps(
+    personas: list[dict[str, Any]],
+    stamps: dict[str, str],
+) -> None:
+    """Set dimension values in place without rewriting persona ids."""
+    mapping = {
+        str(key).strip().lower().replace("-", "_"): str(value).strip()
+        for key, value in stamps.items()
+        if str(key).strip() and str(value).strip()
+    }
+    if not mapping:
+        return
+    for entry in personas:
+        dims = entry.get("dimensions")
+        if not isinstance(dims, dict):
+            dims = {}
+            entry["dimensions"] = dims
+        dims.update(mapping)
+
+
 def clone_contrast_personas(
     personas: list[dict[str, Any]],
     *,
