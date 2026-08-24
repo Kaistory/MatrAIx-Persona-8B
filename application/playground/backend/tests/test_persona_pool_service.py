@@ -1187,7 +1187,6 @@ def test_generate_synthetic_pool_writes_contrast_clones(tmp_path, monkeypatch):
             {"overlayId": "ad_arm", "baseValue": "None", "values": ["Banner"]},
         ],
     )
-    dest = tmp_path / result["pool"]
     clones = result["contrastPools"]
     assert len(clones) == 1
     assert clones[0]["contrastStamps"] == {
