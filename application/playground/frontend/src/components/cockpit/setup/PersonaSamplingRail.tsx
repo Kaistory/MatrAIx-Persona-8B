@@ -682,7 +682,6 @@ export function PersonaSamplingRail({
   disabled,
 }: PersonaSamplingRailProps) {
   const { t } = useI18n();
-  const dimLabels = useDimensionLabels();
   const [filterOpen, setFilterOpen] = useState(false);
   const [filterTarget, setFilterTarget] = useState<"dataset" | "generation">(
     "dataset",
@@ -1328,7 +1327,6 @@ export function PersonaSamplingRail({
     t,
   ]);
 
-  const filterCount = activeFilterCount(filters);
   const poolCount = catalogQuery.data?.count;
   const showModelSelector =
     taskType === "survey" ||

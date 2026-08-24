@@ -142,10 +142,10 @@ function useDebounced<T>(value: T, delay: number): T {
 function groupDisplayLabel(
   group: PersonaPoolDimensionGroup,
   labels: DimensionLabelLookup,
-  t: (key: string) => string,
+  overlayGroupLabel: string,
 ): string {
   if (group.id === STUDY_OVERLAY_GROUP_ID) {
-    return t("personaSetup.filters.overlayGroup");
+    return overlayGroupLabel;
   }
   return labels.taxonomyLabel(group.id, group.label);
 }
@@ -526,7 +526,11 @@ export function PersonaFilterModal({
                   className={`${treeRowClass(groupActive && !expandedSubgroup && !expandedDim, groupCount > 0)} min-w-0 flex-1 text-[12px] font-medium`}
                 >
                   <span className="truncate">
-                    {groupDisplayLabel(group, labels, t)}
+                    {groupDisplayLabel(
+                      group,
+                      labels,
+                      t("personaSetup.filters.overlayGroup"),
+                    )}
                   </span>
                   {groupCount > 0 ? (
                     <span className="ml-auto shrink-0 font-mono text-[10px] text-primary">
@@ -1356,7 +1360,13 @@ export function PersonaFilterModal({
                     }
                     className={`flex w-full items-center justify-between gap-2 px-3 py-2.5 text-left text-[13px] font-medium ${FOCUS_RING}`}
                   >
-                    <span>{groupDisplayLabel(group, labels, t)}</span>
+                    <span>
+                      {groupDisplayLabel(
+                        group,
+                        labels,
+                        t("personaSetup.filters.overlayGroup"),
+                      )}
+                    </span>
                     <Sym
                       name={groupOpen ? "expand_less" : "expand_more"}
                       size={18}
