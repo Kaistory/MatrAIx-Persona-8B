@@ -948,6 +948,12 @@ export interface OverlayDimension {
   values: string[];
 }
 
+export interface OverlayContrastArm {
+  overlayId: string;
+  baseValue: string;
+  values: string[];
+}
+
 export interface PersonaPoolCatalog {
   pool: string;
   count: number;
@@ -1034,6 +1040,9 @@ export interface PersonaPoolGenerateResult {
   kind: string;
   personaIds: string[];
   seed: number;
+  parentPool?: string;
+  contrastStamps?: Record<string, string>;
+  contrastPools?: PersonaPoolGenerateResult[];
 }
 
 /** NDJSON progress line from ``POST /api/persona-pool/generate?stream=1``. */

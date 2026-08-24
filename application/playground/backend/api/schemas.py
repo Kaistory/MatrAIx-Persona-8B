@@ -833,6 +833,7 @@ class PersonaPoolCatalogResponse(BaseModel):
     schemaVersion: Optional[str] = None
     dimensionCategoriesPath: Optional[str] = None
     dimensionCategories: Dict[str, Any] = Field(default_factory=dict)
+    overlayDimensions: Optional[List["OverlayDimension"]] = None
 
 
 class PersonaDimensionLabelsResponse(BaseModel):
@@ -983,6 +984,35 @@ class OverlayDimension(BaseModel):
         return out
 
 
+class OverlayContrastArm(BaseModel):
+    """One contrast dimension: clone the first pool for each listed ``values``."""
+
+    overlayId: str
+    baseValue: str
+    values: List[str] = Field(default_factory=list)
+
+    @field_validator("overlayId", "baseValue")
+    @classmethod
+    def _trim_required(cls, value: str) -> str:
+        text = str(value or "").strip()
+        if not text:
+            raise ValueError("contrast overlayId and baseValue are required")
+        return text
+
+    @field_validator("values")
+    @classmethod
+    def _trim_values(cls, value: List[str]) -> List[str]:
+        seen: set[str] = set()
+        out: list[str] = []
+        for item in value:
+            text = str(item).strip()
+            if not text or text in seen:
+                continue
+            seen.add(text)
+            out.append(text)
+        return out
+
+
 class PersonaPoolGenerateRequest(BaseModel):
     """Write a Full-DAG synthetic pool under ``persona/datasets/generated-persona-dev-*``."""
 
@@ -997,6 +1027,8 @@ class PersonaPoolGenerateRequest(BaseModel):
     """Per-dimension value weights for allocation=independentMarginal."""
     overlayDimensions: Optional[List["OverlayDimension"]] = None
     """Cohort-scoped study dimensions (not part of the 1290 schema)."""
+    contrast: Optional[List["OverlayContrastArm"]] = None
+    """After the first pool, clone extra custom-dimension values (same people)."""
     taskPath: Optional[str] = None
     """When set, fill that task's ``persona_strategy.json`` (one-time synthesize)."""
     name: Optional[str] = None
@@ -1013,6 +1045,16 @@ class PersonaPoolGenerateResponse(BaseModel):
     kind: str = "dataset"
     personaIds: List[str] = Field(default_factory=list)
     seed: int = 42
+    contrastPools: List[Dict[str, Any]] = Field(default_factory=list)
+
+
+class PersonaPoolContrastRequest(BaseModel):
+    """Clone a YAML dataset and change one custom dimension only."""
+
+    pool: str
+    overlayId: str
+    value: str
+    name: Optional[str] = None
 
 
 class TaskPersonaSampling(BaseModel):

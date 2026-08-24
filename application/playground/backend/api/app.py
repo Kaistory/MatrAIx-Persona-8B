@@ -1192,6 +1192,7 @@ def create_app(catalog_path: Optional[str] = None) -> FastAPI:
                 row.model_dump() for row in (body.overlayDimensions or [])
             ]
             or None,
+            contrast=[row.model_dump() for row in (body.contrast or [])] or None,
             task_path=body.taskPath,
             name=body.name,
         )
@@ -1240,6 +1241,27 @@ def create_app(catalog_path: Optional[str] = None) -> FastAPI:
                 yield json.dumps(item, ensure_ascii=False) + "\n"
 
         return StreamingResponse(ndjson(), media_type="application/x-ndjson")
+
+    @app.post(
+        "/api/persona-pool/contrast",
+        response_model=schemas.PersonaPoolGenerateResponse,
+        tags=["persona-pool"],
+    )
+    def contrast_persona_pool(
+        body: schemas.PersonaPoolContrastRequest,
+        services: AppState = Depends(get_services),
+    ) -> Dict[str, Any]:
+        try:
+            return services.persona_pool.clone_contrast_pool(
+                persona_pool=body.pool,
+                overlay_id=body.overlayId,
+                value=body.value,
+                name=body.name,
+            )
+        except FileNotFoundError as exc:
+            raise HTTPException(status_code=404, detail=str(exc)) from exc
+        except ValueError as exc:
+            raise HTTPException(status_code=422, detail=str(exc)) from exc
 
     @app.get(
         "/api/persona-pool/personas",

@@ -248,14 +248,14 @@ Generation. IDs must start with a letter and use only letters, numbers, and
 underscores, and must not collide with an existing dimension:
 
 ```bash
-# Random draw with a schema filter + one custom dimension
+# By count — schema filter + one custom dimension
 uv run python persona/scripts/generate_dev_personas.py \
   --count 200 \
   --filter age_bracket=25-34 \
   --overlay brand_trust:"Brand trust"=Low,High \
   --filter brand_trust=High
 
-# Per-cell grid (schema × custom), same as Playground per-cell
+# By combo — N rows per filter combination (schema × custom)
 uv run python persona/scripts/generate_dev_personas.py \
   --per-cell 10 \
   --filter gender_identity=Man,Woman \
@@ -271,20 +271,87 @@ that fill cohort.
 `--strategy` reads the task `persona_strategy.json` and fills the same cells
 Playground will draw from. You can still add `--overlay` / `--filter` on top.
 
-- **perCell** — `N` rows in every filter cell (`--per-cell` or `sampling.perCell`)
+- **perCell** — `N` rows in every filter cell (`--per-cell` / By combo)
 - **equalTotal** — `ceil(sampleSize / #cells)` per cell (then the draw clips to `sampleSize`)
 - **proportional** — same floor so every cell exists and the pool is ≥ `sampleSize`
-- **independentMarginal** — Playground total: Hamilton allocation from `--sample-size`
+- **independentMarginal** — By share: Hamilton allocation from `--sample-size` and optional `--marginal` weights
 
 Schema `--filter` values pin the DAG. Custom `--overlay` values are stamped after
 sampling. Cells the DAG cannot pin are dropped.
 
+### Playground Generation (Independent / Contrast)
+
+Playground **Generation** has three sampling modes (tooltips on hover):
+
+| UI | CLI | What it does |
+|----|-----|--------------|
+| **By count** | `--count N` | Draw N personas (optional filters) |
+| **By combo** | `--per-cell N` | N personas for every selected filter combination |
+| **By share** | `--sample-size N` | Allocate N from per-dimension shares (equal by default) |
+
+Persona filters are two independent workspaces:
+
+- **Independent dataset** — who is in that mix. By share: edit dimension shares in the filter modal (`--marginal` on CLI).
+- **Contrast datasets** — optional **shared filters** (By share: their own shares via `--contrast-marginal`) plus **contrast attributes**; one extra dataset per value combination. Shared filters may be empty (free draw, then stamp). Schema (1290) stamps are Full-DAG-checked after stamp; invalid combinations error without resampling. Custom overlay stamps skip DAG.
+
+CLI mirrors the same Independent / Contrast split:
+
+```bash
+# Independent only (By count)
+uv run python persona/scripts/generate_dev_personas.py \
+  --count 100 \
+  --filter age_bracket=25-34
+
+# Contrast only — shared filters optional; stamps after the draw
+uv run python persona/scripts/generate_dev_personas.py \
+  --count 100 \
+  --overlay brand_trust:Brand=High,Low \
+  --contrast brand_trust=Low
+
+# Contrast with shared filters (By combo)
+uv run python persona/scripts/generate_dev_personas.py \
+  --per-cell 2 \
+  --contrast-filter age_bracket=25-34,35-44 \
+  --overlay brand_trust:Brand=High,Low \
+  --contrast brand_trust=Low
+
+# Independent + Contrast together (By share / equal shares)
+uv run python persona/scripts/generate_dev_personas.py \
+  --sample-size 100 \
+  --filter region=US \
+  --contrast-filter age_bracket=25-34 \
+  --overlay brand_trust:Brand=High,Low \
+  --contrast brand_trust=Low
+
+# By share with custom weights (Independent + Contrast shared)
+uv run python persona/scripts/generate_dev_personas.py \
+  --sample-size 100 \
+  --filter gender_identity=Man,Woman \
+  --marginal gender_identity=Man:70,Woman:30 \
+  --contrast-filter age_bracket=25-34,35-44 \
+  --contrast-marginal age_bracket=25-34:60,35-44:40 \
+  --overlay brand_trust:Brand=High,Low \
+  --contrast brand_trust=Low
+
+# Clone an existing pool (multi-arm; DAG-validated)
+uv run python persona/scripts/generate_dev_personas.py \
+  --contrast-from persona/datasets/generated-persona-dev-200 \
+  --contrast brand_trust=Low \
+  --contrast age_bracket=18-24
+```
+
 Other flags:
-- `--count N` — random draw size (default 2000, max 5000)
+- `--count N` — By count (default 2000, max 5000)
+- `--per-cell N` — By combo
+- `--sample-size N` — By share total
+- `--marginal dim=v1:w1,v2:w2` — Independent By-share weights (repeatable; omit = equal)
+- `--contrast-marginal …` — Contrast shared By-share weights
 - `--strategy <path>` — fill the task's stratified cells
 - `--task <path> --per-cell N` — fill grounding probe cells
 - `--allocation` — `perCell` / `equalTotal` / `proportional` / `independentMarginal`
-- `--stratify FIELD` — grid axes; default is every `--filter` id when using `--per-cell` or `--sample-size`
+- `--stratify FIELD` — grid axes; default is every `--filter` / `--contrast-filter` id when using `--per-cell` or `--sample-size`
+- `--filter` / `--contrast-filter` / `--contrast` — Independent vs Contrast (above)
+- `--contrast-from` / `--contrast` — clone a pool and stamp combinations (`--contrast-dim` / `--contrast-value` for a single arm)
 
 ### Job Generation
 Create a Matraix Playground job YAML from a task and persona pool by passing an

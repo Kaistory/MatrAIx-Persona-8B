@@ -26,6 +26,13 @@ import {
   type TaskPersonaStrategy,
 } from "@/lib/types";
 import {
+  contrastCopyCount,
+  contrastDatasetCount,
+  contrastDraftFromPlan,
+  contrastSequenceLabel,
+  overlayContrastPlan,
+} from "./personaContrast";
+import {
   classifyPersonaPoolSampleError,
   poolSlugLabel,
   type PersonaPoolSampleError,
@@ -41,6 +48,7 @@ import { CockpitRailHeader } from "./CockpitRailHeader";
 import { PersonaFilterModal } from "./PersonaFilterModal";
 import {
   activeFilterCount,
+  collectCatalogDimIds,
   emptyPersonaDimensionFilters,
   filterAxisIds,
   filterSelectionCounts,
@@ -720,7 +728,16 @@ export function PersonaSamplingRail({
   const [genMarginals, setGenMarginals] = useState<
     Record<string, Record<string, number>>
   >({});
+  const [contrastMarginals, setContrastMarginals] = useState<
+    Record<string, Record<string, number>>
+  >({});
   const [genOverlay, setGenOverlay] = useState<OverlayDimension[]>([]);
+  const [contrastExtras, setContrastExtras] = useState<
+    Record<string, string[]>
+  >({});
+  const [contrastSharedFilters, setContrastSharedFilters] =
+    useState<PersonaDimensionFilters>(emptyPersonaDimensionFilters);
+  const [contrastWroteCount, setContrastWroteCount] = useState(0);
   const pullErrorRecoveryHint =
     pullError?.showRecoveryHint
       ? t("personaSetup.errors.poolCoverageHint", {
@@ -1040,6 +1057,9 @@ export function PersonaSamplingRail({
       await queryClient.invalidateQueries({
         queryKey: ["persona-pool-datasets"],
       });
+      await queryClient.invalidateQueries({
+        queryKey: ["persona-pool-catalog"],
+      });
       const count = result.count;
       const ids = result.personaIds ?? [];
       const selectCohort = options?.selectCohort === true;
@@ -1099,6 +1119,29 @@ export function PersonaSamplingRail({
     () => Object.fromEntries(genOverlay.map((dim) => [dim.id, dim.label])),
     [genOverlay],
   );
+  const contrastPlan = useMemo(
+    () => overlayContrastPlan(genOverlay, contrastExtras),
+    [contrastExtras, genOverlay],
+  );
+
+  useEffect(() => {
+    const overlayIds = new Set(genOverlay.map((dim) => dim.id));
+    const catalogIds = collectCatalogDimIds(catalogQuery.data);
+    setContrastExtras((prev) => {
+      let changed = false;
+      const next: Record<string, string[]> = {};
+      for (const [id, values] of Object.entries(prev)) {
+        const known =
+          overlayIds.has(id) || catalogIds.has(id) || catalogIds.size === 0;
+        if (known) {
+          next[id] = values;
+        } else {
+          changed = true;
+        }
+      }
+      return changed ? next : prev;
+    });
+  }, [catalogQuery.data, genOverlay]);
 
   useEffect(() => {
     setGenMarginals((prev) => {
@@ -1114,6 +1157,25 @@ export function PersonaSamplingRail({
     });
   }, [genAxes, genFilters]);
 
+  const contrastSharedAxes = useMemo(
+    () => filterAxisIds(contrastSharedFilters),
+    [contrastSharedFilters],
+  );
+
+  useEffect(() => {
+    setContrastMarginals((prev) => {
+      const next: Record<string, Record<string, number>> = {};
+      for (const dim of contrastSharedAxes) {
+        const values = contrastSharedFilters.dimensionFilters[dim] ?? [];
+        next[dim] = {};
+        for (const value of values) {
+          next[dim][value] = prev[dim]?.[value] ?? 1;
+        }
+      }
+      return next;
+    });
+  }, [contrastSharedAxes, contrastSharedFilters]);
+
   const handleGenerate = useCallback(async () => {
     setGenerating(true);
     setGenerateError(null);
@@ -1125,47 +1187,112 @@ export function PersonaSamplingRail({
     });
     try {
       const hasOverlay = genOverlay.length > 0;
-      const needsFilters = genMode === "perCell" || genMode === "total";
-      if (needsFilters && genAxes.length === 0) {
+      const hasContrast = contrastPlan.length > 0;
+      const independentSelected =
+        filterSelectionCounts(genFilters).attributes > 0 ||
+        genFilters.sources.length > 0;
+      // Independent and Contrast are separate workspaces — write each when configured.
+      const writeIndependent =
+        !hasContrast || independentSelected;
+      const writeContrastFamily = hasContrast;
+
+      if (
+        (genMode === "perCell" || genMode === "total") &&
+        genAxes.length === 0 &&
+        !hasContrast &&
+        !independentSelected
+      ) {
         throw new ApiError(422, t("personaSetup.errors.pickGenerateFilters"));
       }
-      const overlayFilterMap = Object.fromEntries(
-        genOverlay.map((dim) => [
-          dim.id,
-          genFilters.dimensionFilters[dim.id] ?? dim.values,
-        ]),
-      );
-      const dimensionFilters = {
-        ...(filtersForSampleApi(genFilters) ?? {}),
-        ...(filtersForSampleApi({
-          sources: [],
-          dimensionFilters: overlayFilterMap,
-        }) ?? {}),
-      };
-      const result = await api.generatePersonaPool(
-        {
-          count: genMode === "random" ? genCount : undefined,
-          seed: genSeed,
-          dimensionFilters:
-            Object.keys(dimensionFilters).length > 0
-              ? dimensionFilters
-              : undefined,
-          fields: needsFilters ? genAxes : undefined,
-          perCell:
-            genMode === "perCell" ? clampPerCell(genPerCell) : undefined,
-          allocation:
-            genMode === "perCell"
-              ? "perCell"
-              : genMode === "total"
-                ? "independentMarginal"
+
+      const runOnce = async (
+        peopleFilters: PersonaDimensionFilters,
+        withContrast: boolean,
+      ) => {
+        const generateAxes = filterAxisIds(peopleFilters);
+        const needsFilters = genMode === "perCell" || genMode === "total";
+        const overlayFilterMap = Object.fromEntries(
+          genOverlay.map((dim) => [
+            dim.id,
+            peopleFilters.dimensionFilters[dim.id] ?? dim.values,
+          ]),
+        );
+        const dimensionFilters = {
+          ...(filtersForSampleApi(peopleFilters) ?? {}),
+          ...(filtersForSampleApi({
+            sources: [],
+            dimensionFilters: overlayFilterMap,
+          }) ?? {}),
+        };
+        const overlayOnlyContrast =
+          needsFilters &&
+          generateAxes.length === 0 &&
+          withContrast &&
+          contrastPlan.length > 0;
+        return api.generatePersonaPool(
+          {
+            count: overlayOnlyContrast
+              ? genMode === "perCell"
+                ? clampPerCell(genPerCell)
+                : genSampleSize
+              : genMode === "random"
+                ? genCount
                 : undefined,
-          sampleSize: genMode === "total" ? genSampleSize : undefined,
-          marginals: genMode === "total" ? genMarginals : undefined,
-          overlayDimensions: hasOverlay ? genOverlay : undefined,
-        },
-        { onProgress: setGenerateProgress },
-      );
-      await applyGeneratedPool(result, { selectCohort: false });
+            seed: genSeed,
+            dimensionFilters:
+              Object.keys(dimensionFilters).length > 0
+                ? dimensionFilters
+                : undefined,
+            fields:
+              needsFilters && !overlayOnlyContrast ? generateAxes : undefined,
+            perCell:
+              genMode === "perCell" && !overlayOnlyContrast
+                ? clampPerCell(genPerCell)
+                : undefined,
+            allocation: overlayOnlyContrast
+              ? undefined
+              : genMode === "perCell"
+                ? "perCell"
+                : genMode === "total"
+                  ? "independentMarginal"
+                  : undefined,
+            sampleSize:
+              genMode === "total" && !overlayOnlyContrast
+                ? genSampleSize
+                : undefined,
+            marginals:
+              genMode === "total" && !overlayOnlyContrast
+                ? withContrast
+                  ? contrastMarginals
+                  : genMarginals
+                : undefined,
+            overlayDimensions: hasOverlay ? genOverlay : undefined,
+            contrast:
+              withContrast && contrastPlan.length > 0
+                ? contrastPlan
+                : undefined,
+          },
+          { onProgress: setGenerateProgress },
+        );
+      };
+
+      let lastResult: Awaited<ReturnType<typeof api.generatePersonaPool>> | null =
+        null;
+      let contrastPools = 0;
+      if (writeIndependent) {
+        lastResult = await runOnce(genFilters, false);
+        contrastPools += lastResult.contrastPools?.length ?? 0;
+        await applyGeneratedPool(lastResult, { selectCohort: false });
+      }
+      if (writeContrastFamily) {
+        lastResult = await runOnce(contrastSharedFilters, true);
+        contrastPools += lastResult.contrastPools?.length ?? 0;
+        await applyGeneratedPool(lastResult, { selectCohort: false });
+      }
+      if (!lastResult) {
+        throw new ApiError(422, t("personaSetup.errors.pickGenerateFilters"));
+      }
+      setContrastWroteCount(contrastPools);
     } catch (err) {
       setGenerateError(
         err instanceof ApiError
@@ -1178,6 +1305,9 @@ export function PersonaSamplingRail({
     }
   }, [
     applyGeneratedPool,
+    contrastMarginals,
+    contrastPlan,
+    contrastSharedFilters,
     genAxes,
     genCount,
     genFilters,
@@ -1212,6 +1342,7 @@ export function PersonaSamplingRail({
         { onProgress: setGenerateProgress },
       );
       // Synthesize stands in for Pull when coverage fails under Task default.
+      setContrastWroteCount(0);
       await applyGeneratedPool(result, { selectCohort: true });
     } catch (err) {
       setPullError(
@@ -1394,14 +1525,21 @@ export function PersonaSamplingRail({
                 </button>
               ))}
             </div>
+          </div>
 
-            {railSegment === "generation" ? (
+          {railSegment === "generation" ? (
+            <div className="custom-scrollbar min-h-0 flex-1 overflow-y-auto pr-0.5">
               <div className="mb-2 space-y-1.5">
                 <div className="cockpit-segment cockpit-segment--grid grid-cols-3">
                   {(["random", "perCell", "total"] as const).map((tab) => (
                     <button
                       key={tab}
                       type="button"
+                      title={t(
+                        GENERATE_HINT_KEYS[
+                          tab === "perCell" || tab === "total" ? tab : "random"
+                        ],
+                      )}
                       disabled={disabled || generating}
                       onClick={() => setGenMode(tab)}
                       className={`cockpit-segment__btn cockpit-segment__btn--compact w-full ${FOCUS_RING} ${
@@ -1409,10 +1547,10 @@ export function PersonaSamplingRail({
                       }`}
                     >
                       {tab === "random"
-                        ? t("personaSetup.tabs.random")
+                        ? t("personaSetup.tabs.byCount")
                         : tab === "perCell"
-                          ? t("personaSetup.tabs.perCellGrid")
-                          : t("personaSetup.tabs.totalMix")}
+                          ? t("personaSetup.tabs.byCombo")
+                          : t("personaSetup.tabs.byShare")}
                     </button>
                   ))}
                 </div>
@@ -1434,20 +1572,38 @@ export function PersonaSamplingRail({
                       <span className="min-w-0 flex-1 text-[13px] font-medium text-text-main">
                         {t("personaSetup.filters.title")}
                       </span>
-                      {filterSelectionCounts(genFilters).attributes > 0 ? (
-                        <span className="shrink-0 text-[11px] text-text-dim">
-                          {t(
-                            "personaSetup.filters.filterCount",
-                            filterSelectionCounts(genFilters),
-                          )}
-                        </span>
-                      ) : genOverlay.length > 0 ? (
-                        <span className="shrink-0 text-[11px] text-text-dim">
-                          {t("personaSetup.filters.overlayCount", {
-                            count: genOverlay.length,
-                          })}
-                        </span>
-                      ) : null}
+                      <span className="flex min-w-0 shrink-0 flex-col items-end gap-0.5 text-[11px] text-text-dim">
+                        {filterSelectionCounts(genFilters).attributes > 0 ||
+                        genFilters.sources.length > 0 ? (
+                          <span>
+                            {t("personaSetup.filters.cohortModeIndependent")}
+                            {" · "}
+                            {t(
+                              "personaSetup.filters.filterCount",
+                              filterSelectionCounts(genFilters),
+                            )}
+                          </span>
+                        ) : null}
+                        {contrastPlan.length > 0 ? (
+                          <span>
+                            {t("personaSetup.filters.cohortModeContrast")}
+                            {" · "}
+                            {t("personaSetup.filters.contrastCombinations", {
+                              count: contrastCopyCount(contrastPlan),
+                            })}
+                          </span>
+                        ) : null}
+                        {filterSelectionCounts(genFilters).attributes === 0 &&
+                        genFilters.sources.length === 0 &&
+                        contrastPlan.length === 0 &&
+                        genOverlay.length > 0 ? (
+                          <span>
+                            {t("personaSetup.filters.overlayCount", {
+                              count: genOverlay.length,
+                            })}
+                          </span>
+                        ) : null}
+                      </span>
                       <Sym
                         name="chevron_right"
                         size={16}
@@ -1455,13 +1611,93 @@ export function PersonaSamplingRail({
                       />
                     </button>
                     {filterSelectionCounts(genFilters).attributes > 0 ||
+                    genFilters.sources.length > 0 ||
                     genOverlay.length > 0 ? (
-                      <PersonaFilterChips
-                        filters={genFilters}
-                        fields={genAxes}
-                        showStratify={false}
-                        overlayLabels={genOverlayLabels}
-                      />
+                      <div className="space-y-1 rounded-lg border border-outline/25 px-2.5 py-2">
+                        <p className="text-[11px] font-medium uppercase tracking-wide text-text-dim">
+                          {t("personaSetup.filters.cohortModeIndependent")}
+                        </p>
+                        {filterSelectionCounts(genFilters).attributes > 0 ||
+                        genOverlay.length > 0 ? (
+                          <PersonaFilterChips
+                            filters={genFilters}
+                            fields={genAxes}
+                            showStratify={false}
+                            overlayLabels={genOverlayLabels}
+                          />
+                        ) : (
+                          <p className="text-[11px] text-text-dim">
+                            {t("personaSetup.filters.noFilters")}
+                          </p>
+                        )}
+                      </div>
+                    ) : null}
+                    {contrastPlan.length > 0 ||
+                    filterSelectionCounts(contrastSharedFilters).attributes >
+                      0 ||
+                    contrastSharedFilters.sources.length > 0 ? (
+                      <div className="space-y-1.5 rounded-lg border border-outline/30 px-2.5 py-2">
+                        <p className="text-[11px] font-medium uppercase tracking-wide text-text-dim">
+                          {t("personaSetup.filters.cohortModeContrast")}
+                        </p>
+                        {filterSelectionCounts(contrastSharedFilters)
+                          .attributes > 0 ||
+                        contrastSharedFilters.sources.length > 0 ? (
+                          <div className="space-y-1">
+                            <p className="text-[11px] text-text-dim">
+                              {t("personaSetup.filters.sharedFilters")}
+                            </p>
+                            <PersonaFilterChips
+                              filters={contrastSharedFilters}
+                              fields={contrastSharedAxes}
+                              showStratify={false}
+                              overlayLabels={genOverlayLabels}
+                            />
+                          </div>
+                        ) : (
+                          <p className="text-[11px] text-text-dim">
+                            {t("personaSetup.filters.contrastSharedOptional")}
+                          </p>
+                        )}
+                        {contrastPlan.length > 0 ? (
+                          <>
+                            <p className="text-[13px] font-medium text-text-main">
+                              {t("personaSetup.contrastWillWrite", {
+                                count:
+                                  (filterSelectionCounts(genFilters)
+                                    .attributes > 0 ||
+                                  genFilters.sources.length > 0
+                                    ? 1
+                                    : 0) + contrastDatasetCount(contrastPlan),
+                              })}
+                            </p>
+                            {contrastPlan.map((arm) => (
+                              <p
+                                key={arm.overlayId}
+                                className="text-[11px] leading-snug text-text-dim"
+                              >
+                                {t("personaSetup.contrastArmLine", {
+                                  dim:
+                                    genOverlayLabels[arm.overlayId] ||
+                                    arm.overlayId,
+                                  sequence: contrastSequenceLabel(arm),
+                                })}
+                              </p>
+                            ))}
+                          </>
+                        ) : null}
+                        <button
+                          type="button"
+                          disabled={disabled || generating}
+                          onClick={() => {
+                            setFilterTarget("generation");
+                            setFilterOpen(true);
+                          }}
+                          className={`text-left text-[11px] text-primary hover:underline disabled:opacity-50 ${FOCUS_RING}`}
+                        >
+                          {t("personaSetup.contrastEditInFilters")}
+                        </button>
+                      </div>
                     ) : null}
                   </div>
                 <div className="flex items-end gap-2">
@@ -1604,8 +1840,13 @@ export function PersonaSamplingRail({
                   </div>
                 ) : null}
               </div>
-            ) : (
-              <>
+              <p className="rounded-lg border border-dashed border-outline/40 p-4 text-center text-[13px] leading-snug text-text-dim">
+                {t("personaSetup.generationEmpty")}
+              </p>
+            </div>
+          ) : (
+            <>
+              <div className="shrink-0">
                 <div className="mb-2">
                   <CockpitSelect
                     label={t("personaSetup.dataset")}
@@ -1620,6 +1861,13 @@ export function PersonaSamplingRail({
                     onChange={handleDatasetChange}
                   />
                 </div>
+                {contrastWroteCount > 0 ? (
+                  <p className="mb-2 text-[11px] leading-snug text-text-dim">
+                    {t("personaSetup.contrastWrote", {
+                      count: contrastWroteCount,
+                    })}
+                  </p>
+                ) : null}
 
                 {hasTaskStrategy && taskPersonaStrategy ? (
                   <div
@@ -2107,18 +2355,7 @@ export function PersonaSamplingRail({
                     ) : null}
                   </div>
                 ) : null}
-              </>
-            )}
-          </div>
-
-          {railSegment === "generation" ? (
-            <div className="flex min-h-0 flex-1 items-center justify-center px-2">
-              <p className="rounded-lg border border-dashed border-outline/40 p-4 text-center text-[13px] leading-snug text-text-dim">
-                {t("personaSetup.generationEmpty")}
-              </p>
-            </div>
-          ) : (
-            <>
+              </div>
               <div className="custom-scrollbar min-h-0 flex-1 overflow-y-auto pr-0.5">
                 <div className="space-y-2">
                   {panelMode === "single" &&
@@ -2216,6 +2453,15 @@ export function PersonaSamplingRail({
         overlayDimensions={
           filterTarget === "generation" ? genOverlay : undefined
         }
+        contrastPlan={filterTarget === "generation" ? contrastPlan : undefined}
+        contrastSharedFilters={
+          filterTarget === "generation" ? contrastSharedFilters : undefined
+        }
+        contrastMarginals={
+          filterTarget === "generation" && genMode === "total"
+            ? contrastMarginals
+            : undefined
+        }
         marginals={
           filterTarget === "generation" && genMode === "total"
             ? genMarginals
@@ -2223,11 +2469,28 @@ export function PersonaSamplingRail({
         }
         personaModel={personaModel}
         onClose={() => setFilterOpen(false)}
-        onConfirm={(next, nextMarginals, nextOverlay) => {
+        onConfirm={(
+          next,
+          nextMarginals,
+          nextOverlay,
+          nextContrast,
+          nextShared,
+          applyScope,
+        ) => {
           if (filterTarget === "generation") {
+            if (nextOverlay !== undefined) setGenOverlay(nextOverlay);
+            if (applyScope === "contrast") {
+              const draft = contrastDraftFromPlan(nextContrast ?? []);
+              setContrastExtras(draft.extras);
+              if (nextShared !== undefined) {
+                setContrastSharedFilters(nextShared);
+              }
+              if (nextMarginals) setContrastMarginals(nextMarginals);
+              return;
+            }
+            // Independent tab (or legacy): only Independent filters / shares.
             setGenFilters(next);
             if (nextMarginals) setGenMarginals(nextMarginals);
-            if (nextOverlay !== undefined) setGenOverlay(nextOverlay);
             return;
           }
           onFiltersChange(next);

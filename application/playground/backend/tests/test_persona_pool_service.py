@@ -1116,3 +1116,132 @@ def test_generate_synthetic_pool_rejects_schema_collision(tmp_path):
                 {"id": "age_bracket", "label": "Age", "values": ["25-34"]},
             ],
         )
+
+
+def test_clone_contrast_pool_copies_and_flips_overlay(tmp_path):
+    _write_pool(tmp_path)
+    src = tmp_path / "persona" / "datasets" / "matraix-persona-dev-sample"
+    for path in src.glob("persona_*.yaml"):
+        payload = yaml.safe_load(path.read_text(encoding="utf-8"))
+        payload["dimensions"]["study_trust"] = "High"
+        path.write_text(yaml.safe_dump(payload, sort_keys=False), encoding="utf-8")
+    manifest = json.loads((src / "manifest.json").read_text(encoding="utf-8"))
+    for row in manifest["personas"]:
+        row["dimensions"]["study_trust"] = "High"
+    manifest["overlay_dimensions"] = [
+        {"id": "study_trust", "label": "品牌信任", "values": ["Low", "High"]},
+    ]
+    (src / "manifest.json").write_text(
+        json.dumps(manifest, indent=2) + "\n",
+        encoding="utf-8",
+    )
+    service = PersonaPoolService(repo_root=tmp_path)
+    result = service.clone_contrast_pool(
+        persona_pool="persona/datasets/matraix-persona-dev-sample",
+        overlay_id="study_trust",
+        value="Low",
+    )
+    assert result["count"] == 2
+    assert result["parentPool"] == "persona/datasets/matraix-persona-dev-sample"
+    dest = tmp_path / result["pool"]
+    first = yaml.safe_load((dest / "persona_0001-c-low.yaml").read_text(encoding="utf-8"))
+    assert first["dimensions"]["study_trust"] == "Low"
+    assert first["dimensions"]["economic_motivation"] == "Price-sensitive"
+    assert first["pair_id"] == "0001"
+    written = json.loads((dest / "manifest.json").read_text(encoding="utf-8"))
+    assert written["contrast"]["value"] == "Low"
+
+
+def test_clone_contrast_pool_requires_overlay(tmp_path):
+    _write_pool(tmp_path)
+    service = PersonaPoolService(repo_root=tmp_path)
+    with pytest.raises(ValueError, match="custom dimensions"):
+        service.clone_contrast_pool(
+            persona_pool="persona/datasets/matraix-persona-dev-sample",
+            overlay_id="study_trust",
+            value="Low",
+        )
+
+
+def test_generate_synthetic_pool_writes_contrast_clones(tmp_path, monkeypatch):
+    _write_pool(tmp_path)
+    service = PersonaPoolService(repo_root=tmp_path)
+    monkeypatch.setattr(
+        "matraix.persona_generator.generate_persona_pool",
+        lambda **kwargs: [_fake_generated_persona("0001"), _fake_generated_persona("0002")],
+    )
+    overlay = [
+        {"id": "study_trust", "label": "品牌信任", "values": ["Low", "High"]},
+        {"id": "ad_arm", "label": "广告", "values": ["None", "Banner"]},
+    ]
+    result = service.generate_synthetic_pool(
+        count=2,
+        seed=7,
+        overlay_dimensions=overlay,
+        dimension_filters={
+            "study_trust": ["Low", "High"],
+            "ad_arm": ["None", "Banner"],
+        },
+        contrast=[
+            {"overlayId": "study_trust", "baseValue": "High", "values": ["Low"]},
+            {"overlayId": "ad_arm", "baseValue": "None", "values": ["Banner"]},
+        ],
+    )
+    dest = tmp_path / result["pool"]
+    clones = result["contrastPools"]
+    assert len(clones) == 1
+    assert clones[0]["contrastStamps"] == {
+        "study_trust": "Low",
+        "ad_arm": "Banner",
+    }
+    combo = yaml.safe_load(
+        (tmp_path / clones[0]["pool"] / "persona_0001-c-low-banner.yaml").read_text(
+            encoding="utf-8"
+        )
+    )
+    assert combo["dimensions"]["study_trust"] == "Low"
+    assert combo["dimensions"]["ad_arm"] == "Banner"
+    assert combo["pair_id"] == "0001"
+
+
+def test_generate_synthetic_pool_contrast_drops_overlay_per_cell(tmp_path, monkeypatch):
+    _write_pool(tmp_path)
+    service = PersonaPoolService(repo_root=tmp_path)
+    captured = {}
+
+    def fake_generate(**kwargs):
+        captured.update(kwargs)
+        return [_fake_generated_persona("0001"), _fake_generated_persona("0002")]
+
+    monkeypatch.setattr(
+        "matraix.persona_generator.generate_persona_pool",
+        fake_generate,
+    )
+    result = service.generate_synthetic_pool(
+        seed=3,
+        overlay_dimensions=[
+            {"id": "study_trust", "label": "品牌信任", "values": ["Low", "High"]},
+        ],
+        dimension_filters={"study_trust": ["Low", "High"]},
+        stratify_fields=["study_trust"],
+        allocation="perCell",
+        per_cell=2,
+        contrast=[{"overlayId": "study_trust", "baseValue": "Low", "values": ["High"]}],
+    )
+    assert captured["count"] == 2
+    assert captured["stratum_top_up"] is None
+    dest = tmp_path / result["pool"]
+    values = {
+        yaml.safe_load((dest / name).read_text(encoding="utf-8"))["dimensions"]["study_trust"]
+        for name in ("persona_0001.yaml", "persona_0002.yaml")
+    }
+    assert values <= {"Low", "High"}
+    assert len(result["contrastPools"]) == 1
+    clone = yaml.safe_load(
+        (
+            tmp_path
+            / result["contrastPools"][0]["pool"]
+            / "persona_0001-c-high.yaml"
+        ).read_text(encoding="utf-8")
+    )
+    assert clone["dimensions"]["study_trust"] == "High"

@@ -8,7 +8,7 @@ import {
   type DimensionLabelLookup,
   useDimensionLabels,
 } from "@/lib/dimensionLabels";
-import type { OverlayDimension } from "@/lib/types";
+import type { OverlayContrastArm, OverlayDimension } from "@/lib/types";
 import type {
   PersonaMatchedAttribute,
   PersonaPoolCatalog,
@@ -26,7 +26,13 @@ import {
 } from "./personaAttributeMatch";
 import { OverlayDimensionDialog } from "./OverlayDimensionDialog";
 import {
+  contrastCombinations,
+  contrastDraftFromPlan,
+  overlayContrastPlan,
+} from "./personaContrast";
+import {
   collectCatalogDimIds,
+  emptyPersonaDimensionFilters,
   filterSelectionCounts,
   overlayCatalogGroup,
   setMarginalPercent,
@@ -50,12 +56,27 @@ export interface PersonaFilterModalProps {
   /** Generate-mode: add cohort-scoped study dimensions. */
   allowOverlayEdit?: boolean;
   overlayDimensions?: OverlayDimension[];
+  contrastPlan?: OverlayContrastArm[];
+  /** Shared filters for Contrast datasets (who is sampled for every copy). */
+  contrastSharedFilters?: PersonaDimensionFilters;
+  /** Per-dimension mix for Contrast shared filters (generate · total). */
+  contrastMarginals?: PersonaMarginals;
   personaModel?: string;
   onClose: () => void;
+  /**
+   * Apply commits only the active Generation tab. ``applyScope`` is
+   * ``independent`` or ``contrast`` when Generation dual-tabs are on; omit for
+   * Dataset / store filter modals. Overlay catalog updates on either Generation apply.
+   * ``marginals`` is Independent mix when scope is independent; Contrast shared
+   * mix when scope is contrast (Total mode).
+   */
   onConfirm: (
     filters: PersonaDimensionFilters,
     marginals?: PersonaMarginals,
     overlay?: OverlayDimension[],
+    contrast?: OverlayContrastArm[],
+    contrastShared?: PersonaDimensionFilters,
+    applyScope?: "independent" | "contrast",
   ) => void;
 }
 
@@ -90,6 +111,53 @@ function findDimensionLabel(
   }
   const fallback = dimId.replace(/_/g, " ");
   return labels?.dimLabel(dimId, fallback) ?? fallback;
+}
+
+const CONTRAST_COMBO_PREVIEW = 32;
+
+type FilterChipGroup = {
+  dimId: string;
+  label: string;
+  chips: Array<{ key: string; value: string; displayValue: string }>;
+};
+
+function chipGroupsFromFilters(
+  filters: PersonaDimensionFilters,
+  options: {
+    includeSources: boolean;
+    overlay: OverlayDimension[];
+    catalog: PersonaPoolCatalog | null;
+    labels: DimensionLabelLookup;
+    sourceLabel: string;
+  },
+): FilterChipGroup[] {
+  const groups: FilterChipGroup[] = [];
+  if (options.includeSources && filters.sources.length > 0) {
+    groups.push({
+      dimId: "source",
+      label: options.sourceLabel,
+      chips: filters.sources.map((source) => ({
+        key: `source:${source}`,
+        value: source,
+        displayValue: source,
+      })),
+    });
+  }
+  for (const [dimId, values] of Object.entries(filters.dimensionFilters)) {
+    if (values.length === 0) continue;
+    groups.push({
+      dimId,
+      label:
+        options.overlay.find((dim) => dim.id === dimId)?.label ||
+        findDimensionLabel(options.catalog, dimId, options.labels),
+      chips: values.map((value) => ({
+        key: `${dimId}:${value}`,
+        value,
+        displayValue: options.labels.valueLabel(dimId, value),
+      })),
+    });
+  }
+  return groups;
 }
 
 function matchesQuery(text: string, query: string): boolean {
@@ -190,6 +258,9 @@ export function PersonaFilterModal({
   marginals,
   allowOverlayEdit = false,
   overlayDimensions,
+  contrastPlan,
+  contrastSharedFilters,
+  contrastMarginals,
   personaModel,
   onClose,
   onConfirm,
@@ -200,10 +271,25 @@ export function PersonaFilterModal({
   const [draftMarginals, setDraftMarginals] = useState<PersonaMarginals>(
     () => marginals ?? {},
   );
+  const [draftContrastMarginals, setDraftContrastMarginals] =
+    useState<PersonaMarginals>(() => contrastMarginals ?? {});
   const [draftOverlay, setDraftOverlay] = useState<OverlayDimension[]>(
     () => overlayDimensions ?? [],
   );
   const [overlayDialogOpen, setOverlayDialogOpen] = useState(false);
+  const [contrastShared, setContrastShared] = useState<PersonaDimensionFilters>(
+    () => contrastSharedFilters ?? emptyPersonaDimensionFilters(),
+  );
+  const [contrastExtras, setContrastExtras] = useState<
+    Record<string, string[]>
+  >({});
+  const [cohortMode, setCohortMode] = useState<"independent" | "contrast">(
+    "independent",
+  );
+  /** Contrast tab: editing shared filters vs contrast attributes. */
+  const [contrastPickTarget, setContrastPickTarget] = useState<
+    "shared" | "attributes"
+  >("shared");
   const [percentDraft, setPercentDraft] = useState<{
     dim: string;
     value: string;
@@ -275,6 +361,21 @@ export function PersonaFilterModal({
       setDraft(filters);
       setDraftMarginals(marginals ?? {});
       setDraftOverlay(overlayDimensions ?? []);
+      setContrastShared(
+        contrastSharedFilters ?? emptyPersonaDimensionFilters(),
+      );
+      setDraftContrastMarginals(contrastMarginals ?? {});
+      const contrastDraft = contrastDraftFromPlan(contrastPlan);
+      setContrastExtras(contrastDraft.extras);
+      const openContrast =
+        contrastDraft.ids.length > 0 ||
+        filterSelectionCounts(
+          contrastSharedFilters ?? emptyPersonaDimensionFilters(),
+        ).attributes > 0;
+      setCohortMode(openContrast ? "contrast" : "independent");
+      setContrastPickTarget(
+        contrastDraft.ids.length > 0 ? "attributes" : "shared",
+      );
       setOverlayDialogOpen(false);
       setPercentDraft(null);
       setQuery("");
@@ -288,7 +389,16 @@ export function PersonaFilterModal({
       pendingScrollId.current = null;
       pendingRevealKey.current = null;
     }
-  }, [open, filters, marginals, overlayDimensions, allowOverlayEdit]);
+  }, [
+    open,
+    filters,
+    marginals,
+    overlayDimensions,
+    contrastPlan,
+    contrastSharedFilters,
+    contrastMarginals,
+    allowOverlayEdit,
+  ]);
 
   useEffect(() => {
     if (!open) return;
@@ -320,10 +430,78 @@ export function PersonaFilterModal({
       ...withoutOverlay,
     ];
   }, [allowOverlayEdit, catalog, draftOverlay, t]);
+  const draftContrastPlan = useMemo(
+    () => overlayContrastPlan(draftOverlay, contrastExtras),
+    [contrastExtras, draftOverlay],
+  );
+  const draftContrastCombos = useMemo(
+    () => contrastCombinations(draftContrastPlan),
+    [draftContrastPlan],
+  );
+
   const catalogDimIds = useMemo(
     () => collectCatalogDimIds(catalog),
     [catalog],
   );
+
+  const pickingContrastAttributes =
+    allowOverlayEdit &&
+    cohortMode === "contrast" &&
+    contrastPickTarget === "attributes";
+  const pickingContrastShared =
+    allowOverlayEdit &&
+    cohortMode === "contrast" &&
+    contrastPickTarget === "shared";
+
+  const activeFilters = useMemo(() => {
+    if (pickingContrastAttributes) {
+      return { sources: [] as string[], dimensionFilters: contrastExtras };
+    }
+    if (pickingContrastShared) {
+      return contrastShared;
+    }
+    return draft;
+  }, [
+    contrastExtras,
+    contrastShared,
+    draft,
+    pickingContrastAttributes,
+    pickingContrastShared,
+  ]);
+
+  useEffect(() => {
+    if (!allowOverlayEdit) return;
+    const overlayIds = new Set(draftOverlay.map((dim) => dim.id));
+    setContrastExtras((prev) => {
+      let changed = false;
+      const next: Record<string, string[]> = {};
+      for (const [id, values] of Object.entries(prev)) {
+        const known =
+          overlayIds.has(id) || catalogDimIds.has(id) || catalogDimIds.size === 0;
+        if (known) {
+          next[id] = values;
+        } else {
+          changed = true;
+        }
+      }
+      return changed ? next : prev;
+    });
+    setContrastShared((prev) => {
+      let changed = false;
+      const nextFilters: Record<string, string[]> = {};
+      for (const [id, values] of Object.entries(prev.dimensionFilters)) {
+        const known =
+          overlayIds.has(id) || catalogDimIds.has(id) || catalogDimIds.size === 0;
+        if (known) {
+          nextFilters[id] = values;
+        } else {
+          changed = true;
+        }
+      }
+      if (!changed) return prev;
+      return { ...prev, dimensionFilters: nextFilters };
+    });
+  }, [allowOverlayEdit, catalogDimIds, draftOverlay]);
   const normalizedQuery = query.trim().toLowerCase();
 
   const visibleGroups = useMemo(() => {
@@ -374,43 +552,51 @@ export function PersonaFilterModal({
     return next;
   }, [groups, labels, normalizedQuery, searchTier, suggestedDimIds]);
 
-  const selectedGroups = useMemo(() => {
-    const groups: Array<{
-      dimId: string;
-      label: string;
-      chips: Array<{
-        key: string;
-        value: string;
-        displayValue: string;
-      }>;
-    }> = [];
-    if (draft.sources.length > 0) {
-      groups.push({
-        dimId: "source",
-        label: t("personaSetup.filters.source"),
-        chips: draft.sources.map((source) => ({
-          key: `source:${source}`,
-          value: source,
-          displayValue: source,
-        })),
-      });
-    }
-    for (const [dimId, values] of Object.entries(draft.dimensionFilters)) {
-      if (values.length === 0) continue;
-      groups.push({
-        dimId,
-        label:
-          draftOverlay.find((dim) => dim.id === dimId)?.label ||
-          findDimensionLabel(catalog, dimId, labels),
-        chips: values.map((value) => ({
-          key: `${dimId}:${value}`,
-          value,
-          displayValue: labels.valueLabel(dimId, value),
-        })),
-      });
-    }
-    return groups;
-  }, [catalog, draft, draftOverlay, labels, t]);
+  const selectedGroups = useMemo(
+    () =>
+      chipGroupsFromFilters(activeFilters, {
+        includeSources: !pickingContrastAttributes,
+        overlay: draftOverlay,
+        catalog,
+        labels,
+        sourceLabel: t("personaSetup.filters.source"),
+      }),
+    [
+      activeFilters,
+      catalog,
+      draftOverlay,
+      labels,
+      pickingContrastAttributes,
+      t,
+    ],
+  );
+
+  const contrastSharedGroups = useMemo(
+    () =>
+      chipGroupsFromFilters(contrastShared, {
+        includeSources: true,
+        overlay: draftOverlay,
+        catalog,
+        labels,
+        sourceLabel: t("personaSetup.filters.source"),
+      }),
+    [catalog, contrastShared, draftOverlay, labels, t],
+  );
+
+  const contrastAttributeGroups = useMemo(
+    () =>
+      chipGroupsFromFilters(
+        { sources: [], dimensionFilters: contrastExtras },
+        {
+          includeSources: false,
+          overlay: draftOverlay,
+          catalog,
+          labels,
+          sourceLabel: t("personaSetup.filters.source"),
+        },
+      ),
+    [catalog, contrastExtras, draftOverlay, labels, t],
+  );
 
   useEffect(() => {
     const id = pendingScrollId.current;
@@ -439,7 +625,7 @@ export function PersonaFilterModal({
         target?.scrollIntoView({ block: "nearest", behavior: "smooth" });
       });
     });
-  }, [draft, open]);
+  }, [activeFilters, open]);
 
   if (!open) return null;
 
@@ -494,7 +680,7 @@ export function PersonaFilterModal({
   const renderDirectory = () => (
     <nav
       aria-label={t("personaSetup.filters.directory")}
-      className="custom-scrollbar hidden min-h-0 w-56 shrink-0 overflow-y-auto border-r border-outline/30 bg-surface/20 px-2 py-2 lg:block"
+      className="custom-scrollbar hidden min-h-0 w-56 shrink-0 overflow-y-auto border-r border-outline/30 bg-surface/20 px-2 py-2 md:block"
     >
       <p className="mb-1.5 px-1.5 text-[10px] font-medium uppercase tracking-wide text-text-dim">
         {t("personaSetup.filters.directory")}
@@ -504,7 +690,7 @@ export function PersonaFilterModal({
           const groupOpen =
             !treeCollapsedGroups.has(group.id) || Boolean(normalizedQuery);
           const subgroups = group.subgroups ?? [];
-          const groupCount = selectedAttrCount(draft, groupDimensionIds(group));
+          const groupCount = selectedAttrCount(activeFilters, groupDimensionIds(group));
           const groupActive = expandedGroup === group.id;
           return (
             <li key={group.id}>
@@ -547,7 +733,7 @@ export function PersonaFilterModal({
                           treeExpandedSubs.has(sub.id) ||
                           Boolean(normalizedQuery);
                         const subCount = selectedAttrCount(
-                          draft,
+                          activeFilters,
                           (sub.dimensions ?? []).map((dim) => dim.id),
                         );
                         const subActive = expandedSubgroup === sub.id;
@@ -589,7 +775,8 @@ export function PersonaFilterModal({
                               <ul className="ml-3 border-l border-outline/20 pl-1">
                                 {(sub.dimensions ?? []).map((dim) => {
                                   const dimCount =
-                                    draft.dimensionFilters[dim.id]?.length ?? 0;
+                                    activeFilters.dimensionFilters[dim.id]
+                                      ?.length ?? 0;
                                   return (
                                     <li key={dim.id}>
                                       <button
@@ -626,7 +813,7 @@ export function PersonaFilterModal({
                       })
                     : (group.dimensions ?? []).map((dim) => {
                         const dimCount =
-                          draft.dimensionFilters[dim.id]?.length ?? 0;
+                          activeFilters.dimensionFilters[dim.id]?.length ?? 0;
                         return (
                           <li key={dim.id}>
                             <button
@@ -658,20 +845,56 @@ export function PersonaFilterModal({
     </nav>
   );
 
-  const renderSelected = () => (
+  const contrastDimTitle = (id: string) =>
+    draftOverlay.find((dim) => dim.id === id)?.label ||
+    findDimensionLabel(catalog, id, labels) ||
+    id;
+
+  const comboStampText = (combo: Record<string, string>) =>
+    draftContrastPlan
+      .map((arm) => {
+        const value = combo[arm.overlayId];
+        if (!value) return null;
+        return `${contrastDimTitle(arm.overlayId)} ${labels.valueLabel(arm.overlayId, value)}`;
+      })
+      .filter(Boolean)
+      .join(" · ");
+
+  const renderOverlayAddButton = (className = "") =>
+    allowOverlayEdit ? (
+      <button
+        type="button"
+        onClick={() => setOverlayDialogOpen(true)}
+        className={`inline-flex h-8 shrink-0 cursor-pointer items-center gap-1 rounded-lg bg-primary px-2.5 text-[12px] font-medium text-on-primary hover:opacity-90 ${FOCUS_RING} ${className}`}
+      >
+        <Sym name="add" size={16} />
+        {t("personaSetup.filters.overlayAdd")}
+      </button>
+    ) : null;
+
+  const renderSelected = () => {
+    const sharedLit =
+      filterSelectionCounts(contrastShared).attributes > 0 ||
+      contrastShared.sources.length > 0;
+    const contrastLit = contrastAttributeGroups.length > 0;
+    return (
     <aside
-      aria-label={t("personaSetup.filters.selected")}
-      className="flex min-h-[12rem] w-full shrink-0 flex-col border-t border-outline/30 bg-surface/20 lg:min-h-0 lg:w-80 lg:border-l lg:border-t-0"
+      aria-label={
+        allowOverlayEdit && cohortMode === "contrast"
+          ? t("personaSetup.filters.contrastDatasets")
+          : allowOverlayEdit
+            ? t("personaSetup.filters.thisDataset")
+            : t("personaSetup.filters.selected")
+      }
+      className="flex min-h-[12rem] w-full shrink-0 flex-col border-t border-outline/30 bg-surface/20 md:min-h-0 md:w-[26rem] md:border-l md:border-t-0 xl:w-[28rem]"
     >
+      {allowOverlayEdit && cohortMode === "contrast" ? null : allowOverlayEdit ? (
       <div className="shrink-0 border-b border-outline/25 px-3 py-2.5">
-        <p className="text-[11px] font-medium uppercase tracking-wide text-text-dim">
-          {t("personaSetup.filters.selected")}
-        </p>
-        <p className="mt-0.5 text-[12px] text-text-variant">
+        <p className="text-[12px] text-text-variant">
           {selectedGroups.length > 0
             ? t(
                 "personaSetup.filters.filterCount",
-                filterSelectionCounts(draft),
+                filterSelectionCounts(activeFilters),
               )
             : t("personaSetup.filters.noFilters")}
           {stratifyMode ? (
@@ -684,14 +907,294 @@ export function PersonaFilterModal({
             </>
           ) : null}
         </p>
-        {showMarginals && selectedGroups.some((g) => g.dimId !== "source") ? (
+        {showMarginals &&
+        selectedGroups.some((g) => g.dimId !== "source") ? (
           <p className="mt-1 text-[12px] text-text-dim">
             {t("personaSetup.filters.marginalsHint")}
           </p>
         ) : null}
       </div>
+      ) : (
+      <div className="shrink-0 border-b border-outline/25 px-3 py-2.5">
+        <p className="text-[11px] font-medium uppercase tracking-wide text-text-dim">
+          {t("personaSetup.filters.selected")}
+        </p>
+        <p className="mt-0.5 text-[12px] text-text-variant">
+          {selectedGroups.length > 0
+            ? t(
+                "personaSetup.filters.filterCount",
+                filterSelectionCounts(activeFilters),
+              )
+            : t("personaSetup.filters.noFilters")}
+          {stratifyMode ? (
+            <>
+              {" "}
+              ·{" "}
+              {t("personaSetup.filters.stratifyAxisCount", {
+                count: fields.length,
+              })}
+            </>
+          ) : null}
+        </p>
+      </div>
+      )}
       <div className="custom-scrollbar min-h-0 flex-1 overflow-y-auto px-3 py-2.5">
-        {selectedGroups.length === 0 && !stratifyMode ? (
+        {allowOverlayEdit && cohortMode === "contrast" ? (
+          <div className="space-y-3">
+            <section
+              className={`space-y-1.5 rounded-lg border px-2.5 py-2 transition ${
+                sharedLit
+                  ? "border-primary/40 bg-primary/8 opacity-100"
+                  : "border-outline/15 bg-transparent opacity-40"
+              }`}
+            >
+              <p
+                className={`text-[11px] font-medium uppercase tracking-wide ${
+                  sharedLit ? "text-primary" : "text-text-dim"
+                }`}
+              >
+                {t("personaSetup.filters.sharedFilters")}
+              </p>
+              {sharedLit &&
+              showMarginals &&
+              contrastSharedGroups.some((g) => g.dimId !== "source") ? (
+                <p className="text-[12px] text-text-dim">
+                  {t("personaSetup.filters.marginalsHint")}
+                </p>
+              ) : null}
+              {sharedLit
+                ? contrastSharedGroups.map((group) => {
+                    const values = group.chips.map((chip) => chip.value);
+                    const weights = values.map(
+                      (value) =>
+                        draftContrastMarginals[group.dimId]?.[value] ?? 1,
+                    );
+                    const total = weights.reduce((sum, w) => sum + w, 0);
+                    const editMix =
+                      showMarginals && group.dimId !== "source";
+                    if (!editMix) {
+                      return (
+                        <div key={`shared-${group.dimId}`} className="space-y-1">
+                          <p className="text-[12px] text-text-dim">
+                            {group.label}
+                          </p>
+                          <div className="flex flex-wrap gap-1.5">
+                            {group.chips.map((chip) => (
+                              <button
+                                id={
+                                  pickingContrastShared
+                                    ? `pf-sel-${chip.key}`
+                                    : undefined
+                                }
+                                key={chip.key}
+                                type="button"
+                                onClick={() =>
+                                  removeContrastSharedChip({
+                                    dimId: group.dimId,
+                                    value: chip.value,
+                                  })
+                                }
+                                className="glass-tile glass-tile--active inline-flex cursor-pointer items-center gap-1 rounded-full px-2.5 py-1 text-[12px] text-primary"
+                              >
+                                {chip.displayValue}
+                                <Sym name="close" size={12} />
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      );
+                    }
+                    return (
+                      <div key={`shared-${group.dimId}`} className="space-y-1.5">
+                        <p className="text-[12px] text-text-dim">
+                          {group.label}
+                        </p>
+                        <div className="space-y-1">
+                          {group.chips.map((chip, index) => {
+                            const pct =
+                              total > 0
+                                ? Math.round(
+                                    (100 * (weights[index] ?? 1)) / total,
+                                  )
+                                : 0;
+                            const drafting =
+                              percentDraft?.dim === group.dimId &&
+                              percentDraft.value === chip.value;
+                            return (
+                              <div
+                                id={
+                                  pickingContrastShared
+                                    ? `pf-sel-${chip.key}`
+                                    : undefined
+                                }
+                                key={chip.key}
+                                className="flex items-center gap-2"
+                              >
+                                <button
+                                  type="button"
+                                  onClick={() =>
+                                    removeContrastSharedChip({
+                                      dimId: group.dimId,
+                                      value: chip.value,
+                                    })
+                                  }
+                                  className="glass-tile glass-tile--active inline-flex min-w-0 flex-1 cursor-pointer items-center gap-1 rounded-full px-2.5 py-1 text-left text-[12px] text-primary"
+                                >
+                                  <span className="min-w-0 truncate">
+                                    {chip.displayValue}
+                                  </span>
+                                  <Sym
+                                    name="close"
+                                    size={12}
+                                    className="shrink-0"
+                                  />
+                                </button>
+                                <span className="flex shrink-0 items-center gap-0.5">
+                                  <input
+                                    type="number"
+                                    min={0}
+                                    max={100}
+                                    step={1}
+                                    aria-label={`${chip.displayValue} %`}
+                                    value={drafting ? percentDraft.text : pct}
+                                    onFocus={() =>
+                                      setPercentDraft({
+                                        dim: group.dimId,
+                                        value: chip.value,
+                                        text: String(pct),
+                                      })
+                                    }
+                                    onChange={(e) => {
+                                      const raw = e.target.value;
+                                      if (raw === "" || /^\d{0,3}$/.test(raw)) {
+                                        setPercentDraft({
+                                          dim: group.dimId,
+                                          value: chip.value,
+                                          text: raw,
+                                        });
+                                      }
+                                    }}
+                                    onBlur={() => {
+                                      const raw = percentDraft?.text;
+                                      setPercentDraft(null);
+                                      const next = Number(raw);
+                                      if (!Number.isFinite(next)) return;
+                                      setDraftContrastMarginals((prev) =>
+                                        setMarginalPercent(
+                                          prev,
+                                          group.dimId,
+                                          values,
+                                          chip.value,
+                                          next,
+                                        ),
+                                      );
+                                    }}
+                                    className={`h-7 w-11 rounded border border-outline/50 bg-surface/80 px-1 text-center font-mono text-[13px] font-medium text-text-main ${FOCUS_RING}`}
+                                  />
+                                  <span className="w-3 text-[12px] font-medium text-text-main">
+                                    %
+                                  </span>
+                                </span>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    );
+                  })
+                : null}
+            </section>
+            <section
+              className={`space-y-1.5 rounded-lg border px-2.5 py-2 transition ${
+                contrastLit
+                  ? "border-primary/45 bg-primary/10"
+                  : "border-outline/15 bg-transparent opacity-40"
+              }`}
+            >
+              <p
+                className={`text-[11px] font-medium uppercase tracking-wide ${
+                  contrastLit ? "text-primary" : "text-text-dim"
+                }`}
+              >
+                {t("personaSetup.filters.contrastAttributes")}
+              </p>
+              {contrastLit
+                ? contrastAttributeGroups.map((group) => (
+                    <div
+                      id={
+                        pickingContrastAttributes
+                          ? `pf-sel-group-${group.dimId}`
+                          : undefined
+                      }
+                      key={group.dimId}
+                      className="space-y-1"
+                    >
+                      <p className="text-[12px] text-text-dim">{group.label}</p>
+                      <div className="flex flex-wrap gap-1.5">
+                        {group.chips.map((chip) => (
+                          <button
+                            id={
+                              pickingContrastAttributes
+                                ? `pf-sel-${chip.key}`
+                                : undefined
+                            }
+                            key={chip.key}
+                            type="button"
+                            onClick={() =>
+                              toggleContrastValue(group.dimId, chip.value)
+                            }
+                            className="glass-tile glass-tile--active inline-flex cursor-pointer items-center gap-1 rounded-full px-2.5 py-1 text-[12px] text-primary"
+                          >
+                            {chip.displayValue}
+                            <Sym name="close" size={12} />
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  ))
+                : null}
+            </section>
+            <section
+              className={`space-y-1.5 transition ${
+                contrastLit ? "opacity-100" : "opacity-40"
+              }`}
+            >
+              {contrastLit && draftContrastCombos.length > 0 ? (
+                <>
+                  <p className="text-[12px] leading-snug text-text-dim">
+                    {t("personaSetup.filters.contrastCombinations", {
+                      count: draftContrastCombos.length,
+                    })}
+                  </p>
+                  <ol className="space-y-1">
+                    {draftContrastCombos
+                      .slice(0, CONTRAST_COMBO_PREVIEW)
+                      .map((combo, index) => (
+                        <li
+                          key={`${index}-${comboStampText(combo)}`}
+                          className="rounded-md border border-outline/25 bg-surface/40 px-2 py-1.5 text-[12px] leading-snug text-text-main"
+                        >
+                          <span className="mr-1.5 font-mono text-[10px] text-text-dim">
+                            {index + 1}
+                          </span>
+                          {comboStampText(combo)}
+                        </li>
+                      ))}
+                  </ol>
+                  {draftContrastCombos.length > CONTRAST_COMBO_PREVIEW ? (
+                    <p className="text-[12px] text-text-dim">
+                      {t("personaSetup.filters.contrastMoreCombinations", {
+                        count:
+                          draftContrastCombos.length - CONTRAST_COMBO_PREVIEW,
+                      })}
+                    </p>
+                  ) : null}
+                </>
+              ) : null}
+            </section>
+            <div id="pf-sel-end" />
+          </div>
+        ) : selectedGroups.length === 0 && !stratifyMode ? (
           <p className="text-[13px] leading-relaxed text-text-dim">
             {t("personaSetup.filters.noFilters")}
           </p>
@@ -703,7 +1206,10 @@ export function PersonaFilterModal({
                 (value) => draftMarginals[group.dimId]?.[value] ?? 1,
               );
               const total = weights.reduce((sum, w) => sum + w, 0);
-              const editMix = showMarginals && group.dimId !== "source";
+              const editMix =
+                showMarginals &&
+                cohortMode !== "contrast" &&
+                group.dimId !== "source";
               return (
               <div
                 id={`pf-sel-group-${group.dimId}`}
@@ -857,9 +1363,11 @@ export function PersonaFilterModal({
       </div>
     </aside>
   );
+  };
 
   const toggleSource = (source: string) => {
-    setDraft((prev) => {
+    if (pickingContrastAttributes) return;
+    const apply = (prev: PersonaDimensionFilters) => {
       const adding = !prev.sources.includes(source);
       if (adding) pendingRevealKey.current = `source:${source}`;
       return {
@@ -868,28 +1376,33 @@ export function PersonaFilterModal({
           ? [...prev.sources, source]
           : prev.sources.filter((item) => item !== source),
       };
-    });
+    };
+    if (pickingContrastShared) {
+      setContrastShared(apply);
+      return;
+    }
+    setDraft(apply);
   };
 
   const addOverlayDimensions = (added: OverlayDimension[]) => {
     if (added.length === 0) return;
+    // Dimension is added to the catalog only — attributes stay unselected until picked.
     setDraftOverlay((prev) => [...prev, ...added]);
-    setDraft((prev) => {
-      const dimensionFilters = { ...prev.dimensionFilters };
-      for (const dim of added) {
-        dimensionFilters[dim.id] = [...dim.values];
-      }
-      return { ...prev, dimensionFilters };
-    });
     const last = added[added.length - 1];
     setExpandedGroup(STUDY_OVERLAY_GROUP_ID);
     setExpandedDim(last.id);
-    pendingRevealKey.current = `${last.id}:${last.values[0]}`;
+    pendingScrollId.current = `pf-dim-${last.id}`;
   };
 
   const removeOverlayDimension = (dimId: string) => {
     setDraftOverlay((prev) => prev.filter((dim) => dim.id !== dimId));
     setDraft((prev) => {
+      const nextFilters = { ...prev.dimensionFilters };
+      delete nextFilters[dimId];
+      return { ...prev, dimensionFilters: nextFilters };
+    });
+    setContrastShared((prev) => {
+      if (!(dimId in prev.dimensionFilters)) return prev;
       const nextFilters = { ...prev.dimensionFilters };
       delete nextFilters[dimId];
       return { ...prev, dimensionFilters: nextFilters };
@@ -900,10 +1413,46 @@ export function PersonaFilterModal({
       delete next[dimId];
       return next;
     });
+    setDraftContrastMarginals((prev) => {
+      if (!(dimId in prev)) return prev;
+      const next = { ...prev };
+      delete next[dimId];
+      return next;
+    });
+    setContrastExtras((prev) => {
+      if (!(dimId in prev)) return prev;
+      const next = { ...prev };
+      delete next[dimId];
+      return next;
+    });
   };
 
-  const toggleDimensionValue = (dimId: string, value: string) => {
-    setDraft((prev) => {
+  const toggleContrastValue = (dimId: string, value: string) => {
+    setContrastExtras((prev) => {
+      const current = prev[dimId] ?? [];
+      const adding = !current.includes(value);
+      if (adding) pendingRevealKey.current = `${dimId}:${value}`;
+      const nextValues = adding
+        ? [...current, value]
+        : current.filter((item) => item !== value);
+      if (nextValues.length === 0) {
+        if (!(dimId in prev)) return prev;
+        const next = { ...prev };
+        delete next[dimId];
+        return next;
+      }
+      return { ...prev, [dimId]: nextValues };
+    });
+  };
+
+  const toggleFilterValue = (
+    setter: (
+      update: (prev: PersonaDimensionFilters) => PersonaDimensionFilters,
+    ) => void,
+    dimId: string,
+    value: string,
+  ) => {
+    setter((prev) => {
       const current = prev.dimensionFilters[dimId] ?? [];
       const adding = !current.includes(value);
       if (adding) pendingRevealKey.current = `${dimId}:${value}`;
@@ -917,6 +1466,29 @@ export function PersonaFilterModal({
     });
   };
 
+  const toggleDimensionValue = (dimId: string, value: string) => {
+    if (pickingContrastAttributes) {
+      toggleContrastValue(dimId, value);
+      return;
+    }
+    if (pickingContrastShared) {
+      toggleFilterValue(setContrastShared, dimId, value);
+      return;
+    }
+    toggleFilterValue(setDraft, dimId, value);
+  };
+
+  const removeContrastSharedChip = (chip: { dimId: string; value: string }) => {
+    if (chip.dimId === "source") {
+      setContrastShared((prev) => ({
+        ...prev,
+        sources: prev.sources.filter((item) => item !== chip.value),
+      }));
+      return;
+    }
+    toggleFilterValue(setContrastShared, chip.dimId, chip.value);
+  };
+
   const removeChip = (chip: {
     key: string;
     dimId: string;
@@ -924,20 +1496,28 @@ export function PersonaFilterModal({
     value: string;
   }) => {
     if (chip.dimId === "source") {
+      if (pickingContrastShared) {
+        setContrastShared((prev) => ({
+          ...prev,
+          sources: prev.sources.filter((item) => item !== chip.value),
+        }));
+        return;
+      }
       setDraft((prev) => ({
         ...prev,
         sources: prev.sources.filter((item) => item !== chip.value),
       }));
       return;
     }
-    setDraft((prev) => {
-      const current = prev.dimensionFilters[chip.dimId] ?? [];
-      const nextValues = current.filter((item) => item !== chip.value);
-      const nextFilters = { ...prev.dimensionFilters };
-      if (nextValues.length === 0) delete nextFilters[chip.dimId];
-      else nextFilters[chip.dimId] = nextValues;
-      return { ...prev, dimensionFilters: nextFilters };
-    });
+    if (pickingContrastAttributes) {
+      toggleContrastValue(chip.dimId, chip.value);
+      return;
+    }
+    if (pickingContrastShared) {
+      toggleFilterValue(setContrastShared, chip.dimId, chip.value);
+      return;
+    }
+    toggleFilterValue(setDraft, chip.dimId, chip.value);
   };
 
   const toggleStratifyField = (dimId: string) => {
@@ -953,11 +1533,10 @@ export function PersonaFilterModal({
     const dimOpen =
       expandedDim === dim.id ||
       (Boolean(normalizedQuery) && visibleValues.length > 0);
-    const selected = draft.dimensionFilters[dim.id] ?? [];
+    const selected = activeFilters.dimensionFilters[dim.id] ?? [];
     const stratified = fields.includes(dim.id);
     const displayName = labels.dimLabel(dim.id, dimLabel(dim));
-    const overlayDim =
-      draftOverlay.some((row) => row.id === dim.id) ||
+    const overlayDim = draftOverlay.some((row) => row.id === dim.id) ||
       groups.some(
         (group) =>
           group.id === STUDY_OVERLAY_GROUP_ID &&
@@ -1065,7 +1644,7 @@ export function PersonaFilterModal({
   return (
     <>
   {createPortal(
-    <div className="fixed inset-0 z-[70] flex items-center justify-center p-4 sm:p-6">
+    <div className="fixed inset-0 z-[70] flex items-center justify-center p-2 sm:p-3">
       <button
         type="button"
         className="absolute inset-0 bg-surface-dim/75 backdrop-blur-sm"
@@ -1076,7 +1655,7 @@ export function PersonaFilterModal({
         role="dialog"
         aria-modal="true"
         aria-labelledby="persona-filter-modal-title"
-        className="glass-panel-strong relative z-10 flex h-[min(92vh,920px)] w-full max-w-[min(96vw,86rem)] flex-col overflow-hidden rounded-xl shadow-2xl"
+        className="glass-panel-strong relative z-10 flex h-[min(96vh,100dvh)] w-full max-w-[min(98vw,112rem)] flex-col overflow-hidden rounded-xl shadow-2xl"
       >
         <div className="flex items-center justify-between gap-3 border-b border-outline/40 px-5 py-4">
           <div className="min-w-0">
@@ -1094,8 +1673,8 @@ export function PersonaFilterModal({
               aria-label={t("personaSetup.filters.close")}
               className={`rounded-md p-2 text-text-variant hover:bg-surface-high ${FOCUS_RING}`}
             >
-              <Sym name="close" size={20} />
-            </button>
+            <Sym name="close" size={20} />
+          </button>
           </div>
         </div>
 
@@ -1124,63 +1703,51 @@ export function PersonaFilterModal({
                 {t("personaSetup.filters.provenance")}
               </p>
               <div className="flex flex-wrap gap-2">
-                {sources.map((source) => {
-                  const active = draft.sources.includes(source);
-                  const count = catalog?.sourceCounts?.[source];
-                  return (
-                    <button
-                      key={source}
-                      type="button"
-                      onClick={() => toggleSource(source)}
-                      className={`rounded-full px-3 py-1.5 text-[13px] transition ${FOCUS_RING} ${
-                        active
-                          ? "glass-tile glass-tile--active text-primary"
-                          : "glass-tile glass-tile--hover text-text-variant"
-                      }`}
-                    >
-                      {source}
+            {sources.map((source) => {
+              const active = draft.sources.includes(source);
+              const count = catalog?.sourceCounts?.[source];
+              return (
+                <button
+                  key={source}
+                  type="button"
+                  onClick={() => toggleSource(source)}
+                  className={`rounded-full px-3 py-1.5 text-[13px] transition ${FOCUS_RING} ${
+                    active
+                      ? "glass-tile glass-tile--active text-primary"
+                      : "glass-tile glass-tile--hover text-text-variant"
+                  }`}
+                >
+                  {source}
                       {typeof count === "number"
                         ? ` · ${count.toLocaleString()}`
                         : ""}
-                    </button>
-                  );
-                })}
-              </div>
+                </button>
+              );
+            })}
+          </div>
             </div>
           </div>
             )}
 
           <div className="mb-3">
-            <div className="mb-1.5 flex items-center justify-between gap-2">
-              <p className="text-[13px] text-text-variant">
-                {t("personaSetup.filters.profileDimensions")}
-              </p>
-              {allowOverlayEdit ? (
-                <button
-                  type="button"
-                  onClick={() => setOverlayDialogOpen(true)}
-                  className={`inline-flex shrink-0 cursor-pointer items-center gap-1 rounded-md px-2 py-1 text-[12px] font-medium text-primary hover:bg-primary/10 ${FOCUS_RING}`}
-                >
-                  <Sym name="add" size={16} />
-                  {t("personaSetup.filters.overlayAdd")}
-                </button>
-              ) : null}
-            </div>
+            <p className="mb-1.5 text-[13px] text-text-variant">
+              {t("personaSetup.filters.profileDimensions")}
+            </p>
             <div className="rounded-xl border border-outline/35 bg-surface/25 p-2.5">
               <label className="relative block">
-                <Sym
-                  name="search"
+              <Sym
+                name="search"
                   size={17}
                   className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-text-dim"
-                />
-                <input
-                  type="search"
-                  value={query}
-                  onChange={(e) => setQuery(e.target.value)}
+              />
+              <input
+                type="search"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
                   placeholder={t("personaSetup.filters.searchPlaceholder")}
                   className={`h-10 w-full rounded-lg border border-outline/45 bg-field pl-10 pr-3 text-[13px] text-text-main placeholder:text-text-dim ${FOCUS_RING}`}
-                />
-              </label>
+              />
+            </label>
               <div className="mt-2.5 flex flex-wrap items-center gap-x-3 gap-y-2">
                 <div
                   role="group"
@@ -1235,7 +1802,7 @@ export function PersonaFilterModal({
                     </span>
                   </label>
                 ) : null}
-              </div>
+          </div>
 
               {matchEnabled && matchQuery.isFetching ? (
                 <p className="mt-2.5 text-[12px] text-text-dim">
@@ -1260,9 +1827,115 @@ export function PersonaFilterModal({
           </div>
           </div>
 
-          <div className="flex min-h-0 flex-1 flex-col border-t border-outline/25 lg:flex-row">
+          <div
+            className={
+              allowOverlayEdit
+                ? "mx-3 mb-3 flex min-h-0 flex-1 flex-col sm:mx-4"
+                : "flex min-h-0 flex-1 flex-col"
+            }
+          >
+            {allowOverlayEdit ? (
+              <div
+                role="tablist"
+                aria-label={t("personaSetup.filters.cohortMode")}
+                className="grid shrink-0 grid-cols-2"
+              >
+                <button
+                  type="button"
+                  role="tab"
+                  aria-selected={cohortMode === "independent"}
+                  onClick={() => setCohortMode("independent")}
+                  className={`relative h-11 rounded-t-lg px-4 text-[13px] font-medium transition ${FOCUS_RING} ${
+                    cohortMode === "independent"
+                      ? "z-10 -mb-px border-2 border-b-0 border-primary bg-surface/40 text-primary"
+                      : "z-0 border-2 border-transparent text-text-variant hover:bg-surface-high/35 hover:text-text-main"
+                  }`}
+                >
+                  {t("personaSetup.filters.cohortModeIndependent")}
+                </button>
+                <button
+                  type="button"
+                  role="tab"
+                  aria-selected={cohortMode === "contrast"}
+                  onClick={() => setCohortMode("contrast")}
+                  className={`relative h-11 rounded-t-lg px-4 text-[13px] font-medium transition ${FOCUS_RING} ${
+                    cohortMode === "contrast"
+                      ? "z-10 -mb-px border-2 border-b-0 border-primary bg-surface/40 text-primary"
+                      : "z-0 border-2 border-transparent text-text-variant hover:bg-surface-high/35 hover:text-text-main"
+                  }`}
+                >
+                  {t("personaSetup.filters.cohortModeContrast")}
+                </button>
+              </div>
+            ) : null}
+
+            <div
+              className={
+                allowOverlayEdit
+                  ? `relative flex min-h-0 flex-1 flex-col overflow-hidden border-x-2 border-b-2 border-primary bg-surface/40 ${
+                      cohortMode === "independent"
+                        ? "rounded-b-lg rounded-tr-lg"
+                        : "rounded-b-lg rounded-tl-lg"
+                    }`
+                  : "flex min-h-0 flex-1 flex-col border-t border-outline/25"
+              }
+            >
+              {/* Top edge only under the inactive tab — active tab merges into the panel. */}
+              {allowOverlayEdit ? (
+                <div
+                  aria-hidden
+                  className={`pointer-events-none absolute left-0 right-0 top-0 z-[1] border-t-2 border-primary ${
+                    cohortMode === "independent" ? "ml-[50%]" : "mr-[50%]"
+                  }`}
+                />
+              ) : null}
+              {allowOverlayEdit && cohortMode === "contrast" ? (
+                <div className="relative z-[2] flex shrink-0 flex-wrap items-center justify-between gap-2 border-b border-outline/30 bg-primary/12 px-4 py-2.5">
+                  <div
+                    role="group"
+                    aria-label={t("personaSetup.filters.contrastPickTarget")}
+                    className="flex min-w-0 flex-1 flex-wrap items-center gap-1.5"
+                  >
+                    <button
+                      type="button"
+                      onClick={() => setContrastPickTarget("shared")}
+                      className={`rounded-md px-2.5 py-1 text-[12px] font-medium ${FOCUS_RING} ${
+                        contrastPickTarget === "shared"
+                          ? "bg-primary text-on-primary"
+                          : "border border-outline/40 bg-surface/70 text-text-variant hover:text-text-main"
+                      }`}
+                    >
+                      {t("personaSetup.filters.sharedFilters")}
+                    </button>
+                    <Sym
+                      name="arrow_forward"
+                      size={16}
+                      className="shrink-0 text-primary/80"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setContrastPickTarget("attributes")}
+                      className={`rounded-md px-2.5 py-1 text-[12px] font-medium ${FOCUS_RING} ${
+                        contrastPickTarget === "attributes"
+                          ? "bg-primary text-on-primary"
+                          : "border border-outline/40 bg-surface/70 text-text-variant hover:text-text-main"
+                      }`}
+                    >
+                      {t("personaSetup.filters.contrastAttributes")}
+                    </button>
+                  </div>
+                  {renderOverlayAddButton()}
+                </div>
+              ) : allowOverlayEdit ? (
+                <div className="relative z-[2] flex shrink-0 justify-end border-b border-outline/30 px-4 py-2">
+                  {renderOverlayAddButton()}
+                </div>
+              ) : null}
+
+          <div className="flex min-h-0 flex-1 flex-col md:flex-row">
             {renderDirectory()}
             <div className="custom-scrollbar min-h-0 min-w-0 flex-1 overflow-y-auto px-5 py-3">
+          <>
           {suggestions.length > 0 ? (
             <div className="mb-4 rounded-lg border border-outline/30 bg-surface/30 px-3 py-2.5">
               <div className="mb-2 flex items-center justify-between gap-2">
@@ -1283,6 +1956,17 @@ export function PersonaFilterModal({
                   type="button"
                   onClick={() => {
                     pendingRevealKey.current = "__bottom";
+                    if (pickingContrastAttributes) {
+                      const next = applyAllSuggestions(activeFilters, suggestions);
+                      setContrastExtras(next.dimensionFilters);
+                      return;
+                    }
+                    if (pickingContrastShared) {
+                      setContrastShared((prev) =>
+                        applyAllSuggestions(prev, suggestions),
+                      );
+                      return;
+                    }
                     setDraft((prev) => applyAllSuggestions(prev, suggestions));
                   }}
                   className={`rounded-md px-2 py-1 text-[11px] text-primary hover:bg-primary/10 ${FOCUS_RING}`}
@@ -1292,7 +1976,7 @@ export function PersonaFilterModal({
               </div>
               <div className="flex flex-wrap gap-1.5">
                 {suggestions.map((attr) => {
-                  const active = isSuggestionSelected(draft, attr);
+                  const active = isSuggestionSelected(activeFilters, attr);
                   const label = labels.dimLabel(
                     attr.dimensionId,
                     (attr.label || attr.dimensionId).replace(/_/g, " "),
@@ -1311,6 +1995,18 @@ export function PersonaFilterModal({
                       onClick={() => {
                         if (!active) {
                           pendingRevealKey.current = `${attr.dimensionId}:${attr.value}`;
+                        }
+                        if (pickingContrastAttributes) {
+                          toggleContrastValue(attr.dimensionId, attr.value);
+                          return;
+                        }
+                        if (pickingContrastShared) {
+                          toggleFilterValue(
+                            setContrastShared,
+                            attr.dimensionId,
+                            attr.value,
+                          );
+                          return;
                         }
                         setDraft((prev) =>
                           toggleSuggestionInFilters(prev, attr),
@@ -1425,12 +2121,15 @@ export function PersonaFilterModal({
               );
             })}
           </div>
+          </>
             </div>
             {renderSelected()}
           </div>
-        </div>
+            </div>
+          </div>
 
-        <div className="flex shrink-0 items-center justify-end gap-2 border-t border-outline/40 bg-surface/40 px-5 py-3">
+        <div className="flex shrink-0 flex-col items-stretch gap-1.5 border-t border-outline/40 bg-surface/40 px-5 py-3 sm:flex-row sm:items-center sm:justify-end">
+              <div className="flex shrink-0 items-center justify-end gap-2 sm:ml-auto">
               <button
                 type="button"
                 onClick={onClose}
@@ -1441,18 +2140,41 @@ export function PersonaFilterModal({
               <button
                 type="button"
                 onClick={() => {
-                  onConfirm(
-                    draft,
-                    showMarginals ? draftMarginals : undefined,
-                    allowOverlayEdit ? draftOverlay : undefined,
-                  );
+                  if (allowOverlayEdit && cohortMode === "contrast") {
+                    // Contrast tab only — Independent filters stay as last applied.
+                    onConfirm(
+                      draft,
+                      showMarginals ? draftContrastMarginals : undefined,
+                      draftOverlay,
+                      draftContrastPlan,
+                      contrastShared,
+                      "contrast",
+                    );
+                  } else if (allowOverlayEdit) {
+                    // Independent tab only — Contrast plan/shared stay as last applied.
+                    onConfirm(
+                      draft,
+                      showMarginals ? draftMarginals : undefined,
+                      draftOverlay,
+                      undefined,
+                      undefined,
+                      "independent",
+                    );
+                  } else {
+                    onConfirm(
+                      draft,
+                      showMarginals ? draftMarginals : undefined,
+                    );
+                  }
                   onClose();
                 }}
                 className={`rounded-md bg-primary px-4 py-2 text-[14px] font-medium text-on-primary ${FOCUS_RING}`}
               >
                 {t("personaSetup.filters.apply")}
               </button>
+              </div>
         </div>
+          </div>
       </div>
     </div>,
     document.body,

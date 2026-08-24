@@ -795,6 +795,49 @@ def parse_filter_cli(raw: str) -> tuple[str, list[str]]:
     return dim_id, values
 
 
+def parse_marginal_cli(raw: str) -> tuple[str, dict[str, float]]:
+    """Parse ``dim=v1:w1,v2:w2`` share weights for By share / independentMarginal.
+
+    Weights may be any positive numbers (percentages or relative weights). Missing
+    selected filter values default to equal share in allocation.
+    """
+    text = str(raw).strip()
+    if "=" not in text:
+        raise ValueError("marginal must be dimension=value:weight,value:weight")
+    dim, weights_raw = text.split("=", 1)
+    dim_id = dim.removeprefix("dimensions.").strip()
+    if not dim_id:
+        raise ValueError("marginal is missing dimension id")
+    weights: dict[str, float] = {}
+    for part in weights_raw.split(","):
+        item = part.strip()
+        if not item:
+            continue
+        if ":" not in item:
+            raise ValueError(
+                f"marginal {dim_id!r} entry {item!r} must be value:weight"
+            )
+        value, weight_raw = item.rsplit(":", 1)
+        value = value.strip()
+        weight_raw = weight_raw.strip()
+        if not value:
+            raise ValueError(f"marginal {dim_id!r} has an empty value")
+        try:
+            weight = float(weight_raw)
+        except ValueError as exc:
+            raise ValueError(
+                f"marginal {dim_id!r} weight for {value!r} must be a number"
+            ) from exc
+        if weight <= 0:
+            raise ValueError(
+                f"marginal {dim_id!r} weight for {value!r} must be > 0"
+            )
+        weights[value] = weight
+    if not weights:
+        raise ValueError(f"marginal {dim_id!r} needs at least one value:weight")
+    return dim_id, weights
+
+
 def overlay_dimensions_from_manifest(payload: dict[str, Any] | None) -> list[dict[str, Any]]:
     if not isinstance(payload, dict):
         return []
@@ -813,6 +856,208 @@ def overlay_dimensions_from_manifest(payload: dict[str, Any] | None) -> list[dic
         item: dict[str, Any] = {"id": dim_id, "label": label, "values": values}
         out.append(item)
     return out
+
+
+def _contrast_id_suffix(value: str) -> str:
+    slug = re.sub(r"[^a-z0-9]+", "-", value.lower()).strip("-")
+    return slug or "value"
+
+
+def resolve_contrast_overlay(
+    overlay: list[dict[str, Any]],
+    overlay_id: str,
+    value: str,
+    *,
+    schema_ids: set[str] | None = None,
+) -> dict[str, Any]:
+    """Return the overlay row for a contrast stamp, or raise ``ValueError``."""
+    dim_id = str(overlay_id or "").strip().lower().replace("-", "_")
+    text = str(value or "").strip()
+    if not dim_id:
+        raise ValueError("contrast dimension is required")
+    if not text:
+        raise ValueError("contrast value is required")
+    if schema_ids and dim_id in schema_ids:
+        return {"id": dim_id, "label": dim_id, "values": [text]}
+    for row in overlay:
+        if str(row.get("id") or "").strip() != dim_id:
+            continue
+        allowed = [str(item) for item in (row.get("values") or []) if str(item).strip()]
+        if text not in allowed:
+            raise ValueError(
+                f"{text!r} is not an allowed value for custom dimension {dim_id!r}"
+            )
+        return row
+    raise ValueError(
+        f"custom dimension {dim_id!r} is not on this dataset; "
+        "generate a pool with that dimension first"
+    )
+
+
+def normalize_generate_contrast(
+    overlay: list[dict[str, Any]] | None,
+    contrast: list[Any] | None,
+    *,
+    schema_ids: set[str] | None = None,
+) -> list[dict[str, Any]]:
+    """Validate generate-time contrast arms.
+
+    Each arm is one dimension: keep the first pool as filtered, then clone
+    extra ``values``. Several arms combine (one copy per value combination).
+    """
+    if not contrast:
+        return []
+    rows = normalize_overlay_dimensions(overlay)
+    by_id: dict[str, dict[str, Any]] = {}
+    for index, raw in enumerate(contrast):
+        if not isinstance(raw, dict):
+            raise ValueError(f"contrast[{index}] must be an object")
+        overlay_id = str(
+            raw.get("overlayId") or raw.get("overlay_id") or raw.get("id") or ""
+        ).strip()
+        base = str(
+            raw.get("baseValue")
+            or raw.get("base")
+            or raw.get("base_value")
+            or ""
+        ).strip()
+        extras_raw = raw.get("values")
+        if extras_raw is None:
+            extras_raw = raw.get("extra") or []
+        if not isinstance(extras_raw, list):
+            raise ValueError(f"contrast[{index}] values must be a list")
+        if not overlay_id:
+            raise ValueError(f"contrast[{index}] overlayId is required")
+        extras: list[str] = []
+        seen: set[str] = set()
+        for item in extras_raw:
+            text = str(item).strip()
+            if not text or text in seen:
+                continue
+            seen.add(text)
+            extras.append(text)
+        if not extras:
+            continue
+        if not base:
+            base = extras[0]
+        dim = resolve_contrast_overlay(rows, overlay_id, base, schema_ids=schema_ids)
+        for text in extras:
+            resolve_contrast_overlay(rows, overlay_id, text, schema_ids=schema_ids)
+        dim_id = str(dim["id"])
+        existing = by_id.get(dim_id)
+        if existing is None:
+            by_id[dim_id] = {
+                "id": dim_id,
+                "label": dim.get("label") or dim_id,
+                "base": base,
+                "values": extras,
+            }
+            continue
+        for text in extras:
+            if text != existing["base"] and text not in existing["values"]:
+                existing["values"].append(text)
+    return list(by_id.values())
+
+
+def contrast_stamp_combinations(
+    plan: list[dict[str, Any]] | None,
+) -> list[dict[str, str]]:
+    """One stamp map per cartesian combination of contrast-arm values."""
+    if not plan:
+        return []
+    ids = [str(arm["id"]) for arm in plan]
+    value_lists = [list(arm["values"]) for arm in plan]
+    if not ids or any(not values for values in value_lists):
+        return []
+    return [
+        {ids[index]: str(combo[index]) for index in range(len(ids))}
+        for combo in itertools.product(*value_lists)
+    ]
+
+
+def clone_contrast_personas(
+    personas: list[dict[str, Any]],
+    *,
+    overlay_id: str | None = None,
+    value: str | None = None,
+    stamps: dict[str, str] | None = None,
+) -> list[dict[str, Any]]:
+    """Copy each persona and change only the stamped dimension values."""
+    mapping: dict[str, str] = {}
+    if stamps:
+        for key, item in stamps.items():
+            dim_id = str(key or "").strip().lower().replace("-", "_")
+            text = str(item or "").strip()
+            if dim_id and text:
+                mapping[dim_id] = text
+    if overlay_id and value:
+        dim_id = str(overlay_id or "").strip().lower().replace("-", "_")
+        text = str(value or "").strip()
+        if dim_id and text:
+            mapping[dim_id] = text
+    if not mapping:
+        raise ValueError("contrast dimension and value are required")
+    suffix = "-".join(_contrast_id_suffix(text) for text in mapping.values())
+    cloned: list[dict[str, Any]] = []
+    for entry in personas:
+        dims = dict(entry.get("dimensions") or {})
+        dims.update(mapping)
+        base_id = str(entry.get("persona_id") or "persona")
+        pair_id = str(entry.get("pair_id") or base_id)
+        cloned.append(
+            {
+                "persona_id": f"{base_id}-c-{suffix}",
+                "version": entry.get("version", DEFAULT_PERSONA_VERSION),
+                "source": entry.get("source", SYNTHETIC_SOURCE),
+                "dimensions": dims,
+                "pair_id": pair_id,
+                "contrast_from": base_id,
+            }
+        )
+    return cloned
+
+
+def validate_contrast_stamps_against_dag(
+    personas: list[dict[str, Any]],
+    stamps: dict[str, str],
+    *,
+    schema_ids: set[str] | None = None,
+    sampler: PersonaForwardSampler | None = None,
+    seed: int = 42,
+) -> None:
+    """Ensure stamped schema dims stay DAG-supported on each persona (no resample).
+
+    Custom overlay stamps are ignored. Raises ``ValueError`` when any persona's
+    dimensions after stamp violate a Full-DAG hard mask.
+    """
+    mapping: dict[str, str] = {}
+    for key, item in stamps.items():
+        dim_id = str(key or "").strip().lower().replace("-", "_")
+        text = str(item or "").strip()
+        if not dim_id or not text:
+            continue
+        if schema_ids is not None and dim_id not in schema_ids:
+            continue
+        mapping[dim_id] = text
+    if not mapping or not personas:
+        return
+    dag = sampler or _dag_sampler(seed=seed)
+    label = ", ".join(f"{key}={value}" for key, value in sorted(mapping.items()))
+    for entry in personas:
+        dims = {
+            str(key): str(value)
+            for key, value in (entry.get("dimensions") or {}).items()
+            if str(key).strip() and str(value).strip()
+        }
+        dims.update(mapping)
+        if dag.assignment_supported(dims):
+            continue
+        persona_id = str(entry.get("persona_id") or "persona")
+        raise ValueError(
+            f"Contrast stamps [{label}] are not Full-DAG-supported for persona "
+            f"{persona_id} (hard mask with other dimensions). "
+            "Pick different contrast attributes or shared filters."
+        )
 
 
 @dataclass
@@ -1084,6 +1329,7 @@ def write_persona_dataset(
     manifest_name: str | None = None,
     manifest_description: str | None = None,
     overlay_dimensions: list[dict[str, Any]] | None = None,
+    extra_manifest: dict[str, Any] | None = None,
     on_progress: Callable[[str, dict[str, Any]], None] | None = None,
 ) -> dict[str, Any]:
     """Write one YAML per persona + ``manifest.json``.
@@ -1109,17 +1355,24 @@ def write_persona_dataset(
             "source": entry.get("source"),
             "dimensions": entry["dimensions"],
         }
+        if entry.get("pair_id"):
+            payload["pair_id"] = entry["pair_id"]
+        if entry.get("contrast_from"):
+            payload["contrast_from"] = entry["contrast_from"]
         (repo_root / rel_path).write_text(
             yaml.safe_dump(payload, sort_keys=False), encoding="utf-8"
         )
-        manifest_personas.append(
-            {
-                "persona_id": persona_id,
-                "path": rel_path,
-                "source": entry.get("source"),
-                "dimensions": entry["dimensions"],
-            }
-        )
+        manifest_row = {
+            "persona_id": persona_id,
+            "path": rel_path,
+            "source": entry.get("source"),
+            "dimensions": entry["dimensions"],
+        }
+        if entry.get("pair_id"):
+            manifest_row["pair_id"] = entry["pair_id"]
+        if entry.get("contrast_from"):
+            manifest_row["contrast_from"] = entry["contrast_from"]
+        manifest_personas.append(manifest_row)
         if on_progress and (index == total or index % report_every == 0):
             on_progress(
                 "write",
@@ -1158,6 +1411,10 @@ def write_persona_dataset(
         manifest["description"] = manifest_description
     if overlay_dimensions:
         manifest["overlay_dimensions"] = list(overlay_dimensions)
+    if extra_manifest:
+        for key, value in extra_manifest.items():
+            if value is not None:
+                manifest[key] = value
     (out_dir / "manifest.json").write_text(
         json.dumps(manifest, indent=2) + "\n", encoding="utf-8"
     )
