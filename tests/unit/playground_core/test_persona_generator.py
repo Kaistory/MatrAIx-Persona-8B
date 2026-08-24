@@ -156,6 +156,110 @@ def test_build_filter_strata_cartesian() -> None:
     assert {"age_bracket": "35-44", "life_stage": "Early career"} in strata
 
 
+def test_independent_marginal_quotas_equal_and_weighted() -> None:
+    from matraix.persona_generator import independent_marginal_cell_quotas
+
+    filters = {
+        "age_bracket": ["18-24", "25-34", "35-44", "45-54"],
+        "gender_identity": ["Man", "Woman"],
+    }
+    cells = [
+        {"age_bracket": age, "gender_identity": gender}
+        for age in filters["age_bracket"]
+        for gender in filters["gender_identity"]
+    ]
+    equal = independent_marginal_cell_quotas(cells, 32, dimension_filters=filters)
+    assert sum(equal) == 32
+    assert equal == [4] * 8
+
+    weighted = independent_marginal_cell_quotas(
+        cells,
+        32,
+        dimension_filters=filters,
+        marginals={"gender_identity": {"Man": 3, "Woman": 1}},
+    )
+    assert sum(weighted) == 32
+    man = sum(
+        quota
+        for cell, quota in zip(cells, weighted, strict=True)
+        if cell["gender_identity"] == "Man"
+    )
+    woman = 32 - man
+    assert man == 24
+    assert woman == 8
+
+
+def test_normalize_and_stamp_study_overlay() -> None:
+    from matraix.persona_generator import (
+        fill_overlay_filters,
+        normalize_overlay_dimensions,
+        split_overlay_filters,
+        stamp_overlay_from_cells,
+        stamp_overlay_independent,
+    )
+
+    overlay = normalize_overlay_dimensions(
+        [{"id": "study_trust", "label": "Trust", "values": ["Low", "High"]}]
+    )
+    catalog, overlay_filters = split_overlay_filters(
+        {"age_bracket": ["25-34"], "study_trust": ["Low"]},
+        {"study_trust"},
+    )
+    assert catalog == {"age_bracket": ["25-34"]}
+    assert overlay_filters == {"study_trust": ["Low"]}
+    filled = fill_overlay_filters(overlay, {})
+    assert filled["study_trust"] == ["Low", "High"]
+
+    personas = [
+        {"persona_id": "0001", "dimensions": {"age_bracket": "25-34"}},
+        {"persona_id": "0002", "dimensions": {"age_bracket": "25-34"}},
+    ]
+    stamp_overlay_from_cells(
+        personas,
+        [
+            {"age_bracket": "25-34", "study_trust": "Low"},
+            {"age_bracket": "25-34", "study_trust": "High"},
+        ],
+        [1, 1],
+        {"study_trust"},
+    )
+    values = {entry["dimensions"]["study_trust"] for entry in personas}
+    assert values == {"Low", "High"}
+
+    independent = [{"persona_id": "0003", "dimensions": {}}]
+    stamp_overlay_independent(independent, overlay, filled, seed=1)
+    assert independent[0]["dimensions"]["study_trust"] in {"Low", "High"}
+
+
+def test_generate_persona_pool_extra_filters_pin_catalog_dims() -> None:
+    from matraix import persona_generator as gen
+
+    class FakeDag:
+        def assignment_supported(self, pinned: dict[str, str]) -> bool:
+            return True
+
+        def sample(self, n: int, *, fixed: dict[str, str] | None = None):
+            base = {"age_bracket": "18-24", "region": "US"}
+            if fixed:
+                base.update(fixed)
+            return [dict(base) for _ in range(n)]
+
+    original = gen._dag_sampler
+    gen._dag_sampler = lambda **kwargs: FakeDag()
+    try:
+        personas = gen.generate_persona_pool(
+            count=3,
+            seed=1,
+            extra_filters={"age_bracket": ["25-34"]},
+            include_smoke=False,
+        )
+    finally:
+        gen._dag_sampler = original
+
+    assert len(personas) == 3
+    assert {row["dimensions"]["age_bracket"] for row in personas} == {"25-34"}
+
+
 def test_stratified_cell_quota_matches_playground_allocations() -> None:
     import pytest
 
@@ -185,7 +289,7 @@ def test_stratified_cell_quota_matches_playground_allocations() -> None:
         )
 
 
-def test_strategy_pin_cells_pins_extra_filters() -> None:
+def test_strategy_pin_cells_keeps_stratify_axes_only() -> None:
     from matraix.persona_generator import strategy_pin_cells
 
     cells, _dropped = strategy_pin_cells(
@@ -199,7 +303,28 @@ def test_strategy_pin_cells_pins_extra_filters() -> None:
     assert cells
     for cell in cells:
         assert cell["life_stage"] in {"Early career", "Mid-life"}
-        assert cell["age_bracket"] in {"25-34", "35-44"}
+        assert "age_bracket" not in cell
+
+
+def test_top_up_randomizes_non_stratify_filters() -> None:
+    from matraix.persona_generator import generate_persona_pool
+
+    ages = ["18-24", "25-34", "35-44", "45-54"]
+    personas = generate_persona_pool(
+        count=0,
+        seed=7,
+        stratum_top_up=[{"age_bracket": age} for age in ages],
+        min_per_stratum=4,
+        extra_filters={"gender_identity": ["Man", "Woman"]},
+        include_smoke=False,
+    )
+    seen_ages = {entry["dimensions"]["age_bracket"] for entry in personas}
+    seen_genders = {entry["dimensions"]["gender_identity"] for entry in personas}
+    assert seen_ages <= set(ages)
+    assert "13-17" not in seen_ages
+    assert "55-64" not in seen_ages
+    assert seen_genders <= {"Man", "Woman"}
+    assert seen_genders == {"Man", "Woman"}
 
 
 def test_generate_pool_strategy_top_up_only() -> None:

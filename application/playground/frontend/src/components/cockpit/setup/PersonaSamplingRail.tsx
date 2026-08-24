@@ -22,6 +22,7 @@ import {
   type PersonaPoolGenerateProgress,
   type PersonaPoolGenerateResult,
   type PersonaPoolPersonaCard,
+  type OverlayDimension,
   type TaskPersonaStrategy,
 } from "@/lib/types";
 import {
@@ -41,6 +42,8 @@ import { PersonaFilterModal } from "./PersonaFilterModal";
 import {
   activeFilterCount,
   emptyPersonaDimensionFilters,
+  filterAxisIds,
+  filterSelectionCounts,
   filtersForSampleApi,
   readStrategySampling,
   type PersonaDimensionFilters,
@@ -180,15 +183,19 @@ function PersonaFilterChips({
   filters,
   fields,
   showStratify,
+  overlayLabels,
 }: {
   filters: PersonaDimensionFilters;
   fields: string[];
   showStratify: boolean;
+  overlayLabels?: Record<string, string>;
 }) {
   const { t } = useI18n();
   const labels = useDimensionLabels();
   const filterCount = activeFilterCount(filters);
   if (filterCount === 0 && !(showStratify && fields.length > 0)) return null;
+  const dimName = (dim: string) =>
+    overlayLabels?.[dim] || labels.dimLabel(dim, humanizeToken(dim));
   return (
     <div className="flex flex-wrap gap-1 px-0.5">
       {filters.sources.map((source) => (
@@ -209,7 +216,7 @@ function PersonaFilterChips({
               .map((value) => labels.valueLabel(dim, value))
               .join(", ")}
           >
-            {labels.dimLabel(dim, humanizeToken(dim))}
+            {dimName(dim)}
             <span className="text-primary/70"> · {values.length}</span>
           </span>
         ))}
@@ -219,8 +226,7 @@ function PersonaFilterChips({
               key={`st:${field}`}
               className="rounded-full border border-secondary/35 bg-secondary/10 px-2 py-0.5 text-[11px] text-secondary"
             >
-              {t("personaSetup.filters.stratify")} ·{" "}
-              {labels.dimLabel(field, humanizeToken(field))}
+              {t("personaSetup.filters.stratify")} · {dimName(field)}
             </span>
           ))
         : null}
@@ -676,6 +682,7 @@ export function PersonaSamplingRail({
   disabled,
 }: PersonaSamplingRailProps) {
   const { t } = useI18n();
+  const dimLabels = useDimensionLabels();
   const [filterOpen, setFilterOpen] = useState(false);
   const [filterTarget, setFilterTarget] = useState<"dataset" | "generation">(
     "dataset",
@@ -697,14 +704,18 @@ export function PersonaSamplingRail({
   const [saveOpen, setSaveOpen] = useState(false);
   const [savingDataset, setSavingDataset] = useState(false);
   const [saveDatasetError, setSaveDatasetError] = useState<string | null>(null);
-  const [genMode, setGenMode] = useState<"random" | "stratified">("random");
+  const [genMode, setGenMode] = useState<"random" | "perCell" | "total">(
+    "random",
+  );
   const [genCount, setGenCount] = useState(PERSONA_GENERATE_COUNT_DEFAULT);
   const [genCountDraft, setGenCountDraft] = useState<string | null>(null);
   const [genSeed, setGenSeed] = useState(42);
-  const [genAllocation, setGenAllocation] =
-    useState<StratifiedAllocation>("perCell");
   const [genPerCell, setGenPerCell] = useState(2);
   const [genSampleSize, setGenSampleSize] = useState(32);
+  const [genMarginals, setGenMarginals] = useState<
+    Record<string, Record<string, number>>
+  >({});
+  const [genOverlay, setGenOverlay] = useState<OverlayDimension[]>([]);
   const pullErrorRecoveryHint =
     pullError?.showRecoveryHint
       ? t("personaSetup.errors.poolCoverageHint", {
@@ -716,7 +727,6 @@ export function PersonaSamplingRail({
   const [genFilters, setGenFilters] = useState<PersonaDimensionFilters>(
     emptyPersonaDimensionFilters,
   );
-  const [genFields, setGenFields] = useState<string[]>([]);
   const [generating, setGenerating] = useState(false);
   const [generateError, setGenerateError] = useState<string | null>(null);
   const [generateProgress, setGenerateProgress] =
@@ -1079,6 +1089,26 @@ export function PersonaSamplingRail({
     ],
   );
 
+  const genAxes = useMemo(() => filterAxisIds(genFilters), [genFilters]);
+  const genOverlayLabels = useMemo(
+    () => Object.fromEntries(genOverlay.map((dim) => [dim.id, dim.label])),
+    [genOverlay],
+  );
+
+  useEffect(() => {
+    setGenMarginals((prev) => {
+      const next: Record<string, Record<string, number>> = {};
+      for (const dim of genAxes) {
+        const values = genFilters.dimensionFilters[dim] ?? [];
+        next[dim] = {};
+        for (const value of values) {
+          next[dim][value] = prev[dim]?.[value] ?? 1;
+        }
+      }
+      return next;
+    });
+  }, [genAxes, genFilters]);
+
   const handleGenerate = useCallback(async () => {
     setGenerating(true);
     setGenerateError(null);
@@ -1089,28 +1119,44 @@ export function PersonaSamplingRail({
       label: t("personaSetup.progress.startingGeneration"),
     });
     try {
-      const isStratified = genMode === "stratified";
-      if (isStratified && genFields.length === 0) {
-        throw new ApiError(422, t("personaSetup.errors.pickStratifyField"));
+      const hasOverlay = genOverlay.length > 0;
+      const needsFilters = genMode === "perCell" || genMode === "total";
+      if (needsFilters && genAxes.length === 0) {
+        throw new ApiError(422, t("personaSetup.errors.pickGenerateFilters"));
       }
-      const dimensionFilters = isStratified
-        ? filtersForSampleApi(genFilters)
-        : undefined;
+      const overlayFilterMap = Object.fromEntries(
+        genOverlay.map((dim) => [
+          dim.id,
+          genFilters.dimensionFilters[dim.id] ?? dim.values,
+        ]),
+      );
+      const dimensionFilters = {
+        ...(filtersForSampleApi(genFilters) ?? {}),
+        ...(filtersForSampleApi({
+          sources: [],
+          dimensionFilters: overlayFilterMap,
+        }) ?? {}),
+      };
       const result = await api.generatePersonaPool(
         {
-          count: isStratified ? undefined : genCount,
+          count: genMode === "random" ? genCount : undefined,
           seed: genSeed,
-          dimensionFilters,
-          fields: isStratified ? genFields : undefined,
+          dimensionFilters:
+            Object.keys(dimensionFilters).length > 0
+              ? dimensionFilters
+              : undefined,
+          fields: needsFilters ? genAxes : undefined,
           perCell:
-            isStratified && genAllocation === "perCell"
-              ? clampPerCell(genPerCell)
-              : undefined,
-          allocation: isStratified ? genAllocation : undefined,
-          sampleSize:
-            isStratified && genAllocation !== "perCell"
-              ? genSampleSize
-              : undefined,
+            genMode === "perCell" ? clampPerCell(genPerCell) : undefined,
+          allocation:
+            genMode === "perCell"
+              ? "perCell"
+              : genMode === "total"
+                ? "independentMarginal"
+                : undefined,
+          sampleSize: genMode === "total" ? genSampleSize : undefined,
+          marginals: genMode === "total" ? genMarginals : undefined,
+          overlayDimensions: hasOverlay ? genOverlay : undefined,
         },
         { onProgress: setGenerateProgress },
       );
@@ -1127,11 +1173,12 @@ export function PersonaSamplingRail({
     }
   }, [
     applyGeneratedPool,
-    genAllocation,
+    genAxes,
     genCount,
-    genFields,
     genFilters,
+    genMarginals,
     genMode,
+    genOverlay,
     genPerCell,
     genSampleSize,
     genSeed,
@@ -1346,8 +1393,8 @@ export function PersonaSamplingRail({
 
             {railSegment === "generation" ? (
               <div className="mb-2 space-y-1.5">
-                <div className="cockpit-segment cockpit-segment--grid grid-cols-2">
-                  {(["random", "stratified"] as const).map((tab) => (
+                <div className="cockpit-segment cockpit-segment--grid grid-cols-3">
+                  {(["random", "perCell", "total"] as const).map((tab) => (
                     <button
                       key={tab}
                       type="button"
@@ -1359,32 +1406,13 @@ export function PersonaSamplingRail({
                     >
                       {tab === "random"
                         ? t("personaSetup.tabs.random")
-                        : t("personaSetup.tabs.stratified")}
+                        : tab === "perCell"
+                          ? t("personaSetup.tabs.perCellGrid")
+                          : t("personaSetup.tabs.totalMix")}
                     </button>
                   ))}
                 </div>
-                {genMode === "stratified" ? (
-                  <div className="cockpit-segment cockpit-segment--grid grid-cols-3">
-                    {ALLOCATION_ORDER.map((alloc) => (
-                      <button
-                        key={alloc}
-                        type="button"
-                        title={allocationTitle(t, alloc)}
-                        disabled={disabled || generating}
-                        onClick={() => setGenAllocation(alloc)}
-                        className={`cockpit-segment__btn cockpit-segment__btn--compact w-full ${FOCUS_RING} ${
-                          genAllocation === alloc
-                            ? "cockpit-segment__btn--active"
-                            : ""
-                        }`}
-                      >
-                        {allocationLabel(t, alloc)}
-                      </button>
-                    ))}
-                  </div>
-                ) : null}
-                {genMode === "stratified" ? (
-                  <div className="space-y-1.5">
+                <div className="space-y-1.5">
                     <button
                       type="button"
                       disabled={disabled || generating}
@@ -1392,7 +1420,7 @@ export function PersonaSamplingRail({
                         setFilterTarget("generation");
                         setFilterOpen(true);
                       }}
-                      className={`glass-tile glass-tile--hover flex w-full items-center gap-2 rounded-lg px-2.5 py-2 text-left transition ${FOCUS_RING}`}
+                      className={`glass-tile glass-tile--hover flex w-full cursor-pointer items-center gap-2 rounded-lg px-2.5 py-2 text-left transition ${FOCUS_RING}`}
                     >
                       <Sym
                         name="tune"
@@ -1402,14 +1430,18 @@ export function PersonaSamplingRail({
                       <span className="min-w-0 flex-1 text-[13px] font-medium text-text-main">
                         {t("personaSetup.filters.title")}
                       </span>
-                      {activeFilterCount(genFilters) > 0 ? (
-                        <span className="rounded-full bg-primary/15 px-1.5 font-mono text-[11px] text-primary">
-                          {activeFilterCount(genFilters)}
+                      {filterSelectionCounts(genFilters).attributes > 0 ? (
+                        <span className="shrink-0 text-[11px] text-text-dim">
+                          {t(
+                            "personaSetup.filters.filterCount",
+                            filterSelectionCounts(genFilters),
+                          )}
                         </span>
-                      ) : null}
-                      {genFields.length > 0 ? (
-                        <span className="rounded-full bg-secondary/15 px-1.5 font-mono text-[11px] text-secondary">
-                          {genFields.length}×
+                      ) : genOverlay.length > 0 ? (
+                        <span className="shrink-0 text-[11px] text-text-dim">
+                          {t("personaSetup.filters.overlayCount", {
+                            count: genOverlay.length,
+                          })}
                         </span>
                       ) : null}
                       <Sym
@@ -1418,13 +1450,16 @@ export function PersonaSamplingRail({
                         className="shrink-0 text-text-dim"
                       />
                     </button>
-                    <PersonaFilterChips
-                      filters={genFilters}
-                      fields={genFields}
-                      showStratify
-                    />
+                    {filterSelectionCounts(genFilters).attributes > 0 ||
+                    genOverlay.length > 0 ? (
+                      <PersonaFilterChips
+                        filters={genFilters}
+                        fields={genAxes}
+                        showStratify={false}
+                        overlayLabels={genOverlayLabels}
+                      />
+                    ) : null}
                   </div>
-                ) : null}
                 <div className="flex items-end gap-2">
                   {genMode === "random" ? (
                     <>
@@ -1477,61 +1512,67 @@ export function PersonaSamplingRail({
                         />
                       </label>
                     </>
-                  ) : genAllocation === "perCell" ? (
-                    <label className="flex w-[4.25rem] shrink-0 flex-col gap-0.5">
-                      <span className="text-[12px] text-text-dim">
-                        {t("personaSetup.perCell")}
-                      </span>
-                      <input
-                        type="number"
-                        inputMode="numeric"
-                        min={1}
-                        max={50}
-                        step={1}
-                        value={genPerCell}
-                        disabled={disabled || generating}
-                        onChange={(e) =>
-                          setGenPerCell(clampPerCell(Number(e.target.value)))
-                        }
-                        className={`h-9 w-full rounded-lg border border-outline/50 bg-surface/60 px-1.5 text-center font-mono text-[15px] text-text-main disabled:opacity-50 ${FOCUS_RING}`}
-                      />
-                    </label>
                   ) : (
-                    <label className="flex w-[4.25rem] shrink-0 flex-col gap-0.5">
-                      <span className="text-[12px] text-text-dim">
-                        {t("personaSetup.strategy.sample")}
-                      </span>
-                      <input
-                        type="number"
-                        inputMode="numeric"
-                        min={2}
-                        max={PERSONA_GENERATE_COUNT_MAX}
-                        step={1}
-                        value={genSampleSize}
-                        disabled={disabled || generating}
-                        onChange={(e) =>
-                          setGenSampleSize(
-                            clampGenerateCount(Number(e.target.value)),
-                          )
-                        }
-                        className={`h-9 w-full rounded-lg border border-outline/50 bg-surface/60 px-1.5 text-center font-mono text-[15px] text-text-main disabled:opacity-50 ${FOCUS_RING}`}
-                      />
-                    </label>
+                    <>
+                      <label className="flex w-[4.25rem] shrink-0 flex-col gap-0.5">
+                        <span className="text-[12px] text-text-dim">
+                          {genMode === "perCell"
+                            ? t("personaSetup.perCell")
+                            : t("personaSetup.strategy.sample")}
+                        </span>
+                        <input
+                          type="number"
+                          inputMode="numeric"
+                          min={genMode === "perCell" ? 1 : 2}
+                          max={
+                            genMode === "perCell"
+                              ? 50
+                              : PERSONA_GENERATE_COUNT_MAX
+                          }
+                          step={1}
+                          value={
+                            genMode === "perCell" ? genPerCell : genSampleSize
+                          }
+                          disabled={disabled || generating}
+                          onChange={(e) => {
+                            const next = Number(e.target.value);
+                            if (genMode === "perCell") {
+                              setGenPerCell(clampPerCell(next));
+                            } else {
+                              setGenSampleSize(clampGenerateCount(next));
+                            }
+                          }}
+                          className={`h-9 w-full rounded-lg border border-outline/50 bg-surface/60 px-1.5 text-center font-mono text-[15px] text-text-main disabled:opacity-50 ${FOCUS_RING}`}
+                        />
+                      </label>
+                      <label className="flex w-[4.25rem] shrink-0 flex-col gap-0.5">
+                        <span className="text-[12px] text-text-dim">
+                          {t("personaSetup.seed")}
+                        </span>
+                        <input
+                          type="number"
+                          inputMode="numeric"
+                          step={1}
+                          value={genSeed}
+                          disabled={disabled || generating}
+                          onChange={(e) =>
+                            setGenSeed(Number(e.target.value) || 0)
+                          }
+                          className={`h-9 w-full rounded-lg border border-outline/50 bg-surface/60 px-1.5 text-center font-mono text-[15px] text-text-main disabled:opacity-50 ${FOCUS_RING}`}
+                        />
+                      </label>
+                    </>
                   )}
                   <button
                     type="button"
                     disabled={disabled || generating}
                     onClick={() => void handleGenerate()}
-                    className={`flex h-9 min-w-0 flex-1 items-center justify-center gap-1.5 rounded-lg bg-surface-high/90 text-[13px] font-medium text-text-main hover:bg-surface-high disabled:opacity-50 ${FOCUS_RING}`}
+                    className={`flex h-9 min-w-0 flex-1 cursor-pointer items-center justify-center gap-1.5 rounded-lg bg-primary text-[13px] font-medium text-on-primary hover:opacity-90 disabled:opacity-50 ${FOCUS_RING}`}
                   >
                     <Sym
                       name={generating ? "autorenew" : "auto_awesome"}
                       size={15}
-                      className={
-                        generating
-                          ? "animate-rb-spin text-primary"
-                          : "text-primary"
-                      }
+                      className={generating ? "animate-rb-spin" : undefined}
                     />
                     {generating
                       ? t("personaSetup.generating")
@@ -1542,7 +1583,13 @@ export function PersonaSamplingRail({
                   <GenerateProgressBar progress={generateProgress} />
                 ) : (
                   <p className="text-[11px] leading-snug text-text-dim">
-                    {t("personaSetup.generateDescription")}
+                    {t(
+                      genMode === "perCell"
+                        ? "personaSetup.generateHint.perCell"
+                        : genMode === "total"
+                          ? "personaSetup.generateHint.total"
+                          : "personaSetup.generateDescription",
+                    )}
                   </p>
                 )}
                 {generateError ? (
@@ -1563,7 +1610,9 @@ export function PersonaSamplingRail({
                     value={sourcePool}
                     options={datasetOptions}
                     disabled={disabled}
-                    showSelectedMeta={false}
+                    showSelectedMeta
+                    wideMenu
+                    wrapOptions
                     onChange={handleDatasetChange}
                   />
                 </div>
@@ -1780,14 +1829,12 @@ export function PersonaSamplingRail({
                           <span className="min-w-0 flex-1 text-[13px] font-medium text-text-main">
                             {t("personaSetup.filters.title")}
                           </span>
-                          {filterCount > 0 ? (
-                            <span
-                              className="rounded-full bg-primary/15 px-1.5 font-mono text-[11px] text-primary"
-                              title={t("personaSetup.filterGroupCount", {
-                                count: filterCount,
-                              })}
-                            >
-                              {filterCount}
+                          {filterSelectionCounts(filters).attributes > 0 ? (
+                            <span className="shrink-0 text-[11px] text-text-dim">
+                              {t(
+                                "personaSetup.filters.filterCount",
+                                filterSelectionCounts(filters),
+                              )}
                             </span>
                           ) : null}
                           {panelMode === "stratified" &&
@@ -2154,19 +2201,29 @@ export function PersonaSamplingRail({
         catalog={catalogQuery.data ?? null}
         filters={filterTarget === "generation" ? genFilters : filters}
         stratifyMode={
-          filterTarget === "generation"
-            ? genMode === "stratified"
-            : panelMode === "stratified"
+          filterTarget === "generation" ? false : panelMode === "stratified"
         }
-        fields={filterTarget === "generation" ? genFields : fields}
+        fields={filterTarget === "generation" ? [] : fields}
         onFieldsChange={
-          filterTarget === "generation" ? setGenFields : onFieldsChange
+          filterTarget === "generation" ? undefined : onFieldsChange
+        }
+        showMarginals={filterTarget === "generation" && genMode === "total"}
+        allowOverlayEdit={filterTarget === "generation"}
+        overlayDimensions={
+          filterTarget === "generation" ? genOverlay : undefined
+        }
+        marginals={
+          filterTarget === "generation" && genMode === "total"
+            ? genMarginals
+            : undefined
         }
         personaModel={personaModel}
         onClose={() => setFilterOpen(false)}
-        onConfirm={(next) => {
+        onConfirm={(next, nextMarginals, nextOverlay) => {
           if (filterTarget === "generation") {
             setGenFilters(next);
+            if (nextMarginals) setGenMarginals(nextMarginals);
+            if (nextOverlay !== undefined) setGenOverlay(nextOverlay);
             return;
           }
           onFiltersChange(next);

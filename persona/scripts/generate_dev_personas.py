@@ -19,6 +19,7 @@ from pathlib import Path
 from matraix.persona_dimension_catalog import values_for_dimension
 from matraix.persona_generator import (
     build_probe_strata,
+    extra_filters_from_strategy,
     generate_persona_pool,
     stratified_cell_quota,
     strategy_pin_cells,
@@ -360,12 +361,24 @@ def main() -> None:
     else:
         _progress("sample", "Sampling…")
 
+    extra_filters = None
+    if strategy_meta:
+        filters = strategy_meta.get("dimensionFilters")
+        sampling = strategy_meta.get("sampling")
+        fields = sampling.get("fields") if isinstance(sampling, dict) else None
+        if isinstance(filters, dict):
+            extra_filters = extra_filters_from_strategy(
+                {str(key): list(values) for key, values in filters.items() if isinstance(values, list)},
+                [str(field) for field in fields] if isinstance(fields, list) else None,
+            ) or None
+
     personas = generate_persona_pool(
         count=count,
         seed=args.seed,
         smoke_persona_id=args.smoke_id,
         stratum_top_up=stratum_top_up,
         min_per_stratum=stratum_min,
+        extra_filters=extra_filters,
         include_smoke=count > 0,
     )
     _progress("sample", f"Sampled {len(personas)} personas")

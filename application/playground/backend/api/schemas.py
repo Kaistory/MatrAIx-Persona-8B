@@ -952,6 +952,37 @@ class PersonaPoolSampleRequest(BaseModel):
     includePersonaIds: Optional[bool] = None
 
 
+class OverlayDimension(BaseModel):
+    """Cohort-scoped study dimension (id + label + allowed values)."""
+
+    id: str
+    label: str = ""
+    values: List[str] = Field(default_factory=list)
+
+    @field_validator("id")
+    @classmethod
+    def _trim_id(cls, value: str) -> str:
+        text = str(value or "").strip()
+        if not text:
+            raise ValueError("overlay dimension id is required")
+        return text
+
+    @field_validator("values")
+    @classmethod
+    def _trim_values(cls, value: List[str]) -> List[str]:
+        seen: set[str] = set()
+        out: list[str] = []
+        for item in value:
+            text = str(item).strip()
+            if not text or text in seen:
+                continue
+            seen.add(text)
+            out.append(text)
+        if not out:
+            raise ValueError("overlay dimension needs at least one value")
+        return out
+
+
 class PersonaPoolGenerateRequest(BaseModel):
     """Write a Full-DAG synthetic pool under ``persona/datasets/generated-persona-dev-*``."""
 
@@ -962,6 +993,10 @@ class PersonaPoolGenerateRequest(BaseModel):
     perCell: Optional[int] = None
     allocation: Optional[str] = None
     sampleSize: Optional[int] = None
+    marginals: Optional[Dict[str, Dict[str, float]]] = None
+    """Per-dimension value weights for allocation=independentMarginal."""
+    overlayDimensions: Optional[List["OverlayDimension"]] = None
+    """Cohort-scoped study dimensions (not part of the 1290 schema)."""
     taskPath: Optional[str] = None
     """When set, fill that task's ``persona_strategy.json`` (one-time synthesize)."""
     name: Optional[str] = None

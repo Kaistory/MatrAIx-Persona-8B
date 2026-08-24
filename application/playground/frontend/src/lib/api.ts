@@ -13,6 +13,7 @@ import type {
   PersonaDimensionLabels,
   PersonaMatchAttributesResponse,
   PersonaPoolCatalog,
+  OverlayDimension,
   PersonaPoolCardsResponse,
   PersonaPoolIdsResponse,
   PersonaPoolPersonaDetail,
@@ -379,6 +380,8 @@ export const api = {
       perCell?: number;
       allocation?: string;
       sampleSize?: number;
+      marginals?: Record<string, Record<string, number>>;
+      overlayDimensions?: OverlayDimension[];
       taskPath?: string;
       name?: string;
     },

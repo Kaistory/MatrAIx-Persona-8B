@@ -66,6 +66,7 @@ PERSONA_CARD_PREVIEW_DEFAULT = 32
 GENERATE_COUNT_DEFAULT = 2000
 GENERATE_COUNT_MAX = 5000
 GENERATED_POOL_PREFIX = "generated-persona-dev"
+_GENERATED_RUN_TS = re.compile(r"^(.*)-(\d{8})-(\d{6})(?:-\d+)?$")
 CohortKind = Literal["recipe", "frozen"]
 
 
@@ -120,6 +121,72 @@ def _cohort_slug(value: str) -> str:
     if not slug:
         raise ValueError("cohort id must not be empty")
     return slug
+
+
+def _overlay_from_manifest(manifest: dict[str, Any]) -> list[dict[str, Any]]:
+    raw = manifest.get("overlay_dimensions")
+    if raw is None:
+        raw = manifest.get("overlayDimensions")
+    if not isinstance(raw, list):
+        return []
+    out: list[dict[str, Any]] = []
+    for row in raw:
+        if not isinstance(row, dict):
+            continue
+        dim_id = str(row.get("id") or "").strip()
+        values = [str(value) for value in (row.get("values") or []) if str(value).strip()]
+        if not dim_id or not values:
+            continue
+        out.append(
+            {
+                "id": dim_id,
+                "label": str(row.get("label") or dim_id).strip(),
+                "values": values,
+            }
+        )
+    return out
+
+
+def _generated_run_stamp() -> str:
+    return datetime.now().astimezone().strftime("%Y%m%d-%H%M%S")
+
+
+def _generated_pool_folder(kind_slug: str, datasets_root: Path) -> str:
+    """``generated-persona-dev-<kind>-YYYYMMDD-HHMMSS`` so runs do not overwrite."""
+    stamp = _generated_run_stamp()
+    base = f"{GENERATED_POOL_PREFIX}-{kind_slug}-{stamp}"
+    folder = base
+    n = 2
+    while (datasets_root / folder).exists():
+        folder = f"{base}-{n}"
+        n += 1
+    return folder
+
+
+def _generated_pool_label(folder: str, path: Path | None = None) -> str:
+    """``stratified · 2026-08-23 19:28:47`` — from the folder name, else mtime."""
+    prefix = f"{GENERATED_POOL_PREFIX}-"
+    if not folder.startswith(prefix):
+        return folder
+    rest = folder[len(prefix):]
+    match = _GENERATED_RUN_TS.match(rest)
+    if match:
+        kind, day, tod = match.group(1), match.group(2), match.group(3)
+        stamp = f"{day[:4]}-{day[4:6]}-{day[6:]} {tod[:2]}:{tod[2:4]}:{tod[4:]}"
+        return f"{kind} · {stamp}"
+    when = None
+    if path is not None:
+        try:
+            when = (
+                datetime.fromtimestamp(path.stat().st_mtime)
+                .astimezone()
+                .strftime("%Y-%m-%d %H:%M")
+            )
+        except OSError:
+            when = None
+    if when:
+        return f"{rest} · {when}"
+    return folder
 
 
 def _sampled_cohort_pool(parent_pool: str, digest: str) -> str:
@@ -429,6 +496,7 @@ class PersonaPoolService:
                 "sourceCounts": {},
                 "schemaVersion": None,
                 "dimensionCategoriesPath": DIMENSION_CATEGORIES_PATH,
+                "overlayDimensions": [],
             }
         manifest = self._read_json(manifest_path)
         return {
@@ -440,6 +508,7 @@ class PersonaPoolService:
             "dimensionCategoriesPath": str(
                 manifest.get("dimension_categories") or DIMENSION_CATEGORIES_PATH
             ),
+            "overlayDimensions": _overlay_from_manifest(manifest),
         }
 
     def load_dimension_categories(
@@ -499,7 +568,10 @@ class PersonaPoolService:
             is_production_1m_root,
             production_1m_available,
         )
-        from backend.service.persona_taxonomy import build_production_filter_categories
+        from backend.service.persona_taxonomy import (
+            build_production_filter_categories,
+            prepend_overlay_group,
+        )
 
         if is_production_1m_root(persona_pool):
             source_counts = {
@@ -541,6 +613,9 @@ class PersonaPoolService:
             schema_path=dimensions_schema if dimensions_schema.is_file() else None,
             persona_sources=persona_sources,
         )
+        overlay = list(summary.get("overlayDimensions") or [])
+        if overlay:
+            categories = prepend_overlay_group(categories, overlay)
         return {
             **summary,
             "dimensionCategoriesPath": "persona/schema/dimensions.json",
@@ -664,8 +739,13 @@ class PersonaPoolService:
                     if manifest_kind == "saved-persona-dataset"
                     else "dataset"
                 )
+                label = (
+                    _generated_pool_label(child.name, child)
+                    if child.name.startswith(f"{GENERATED_POOL_PREFIX}-")
+                    else child.name
+                )
                 by_pool[pool] = self._dataset_entry(
-                    pool=pool, label=child.name, kind=kind, path=child
+                    pool=pool, label=label, kind=kind, path=child
                 )
 
             # Intentionally omit matraix-persona-1m/cohorts/* from Dataset.
@@ -809,6 +889,9 @@ class PersonaPoolService:
             "hf_repo": parent_manifest.get("hf_repo"),
             "personas": manifest_personas,
         }
+        overlay = _overlay_from_manifest(parent_manifest)
+        if overlay:
+            manifest["overlay_dimensions"] = overlay
         (dest_dir / "manifest.json").write_text(
             json.dumps(manifest, indent=2, ensure_ascii=True) + "\n",
             encoding="utf-8",
@@ -832,6 +915,8 @@ class PersonaPoolService:
         allocation: str | None = None,
         per_cell: int | None = None,
         sample_size: int | None = None,
+        marginals: dict[str, dict[str, float]] | None = None,
+        overlay_dimensions: list[dict[str, Any]] | None = None,
         task_path: str | None = None,
         name: str | None = None,
         on_progress: Callable[[dict[str, Any]], None] | None = None,
@@ -840,12 +925,22 @@ class PersonaPoolService:
 
         ``task_path`` loads that task's ``persona_strategy.json`` (one-time fill).
         Otherwise this is a custom Generation draw (plain ``count`` or stratified).
+        ``overlay_dimensions`` are cohort-scoped study attrs (not Full-DAG / 1290).
 
         ``on_progress`` receives NDJSON-friendly events::
             ``{"type":"progress","stage":...,"ratio":0..1,"label":...}``.
         """
         from matraix.persona_generator import (
+            extra_filters_from_strategy,
+            fill_overlay_filters,
             generate_persona_pool,
+            independent_marginal_cell_quotas,
+            load_catalog_values,
+            normalize_overlay_dimensions,
+            product_filter_cells,
+            split_overlay_filters,
+            stamp_overlay_from_cells,
+            stamp_overlay_independent,
             stratified_cell_quota,
             strategy_pin_cells,
             write_persona_dataset,
@@ -921,7 +1016,28 @@ class PersonaPoolService:
             task_slug = _cohort_slug(Path(str(task_path).strip()).name)
             kind_slug = kind_slug or f"strategy-{task_slug}"
 
-        missing = [field for field in fields if field not in filters]
+        overlay = normalize_overlay_dimensions(overlay_dimensions)
+        overlay_ids = {str(row["id"]) for row in overlay}
+        if overlay:
+            schema_path = self.repo_root / "persona/schema/dimensions.json"
+            catalog_ids = (
+                set(load_catalog_values(schema_path)) if schema_path.is_file() else set()
+            )
+            colliding = sorted(overlay_ids & catalog_ids)
+            if colliding:
+                raise ValueError(
+                    "overlay dimension id collides with the 1290 schema: "
+                    + ", ".join(colliding)
+                )
+
+        catalog_filters, overlay_raw_filters = split_overlay_filters(filters, overlay_ids)
+        overlay_filters = (
+            fill_overlay_filters(overlay, overlay_raw_filters) if overlay else {}
+        )
+        catalog_fields = [field for field in fields if field not in overlay_ids]
+        overlay_fields = [field for field in fields if field in overlay_ids]
+        missing = [field for field in catalog_fields if field not in catalog_filters]
+        missing.extend(field for field in overlay_fields if field not in overlay_filters)
         if missing:
             raise ValueError(
                 "every sampling.fields entry must also appear in dimensionFilters "
@@ -930,34 +1046,145 @@ class PersonaPoolService:
 
         stratum_top_up: list[dict[str, str]] | None = None
         min_per_stratum = 0
+        cell_quotas: list[int] | None = None
         pool_count = 0
-        pin_cells = bool(task_path) or bool(fields) or bool(filters and alloc)
+        full_cells: list[dict[str, str]] | None = None
+        full_quotas: list[int] | None = None
+        pin_cells = bool(task_path) or bool(catalog_fields) or bool(catalog_filters and alloc)
+        overlay_grid = bool(overlay_fields)
+        overlay_axis_filters = (
+            {key: list(overlay_filters[key]) for key in overlay_fields}
+            if overlay_fields
+            else {}
+        )
+
         if pin_cells:
-            if not filters:
+            if not catalog_filters:
                 raise ValueError("stratified generation requires dimensionFilters")
             cells, dropped = strategy_pin_cells(
-                dimension_filters=filters,
-                stratify_fields=fields,
+                dimension_filters=catalog_filters,
+                stratify_fields=catalog_fields,
                 seed=seed,
                 max_strata=MAX_FILTER_STRATA,
             )
             del dropped
             if not cells:
                 raise ValueError("dimensionFilters produced zero cells the DAG can pin")
-            min_per_stratum = stratified_cell_quota(
-                allocation=alloc,
-                per_cell=per_cell_n,
-                sample_size=sample_n,
-                n_cells=len(cells),
-            )
-            estimated = len(cells) * min_per_stratum
-            if estimated > GENERATE_COUNT_MAX:
-                raise ValueError(
-                    f"stratified generation would write {estimated} personas "
-                    f"(max {GENERATE_COUNT_MAX})"
+            if overlay_grid:
+                overlay_cells = product_filter_cells(overlay_axis_filters)
+                full_cells = [
+                    {**dag_cell, **overlay_cell}
+                    for dag_cell in cells
+                    for overlay_cell in overlay_cells
+                ]
+                grid_filters = {**catalog_filters, **overlay_axis_filters}
+                if alloc == "independentMarginal":
+                    if not isinstance(sample_n, int) or sample_n < 1:
+                        raise ValueError(
+                            'allocation "independentMarginal" requires sampleSize >= 1'
+                        )
+                    full_quotas = independent_marginal_cell_quotas(
+                        full_cells,
+                        sample_n,
+                        dimension_filters=grid_filters,
+                        marginals=marginals,
+                    )
+                    estimated = sample_n
+                    dag_quota_map: dict[tuple[tuple[str, str], ...], int] = {}
+                    dag_order: list[tuple[tuple[str, str], ...]] = []
+                    for cell, quota in zip(full_cells, full_quotas, strict=True):
+                        key = tuple(
+                            sorted(
+                                (dim, value)
+                                for dim, value in cell.items()
+                                if dim not in overlay_ids
+                            )
+                        )
+                        if key not in dag_quota_map:
+                            dag_order.append(key)
+                            dag_quota_map[key] = 0
+                        dag_quota_map[key] += int(quota)
+                    stratum_top_up = [dict(key) for key in dag_order]
+                    cell_quotas = [dag_quota_map[key] for key in dag_order]
+                    min_per_stratum = 0
+                else:
+                    min_full = stratified_cell_quota(
+                        allocation=alloc,
+                        per_cell=per_cell_n,
+                        sample_size=sample_n,
+                        n_cells=len(full_cells),
+                    )
+                    estimated = len(full_cells) * min_full
+                    full_quotas = [min_full] * len(full_cells)
+                    min_per_stratum = min_full * len(overlay_cells)
+                    stratum_top_up = cells
+                if estimated > GENERATE_COUNT_MAX:
+                    raise ValueError(
+                        f"stratified generation would write {estimated} personas "
+                        f"(max {GENERATE_COUNT_MAX})"
+                    )
+                pool_count = 0
+            elif alloc == "independentMarginal":
+                if not isinstance(sample_n, int) or sample_n < 1:
+                    raise ValueError(
+                        'allocation "independentMarginal" requires sampleSize >= 1'
+                    )
+                cell_quotas = independent_marginal_cell_quotas(
+                    cells,
+                    sample_n,
+                    dimension_filters=catalog_filters,
+                    marginals=marginals,
                 )
-            stratum_top_up = cells
-            pool_count = 0
+                estimated = sample_n
+                if estimated > GENERATE_COUNT_MAX:
+                    raise ValueError(
+                        f"stratified generation would write {estimated} personas "
+                        f"(max {GENERATE_COUNT_MAX})"
+                    )
+                stratum_top_up = cells
+                pool_count = 0
+            else:
+                min_per_stratum = stratified_cell_quota(
+                    allocation=alloc,
+                    per_cell=per_cell_n,
+                    sample_size=sample_n,
+                    n_cells=len(cells),
+                )
+                estimated = len(cells) * min_per_stratum
+                if estimated > GENERATE_COUNT_MAX:
+                    raise ValueError(
+                        f"stratified generation would write {estimated} personas "
+                        f"(max {GENERATE_COUNT_MAX})"
+                    )
+                stratum_top_up = cells
+                pool_count = 0
+        elif overlay_grid:
+            full_cells = product_filter_cells(overlay_axis_filters)
+            if alloc == "independentMarginal":
+                if not isinstance(sample_n, int) or sample_n < 1:
+                    raise ValueError(
+                        'allocation "independentMarginal" requires sampleSize >= 1'
+                    )
+                full_quotas = independent_marginal_cell_quotas(
+                    full_cells,
+                    sample_n,
+                    dimension_filters=overlay_axis_filters,
+                    marginals=marginals,
+                )
+                pool_count = sample_n
+            else:
+                min_full = stratified_cell_quota(
+                    allocation=alloc,
+                    per_cell=per_cell_n,
+                    sample_size=sample_n,
+                    n_cells=len(full_cells),
+                )
+                full_quotas = [min_full] * len(full_cells)
+                pool_count = len(full_cells) * min_full
+            if pool_count < 1:
+                raise ValueError("count must be >= 1")
+            if pool_count > GENERATE_COUNT_MAX:
+                raise ValueError(f"count must be <= {GENERATE_COUNT_MAX}")
         else:
             pool_count = GENERATE_COUNT_DEFAULT if count is None else int(count)
             if pool_count < 1:
@@ -967,7 +1194,7 @@ class PersonaPoolService:
 
         if not kind_slug:
             kind_slug = str(pool_count if pool_count > 0 else "stratified")
-        folder = f"{GENERATED_POOL_PREFIX}-{kind_slug}"
+        folder = _generated_pool_folder(kind_slug, self.repo_root / DATASETS_DIR)
         rel_pool = f"{DATASETS_DIR}/{folder}"
         out_dir = self.repo_root / rel_pool
 
@@ -985,15 +1212,50 @@ class PersonaPoolService:
                 else "Sampling stratified cells…"
             ),
         )
+        extra_filters = (
+            extra_filters_from_strategy(catalog_filters, catalog_fields)
+            if pin_cells
+            else catalog_filters
+        )
         personas = generate_persona_pool(
             count=pool_count,
             seed=seed,
             stratum_top_up=stratum_top_up,
             min_per_stratum=min_per_stratum,
-            include_smoke=pool_count > 0,
+            extra_filters=extra_filters or None,
+            cell_quotas=cell_quotas,
+            include_smoke=pool_count > 0 and not overlay_grid,
         )
         if not personas:
             raise ValueError("generation produced no personas")
+        if overlay:
+            if full_cells is not None and full_quotas is not None:
+                stamp_overlay_from_cells(
+                    personas, full_cells, full_quotas, overlay_ids
+                )
+            leftover = [
+                row
+                for row in overlay
+                if full_cells is None
+                or str(row["id"]) not in overlay_fields
+            ]
+            if leftover:
+                stamp_overlay_independent(
+                    personas,
+                    leftover,
+                    overlay_filters,
+                    seed=seed + 1,
+                )
+            rng = random.Random(seed + 2)
+            for row in overlay:
+                values = overlay_filters.get(str(row["id"])) or list(row["values"])
+                if not values:
+                    continue
+                dim_id = str(row["id"])
+                for entry in personas:
+                    dims = entry.setdefault("dimensions", {})
+                    if dim_id not in dims:
+                        dims[dim_id] = rng.choice(values)
         emit(
             "sample",
             ratio=0.18,
@@ -1026,13 +1288,14 @@ class PersonaPoolService:
             kind=folder,
             seed=seed,
             smoke_persona_id="0042",
+            overlay_dimensions=overlay or None,
             on_progress=_write_progress if on_progress is not None else None,
         )
         emit("done", ratio=1.0, label=f"Generated {int(manifest['count'])} personas")
         persona_ids = [str(entry["persona_id"]) for entry in personas]
         return {
             "pool": rel_pool,
-            "label": folder,
+            "label": _generated_pool_label(folder),
             "count": int(manifest["count"]),
             "dimensionCount": int(manifest.get("dimension_count") or 0),
             "source": "synthetic",

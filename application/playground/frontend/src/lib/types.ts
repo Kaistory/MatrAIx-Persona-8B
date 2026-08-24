@@ -942,6 +942,12 @@ export interface PersonaPoolDimensionGroup {
   subgroups?: PersonaPoolDimensionSubgroup[];
 }
 
+export interface OverlayDimension {
+  id: string;
+  label: string;
+  values: string[];
+}
+
 export interface PersonaPoolCatalog {
   pool: string;
   count: number;
@@ -957,6 +963,7 @@ export interface PersonaPoolCatalog {
       groups?: PersonaPoolDimensionGroup[];
     };
   };
+  overlayDimensions?: OverlayDimension[];
 }
 
 export interface PersonaMatchedAttribute {

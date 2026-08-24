@@ -3,9 +3,11 @@
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 
 import pytest
+import yaml
 
 from backend.service.persona_pool_service import PersonaPoolService
 
@@ -111,6 +113,14 @@ def test_list_datasets_includes_default_and_extras(tmp_path):
         json.dumps({"count": 50, "personas": []}),
         encoding="utf-8",
     )
+    generated_run = (
+        repo / "persona" / "datasets" / "generated-persona-dev-stratified-20260823-192847"
+    )
+    generated_run.mkdir(parents=True)
+    (generated_run / "manifest.json").write_text(
+        json.dumps({"count": 32, "personas": []}),
+        encoding="utf-8",
+    )
     generated = repo / "persona" / "datasets" / "_generated" / "strategy-demo"
     generated.mkdir(parents=True)
     (generated / "manifest.json").write_text(
@@ -141,6 +151,9 @@ def test_list_datasets_includes_default_and_extras(tmp_path):
     assert listed[0]["label"] == "matraix-persona-dev-sample"
     assert "persona/datasets/bench-dev-extra" in pools
     assert "persona/datasets/generated-persona-dev-50" in pools
+    assert (
+        "persona/datasets/generated-persona-dev-stratified-20260823-192847" in pools
+    )
     # Nested leftover `_generated/` dirs stay omitted from Dataset.
     assert "persona/datasets/_generated/strategy-demo" not in pools
     assert "persona/datasets/saved-cohorts/ignore-me" not in pools
@@ -149,6 +162,15 @@ def test_list_datasets_includes_default_and_extras(tmp_path):
     by_pool = {item["pool"]: item for item in listed}
     assert by_pool["persona/datasets/bench-dev-extra"]["count"] == 1
     assert by_pool["persona/datasets/generated-persona-dev-50"]["count"] == 50
+    assert by_pool["persona/datasets/generated-persona-dev-50"]["label"].startswith(
+        "50 · "
+    )
+    assert (
+        by_pool["persona/datasets/generated-persona-dev-stratified-20260823-192847"][
+            "label"
+        ]
+        == "stratified · 2026-08-23 19:28:47"
+    )
     assert "persona/datasets/matraix-persona-1m" in by_pool
     assert by_pool["persona/datasets/matraix-persona-1m"]["kind"] == "production"
 
@@ -756,13 +778,63 @@ def test_generate_synthetic_pool_random_count(tmp_path, monkeypatch):
         fake_generate,
     )
     result = service.generate_synthetic_pool(count=2, seed=7)
-    assert result["pool"] == "persona/datasets/generated-persona-dev-2"
+    assert re.fullmatch(
+        r"persona/datasets/generated-persona-dev-2-\d{8}-\d{6}",
+        result["pool"],
+    )
+    assert result["label"].startswith("2 · ")
     assert result["count"] == 2
     assert result["source"] == "synthetic"
     assert result["personaIds"] == ["0001", "0002"]
-    dest = tmp_path / "persona/datasets/generated-persona-dev-2"
+    dest = tmp_path / result["pool"]
     assert (dest / "persona_0001.yaml").is_file()
     assert (dest / "manifest.json").is_file()
+
+
+def test_generate_synthetic_pool_random_applies_catalog_filters(tmp_path, monkeypatch):
+    _write_pool(tmp_path)
+    service = PersonaPoolService(repo_root=tmp_path)
+    captured = {}
+
+    def fake_generate(**kwargs):
+        captured.update(kwargs)
+        return [_fake_generated_persona("0001"), _fake_generated_persona("0002")]
+
+    monkeypatch.setattr(
+        "matraix.persona_generator.generate_persona_pool",
+        fake_generate,
+    )
+    service.generate_synthetic_pool(
+        count=2,
+        seed=7,
+        dimension_filters={"age_bracket": ["25-34"]},
+        overlay_dimensions=[
+            {"id": "overlay_1", "label": "品牌信任", "values": ["Low", "High"]},
+        ],
+    )
+    assert captured["count"] == 2
+    assert captured["extra_filters"] == {"age_bracket": ["25-34"]}
+    assert captured["stratum_top_up"] is None
+
+
+def test_generate_synthetic_pool_keeps_prior_run(tmp_path, monkeypatch):
+    _write_pool(tmp_path)
+    service = PersonaPoolService(repo_root=tmp_path)
+    monkeypatch.setattr(
+        "matraix.persona_generator.generate_persona_pool",
+        lambda **kwargs: [_fake_generated_persona("0001"), _fake_generated_persona("0002")],
+    )
+    stamps = iter(["20260823-192847", "20260823-192847"])
+    monkeypatch.setattr(
+        "backend.service.persona_pool_service._generated_run_stamp",
+        lambda: next(stamps),
+    )
+    first = service.generate_synthetic_pool(count=2, seed=1)
+    second = service.generate_synthetic_pool(count=2, seed=2)
+    assert first["pool"] == "persona/datasets/generated-persona-dev-2-20260823-192847"
+    assert second["pool"] == "persona/datasets/generated-persona-dev-2-20260823-192847-2"
+    assert (tmp_path / first["pool"] / "manifest.json").is_file()
+    assert (tmp_path / second["pool"] / "manifest.json").is_file()
 
 
 def test_generate_synthetic_pool_rejects_over_max(tmp_path):
@@ -794,7 +866,11 @@ def test_generate_synthetic_pool_stratified(tmp_path, monkeypatch):
         per_cell=2,
         seed=1,
     )
-    assert result["pool"] == "persona/datasets/generated-persona-dev-stratified"
+    assert re.fullmatch(
+        r"persona/datasets/generated-persona-dev-stratified-\d{8}-\d{6}",
+        result["pool"],
+    )
+    assert result["label"].startswith("stratified · ")
     assert result["count"] == 2
 
 
@@ -827,7 +903,10 @@ def test_generate_synthetic_pool_from_task_strategy(tmp_path, monkeypatch):
         lambda **kwargs: [_fake_generated_persona("0001"), _fake_generated_persona("0002")],
     )
     result = service.generate_synthetic_pool(task_path="application/tasks/demo-task")
-    assert result["pool"] == "persona/datasets/generated-persona-dev-strategy-demo-task"
+    assert re.fullmatch(
+        r"persona/datasets/generated-persona-dev-strategy-demo-task-\d{8}-\d{6}",
+        result["pool"],
+    )
     assert result["count"] == 2
 
 
@@ -877,3 +956,163 @@ def test_get_dimension_labels_rejects_unsafe_locale_tokens(tmp_path):
     for bad in ("", "../secrets", "zh Hans", "a/b", "x" * 33):
         with pytest.raises(ValueError):
             service.get_dimension_labels(bad)
+
+
+def test_generate_synthetic_pool_stamps_overlay(tmp_path, monkeypatch):
+    _write_pool(tmp_path)
+    service = PersonaPoolService(repo_root=tmp_path)
+    monkeypatch.setattr(
+        "matraix.persona_generator.generate_persona_pool",
+        lambda **kwargs: [_fake_generated_persona("0001"), _fake_generated_persona("0002")],
+    )
+    overlay = [
+        {"id": "study_trust", "label": "品牌信任", "values": ["Low", "High"]},
+    ]
+    result = service.generate_synthetic_pool(
+        count=2,
+        seed=7,
+        overlay_dimensions=overlay,
+    )
+    dest = tmp_path / result["pool"]
+    manifest = json.loads((dest / "manifest.json").read_text(encoding="utf-8"))
+    assert manifest["overlay_dimensions"][0]["id"] == "study_trust"
+    yaml_text = (dest / "persona_0001.yaml").read_text(encoding="utf-8")
+    assert "study_trust:" in yaml_text
+    catalog = service.get_catalog(result["pool"])
+    groups = catalog["dimensionCategories"]["devProfile"]["groups"]
+    assert groups[0]["id"] == "study-overlay"
+    assert groups[0]["dimensions"][0]["label"] == "品牌信任"
+
+
+def test_generate_synthetic_pool_overlay_only_per_cell(tmp_path, monkeypatch):
+    _write_pool(tmp_path)
+    service = PersonaPoolService(repo_root=tmp_path)
+    captured = {}
+
+    def fake_generate(**kwargs):
+        captured.update(kwargs)
+        return [_fake_generated_persona("0001"), _fake_generated_persona("0002")]
+
+    monkeypatch.setattr(
+        "matraix.persona_generator.generate_persona_pool",
+        fake_generate,
+    )
+    overlay = [
+        {"id": "study_trust", "label": "品牌信任", "values": ["Low", "High"]},
+    ]
+    result = service.generate_synthetic_pool(
+        seed=3,
+        overlay_dimensions=overlay,
+        dimension_filters={"study_trust": ["Low", "High"]},
+        stratify_fields=["study_trust"],
+        allocation="perCell",
+        per_cell=1,
+    )
+    assert captured["count"] == 2
+    assert captured["stratum_top_up"] is None
+    assert captured["include_smoke"] is False
+    dest = tmp_path / result["pool"]
+    values = {
+        yaml.safe_load((dest / name).read_text(encoding="utf-8"))["dimensions"]["study_trust"]
+        for name in ("persona_0001.yaml", "persona_0002.yaml")
+    }
+    assert values == {"Low", "High"}
+
+
+def test_generate_synthetic_pool_overlay_with_catalog_per_cell(tmp_path, monkeypatch):
+    _write_pool(tmp_path)
+    service = PersonaPoolService(repo_root=tmp_path)
+    monkeypatch.setattr(
+        "matraix.persona_generator.strategy_pin_cells",
+        lambda **kwargs: ([{"age_bracket": "25-34"}], []),
+    )
+
+    def fake_generate(**kwargs):
+        assert kwargs["min_per_stratum"] == 2
+        assert kwargs["count"] == 0
+        return [_fake_generated_persona("0001"), _fake_generated_persona("0002")]
+
+    monkeypatch.setattr(
+        "matraix.persona_generator.generate_persona_pool",
+        fake_generate,
+    )
+    result = service.generate_synthetic_pool(
+        seed=4,
+        overlay_dimensions=[
+            {"id": "study_trust", "label": "品牌信任", "values": ["Low", "High"]},
+        ],
+        dimension_filters={
+            "age_bracket": ["25-34"],
+            "study_trust": ["Low", "High"],
+        },
+        stratify_fields=["age_bracket", "study_trust"],
+        allocation="perCell",
+        per_cell=1,
+    )
+    dest = tmp_path / result["pool"]
+    values = set()
+    for name in ("persona_0001.yaml", "persona_0002.yaml"):
+        dims = yaml.safe_load((dest / name).read_text(encoding="utf-8"))["dimensions"]
+        assert dims["age_bracket"] == "25-34"
+        values.add(dims["study_trust"])
+    assert values == {"Low", "High"}
+
+
+def test_save_generated_pool_keeps_overlay_for_filter_and_catalog(tmp_path, monkeypatch):
+    _write_pool(tmp_path)
+    service = PersonaPoolService(repo_root=tmp_path)
+    monkeypatch.setattr(
+        "matraix.persona_generator.generate_persona_pool",
+        lambda **kwargs: [_fake_generated_persona("0001"), _fake_generated_persona("0002")],
+    )
+    generated = service.generate_synthetic_pool(
+        seed=7,
+        overlay_dimensions=[
+            {"id": "study_trust", "label": "品牌信任", "values": ["Low", "High"]},
+        ],
+        dimension_filters={"study_trust": ["Low", "High"]},
+        stratify_fields=["study_trust"],
+        allocation="perCell",
+        per_cell=1,
+    )
+    saved = service.save_pool_as_dataset(
+        source_pool=generated["pool"],
+        name="Overlay Cohort",
+    )
+    catalog = service.get_catalog(saved["pool"])
+    groups = catalog["dimensionCategories"]["devProfile"]["groups"]
+    assert groups[0]["id"] == "study-overlay"
+    assert groups[0]["dimensions"][0]["label"] == "品牌信任"
+    matched = service.filter_pool(
+        persona_pool=saved["pool"],
+        dimension_filters={"study_trust": ["Low"]},
+    )
+    assert len(matched) == 1
+    dims = yaml.safe_load((tmp_path / matched[0]["path"]).read_text(encoding="utf-8"))[
+        "dimensions"
+    ]
+    assert dims["study_trust"] == "Low"
+
+
+def test_generate_synthetic_pool_rejects_schema_collision(tmp_path):
+    _write_pool(tmp_path)
+    schema_dir = tmp_path / "persona" / "schema"
+    schema_dir.mkdir(parents=True, exist_ok=True)
+    (schema_dir / "dimensions.json").write_text(
+        json.dumps(
+            {
+                "dimensions": [
+                    {"id": "age_bracket", "label": "Age", "values": ["25-34"]},
+                ]
+            }
+        ),
+        encoding="utf-8",
+    )
+    service = PersonaPoolService(repo_root=tmp_path)
+    with pytest.raises(ValueError, match="collides"):
+        service.generate_synthetic_pool(
+            count=1,
+            overlay_dimensions=[
+                {"id": "age_bracket", "label": "Age", "values": ["25-34"]},
+            ],
+        )

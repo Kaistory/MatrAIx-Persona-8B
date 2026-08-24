@@ -1187,6 +1187,11 @@ def create_app(catalog_path: Optional[str] = None) -> FastAPI:
             allocation=body.allocation,
             per_cell=body.perCell,
             sample_size=body.sampleSize,
+            marginals=body.marginals,
+            overlay_dimensions=[
+                row.model_dump() for row in (body.overlayDimensions or [])
+            ]
+            or None,
             task_path=body.taskPath,
             name=body.name,
         )
