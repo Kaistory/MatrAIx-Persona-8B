@@ -536,12 +536,9 @@ def _overlay_labels_from_persona_cache(
             continue
         if not isinstance(payload, dict):
             continue
-        raw = payload.get("overlay_dimensions")
-        if raw is None:
-            raw = payload.get("overlayDimensions")
-        if not isinstance(raw, list):
-            continue
-        for row in raw:
+        from matraix.persona_generator import overlay_dimensions_from_manifest
+
+        for row in overlay_dimensions_from_manifest(payload):
             if not isinstance(row, dict):
                 continue
             dim_id = str(row.get("id") or "").strip()

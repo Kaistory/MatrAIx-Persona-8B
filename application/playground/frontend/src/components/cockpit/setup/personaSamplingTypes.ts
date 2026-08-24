@@ -131,16 +131,6 @@ export function suggestOverlayId(label?: string): string {
   return OVERLAY_ID_RE.test(slug) ? slug : "";
 }
 
-export function nextOverlayId(taken: Set<string>, label?: string): string {
-  const fromLabel = suggestOverlayId(label);
-  const base = fromLabel || "overlay";
-  if (base !== "overlay" && !taken.has(base)) return base;
-  let n = base === "overlay" ? 1 : 2;
-  const prefix = base === "overlay" ? "overlay" : base;
-  while (taken.has(`${prefix}_${n}`)) n += 1;
-  return `${prefix}_${n}`;
-}
-
 export function filtersForSampleApi(
   filters: PersonaDimensionFilters,
 ): Record<string, string | string[]> | undefined {

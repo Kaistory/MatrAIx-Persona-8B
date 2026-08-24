@@ -392,3 +392,116 @@ def test_checked_in_sample_manifest_is_consistent() -> None:
         assert payload.get("source") in sources
         assert payload["dimensions"]
         assert set(payload["dimensions"]) <= catalog_ids
+
+
+def test_parse_overlay_and_filter_cli() -> None:
+    from matraix.persona_generator import (
+        normalize_overlay_dimensions,
+        parse_filter_cli,
+        parse_overlay_cli,
+    )
+
+    row = normalize_overlay_dimensions(
+        [parse_overlay_cli("brand_trust:Brand trust=Low,High")]
+    )[0]
+    assert row["id"] == "brand_trust"
+    assert row["label"] == "Brand trust"
+    assert row["values"] == ["Low", "High"]
+    dim, values = parse_filter_cli("age_bracket=25-34,35-44")
+    assert dim == "age_bracket"
+    assert values == ["25-34", "35-44"]
+
+
+def test_overlay_manifest_uses_snake_case_only() -> None:
+    from matraix.persona_generator import overlay_dimensions_from_manifest
+
+    assert overlay_dimensions_from_manifest(
+        {"overlayDimensions": [{"id": "x", "values": ["a"]}]}
+    ) == []
+    parsed = overlay_dimensions_from_manifest(
+        {"overlay_dimensions": [{"id": "x", "label": "X", "values": ["a"]}]}
+    )
+    assert parsed == [{"id": "x", "label": "X", "values": ["a"]}]
+
+
+def test_generate_synthetic_personas_stamps_overlay() -> None:
+    from matraix import persona_generator as gen
+
+    class FakeDag:
+        def assignment_supported(self, pinned: dict[str, str]) -> bool:
+            return True
+
+        def sample(self, n: int, *, fixed: dict[str, str] | None = None):
+            base = {"age_bracket": "18-24"}
+            if fixed:
+                base.update(fixed)
+            return [dict(base) for _ in range(n)]
+
+    original = gen._dag_sampler
+    gen._dag_sampler = lambda **kwargs: FakeDag()
+    try:
+        result = gen.generate_synthetic_personas(
+            count=2,
+            seed=1,
+            dimension_filters={"age_bracket": ["25-34"]},
+            overlay_dimensions=[
+                {"id": "study_trust", "label": "Trust", "values": ["Low", "High"]}
+            ],
+        )
+    finally:
+        gen._dag_sampler = original
+
+    assert result.folder_count == 2
+    assert result.overlay[0]["id"] == "study_trust"
+    for row in result.personas:
+        assert row["dimensions"]["age_bracket"] == "25-34"
+        assert row["dimensions"]["study_trust"] in {"Low", "High"}
+
+
+def test_generate_synthetic_personas_overlay_per_cell() -> None:
+    from collections import Counter
+
+    from matraix import persona_generator as gen
+
+    class FakeDag:
+        def assignment_supported(self, pinned: dict[str, str]) -> bool:
+            return True
+
+        def sample(self, n: int, *, fixed: dict[str, str] | None = None):
+            base = {"age_bracket": "25-34"}
+            if fixed:
+                base.update(fixed)
+            return [dict(base) for _ in range(n)]
+
+    original = gen._dag_sampler
+    gen._dag_sampler = lambda **kwargs: FakeDag()
+    try:
+        result = gen.generate_synthetic_personas(
+            seed=1,
+            overlay_dimensions=[
+                {"id": "study_trust", "label": "Trust", "values": ["Low", "High"]}
+            ],
+            dimension_filters={"study_trust": ["Low", "High"]},
+            stratify_fields=["study_trust"],
+            allocation="perCell",
+            per_cell=2,
+        )
+    finally:
+        gen._dag_sampler = original
+
+    assert result.folder_count == 4
+    counts = Counter(row["dimensions"]["study_trust"] for row in result.personas)
+    assert counts["Low"] == 2
+    assert counts["High"] == 2
+
+
+def test_generate_synthetic_personas_rejects_catalog_id() -> None:
+    import pytest
+
+    from matraix.persona_generator import generate_synthetic_personas
+
+    with pytest.raises(ValueError, match="collides"):
+        generate_synthetic_personas(
+            count=1,
+            overlay_dimensions=[{"id": "age_bracket", "label": "Age", "values": ["x"]}],
+        )

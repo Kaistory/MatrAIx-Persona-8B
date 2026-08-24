@@ -7,6 +7,7 @@ import json
 import random
 import re
 import sys
+from dataclasses import dataclass
 from pathlib import Path
 from typing import TYPE_CHECKING, Any, Callable
 
@@ -31,6 +32,9 @@ DEFAULT_CATALOG_PATH = "persona/schema/dimensions.json"
 DEFAULT_PERSONA_VERSION = "1.0"
 SYNTHETIC_SOURCE = "synthetic"
 OVERLAY_ID_RE = re.compile(r"^[a-z][a-z0-9_]{0,63}$")
+GENERATE_COUNT_DEFAULT = 2000
+GENERATE_COUNT_MAX = 5000
+MAX_FILTER_STRATA = 2048
 
 
 def _repo_root() -> Path:
@@ -456,7 +460,7 @@ def normalize_overlay_dimensions(raw: list[Any] | None) -> list[dict[str, Any]]:
     out: list[dict[str, Any]] = []
     for index, row in enumerate(raw):
         if not isinstance(row, dict):
-            raise ValueError(f"overlayDimensions[{index}] must be an object")
+            raise ValueError(f"overlay[{index}] must be an object")
         dim_id = str(row.get("id") or "").strip().lower().replace("-", "_")
         label = str(row.get("label") or "").strip() or dim_id
         values: list[str] = []
@@ -468,15 +472,15 @@ def normalize_overlay_dimensions(raw: list[Any] | None) -> list[dict[str, Any]]:
             seen_values.add(text)
             values.append(text)
         if not dim_id:
-            raise ValueError(f"overlayDimensions[{index}] is missing id")
+            raise ValueError(f"overlay[{index}] is missing id")
         if not OVERLAY_ID_RE.match(dim_id):
             raise ValueError(
-                f"overlayDimensions[{index}] id {dim_id!r} must match {OVERLAY_ID_RE.pattern}"
+                f"overlay[{index}] id {dim_id!r} must match {OVERLAY_ID_RE.pattern}"
             )
         if dim_id in seen:
             raise ValueError(f"duplicate overlay dimension id: {dim_id}")
         if not values:
-            raise ValueError(f"overlayDimensions[{index}] ({dim_id}) needs at least one value")
+            raise ValueError(f"overlay[{index}] ({dim_id}) needs at least one value")
         seen.add(dim_id)
         out.append({"id": dim_id, "label": label, "values": values})
     return out
@@ -757,6 +761,314 @@ def generate_persona_pool(
             return personas
         personas.append(smoke_entry)
     return personas
+
+
+def parse_overlay_cli(raw: str) -> dict[str, Any]:
+    """Parse ``id[:label]=v1,v2`` used by generate CLI and docs."""
+    text = str(raw).strip()
+    if "=" not in text:
+        raise ValueError("overlay must be id[:label]=value,value")
+    head, values_raw = text.split("=", 1)
+    head = head.strip()
+    if not head:
+        raise ValueError("overlay is missing id")
+    if ":" in head:
+        dim_id, label = head.split(":", 1)
+    else:
+        dim_id, label = head, head
+    values = [part.strip() for part in values_raw.split(",") if part.strip()]
+    return {"id": dim_id.strip(), "label": label.strip(), "values": values}
+
+
+def parse_filter_cli(raw: str) -> tuple[str, list[str]]:
+    """Parse ``dim=v1,v2`` used by generate CLI and docs."""
+    text = str(raw).strip()
+    if "=" not in text:
+        raise ValueError("filter must be dimension=value,value")
+    dim, values_raw = text.split("=", 1)
+    dim_id = dim.removeprefix("dimensions.").strip()
+    values = [part.strip() for part in values_raw.split(",") if part.strip()]
+    if not dim_id:
+        raise ValueError("filter is missing dimension id")
+    if not values:
+        raise ValueError(f"filter {dim_id!r} needs at least one value")
+    return dim_id, values
+
+
+def overlay_dimensions_from_manifest(payload: dict[str, Any] | None) -> list[dict[str, Any]]:
+    if not isinstance(payload, dict):
+        return []
+    raw = payload.get("overlay_dimensions")
+    if not isinstance(raw, list):
+        return []
+    out: list[dict[str, Any]] = []
+    for row in raw:
+        if not isinstance(row, dict):
+            continue
+        dim_id = str(row.get("id") or "").strip()
+        if not dim_id:
+            continue
+        values = [str(value) for value in (row.get("values") or []) if str(value).strip()]
+        label = str(row.get("label") or "").strip() or dim_id
+        item: dict[str, Any] = {"id": dim_id, "label": label, "values": values}
+        out.append(item)
+    return out
+
+
+@dataclass
+class SyntheticGenerateResult:
+    personas: list[dict[str, Any]]
+    overlay: list[dict[str, Any]]
+    folder_count: int
+
+
+def generate_synthetic_personas(
+    *,
+    count: int | None = None,
+    seed: int = 42,
+    dimension_filters: dict[str, list[str]] | None = None,
+    stratify_fields: list[str] | None = None,
+    allocation: str | None = None,
+    per_cell: int | None = None,
+    sample_size: int | None = None,
+    marginals: dict[str, dict[str, float]] | None = None,
+    overlay_dimensions: list[dict[str, Any]] | None = None,
+    catalog_path: str | Path | None = None,
+    force_pin: bool = False,
+    count_default: int = GENERATE_COUNT_DEFAULT,
+    count_max: int = GENERATE_COUNT_MAX,
+    max_strata: int = MAX_FILTER_STRATA,
+) -> SyntheticGenerateResult:
+    """Full-DAG sample plus overlay stamp. Shared by Playground generate and CLI."""
+    filters = {
+        str(key).removeprefix("dimensions.").strip(): [str(value) for value in values]
+        for key, values in (dimension_filters or {}).items()
+        if str(key).removeprefix("dimensions.").strip() and values
+    }
+    fields = [
+        str(field).removeprefix("dimensions.").strip()
+        for field in (stratify_fields or [])
+        if str(field).strip()
+    ]
+    alloc = str(allocation or "").strip() or None
+    per_cell_n = per_cell if isinstance(per_cell, int) and per_cell >= 1 else None
+    sample_n = sample_size if isinstance(sample_size, int) and sample_size >= 1 else None
+
+    overlay = normalize_overlay_dimensions(overlay_dimensions)
+    overlay_ids = {str(row["id"]) for row in overlay}
+    if overlay:
+        catalog = load_catalog_values(catalog_path)
+        colliding = sorted(overlay_ids & set(catalog))
+        if colliding:
+            raise ValueError(
+                "overlay id collides with a persona dimension: " + ", ".join(colliding)
+            )
+
+    catalog_filters, overlay_raw_filters = split_overlay_filters(filters, overlay_ids)
+    overlay_filters = fill_overlay_filters(overlay, overlay_raw_filters) if overlay else {}
+    catalog_fields = [field for field in fields if field not in overlay_ids]
+    overlay_fields = [field for field in fields if field in overlay_ids]
+    missing = [field for field in catalog_fields if field not in catalog_filters]
+    missing.extend(field for field in overlay_fields if field not in overlay_filters)
+    if missing:
+        raise ValueError(
+            "every sampling field must also appear in filters "
+            f"(missing: {', '.join(missing)})"
+        )
+
+    stratum_top_up: list[dict[str, str]] | None = None
+    min_per_stratum = 0
+    cell_quotas: list[int] | None = None
+    pool_count = 0
+    full_cells: list[dict[str, str]] | None = None
+    full_quotas: list[int] | None = None
+    pin_cells = bool(force_pin) or bool(catalog_fields) or bool(catalog_filters and alloc)
+    overlay_grid = bool(overlay_fields)
+    overlay_axis_filters = (
+        {key: list(overlay_filters[key]) for key in overlay_fields}
+        if overlay_fields
+        else {}
+    )
+
+    if pin_cells:
+        if not catalog_filters:
+            raise ValueError("stratified generation requires filters")
+        cells, _dropped = strategy_pin_cells(
+            dimension_filters=catalog_filters,
+            stratify_fields=catalog_fields,
+            seed=seed,
+            max_strata=max_strata,
+        )
+        if not cells:
+            raise ValueError("filters produced zero cells the DAG can pin")
+        if overlay_grid:
+            overlay_cells = product_filter_cells(overlay_axis_filters)
+            full_cells = [
+                {**dag_cell, **overlay_cell}
+                for dag_cell in cells
+                for overlay_cell in overlay_cells
+            ]
+            grid_filters = {**catalog_filters, **overlay_axis_filters}
+            if alloc == "independentMarginal":
+                if not isinstance(sample_n, int) or sample_n < 1:
+                    raise ValueError(
+                        'allocation "independentMarginal" requires sampleSize >= 1'
+                    )
+                full_quotas = independent_marginal_cell_quotas(
+                    full_cells,
+                    sample_n,
+                    dimension_filters=grid_filters,
+                    marginals=marginals,
+                )
+                estimated = sample_n
+                dag_quota_map: dict[tuple[tuple[str, str], ...], int] = {}
+                dag_order: list[tuple[tuple[str, str], ...]] = []
+                for cell, quota in zip(full_cells, full_quotas, strict=True):
+                    key = tuple(
+                        sorted(
+                            (dim, value)
+                            for dim, value in cell.items()
+                            if dim not in overlay_ids
+                        )
+                    )
+                    if key not in dag_quota_map:
+                        dag_order.append(key)
+                        dag_quota_map[key] = 0
+                    dag_quota_map[key] += int(quota)
+                stratum_top_up = [dict(key) for key in dag_order]
+                cell_quotas = [dag_quota_map[key] for key in dag_order]
+                min_per_stratum = 0
+            else:
+                min_full = stratified_cell_quota(
+                    allocation=alloc,
+                    per_cell=per_cell_n,
+                    sample_size=sample_n,
+                    n_cells=len(full_cells),
+                )
+                estimated = len(full_cells) * min_full
+                full_quotas = [min_full] * len(full_cells)
+                min_per_stratum = min_full * len(overlay_cells)
+                stratum_top_up = cells
+            if estimated > count_max:
+                raise ValueError(
+                    f"stratified generation would write {estimated} personas "
+                    f"(max {count_max})"
+                )
+            pool_count = 0
+        elif alloc == "independentMarginal":
+            if not isinstance(sample_n, int) or sample_n < 1:
+                raise ValueError(
+                    'allocation "independentMarginal" requires sampleSize >= 1'
+                )
+            cell_quotas = independent_marginal_cell_quotas(
+                cells,
+                sample_n,
+                dimension_filters=catalog_filters,
+                marginals=marginals,
+            )
+            estimated = sample_n
+            if estimated > count_max:
+                raise ValueError(
+                    f"stratified generation would write {estimated} personas "
+                    f"(max {count_max})"
+                )
+            stratum_top_up = cells
+            pool_count = 0
+        else:
+            min_per_stratum = stratified_cell_quota(
+                allocation=alloc,
+                per_cell=per_cell_n,
+                sample_size=sample_n,
+                n_cells=len(cells),
+            )
+            estimated = len(cells) * min_per_stratum
+            if estimated > count_max:
+                raise ValueError(
+                    f"stratified generation would write {estimated} personas "
+                    f"(max {count_max})"
+                )
+            stratum_top_up = cells
+            pool_count = 0
+    elif overlay_grid:
+        full_cells = product_filter_cells(overlay_axis_filters)
+        if alloc == "independentMarginal":
+            if not isinstance(sample_n, int) or sample_n < 1:
+                raise ValueError(
+                    'allocation "independentMarginal" requires sampleSize >= 1'
+                )
+            full_quotas = independent_marginal_cell_quotas(
+                full_cells,
+                sample_n,
+                dimension_filters=overlay_axis_filters,
+                marginals=marginals,
+            )
+            pool_count = sample_n
+        else:
+            min_full = stratified_cell_quota(
+                allocation=alloc,
+                per_cell=per_cell_n,
+                sample_size=sample_n,
+                n_cells=len(full_cells),
+            )
+            full_quotas = [min_full] * len(full_cells)
+            pool_count = len(full_cells) * min_full
+        if pool_count < 1:
+            raise ValueError("count must be >= 1")
+        if pool_count > count_max:
+            raise ValueError(f"count must be <= {count_max}")
+    else:
+        pool_count = count_default if count is None else int(count)
+        if pool_count < 1:
+            raise ValueError("count must be >= 1")
+        if pool_count > count_max:
+            raise ValueError(f"count must be <= {count_max}")
+
+    extra_filters = (
+        extra_filters_from_strategy(catalog_filters, catalog_fields)
+        if pin_cells
+        else catalog_filters
+    )
+    personas = generate_persona_pool(
+        count=pool_count,
+        seed=seed,
+        stratum_top_up=stratum_top_up,
+        min_per_stratum=min_per_stratum,
+        extra_filters=extra_filters or None,
+        cell_quotas=cell_quotas,
+        include_smoke=pool_count > 0 and not overlay_grid,
+    )
+    if not personas:
+        raise ValueError("generation produced no personas")
+    if overlay:
+        if full_cells is not None and full_quotas is not None:
+            stamp_overlay_from_cells(personas, full_cells, full_quotas, overlay_ids)
+        leftover = [
+            row
+            for row in overlay
+            if full_cells is None or str(row["id"]) not in overlay_fields
+        ]
+        if leftover:
+            stamp_overlay_independent(
+                personas,
+                leftover,
+                overlay_filters,
+                seed=seed + 1,
+            )
+        rng = random.Random(seed + 2)
+        for row in overlay:
+            values = overlay_filters.get(str(row["id"])) or list(row["values"])
+            if not values:
+                continue
+            dim_id = str(row["id"])
+            for entry in personas:
+                dims = entry.setdefault("dimensions", {})
+                if dim_id not in dims:
+                    dims[dim_id] = rng.choice(values)
+    return SyntheticGenerateResult(
+        personas=personas,
+        overlay=overlay,
+        folder_count=pool_count,
+    )
 
 
 def write_persona_dataset(

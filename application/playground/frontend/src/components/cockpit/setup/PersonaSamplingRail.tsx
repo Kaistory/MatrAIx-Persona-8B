@@ -55,6 +55,12 @@ import type { PlaygroundTaskType } from "../TaskTypeSwitch";
 
 type Translate = ReturnType<typeof useI18n>["t"];
 
+const GENERATE_HINT_KEYS = {
+  perCell: "personaSetup.generateHint.perCell",
+  total: "personaSetup.generateHint.total",
+  random: "personaSetup.generateDescription",
+} as const;
+
 function slugifyDatasetName(value: string): string {
   return value
     .trim()
@@ -1582,11 +1588,11 @@ export function PersonaSamplingRail({
                 ) : (
                   <p className="text-[11px] leading-snug text-text-dim">
                     {t(
-                      genMode === "perCell"
-                        ? "personaSetup.generateHint.perCell"
-                        : genMode === "total"
-                          ? "personaSetup.generateHint.total"
-                          : "personaSetup.generateDescription",
+                      GENERATE_HINT_KEYS[
+                        genMode === "perCell" || genMode === "total"
+                          ? genMode
+                          : "random"
+                      ],
                     )}
                   </p>
                 )}

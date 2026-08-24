@@ -313,15 +313,10 @@ def overlay_labels_from_persona_path(persona_path: str | Path | None) -> dict[st
         return {}
     if not isinstance(payload, dict):
         return {}
-    raw = payload.get("overlay_dimensions")
-    if raw is None:
-        raw = payload.get("overlayDimensions")
-    if not isinstance(raw, list):
-        return {}
+    from matraix.persona_generator import overlay_dimensions_from_manifest
+
     labels: dict[str, str] = {}
-    for row in raw:
-        if not isinstance(row, dict):
-            continue
+    for row in overlay_dimensions_from_manifest(payload):
         dim_id = str(row.get("id") or "").strip()
         label = str(row.get("label") or "").strip()
         if dim_id and label and dim_id not in labels:

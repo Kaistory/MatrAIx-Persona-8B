@@ -175,11 +175,16 @@ For a Playground-selectable YAML pool (`source: synthetic`, **gitignored**):
 ```bash
 uv run python persona/scripts/generate_dev_personas.py
 # → persona/datasets/generated-persona-dev-2000/
+
+uv run python persona/scripts/generate_dev_personas.py \
+  --overlay brand_trust:"Brand trust"=Low,High \
+  --filter age_bracket=25-34
 ```
 
 Large jobs use `persona/synthesis/scripts/sample_personas.py` (compact `codes.gz`)
-and `render_personas.py`. `generate_dev_personas.py` writes YAML for Dataset
-experiments: same Full-DAG sampler, **no** quality filter, dedup, or calibration.
+and `render_personas.py`. `generate_dev_personas.py` is the same generate path as
+Playground (Full-DAG + optional custom dimensions in `manifest.overlay_dimensions`).
+It does **not** run quality filter, dedup, or calibration.
 It is not the published 1M coreset. Operator-facing pool/cohort paths:
 [Playground pools & cohorts](README.md#playground-pools--cohorts).
 

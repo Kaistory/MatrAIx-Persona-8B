@@ -230,7 +230,7 @@ and job launches that need real coverage. This is the canonical public coreset;
 prefer it over the ~200-persona smoke fixture.
 
 ### Local synthetic pools
-Sample Full-DAG personas for Playground experiments. Output is listed in the Dataset picker and is **gitignored**:
+Sample Full-DAG personas for Playground experiments. Output is listed in the Dataset picker and is **gitignored**. Playground **Generation** and `generate_dev_personas.py` share one path: DAG sample, then stamp custom dimensions into each YAML and `manifest.overlay_dimensions`.
 
 ```bash
 uv run python persona/scripts/generate_dev_personas.py
@@ -243,26 +243,48 @@ Each YAML is labeled `source: synthetic`. This is a raw Full-DAG sample from
 dedup, or calibration — those steps belong to the published
 [`matraix-persona-1m`](pipeline.md#1m-coreset) coreset.
 
-Playground **Generation** writes the same pools (Random count, or Stratified
-cells) and switches **Dataset** to the new folder (it does **not** auto-select
-the whole draw as the launch cohort). If **Task default** is on and Pull cannot
-cover `persona_strategy.json`, **Synthesize to fill this task** does the
-`--strategy` equivalent and selects that fill cohort.
+Custom dimensions (not in the persona schema) use the same flags as Playground
+Generation. IDs must start with a letter and use only letters, numbers, and
+underscores, and must not collide with an existing dimension:
+
+```bash
+# Random draw with a schema filter + one custom dimension
+uv run python persona/scripts/generate_dev_personas.py \
+  --count 200 \
+  --filter age_bracket=25-34 \
+  --overlay brand_trust:"Brand trust"=Low,High \
+  --filter brand_trust=High
+
+# Per-cell grid (schema × custom), same as Playground per-cell
+uv run python persona/scripts/generate_dev_personas.py \
+  --per-cell 10 \
+  --filter gender_identity=Man,Woman \
+  --overlay brand_trust:"Brand trust"=Low,High
+```
+
+Playground **Generation** writes the same pools and switches **Dataset** to the
+new folder (it does **not** auto-select the whole draw as the launch cohort).
+If **Task default** is on and Pull cannot cover `persona_strategy.json`,
+**Synthesize to fill this task** does the `--strategy` equivalent and selects
+that fill cohort.
 
 `--strategy` reads the task `persona_strategy.json` and fills the same cells
-Playground will draw from:
+Playground will draw from. You can still add `--overlay` / `--filter` on top.
 
-- **perCell** — `N` rows in every `sampling.fields` cell
+- **perCell** — `N` rows in every filter cell (`--per-cell` or `sampling.perCell`)
 - **equalTotal** — `ceil(sampleSize / #cells)` per cell (then the draw clips to `sampleSize`)
 - **proportional** — same floor so every cell exists and the pool is ≥ `sampleSize`
+- **independentMarginal** — Playground total: Hamilton allocation from `--sample-size`
 
-Other `dimensionFilters` are pinned to an allowed value so generated rows still
-match the task filters. Cells the DAG cannot pin are dropped.
+Schema `--filter` values pin the DAG. Custom `--overlay` values are stamped after
+sampling. Cells the DAG cannot pin are dropped.
 
-Optional flags:
-- `--count N` — how many personas to sample (default 2000)
-- `--strategy <path>` — fill the task's stratified cells (perCell / equalTotal / proportional)
-- `--task <path> --stratum-min N` — fill grounding probe cells
+Other flags:
+- `--count N` — random draw size (default 2000, max 5000)
+- `--strategy <path>` — fill the task's stratified cells
+- `--task <path> --per-cell N` — fill grounding probe cells
+- `--allocation` — `perCell` / `equalTotal` / `proportional` / `independentMarginal`
+- `--stratify FIELD` — grid axes; default is every `--filter` id when using `--per-cell` or `--sample-size`
 
 ### Job Generation
 Create a Matraix Playground job YAML from a task and persona pool by passing an
@@ -306,7 +328,7 @@ persona/
 │   ├── tasks/                       # Probe tasks
 │   └── scripts/                     # Matrix runners and reporting helpers
 ├── scripts/                         # Job generation and persona sampling
-│   ├── generate_dev_personas.py     # Synthetic YAML pool for Playground Dataset
+│   ├── generate_dev_personas.py     # Synthetic YAML pool (same generate path as Playground)
 │   └── generate_persona_job.py      # Matraix Playground job YAML from task + pool
 ├── reporting/                       # Grounding evaluation
 │   └── eval_grounding_job.py        # Aggregate job-level metrics
@@ -334,7 +356,8 @@ result = t.match("senior software engineer in Silicon Valley with ML expertise")
 
 **Sample synthetic personas for Playground:**
 ```bash
-uv run python persona/scripts/generate_dev_personas.py
+uv run python persona/scripts/generate_dev_personas.py \
+  --overlay brand_trust:"Brand trust"=Low,High
 # pick persona/datasets/generated-persona-dev-2000 in Dataset
 ```
 

@@ -126,7 +126,7 @@ Playground uses this for Single / Random / All / Stratified defaults.
 Rules:
 
 1. Every `sampling.fields` entry must also appear under `dimensionFilters` with allowed values.
-2. Thin / missing cells → generate a local pool with `generate_dev_personas.py --strategy <task>`, sample from `matraix-persona-1m`, widen filters / sources, or reuse a **Save as dataset…** YAML pool. Sampling never synthesizes personas at draw time.
+2. Thin / missing cells → generate a local pool with `generate_dev_personas.py --strategy <task>` (same generate path as Playground, including `--overlay` custom dimensions), sample from `matraix-persona-1m`, widen filters / sources, or reuse a **Save as dataset…** YAML pool. Sampling never synthesizes personas at draw time.
 3. Do not set both `perCell` and `sampleSize` under stratified sampling.
 
 Playground turns on **Task default strategy** from this file (filters / mode /
