@@ -170,6 +170,16 @@ class BrowserUseHarborAgent(BaseInstalledAgent):
             else:
                 env["OPENAI_API_KEY"] = llm_api_key
 
+        for var_name in (
+            "OPENAI_BASE_URL",
+            "OPENROUTER_API_KEY",
+            "OPENROUTER_BASE_URL",
+            "LLM_BASE_URL",
+            "ANTHROPIC_BASE_URL",
+        ):
+            if val := self._get_env(var_name):
+                env[var_name] = val
+
         env["AGENT_LOGS_DIR"] = "/logs/agent"
         env["TRAJECTORY_PATH"] = f"/logs/agent/{self._TRAJECTORY_FILENAME}"
         if self._max_steps is not None:

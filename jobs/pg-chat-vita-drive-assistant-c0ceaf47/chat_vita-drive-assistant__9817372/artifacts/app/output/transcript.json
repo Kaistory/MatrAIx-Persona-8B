@@ -1,0 +1,80 @@
+{
+  "sessionId": "harbor-chat",
+  "messages": [
+    {
+      "role": "customer",
+      "content": "Chào Vita, hãy giúp tôi điều chỉnh điều hòa một chút nhé."
+    },
+    {
+      "role": "support",
+      "content": "Bạn muốn điều chỉnh điều hòa như thế nào? Giảm nhiệt độ, tăng quạt gió, hay đổi chế độ gió?"
+    },
+    {
+      "role": "customer",
+      "content": "Giảm nhiệt độ và tăng quạt gió giúp tôi với."
+    },
+    {
+      "role": "support",
+      "content": "Đã giảm nhiệt độ và tăng quạt gió cho bạn."
+    },
+    {
+      "role": "customer",
+      "content": "Cảm ơn Vita! Bây giờ hãy cho tôi biết tình trạng pin của xe nhé."
+    },
+    {
+      "role": "support",
+      "content": "Pin xe đang ở mức 12%, phạm vi khoảng 52 km. Xe đang không sạc."
+    },
+    {
+      "role": "customer",
+      "content": "Vita, hãy tìm trạm sạc gần nhất cho tôi nhé."
+    },
+    {
+      "role": "support",
+      "content": "Đã dẫn đường đến trạm sạc gần nhất."
+    },
+    {
+      "role": "customer",
+      "content": "Tuyệt vời! Bắt đầu lái xe đến trạm sạc thôi."
+    },
+    {
+      "role": "support",
+      "content": "Đã dẫn đường đến trạm sạc gần nhất."
+    },
+    {
+      "role": "customer",
+      "content": "Cảm ơn Vita! Bây giờ hãy bắt đầu hành trình nhé!"
+    },
+    {
+      "role": "support",
+      "content": "Bạn muốn bắt đầu dẫn đường tới đâu ạ?"
+    },
+    {
+      "role": "customer",
+      "content": "Vita, hãy dẫn đường đến trạm sạc gần nhất mà bạn đã tìm cho tôi."
+    },
+    {
+      "role": "support",
+      "content": "Đã dẫn đường đến trạm sạc gần nhất mà bạn đã tìm."
+    },
+    {
+      "role": "customer",
+      "content": "Cảm ơn Vita! Bây giờ tôi sẽ lái xe đến trạm sạc."
+    },
+    {
+      "role": "support",
+      "content": "Đã dẫn đường đến trạm sạc."
+    },
+    {
+      "role": "customer",
+      "content": "Kết thúc cuộc trò chuyện nhé, tôi đã hài lòng với sự hỗ trợ của Vita."
+    },
+    {
+      "role": "support",
+      "content": "Cảm ơn bạn đã tin tưởng Vita hôm nay nhé. Chúc bạn lái xe an toàn và có một hành trình thật vui. Hẹn gặp lại bạn lần sau nha."
+    }
+  ],
+  "domain": "automotive_ai",
+  "applicationId": "vita_drive_assistant",
+  "applicationContext": "in_cabin_driving"
+}

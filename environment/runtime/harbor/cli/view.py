@@ -339,7 +339,7 @@ def _run_dev_mode(
     console.print(f"  {folder_label}: {folder}")
     console.print(f"  Mode: {mode}")
     console.print(f"  Backend API: http://{host}:{backend_port}")
-    console.print("  Frontend: http://localhost:5173")
+    console.print("  Frontend: http://localhost:3000")
     console.print()
 
     # Install frontend dependencies

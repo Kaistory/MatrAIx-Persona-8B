@@ -165,7 +165,7 @@ View a completed job and its results:
 harbor view ./jobs/my-job-name
 ```
 
-This starts both the backend API server (which reads job outputs) and serves the viewer frontend at `http://localhost:5173`.
+This starts both the backend API server (which reads job outputs) and serves the viewer frontend at `http://localhost:3000`.
 
 ### Development mode
 
@@ -176,7 +176,7 @@ npm ci
 npm run dev
 ```
 
-The frontend will be available at `http://localhost:5173`. To connect to a running Matraix Playground backend, use the full command from the repository root:
+The frontend will be available at `http://localhost:3000`. To connect to a running Matraix Playground backend, use the full command from the repository root:
 
 ```bash
 harbor view ./jobs/my-job-name --dev

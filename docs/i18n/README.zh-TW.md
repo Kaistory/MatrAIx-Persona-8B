@@ -137,7 +137,7 @@ VENV=.venv bash application/playground/backend/run_dev.sh
 cd application/playground/frontend && npm ci && npm run dev
 ```
 
-開啟 **http://localhost:5173** → Playground → 選擇人格群組 →
+開啟 **http://localhost:3000** → Playground → 選擇人格群組 →
 選擇 Survey / Chat / Web / OS app 任務 → **Lock pipeline** → **Run eval**。
 詳情：[Playground §10](../quickstart.md#10-playground--play-tasks-visually)。
 

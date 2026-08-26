@@ -1,0 +1,38 @@
+artifactName: user_feedback.json
+instructions: |
+  Reflect honestly as the persona after exploring the Vita Drive Assistant vehicle dashboard.
+  Base your answers on how intuitive the UI felt, how well it suited your driving needs,
+  and your overall comfort with in-cabin smart assistant technology.
+fields:
+  - key: needConstraintSatisfaction
+    prompt: How well did the car dashboard and assistant satisfy your in-cabin driving needs?
+    kind: enum
+    choices: [yes, partially, no]
+  - key: personalPreferenceSatisfaction
+    prompt: How well did the dashboard interface match your personal aesthetics and driving preferences?
+    kind: enum
+    choices: [yes, partially, no]
+  - key: overallExperienceRating
+    prompt: Overall, how would you rate the experience from 1 to 10?
+    kind: integer
+    minimum: 1
+    maximum: 10
+    explanation:
+      key: reason
+      prompt: Briefly explain your rating in your own persona's voice.
+  - key: trustLevel
+    prompt: "Optional: how much did you trust the vehicle assistant from 1 to 10?"
+    kind: integer
+    minimum: 1
+    maximum: 10
+    required: false
+  - key: effortRating
+    prompt: "Optional: how effortful did navigating the dashboard feel from 1 to 10?"
+    kind: integer
+    minimum: 1
+    maximum: 10
+    required: false
+  - key: clarityOfNextStep
+    prompt: "Optional: did you find it clear how to operate different vehicle functions?"
+    kind: boolean
+    required: false

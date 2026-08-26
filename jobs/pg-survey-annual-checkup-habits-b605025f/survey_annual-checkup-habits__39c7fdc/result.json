@@ -1,0 +1,115 @@
+{
+    "id": "ca121365-5da2-48a6-87f2-c7b1beeacd44",
+    "task_name": "application/survey-annual-checkup-habits",
+    "trial_name": "survey_annual-checkup-habits__39c7fdc",
+    "trial_uri": "file:///home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/jobs/pg-survey-annual-checkup-habits-b605025f/survey_annual-checkup-habits__39c7fdc",
+    "task_id": {
+        "path": "application/tasks/survey_annual-checkup-habits"
+    },
+    "source": null,
+    "task_checksum": "b47c04cb9ccea31371bfa3103c794a8fdb6fa454fddacdcc913765c22c49a790",
+    "config": {
+        "task": {
+            "path": "application/tasks/survey_annual-checkup-habits",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": null
+        },
+        "trial_name": "survey_annual-checkup-habits__39c7fdc",
+        "trials_dir": "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/jobs/pg-survey-annual-checkup-habits-b605025f",
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "persona-json-survey",
+            "import_path": null,
+            "model_name": "anthropic/claude-haiku-4-5",
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {
+                "persona_path": "persona/datasets/generated-persona-dev-strategy-survey-annual-checkup-habits/persona_0016.yaml",
+                "model_info": {
+                    "max_input_tokens": 72000,
+                    "max_output_tokens": 16384
+                }
+            },
+            "env": {},
+            "mcp_servers": []
+        },
+        "environment": {
+            "type": "host",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "env": {},
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "env": {},
+            "disable": false
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "job_id": "e0882b35-9eb9-45af-b659-c1d85f372bca"
+    },
+    "agent_info": {
+        "name": "persona-json-survey",
+        "version": "1.0.0",
+        "model_info": {
+            "name": "claude-haiku-4-5",
+            "provider": "anthropic"
+        }
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "rollout_details": null,
+        "metadata": null
+    },
+    "verifier_result": null,
+    "exception_info": {
+        "exception_type": "RuntimeError",
+        "exception_message": "Anthropic persona model request failed: HTTP 401 {\"type\":\"error\",\"error\":{\"type\":\"authentication_error\",\"message\":\"API key is invalid.\"},\"request_id\":null}",
+        "exception_traceback": "Traceback (most recent call last):\n  File \"/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/packages/playground/src/playground/model_client.py\", line 138, in complete_json_with_usage\n    with urllib.request.urlopen(\n         ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/khaidq9/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/urllib/request.py\", line 215, in urlopen\n    return opener.open(url, data, timeout)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/khaidq9/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/urllib/request.py\", line 521, in open\n    response = meth(req, response)\n               ^^^^^^^^^^^^^^^^^^^\n  File \"/home/khaidq9/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/urllib/request.py\", line 630, in http_response\n    response = self.parent.error(\n               ^^^^^^^^^^^^^^^^^^\n  File \"/home/khaidq9/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/urllib/request.py\", line 559, in error\n    return self._call_chain(*args)\n           ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/khaidq9/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/urllib/request.py\", line 492, in _call_chain\n    result = func(*args)\n             ^^^^^^^^^^^\n  File \"/home/khaidq9/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/urllib/request.py\", line 639, in http_error_default\n    raise HTTPError(req.full_url, code, msg, hdrs, fp)\nurllib.error.HTTPError: HTTP Error 401: Unauthorized\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/trial/trial.py\", line 323, in run\n    await self._run()\n  File \"/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/trial/single_step.py\", line 33, in _run\n    await self._run_agent()\n  File \"/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/trial/single_step.py\", line 68, in _run_agent\n    await self._run_agent_phase(\n  File \"/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/trial/trial.py\", line 408, in _run_agent_phase\n    await asyncio.wait_for(\n  File \"/home/khaidq9/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/asyncio/tasks.py\", line 520, in wait_for\n    return await fut\n           ^^^^^^^^^\n  File \"/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/agents/matraix/agents/persona/json_survey.py\", line 208, in run\n    result = InprocessSurveyEvalRunner()(\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/packages/playground/src/playground/inprocess/survey_eval.py\", line 117, in __call__\n    completion = client.complete_json_with_usage(\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/packages/playground/src/playground/model_client.py\", line 144, in complete_json_with_usage\n    raise RuntimeError(\nRuntimeError: Anthropic persona model request failed: HTTP 401 {\"type\":\"error\",\"error\":{\"type\":\"authentication_error\",\"message\":\"API key is invalid.\"},\"request_id\":null}\n",
+        "occurred_at": "2026-08-25T10:26:10.600965"
+    },
+    "started_at": "2026-08-25T03:26:09.892891Z",
+    "finished_at": "2026-08-25T03:26:10.612444Z",
+    "environment_setup": {
+        "started_at": "2026-08-25T03:26:09.915809Z",
+        "finished_at": "2026-08-25T03:26:09.916341Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-08-25T03:26:09.916415Z",
+        "finished_at": "2026-08-25T03:26:09.916456Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-08-25T03:26:09.916520Z",
+        "finished_at": "2026-08-25T03:26:10.596345Z"
+    },
+    "verifier": null,
+    "step_results": null
+}

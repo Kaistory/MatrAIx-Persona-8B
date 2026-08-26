@@ -484,7 +484,7 @@ VENV=.venv bash application/playground/backend/run_dev.sh
 cd application/playground/frontend && npm ci && npm run dev
 ```
 
-Open **http://localhost:5173** (proxies `/api` → `:8765`).
+Open **http://localhost:3000** (proxies `/api` → `:8765`).
 
 Check the footer **Preflight** chip before blaming a task. Green = keys, Docker
 (when needed), and catalogs look ready.

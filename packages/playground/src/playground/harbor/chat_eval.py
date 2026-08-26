@@ -355,7 +355,22 @@ class HarborSidecarChatSession:
             if self._session_id
             else ""
         )
-        return await self._request_json("GET", "/v1/conversation{}".format(query))
+        try:
+            return await self._request_json("GET", "/v1/conversation{}".format(query))
+        except Exception:
+            messages = []
+            for turn in self.turns:
+                user_msg = turn.get("userMessage")
+                if user_msg:
+                    messages.append({"role": "customer", "content": user_msg})
+                bot_msg = turn.get("assistantMessage")
+                if bot_msg:
+                    messages.append({"role": "support", "content": bot_msg})
+            return {
+                "sessionId": self._session_id or "harbor-chat",
+                "messages": messages,
+                "domain": self.config.domain,
+            }
 
 
 HarborChatSession = HarborSidecarChatSession | HarborMcpChatSession

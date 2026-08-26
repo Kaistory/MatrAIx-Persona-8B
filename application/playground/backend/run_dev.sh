@@ -80,7 +80,7 @@ echo "[run_dev] serving     : http://${HOST}:${PORT}  (app ${APP})"
 echo "[run_dev] harbor cmd  : ${MATRIX_HARBOR_COMMAND}"
 echo "[run_dev] frontend    : in another terminal, run:"
 echo "[run_dev]                 cd ${EVAL_DIR}/frontend && npm install && npm run dev"
-echo "[run_dev]               then open http://localhost:5173 (it proxies /api here)."
+echo "[run_dev]               then open http://localhost:3000 (it proxies /api here)."
 
 # --- launch (single worker, on the .venv interpreter) ------------------------
 exec "${VENV_PY}" -m uvicorn "${APP}" \

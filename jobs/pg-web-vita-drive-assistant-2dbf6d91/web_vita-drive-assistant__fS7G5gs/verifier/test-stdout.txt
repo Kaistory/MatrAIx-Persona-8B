@@ -1,0 +1,43 @@
+downloading uv 0.9.7 x86_64-unknown-linux-gnu
+no checksums to verify
+installing to /root/.local/bin
+  uv
+  uvx
+everything's installed!
+
+To add $HOME/.local/bin to your PATH, either restart your shell or run:
+
+    source $HOME/.local/bin/env (sh, bash, zsh)
+    source $HOME/.local/bin/env.fish (fish)
+Downloading pygments (1.2MiB)
+ Downloading pygments
+Installed 6 packages in 16ms
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-8.4.1, pluggy-1.6.0
+rootdir: /tests
+plugins: json-ctrf-0.3.5
+collected 2 items
+
+../tests/test_state.py .F                                                [100%]
+
+=================================== FAILURES ===================================
+______________________________ test_output_schema ______________________________
+
+    def test_output_schema():
+        data = _load()
+        feedback = _load_user_feedback()
+        subject_id = data.get("decision_subject_id")
+        assert isinstance(subject_id, str) and subject_id.strip(), "decision_subject_id must be non-empty"
+        subject_label = data.get("decision_subject_label")
+        assert isinstance(subject_label, str) and subject_label.strip(), "decision_subject_label must be non-empty"
+        outcome = data.get("decision_outcome")
+>       assert outcome in DECISION_OUTCOMES, "decision_outcome must use a supported bucket"
+E       AssertionError: decision_outcome must use a supported bucket
+E       assert 'not_selected' in {'considered', 'deferred', 'rejected', 'selected', 'skipped'}
+
+/tests/test_state.py:268: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED ../tests/test_state.py::test_output_exists
+FAILED ../tests/test_state.py::test_output_schema - AssertionError: decision_...
+========================= 1 failed, 1 passed in 0.02s ==========================

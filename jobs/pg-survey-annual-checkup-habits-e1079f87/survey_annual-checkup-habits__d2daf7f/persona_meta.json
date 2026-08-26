@@ -1,0 +1,9 @@
+{
+  "persona_path": "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/persona/datasets/generated-persona-dev-strategy-survey-annual-checkup-habits/persona_0016.yaml",
+  "schema_version": "v2",
+  "persona_id": "0016",
+  "version": "1.0",
+  "display_name": "persona-0016",
+  "summary": null,
+  "agent": "persona-json-survey"
+}

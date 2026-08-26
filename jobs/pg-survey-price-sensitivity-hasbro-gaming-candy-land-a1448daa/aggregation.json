@@ -1,0 +1,660 @@
+{
+  "schemaVersion": "1.0",
+  "artifactType": "job_aggregation",
+  "generatedAt": "2026-08-25T10:29:50Z",
+  "coverage": {
+    "trialCount": 1,
+    "completedTrials": 1,
+    "pendingTrials": 0,
+    "artifactReadyTrials": 1,
+    "completedWithoutArtifactTrials": 0
+  },
+  "fields": [
+    {
+      "key": "question.q_price_matters.response",
+      "facetKey": "response",
+      "contextKey": "question.q_price_matters",
+      "contextLabel": "q_price_matters",
+      "label": "Selected response",
+      "kind": "numerical",
+      "role": "primary",
+      "explainsFacetKey": null,
+      "group": "question.q_price_matters",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "numerical": {
+        "count": 1,
+        "min": 4.0,
+        "max": 4.0,
+        "avg": 4.0,
+        "std": 0.0,
+        "counts": [
+          {
+            "value": "4",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "question.q_price_vs_quality.reason",
+      "facetKey": "reason",
+      "contextKey": "question.q_price_vs_quality",
+      "contextLabel": "q_price_vs_quality",
+      "label": "Reason",
+      "kind": "textual",
+      "role": "explanation",
+      "explainsFacetKey": null,
+      "group": "question.q_price_vs_quality",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "textual": {
+        "count": 1,
+        "uniqueCount": 1,
+        "samples": [
+          "Tengo negocio y entiendo márgenes. Un juego de 4.8 estrellas con 37k reseñas vale algo. Pero $16.24 es 25% más caro que antes — eso duele. Si es buena calidad, pago. Pero necesito ver que justifica el aumento."
+        ],
+        "counts": [
+          {
+            "value": "Tengo negocio y entiendo márgenes. Un juego de 4.8 estrellas con 37k reseñas vale algo. Pero $16.24 es 25% más caro que antes — eso duele. Si es buena calidad, pago. Pero necesito ver que justifica el aumento.",
+            "count": 1,
+            "samples": [
+              "Tengo negocio y entiendo márgenes. Un juego de 4.8 estrellas con 37k reseñas vale algo. Pero $16.24 es 25% más caro que antes — eso duele. Si es buena calidad, pago. Pero necesito ver que justifica el aumento."
+            ]
+          }
+        ],
+        "summary": "All 1 answers converge on one theme: \"Tengo negocio y entiendo márgenes. Un juego de 4.8 estrellas con 37k reseñas vale algo. Pero $16.24 es 25% más caro que antes — eso duele. Si es buena calidad, pago. Pero necesito ver que justifica el aumento.\".",
+        "summaryType": "heuristic"
+      }
+    },
+    {
+      "key": "question.q_price_vs_quality.response",
+      "facetKey": "response",
+      "contextKey": "question.q_price_vs_quality",
+      "contextLabel": "q_price_vs_quality",
+      "label": "Selected response",
+      "kind": "categorical",
+      "role": "primary",
+      "explainsFacetKey": null,
+      "group": "question.q_price_vs_quality",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "categorical": {
+        "count": 1,
+        "distinctCount": 1,
+        "counts": [
+          {
+            "value": "balance",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "question.q_threshold.response",
+      "facetKey": "response",
+      "contextKey": "question.q_threshold",
+      "contextLabel": "q_threshold",
+      "label": "Selected response",
+      "kind": "categorical",
+      "role": "primary",
+      "explainsFacetKey": null,
+      "group": "question.q_threshold",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "categorical": {
+        "count": 1,
+        "distinctCount": 1,
+        "counts": [
+          {
+            "value": "hesitate",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "question.q_too_expensive.response",
+      "facetKey": "response",
+      "contextKey": "question.q_too_expensive",
+      "contextLabel": "q_too_expensive",
+      "label": "Selected response",
+      "kind": "numerical",
+      "role": "primary",
+      "explainsFacetKey": null,
+      "group": "question.q_too_expensive",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "numerical": {
+        "count": 1,
+        "min": 3.0,
+        "max": 3.0,
+        "avg": 3.0,
+        "std": 0.0,
+        "counts": [
+          {
+            "value": "3",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "survey.summary.answer_count",
+      "facetKey": "answer_count",
+      "contextKey": "survey.summary",
+      "contextLabel": "Survey summary",
+      "label": "Answer count",
+      "kind": "numerical",
+      "role": "score",
+      "explainsFacetKey": null,
+      "group": "survey.summary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "numerical": {
+        "count": 1,
+        "min": 4.0,
+        "max": 4.0,
+        "avg": 4.0,
+        "std": 0.0,
+        "counts": [
+          {
+            "value": "4",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "survey.summary.mean_numeric_answer",
+      "facetKey": "mean_numeric_answer",
+      "contextKey": "survey.summary",
+      "contextLabel": "Survey summary",
+      "label": "Mean numeric answer",
+      "kind": "numerical",
+      "role": "score",
+      "explainsFacetKey": null,
+      "group": "survey.summary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "numerical": {
+        "count": 1,
+        "min": 3.5,
+        "max": 3.5,
+        "avg": 3.5,
+        "std": 0.0,
+        "counts": [
+          {
+            "value": "3.5",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "survey.summary.trajectory_event_count",
+      "facetKey": "trajectory_event_count",
+      "contextKey": "survey.summary",
+      "contextLabel": "Survey summary",
+      "label": "Trajectory event count",
+      "kind": "numerical",
+      "role": "score",
+      "explainsFacetKey": null,
+      "group": "survey.summary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "numerical": {
+        "count": 1,
+        "min": 10.0,
+        "max": 10.0,
+        "avg": 10.0,
+        "std": 0.0,
+        "counts": [
+          {
+            "value": "10",
+            "count": 1
+          }
+        ]
+      }
+    }
+  ],
+  "contexts": [
+    {
+      "key": "question.q_price_matters",
+      "label": "The price is the single most important factor in whether I would buy the Hasbro Gaming Candy Land Kingdom.",
+      "contextType": "question_response",
+      "questionType": "likert",
+      "scaleMin": 1,
+      "scaleMax": 5,
+      "scaleLabels": null,
+      "summaryAnalyses": [],
+      "signalScans": [],
+      "distributions": [],
+      "facets": [
+        {
+          "key": "question.q_price_matters.response",
+          "facetKey": "response",
+          "contextKey": "question.q_price_matters",
+          "contextLabel": "q_price_matters",
+          "label": "Selected response",
+          "kind": "numerical",
+          "role": "primary",
+          "explainsFacetKey": null,
+          "group": "question.q_price_matters",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "numerical": {
+            "count": 1,
+            "min": 4.0,
+            "max": 4.0,
+            "avg": 4.0,
+            "std": 0.0,
+            "counts": [
+              {
+                "value": "4",
+                "count": 1
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "key": "question.q_price_vs_quality",
+      "label": "When you weigh price against quality here, which wins?",
+      "contextType": "question_response",
+      "questionType": "single_choice",
+      "scaleMin": null,
+      "scaleMax": null,
+      "scaleLabels": null,
+      "summaryAnalyses": [],
+      "signalScans": [],
+      "distributions": [],
+      "choiceOptions": [
+        {
+          "id": "price_first",
+          "label": "I prioritize the lowest price."
+        },
+        {
+          "id": "balance",
+          "label": "I want a balance of price and quality."
+        },
+        {
+          "id": "quality_first",
+          "label": "I will pay more for quality."
+        }
+      ],
+      "facets": [
+        {
+          "key": "question.q_price_vs_quality.response",
+          "facetKey": "response",
+          "contextKey": "question.q_price_vs_quality",
+          "contextLabel": "q_price_vs_quality",
+          "label": "Selected response",
+          "kind": "categorical",
+          "role": "primary",
+          "explainsFacetKey": null,
+          "group": "question.q_price_vs_quality",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "categorical": {
+            "count": 1,
+            "distinctCount": 1,
+            "counts": [
+              {
+                "value": "balance",
+                "count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": "question.q_price_vs_quality.reason",
+          "facetKey": "reason",
+          "contextKey": "question.q_price_vs_quality",
+          "contextLabel": "q_price_vs_quality",
+          "label": "Reason",
+          "kind": "textual",
+          "role": "explanation",
+          "explainsFacetKey": null,
+          "group": "question.q_price_vs_quality",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "textual": {
+            "count": 1,
+            "uniqueCount": 1,
+            "samples": [
+              "Tengo negocio y entiendo márgenes. Un juego de 4.8 estrellas con 37k reseñas vale algo. Pero $16.24 es 25% más caro que antes — eso duele. Si es buena calidad, pago. Pero necesito ver que justifica el aumento."
+            ],
+            "counts": [
+              {
+                "value": "Tengo negocio y entiendo márgenes. Un juego de 4.8 estrellas con 37k reseñas vale algo. Pero $16.24 es 25% más caro que antes — eso duele. Si es buena calidad, pago. Pero necesito ver que justifica el aumento.",
+                "count": 1,
+                "samples": [
+                  "Tengo negocio y entiendo márgenes. Un juego de 4.8 estrellas con 37k reseñas vale algo. Pero $16.24 es 25% más caro que antes — eso duele. Si es buena calidad, pago. Pero necesito ver que justifica el aumento."
+                ]
+              }
+            ],
+            "summary": "All 1 answers converge on one theme: \"Tengo negocio y entiendo márgenes. Un juego de 4.8 estrellas con 37k reseñas vale algo. Pero $16.24 es 25% más caro que antes — eso duele. Si es buena calidad, pago. Pero necesito ver que justifica el aumento.\".",
+            "summaryType": "heuristic"
+          }
+        }
+      ]
+    },
+    {
+      "key": "question.q_threshold",
+      "label": "What best describes your reaction to the current price?",
+      "contextType": "question_response",
+      "questionType": "single_choice",
+      "scaleMin": null,
+      "scaleMax": null,
+      "scaleLabels": null,
+      "summaryAnalyses": [],
+      "signalScans": [],
+      "distributions": [],
+      "choiceOptions": [
+        {
+          "id": "cheap_stock_up",
+          "label": "So reasonable I might buy more than one."
+        },
+        {
+          "id": "fair_buy",
+          "label": "Fair enough that I would just buy it."
+        },
+        {
+          "id": "hesitate",
+          "label": "High enough that I would hesitate."
+        },
+        {
+          "id": "only_on_sale",
+          "label": "I would only buy it on sale."
+        },
+        {
+          "id": "walk_away",
+          "label": "High enough that I would walk away."
+        }
+      ],
+      "facets": [
+        {
+          "key": "question.q_threshold.response",
+          "facetKey": "response",
+          "contextKey": "question.q_threshold",
+          "contextLabel": "q_threshold",
+          "label": "Selected response",
+          "kind": "categorical",
+          "role": "primary",
+          "explainsFacetKey": null,
+          "group": "question.q_threshold",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "categorical": {
+            "count": 1,
+            "distinctCount": 1,
+            "counts": [
+              {
+                "value": "hesitate",
+                "count": 1
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "key": "question.q_too_expensive",
+      "label": "At its current price, the Hasbro Gaming Candy Land Kingdom feels too expensive for me.",
+      "contextType": "question_response",
+      "questionType": "likert",
+      "scaleMin": 1,
+      "scaleMax": 5,
+      "scaleLabels": null,
+      "summaryAnalyses": [],
+      "signalScans": [],
+      "distributions": [],
+      "facets": [
+        {
+          "key": "question.q_too_expensive.response",
+          "facetKey": "response",
+          "contextKey": "question.q_too_expensive",
+          "contextLabel": "q_too_expensive",
+          "label": "Selected response",
+          "kind": "numerical",
+          "role": "primary",
+          "explainsFacetKey": null,
+          "group": "question.q_too_expensive",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "numerical": {
+            "count": 1,
+            "min": 3.0,
+            "max": 3.0,
+            "avg": 3.0,
+            "std": 0.0,
+            "counts": [
+              {
+                "value": "3",
+                "count": 1
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "key": "survey.summary",
+      "label": "Survey summary",
+      "contextType": "trial_summary",
+      "questionType": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "scaleLabels": null,
+      "summaryAnalyses": [],
+      "signalScans": [],
+      "distributions": [],
+      "facets": [
+        {
+          "key": "survey.summary.answer_count",
+          "facetKey": "answer_count",
+          "contextKey": "survey.summary",
+          "contextLabel": "Survey summary",
+          "label": "Answer count",
+          "kind": "numerical",
+          "role": "score",
+          "explainsFacetKey": null,
+          "group": "survey.summary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "numerical": {
+            "count": 1,
+            "min": 4.0,
+            "max": 4.0,
+            "avg": 4.0,
+            "std": 0.0,
+            "counts": [
+              {
+                "value": "4",
+                "count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": "survey.summary.trajectory_event_count",
+          "facetKey": "trajectory_event_count",
+          "contextKey": "survey.summary",
+          "contextLabel": "Survey summary",
+          "label": "Trajectory event count",
+          "kind": "numerical",
+          "role": "score",
+          "explainsFacetKey": null,
+          "group": "survey.summary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "numerical": {
+            "count": 1,
+            "min": 10.0,
+            "max": 10.0,
+            "avg": 10.0,
+            "std": 0.0,
+            "counts": [
+              {
+                "value": "10",
+                "count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": "survey.summary.mean_numeric_answer",
+          "facetKey": "mean_numeric_answer",
+          "contextKey": "survey.summary",
+          "contextLabel": "Survey summary",
+          "label": "Mean numeric answer",
+          "kind": "numerical",
+          "role": "score",
+          "explainsFacetKey": null,
+          "group": "survey.summary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "numerical": {
+            "count": 1,
+            "min": 3.5,
+            "max": 3.5,
+            "avg": 3.5,
+            "std": 0.0,
+            "counts": [
+              {
+                "value": "3.5",
+                "count": 1
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "reporting": {
+    "status": "not_applicable",
+    "llmEnabled": false,
+    "model": "openai/gpt-4o-mini",
+    "totalUnits": 0,
+    "summaryUnits": 0,
+    "judgeUnits": 0,
+    "readyUnits": 0,
+    "completedUnits": 0,
+    "failedUnits": 0,
+    "updatedAt": "2026-08-25T10:29:50Z"
+  }
+}

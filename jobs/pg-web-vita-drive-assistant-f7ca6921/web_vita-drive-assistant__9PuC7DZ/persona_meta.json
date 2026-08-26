@@ -1,0 +1,9 @@
+{
+  "persona_path": "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/persona/datasets/generated-persona-dev-strategy-web-vita-drive-assistant/persona_0003.yaml",
+  "schema_version": "v2",
+  "persona_id": "0003",
+  "version": "1.0",
+  "display_name": "persona-0003",
+  "summary": null,
+  "agent": "persona-openhands-sdk"
+}

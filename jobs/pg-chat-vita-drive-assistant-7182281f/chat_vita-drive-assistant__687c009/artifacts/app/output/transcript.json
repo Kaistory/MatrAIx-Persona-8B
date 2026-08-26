@@ -1,0 +1,56 @@
+{
+  "sessionId": "harbor-chat",
+  "messages": [
+    {
+      "role": "customer",
+      "content": "Chào Vita! Hôm nay thời tiết thế nào? Mở điều hòa giúp mình nhé."
+    },
+    {
+      "role": "support",
+      "content": "Dạ, mình bật điều hòa giúp bạn nhé."
+    },
+    {
+      "role": "customer",
+      "content": "Cảm ơn Vita! Đường đi hôm nay có đông không? Mình muốn biết tình hình giao thông."
+    },
+    {
+      "role": "support",
+      "content": "Hiện mình chưa có dữ liệu giao thông thực để báo đông hay không. Bạn cứ đi theo hướng dẫn, mình sẽ cập nhật khi có thông tin."
+    },
+    {
+      "role": "customer",
+      "content": "Cảm ơn Vita! Vậy cho mình biết tình trạng xe một chút nhé, như pin và áp suất lốp có ổn không?"
+    },
+    {
+      "role": "support",
+      "content": "Để mình kiểm tra nhanh tình trạng pin và áp suất lốp cho bạn nhé."
+    },
+    {
+      "role": "customer",
+      "content": "Mình cảm ơn Vita! Trong lúc chờ, hãy mở cho mình một bài nhạc vui vẻ nhé."
+    },
+    {
+      "role": "support",
+      "content": "Đã mở bài Xanh Playlist 1🍃 BÀI CA MÙA HẠ| Nhạc Chill Yêu Đời ~ Ngồi Dưới Tán Cây Nghe Mùa Hè."
+    },
+    {
+      "role": "customer",
+      "content": "Nghe có vẻ hay đấy! Cảm ơn Vita! Mình sẽ tiếp tục lái xe, hãy thông báo cho mình nếu có tin tức gì mới nhé."
+    },
+    {
+      "role": "support",
+      "content": "Được bạn, mình luôn sẵn sàng khi bạn cần. Lái xe an toàn nhé!"
+    },
+    {
+      "role": "customer",
+      "content": "Cảm ơn Vita! Mình sẽ lái xe cẩn thận. Kết thúc cuộc trò chuyện này nhé!"
+    },
+    {
+      "role": "support",
+      "content": "Chào bạn, chúc bạn lái xe an toàn. Mình luôn sẵn sàng khi bạn cần."
+    }
+  ],
+  "domain": "automotive_ai",
+  "applicationId": "vita_drive_assistant",
+  "applicationContext": "in_cabin_driving"
+}

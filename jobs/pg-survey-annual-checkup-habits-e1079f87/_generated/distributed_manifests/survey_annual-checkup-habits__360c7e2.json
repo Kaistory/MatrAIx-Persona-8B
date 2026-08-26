@@ -1,0 +1,31 @@
+{
+  "task": {
+    "path": "application/tasks/survey_annual-checkup-habits"
+  },
+  "trial_name": "survey_annual-checkup-habits__360c7e2",
+  "trials_dir": "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/jobs/pg-survey-annual-checkup-habits-e1079f87",
+  "timeout_multiplier": 1.0,
+  "agent_timeout_multiplier": null,
+  "verifier_timeout_multiplier": null,
+  "agent_setup_timeout_multiplier": null,
+  "environment_build_timeout_multiplier": null,
+  "agent": {
+    "name": "persona-json-survey",
+    "model_name": "anthropic/claude-haiku-4-5",
+    "kwargs": {
+      "persona_path": "persona/datasets/generated-persona-dev-strategy-survey-annual-checkup-habits/persona_0009.yaml",
+      "model_info": {
+        "max_input_tokens": 200000,
+        "max_output_tokens": 16384
+      }
+    }
+  },
+  "environment": {
+    "type": "host",
+    "delete": true
+  },
+  "verifier": {},
+  "artifacts": [],
+  "extra_instruction_paths": [],
+  "job_id": "76061590-5970-4c32-883c-14c9ec78ed1a"
+}

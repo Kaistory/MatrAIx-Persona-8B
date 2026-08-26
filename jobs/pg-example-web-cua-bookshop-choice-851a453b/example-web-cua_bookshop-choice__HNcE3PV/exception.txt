@@ -1,0 +1,105 @@
+Traceback (most recent call last):
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/.venv/lib/python3.12/site-packages/litellm/llms/openai/openai.py", line 930, in acompletion
+    headers, response = await self.make_openai_chat_completion_request(
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/logging_utils.py", line 297, in async_wrapper
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/.venv/lib/python3.12/site-packages/litellm/llms/openai/openai.py", line 461, in make_openai_chat_completion_request
+    raise e
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/.venv/lib/python3.12/site-packages/litellm/llms/openai/openai.py", line 438, in make_openai_chat_completion_request
+    await openai_aclient.chat.completions.with_raw_response.create(
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/.venv/lib/python3.12/site-packages/openai/_legacy_response.py", line 384, in wrapped
+    return cast(LegacyAPIResponse[R], await func(*args, **kwargs))
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/.venv/lib/python3.12/site-packages/openai/resources/chat/completions/completions.py", line 2814, in create
+    return await self._post(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/.venv/lib/python3.12/site-packages/openai/_base_client.py", line 1931, in post
+    return await self.request(cast_to, opts, stream=stream, stream_cls=stream_cls)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/.venv/lib/python3.12/site-packages/openai/_base_client.py", line 1716, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.AuthenticationError: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-or-v1*************************************************************4ddf. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'code': 'invalid_api_key', 'param': None}, 'status': 401}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/.venv/lib/python3.12/site-packages/litellm/main.py", line 640, in acompletion
+    response = await init_response
+               ^^^^^^^^^^^^^^^^^^^
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/.venv/lib/python3.12/site-packages/litellm/llms/openai/openai.py", line 990, in acompletion
+    raise OpenAIError(
+litellm.llms.openai.common_utils.OpenAIError: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-or-v1*************************************************************4ddf. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'code': 'invalid_api_key', 'param': None}, 'status': 401}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/trial/trial.py", line 323, in run
+    await self._run()
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/trial/single_step.py", line 33, in _run
+    await self._run_agent()
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/trial/single_step.py", line 68, in _run_agent
+    await self._run_agent_phase(
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/trial/trial.py", line 408, in _run_agent_phase
+    await asyncio.wait_for(
+  File "/home/khaidq9/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/agents/matraix/agents/persona/computer_1.py", line 263, in run
+    await delegate.run(instruction, environment, context)
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/agents/computer_1/computer_1.py", line 863, in run
+    await self._run_loop(
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/agents/computer_1/computer_1.py", line 943, in _run_loop
+    llm_response = await self._query_litellm(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/.venv/lib/python3.12/site-packages/tenacity/asyncio/__init__.py", line 193, in async_wrapped
+    return await copy(fn, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/.venv/lib/python3.12/site-packages/tenacity/asyncio/__init__.py", line 112, in __call__
+    do = await self.iter(retry_state=retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/.venv/lib/python3.12/site-packages/tenacity/asyncio/__init__.py", line 157, in iter
+    result = await action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/.venv/lib/python3.12/site-packages/tenacity/_utils.py", line 111, in inner
+    return call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/.venv/lib/python3.12/site-packages/tenacity/__init__.py", line 413, in exc_check
+    raise retry_exc.reraise()
+          ^^^^^^^^^^^^^^^^^^^
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/.venv/lib/python3.12/site-packages/tenacity/__init__.py", line 184, in reraise
+    raise self.last_attempt.result()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/khaidq9/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/khaidq9/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/.venv/lib/python3.12/site-packages/tenacity/asyncio/__init__.py", line 116, in __call__
+    result = await fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/agents/computer_1/computer_1.py", line 1191, in _query_litellm
+    llm_response = await chat.chat(
+                   ^^^^^^^^^^^^^^^^
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/agents/computer_1/computer_1.py", line 215, in chat
+    self._model._handle_litellm_error(exc)  # noqa: SLF001
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/llms/lite_llm.py", line 634, in _handle_litellm_error
+    raise e
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/agents/computer_1/computer_1.py", line 213, in chat
+    response = await litellm.acompletion(**completion_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/.venv/lib/python3.12/site-packages/litellm/utils.py", line 2102, in wrapper_async
+    raise e
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/.venv/lib/python3.12/site-packages/litellm/utils.py", line 1901, in wrapper_async
+    result = await original_function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/.venv/lib/python3.12/site-packages/litellm/main.py", line 660, in acompletion
+    raise exception_type(
+          ^^^^^^^^^^^^^^^
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 2506, in exception_type
+    raise e
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 563, in exception_type
+    raise AuthenticationError(
+litellm.exceptions.AuthenticationError: litellm.AuthenticationError: AuthenticationError: OpenAIException - Incorrect API key provided: sk-or-v1*************************************************************4ddf. You can find your API key at https://platform.openai.com/account/api-keys.

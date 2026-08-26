@@ -1,0 +1,80 @@
+{
+  "sessionId": "harbor-chat",
+  "messages": [
+    {
+      "role": "customer",
+      "content": "Chào Vita, hãy giúp tôi chỉnh điều hòa một chút. Thời tiết hôm nay nóng quá!"
+    },
+    {
+      "role": "support",
+      "content": "Mình bật điều hòa và giảm nhiệt độ ghế lái xuống 20°C nhé."
+    },
+    {
+      "role": "customer",
+      "content": "Cảm ơn Vita! Bây giờ hãy mở nhạc cho tôi nghe một chút, tôi muốn nghe nhạc pop."
+    },
+    {
+      "role": "support",
+      "content": "Đã mở bài Những Bản Pop Ballad Việt Hay Nhất | Lou Hoàng, SOOBIN, JustaTee... | Playlist VPOP Hits."
+    },
+    {
+      "role": "customer",
+      "content": "Tuyệt vời! Bây giờ hãy cho tôi biết tình trạng pin của xe có ổn không?"
+    },
+    {
+      "role": "support",
+      "content": "Hiện mình chưa có dữ liệu chẩn đoán pin thật. Bạn có thể xem trên bảng đồng hồ; nếu có cảnh báo, hãy tấp vào nơi an toàn."
+    },
+    {
+      "role": "customer",
+      "content": "Cảm ơn Vita! Tôi sẽ kiểm tra bảng đồng hồ. Giờ hãy giúp tôi mở cửa sổ một chút cho thoáng đãng nhé."
+    },
+    {
+      "role": "support",
+      "content": "Mình mở hé cửa sổ 20% cho thoáng nhé."
+    },
+    {
+      "role": "customer",
+      "content": "Cảm ơn Vita! Thật tuyệt khi có không khí trong lành. Bây giờ, hãy dẫn đường cho tôi đến quán cà phê gần nhất nhé."
+    },
+    {
+      "role": "support",
+      "content": "Đã dẫn đường đến quán cà phê gần nhất."
+    },
+    {
+      "role": "customer",
+      "content": "Cảm ơn Vita! Tôi sẽ đi theo chỉ dẫn của bạn. Hãy giúp tôi giữ an toàn trong suốt hành trình này nhé."
+    },
+    {
+      "role": "support",
+      "content": "Đã bật hỗ trợ giữ làn, cảnh báo điểm mù và phanh khẩn cấp để bạn yên tâm nhé."
+    },
+    {
+      "role": "customer",
+      "content": "Cảm ơn Vita! Tôi cảm thấy an tâm hơn rồi. Hãy cho tôi biết khi nào đến nơi nhé!"
+    },
+    {
+      "role": "support",
+      "content": "Trạng thái xe đã đúng yêu cầu rồi."
+    },
+    {
+      "role": "customer",
+      "content": "Rất tốt! Tôi cảm thấy hài lòng với sự hỗ trợ của bạn, Vita. Giờ tôi đã sẵn sàng để tiếp tục hành trình."
+    },
+    {
+      "role": "support",
+      "content": "Cảm ơn bạn. Chúc bạn hành trình an toàn."
+    },
+    {
+      "role": "customer",
+      "content": "Kết thúc cuộc trò chuyện. Tôi hài lòng với trải nghiệm này."
+    },
+    {
+      "role": "support",
+      "content": "Cảm ơn bạn đã đồng hành cùng mình. Chúc bạn lái xe an toàn!"
+    }
+  ],
+  "domain": "automotive_ai",
+  "applicationId": "vita_drive_assistant",
+  "applicationContext": "in_cabin_driving"
+}

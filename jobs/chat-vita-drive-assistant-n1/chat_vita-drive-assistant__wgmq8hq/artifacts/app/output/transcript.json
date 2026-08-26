@@ -1,0 +1,104 @@
+{
+  "sessionId": "harbor-chat",
+  "messages": [
+    {
+      "role": "customer",
+      "content": "Chào Vita, hãy giúp tôi điều chỉnh điều hòa một chút nhé. Tôi muốn không khí mát hơn."
+    },
+    {
+      "role": "support",
+      "content": "Mình giảm nhiệt độ điều hòa phía lái xuống 22 độ cho mát hơn nhé."
+    },
+    {
+      "role": "customer",
+      "content": "Cảm ơn Vita! Bây giờ, hãy mở nhạc cho tôi nghe một chút nhé. Cho tôi nghe bài nào vui tươi đi!"
+    },
+    {
+      "role": "support",
+      "content": "Đã mở bài Xanh Playlist 1🍃 BÀI CA MÙA HẠ| Nhạc Chill Yêu Đời ~ Ngồi Dưới Tán Cây Nghe Mùa Hè."
+    },
+    {
+      "role": "customer",
+      "content": "Nghe có vẻ hay đó! Hãy cho tôi biết trạng thái xe hiện tại có điều gì cần chú ý không, như áp suất lốp hay pin nhé."
+    },
+    {
+      "role": "support",
+      "content": "Để tôi kiểm tra nhanh tình trạng xe..."
+    },
+    {
+      "role": "customer",
+      "content": "Tôi đang chờ thông tin. Nếu có vấn đề gì, hãy cho tôi biết nhé!"
+    },
+    {
+      "role": "support",
+      "content": "Bạn đang chờ thông tin gì ạ?"
+    },
+    {
+      "role": "customer",
+      "content": "Tôi đang chờ tình trạng xe hiện tại, như áp suất lốp và mức pin. Vita có thể kiểm tra cho tôi được không?"
+    },
+    {
+      "role": "support",
+      "content": "Dạ, để em kiểm tra tình trạng xe ngay."
+    },
+    {
+      "role": "customer",
+      "content": "Cảm ơn Vita! Tôi sẽ chờ kết quả kiểm tra."
+    },
+    {
+      "role": "support",
+      "content": "Không có gì bạn nhé. Mình luôn sẵn sàng khi bạn cần."
+    },
+    {
+      "role": "customer",
+      "content": "Thật tuyệt! Cảm ơn Vita đã giúp đỡ. Bây giờ, hãy tiếp tục phát nhạc nhé!"
+    },
+    {
+      "role": "support",
+      "content": "Đã mở bài Xanh Playlist 1🍃 BÀI CA MÙA HẠ| Nhạc Chill Yêu Đời ~ Ngồi Dưới Tán Cây Nghe Mùa Hè."
+    },
+    {
+      "role": "customer",
+      "content": "Âm nhạc thật tuyệt! Tôi cảm thấy thư giãn rồi. Vita, hãy cho tôi biết nếu có điều gì cần lưu ý trong quá trình lái xe nhé."
+    },
+    {
+      "role": "support",
+      "content": "Bạn cứ lái xe an toàn và tập trung quan sát phía trước. Mình sẽ nhắc ngay nếu có cảnh báo quan trọng."
+    },
+    {
+      "role": "customer",
+      "content": "Cảm ơn Vita! Tôi sẽ chú ý. Giờ thì hãy để âm nhạc chơi tiếp nhé."
+    },
+    {
+      "role": "support",
+      "content": "Đã mở bài Xanh Playlist 1🍃 BÀI CA MÙA HẠ| Nhạc Chill Yêu Đời ~ Ngồi Dưới Tán Cây Nghe Mùa Hè."
+    },
+    {
+      "role": "customer",
+      "content": "Rất tuyệt! Tôi cảm thấy thoải mái rồi. Cảm ơn Vita đã giúp đỡ trong chuyến đi này!"
+    },
+    {
+      "role": "support",
+      "content": "Mình rất vui khi bạn thấy thoải mái. Nếu cần thêm gì, cứ gọi mình nhé."
+    },
+    {
+      "role": "customer",
+      "content": "Cảm ơn Vita! Tôi sẽ gọi nếu cần thêm gì. Giờ thì cứ thư giãn và lái xe thôi!"
+    },
+    {
+      "role": "support",
+      "content": "Vâng, bạn cứ thư giãn nhé. Lái xe an toàn!"
+    },
+    {
+      "role": "customer",
+      "content": "Cảm ơn Vita! Tôi sẽ lái xe cẩn thận. Kết thúc cuộc trò chuyện nhé."
+    },
+    {
+      "role": "support",
+      "content": "Chúc bạn lái xe an toàn. Khi cần mình thì gọi nhé."
+    }
+  ],
+  "domain": "automotive_ai",
+  "applicationId": "vita_drive_assistant",
+  "applicationContext": "in_cabin_driving"
+}

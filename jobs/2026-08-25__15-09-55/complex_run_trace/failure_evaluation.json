@@ -1,0 +1,18 @@
+{
+  "status": "failed",
+  "goal_completion_ratio": 0.6,
+  "passed_steps": [
+    "login",
+    "main_dashboard_render",
+    "climate_temperature_adjust"
+  ],
+  "failed_step": "music_player_toggle",
+  "failure_reason": "Element .play-button is not clickable / obscured by stage overlay",
+  "screenshots": [
+    "01_login_gate.png",
+    "02_main_dashboard.png",
+    "03_climate_increased.png",
+    "04_friction_failure_state.png",
+    "05_soul_studio_stage.png"
+  ]
+}

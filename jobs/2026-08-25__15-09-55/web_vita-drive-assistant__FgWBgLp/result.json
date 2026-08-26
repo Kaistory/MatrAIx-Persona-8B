@@ -1,0 +1,108 @@
+{
+    "id": "17ce65fc-a410-4a6a-8faa-e86725830584",
+    "task_name": "application/web_vita-drive-assistant",
+    "trial_name": "web_vita-drive-assistant__FgWBgLp",
+    "trial_uri": "file:///home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/jobs/2026-08-25__15-09-55/web_vita-drive-assistant__FgWBgLp",
+    "task_id": {
+        "path": "application/tasks/web_vita-drive-assistant"
+    },
+    "source": null,
+    "task_checksum": "1b991f346a508c906ee68b594c886b504346c4f8571efa2f7ef9b95f22b8dd3c",
+    "config": {
+        "task": {
+            "path": "application/tasks/web_vita-drive-assistant",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": null
+        },
+        "trial_name": "web_vita-drive-assistant__FgWBgLp",
+        "trials_dir": "jobs/2026-08-25__15-09-55",
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "oracle",
+            "import_path": null,
+            "model_name": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {},
+            "env": {},
+            "mcp_servers": []
+        },
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "env": {},
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "env": {},
+            "disable": false
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "job_id": "90c4e8e8-e785-4763-a2b2-3ce7d73423a8"
+    },
+    "agent_info": {
+        "name": "oracle",
+        "version": "1.0.0",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "rollout_details": null,
+        "metadata": null
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 1.0
+        }
+    },
+    "exception_info": null,
+    "started_at": "2026-08-25T08:09:56.180269Z",
+    "finished_at": "2026-08-25T08:14:25.564259Z",
+    "environment_setup": {
+        "started_at": "2026-08-25T08:09:56.194849Z",
+        "finished_at": "2026-08-25T08:13:24.822074Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-08-25T08:13:24.822186Z",
+        "finished_at": "2026-08-25T08:13:24.822269Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-08-25T08:13:24.822404Z",
+        "finished_at": "2026-08-25T08:13:25.413073Z"
+    },
+    "verifier": {
+        "started_at": "2026-08-25T08:13:26.121123Z",
+        "finished_at": "2026-08-25T08:14:14.610269Z"
+    },
+    "step_results": null
+}

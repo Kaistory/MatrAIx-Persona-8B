@@ -154,6 +154,13 @@ PLAYGROUND_TASK_INDEX: Dict[str, PlaygroundTaskEntry] = {
         output_artifact="book_choice.json",
         submission_profile="book_choice",
     ),
+    "web_vita-drive-assistant": PlaygroundTaskEntry(
+        application_type="web",
+        site_name="Vita Drive Assistant Lab",
+        site_url="http://172.17.0.1:5173/",
+        output_artifact="dashboard_experience.json",
+        submission_profile="dashboard_experience",
+    ),
     # Chatbot
     "chat_meal-planning-nutrition": PlaygroundTaskEntry(application_type="chatbot"),
     "chat_openbb-corporate-action-honesty": PlaygroundTaskEntry(

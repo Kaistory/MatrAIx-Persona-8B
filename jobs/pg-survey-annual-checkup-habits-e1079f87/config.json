@@ -1,0 +1,239 @@
+{
+  "job_name": "pg-survey-annual-checkup-habits-e1079f87",
+  "jobs_dir": "jobs",
+  "n_attempts": 1,
+  "timeout_multiplier": 1.0,
+  "n_concurrent_trials": 2,
+  "quiet": false,
+  "environment": {
+    "type": "host",
+    "delete": true
+  },
+  "agents": [
+    {
+      "name": "persona-json-survey",
+      "model_name": "anthropic/claude-haiku-4-5",
+      "kwargs": {
+        "persona_path": "persona/datasets/generated-persona-dev-strategy-survey-annual-checkup-habits/persona_0001.yaml",
+        "model_info": {
+          "max_input_tokens": 200000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-json-survey",
+      "model_name": "anthropic/claude-haiku-4-5",
+      "kwargs": {
+        "persona_path": "persona/datasets/generated-persona-dev-strategy-survey-annual-checkup-habits/persona_0002.yaml",
+        "model_info": {
+          "max_input_tokens": 200000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-json-survey",
+      "model_name": "anthropic/claude-haiku-4-5",
+      "kwargs": {
+        "persona_path": "persona/datasets/generated-persona-dev-strategy-survey-annual-checkup-habits/persona_0003.yaml",
+        "model_info": {
+          "max_input_tokens": 200000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-json-survey",
+      "model_name": "anthropic/claude-haiku-4-5",
+      "kwargs": {
+        "persona_path": "persona/datasets/generated-persona-dev-strategy-survey-annual-checkup-habits/persona_0004.yaml",
+        "model_info": {
+          "max_input_tokens": 200000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-json-survey",
+      "model_name": "anthropic/claude-haiku-4-5",
+      "kwargs": {
+        "persona_path": "persona/datasets/generated-persona-dev-strategy-survey-annual-checkup-habits/persona_0005.yaml",
+        "model_info": {
+          "max_input_tokens": 200000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-json-survey",
+      "model_name": "anthropic/claude-haiku-4-5",
+      "kwargs": {
+        "persona_path": "persona/datasets/generated-persona-dev-strategy-survey-annual-checkup-habits/persona_0006.yaml",
+        "model_info": {
+          "max_input_tokens": 200000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-json-survey",
+      "model_name": "anthropic/claude-haiku-4-5",
+      "kwargs": {
+        "persona_path": "persona/datasets/generated-persona-dev-strategy-survey-annual-checkup-habits/persona_0007.yaml",
+        "model_info": {
+          "max_input_tokens": 200000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-json-survey",
+      "model_name": "anthropic/claude-haiku-4-5",
+      "kwargs": {
+        "persona_path": "persona/datasets/generated-persona-dev-strategy-survey-annual-checkup-habits/persona_0008.yaml",
+        "model_info": {
+          "max_input_tokens": 200000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-json-survey",
+      "model_name": "anthropic/claude-haiku-4-5",
+      "kwargs": {
+        "persona_path": "persona/datasets/generated-persona-dev-strategy-survey-annual-checkup-habits/persona_0009.yaml",
+        "model_info": {
+          "max_input_tokens": 200000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-json-survey",
+      "model_name": "anthropic/claude-haiku-4-5",
+      "kwargs": {
+        "persona_path": "persona/datasets/generated-persona-dev-strategy-survey-annual-checkup-habits/persona_0010.yaml",
+        "model_info": {
+          "max_input_tokens": 200000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-json-survey",
+      "model_name": "anthropic/claude-haiku-4-5",
+      "kwargs": {
+        "persona_path": "persona/datasets/generated-persona-dev-strategy-survey-annual-checkup-habits/persona_0011.yaml",
+        "model_info": {
+          "max_input_tokens": 200000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-json-survey",
+      "model_name": "anthropic/claude-haiku-4-5",
+      "kwargs": {
+        "persona_path": "persona/datasets/generated-persona-dev-strategy-survey-annual-checkup-habits/persona_0012.yaml",
+        "model_info": {
+          "max_input_tokens": 200000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-json-survey",
+      "model_name": "anthropic/claude-haiku-4-5",
+      "kwargs": {
+        "persona_path": "persona/datasets/generated-persona-dev-strategy-survey-annual-checkup-habits/persona_0013.yaml",
+        "model_info": {
+          "max_input_tokens": 200000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-json-survey",
+      "model_name": "anthropic/claude-haiku-4-5",
+      "kwargs": {
+        "persona_path": "persona/datasets/generated-persona-dev-strategy-survey-annual-checkup-habits/persona_0014.yaml",
+        "model_info": {
+          "max_input_tokens": 200000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-json-survey",
+      "model_name": "anthropic/claude-haiku-4-5",
+      "kwargs": {
+        "persona_path": "persona/datasets/generated-persona-dev-strategy-survey-annual-checkup-habits/persona_0015.yaml",
+        "model_info": {
+          "max_input_tokens": 200000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-json-survey",
+      "model_name": "anthropic/claude-haiku-4-5",
+      "kwargs": {
+        "persona_path": "persona/datasets/generated-persona-dev-strategy-survey-annual-checkup-habits/persona_0016.yaml",
+        "model_info": {
+          "max_input_tokens": 200000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-json-survey",
+      "model_name": "anthropic/claude-haiku-4-5",
+      "kwargs": {
+        "persona_path": "persona/datasets/generated-persona-dev-strategy-survey-annual-checkup-habits/persona_0017.yaml",
+        "model_info": {
+          "max_input_tokens": 200000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-json-survey",
+      "model_name": "anthropic/claude-haiku-4-5",
+      "kwargs": {
+        "persona_path": "persona/datasets/generated-persona-dev-strategy-survey-annual-checkup-habits/persona_0018.yaml",
+        "model_info": {
+          "max_input_tokens": 200000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-json-survey",
+      "model_name": "anthropic/claude-haiku-4-5",
+      "kwargs": {
+        "persona_path": "persona/datasets/generated-persona-dev-strategy-survey-annual-checkup-habits/persona_0019.yaml",
+        "model_info": {
+          "max_input_tokens": 200000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-json-survey",
+      "model_name": "anthropic/claude-haiku-4-5",
+      "kwargs": {
+        "persona_path": "persona/datasets/generated-persona-dev-strategy-survey-annual-checkup-habits/persona_0020.yaml",
+        "model_info": {
+          "max_input_tokens": 200000,
+          "max_output_tokens": 16384
+        }
+      }
+    }
+  ],
+  "tasks": [
+    {
+      "path": "application/tasks/survey_annual-checkup-habits"
+    }
+  ]
+}

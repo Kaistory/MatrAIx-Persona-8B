@@ -1,0 +1,9 @@
+{
+  "decision_subject_id": "<stable slug or site id for the chosen book>",
+  "decision_subject_label": "<book title exactly as shown>",
+  "decision_outcome": "selected",
+  "basis_primary": "<price|quality|features|convenience|taste|trust|familiarity|novelty|fit|other>",
+  "exploration_style": "<quick_pick|compared_multiple|deep_research|hesitant>",
+  "reason": "<why this book matched you>",
+  "task_price_text": "<price exactly as shown, e.g. £51.77>"
+}

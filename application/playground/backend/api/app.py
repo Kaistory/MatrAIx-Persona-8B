@@ -60,6 +60,8 @@ __all__ = ["create_app", "app", "preflight_checks", "catalog_item_view"]
 
 #: Origins allowed to call the API cross-origin (the Vite dev server).
 DEV_ORIGINS: List[str] = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
     "http://localhost:5173",
     "http://127.0.0.1:5173",
 ]

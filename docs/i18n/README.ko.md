@@ -149,7 +149,7 @@ VENV=.venv bash application/playground/backend/run_dev.sh
 cd application/playground/frontend && npm ci && npm run dev
 ```
 
-**http://localhost:5173** 열기 → Playground → 페르소나 코호트 선택 →
+**http://localhost:3000** 열기 → Playground → 페르소나 코호트 선택 →
 Survey / Chat / Web / OS app 태스크 선택 → **Lock pipeline** → **Run eval**.
 자세한 내용: [Playground §10](../quickstart.md#10-playground--play-tasks-visually).
 

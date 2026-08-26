@@ -1,0 +1,40 @@
+{
+    "id": "f16b96da-69b8-4875-9441-1cd8f45ee479",
+    "started_at": "2026-08-25T16:05:42.958705",
+    "updated_at": "2026-08-25T16:12:03.683984",
+    "finished_at": "2026-08-25T16:12:03.683984",
+    "n_total_trials": 2,
+    "stats": {
+        "n_completed_trials": 2,
+        "n_errored_trials": 2,
+        "n_running_trials": 0,
+        "n_pending_trials": 0,
+        "n_cancelled_trials": 0,
+        "n_retries": 0,
+        "evals": {
+            "persona-openhands-sdk__gpt-4o-mini__adhoc": {
+                "n_trials": 0,
+                "n_errors": 2,
+                "metrics": [
+                    {
+                        "mean": 0.0
+                    }
+                ],
+                "pass_at_k": {
+                    "2": 0.0
+                },
+                "reward_stats": {},
+                "exception_stats": {
+                    "AgentSetupTimeoutError": [
+                        "web_vita-drive-assistant__9pPsAwL",
+                        "web_vita-drive-assistant__zUgHjS3"
+                    ]
+                }
+            }
+        },
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null
+    }
+}

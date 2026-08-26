@@ -20,7 +20,7 @@ Start the frontend dev server with hot reloading:
 npm run dev
 ```
 
-The frontend will be available at `http://localhost:5173`.
+The frontend will be available at `http://localhost:3000`.
 
 For full development with the backend API, use the CLI from the repository root:
 

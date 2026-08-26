@@ -33,7 +33,7 @@ bash application/playground/backend/run_dev.sh
 cd application/playground/frontend && npm run dev
 ```
 
-Open http://localhost:5173 and launch with **Mode → auto**.
+Open http://localhost:3000 and launch with **Mode → auto**.
 
 ## Option B: Remote Runner worker
 

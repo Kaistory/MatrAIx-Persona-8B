@@ -221,7 +221,11 @@ class OpenHandsSDK(BaseInstalledAgent):
         # to a different provider's endpoint (DashScope -> 401 invalid_api_key).
         llm_api_key = self._provider_api_key()
         if llm_api_key is None:
-            llm_api_key = self._get_env("LLM_API_KEY")
+            llm_api_key = (
+                self._get_env("LLM_API_KEY")
+                or self._get_env("OPENAI_API_KEY")
+                or self._get_env("OPENROUTER_API_KEY")
+            )
         if llm_api_key is None and self.model_name and self.model_name.startswith("dashscope/"):
             llm_api_key = self._get_env("DASHSCOPE_API_KEY")
         if llm_api_key is None:
@@ -237,7 +241,12 @@ class OpenHandsSDK(BaseInstalledAgent):
                 or "https://dashscope.aliyuncs.com/compatible-mode/v1"
             )
         else:
-            llm_base_url = self._get_env("LLM_BASE_URL")
+            llm_base_url = (
+                self._get_env("LLM_BASE_URL")
+                or self._get_env("OPENAI_BASE_URL")
+                or self._get_env("OPENAI_API_BASE")
+                or self._get_env("OPENROUTER_BASE_URL")
+            )
         if llm_base_url is not None:
             env["LLM_BASE_URL"] = llm_base_url
 

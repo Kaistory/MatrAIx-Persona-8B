@@ -1,0 +1,9 @@
+{
+  "persona_path": "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/persona/datasets/matraix-persona-dev-sample/persona_0042.yaml",
+  "schema_version": "v2",
+  "persona_id": "0042",
+  "version": "1.0",
+  "display_name": "Casey Brooks",
+  "summary": null,
+  "agent": "persona-user-sim"
+}

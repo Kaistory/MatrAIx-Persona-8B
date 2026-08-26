@@ -159,7 +159,7 @@ VENV=.venv bash application/playground/backend/run_dev.sh
 cd application/playground/frontend && npm ci && npm run dev
 ```
 
-Open **http://localhost:5173** → Playground → pick a persona cohort →
+Open **http://localhost:3000** → Playground → pick a persona cohort →
 pick Survey / Chat / Web / OS app tasks → **Lock pipeline** → **Run eval**.
 Details: [Playground §10](docs/quickstart.md#10-playground--play-tasks-visually).
 

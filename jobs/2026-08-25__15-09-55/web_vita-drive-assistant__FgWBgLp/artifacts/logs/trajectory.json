@@ -1,0 +1,120 @@
+{
+  "version": "1.0",
+  "steps": [
+    {
+      "source": "agent",
+      "message": [
+        {
+          "type": "text",
+          "text": "Navigating to http://172.17.0.1:5173/ and viewing VoiceLab login screen."
+        },
+        {
+          "type": "image",
+          "source": {
+            "path": "screenshots/01_login_gate.png"
+          }
+        }
+      ],
+      "tool_calls": [
+        {
+          "function_name": "goto",
+          "arguments": {
+            "url": "http://172.17.0.1:5173/"
+          }
+        }
+      ]
+    },
+    {
+      "source": "agent",
+      "message": [
+        {
+          "type": "text",
+          "text": "Clicked login button and entered the Main Car Dashboard (VF9 3D model, climate bar, and Vita Mascot loaded)."
+        },
+        {
+          "type": "image",
+          "source": {
+            "path": "screenshots/02_main_dashboard.png"
+          }
+        }
+      ],
+      "tool_calls": [
+        {
+          "function_name": "click",
+          "arguments": {
+            "selector": "button[type=\"submit\"]"
+          }
+        }
+      ]
+    },
+    {
+      "source": "agent",
+      "message": [
+        {
+          "type": "text",
+          "text": "Clicked the climate temperature adjustment button. The full vehicle control modal opened up."
+        },
+        {
+          "type": "image",
+          "source": {
+            "path": "screenshots/03_climate_increased.png"
+          }
+        }
+      ],
+      "tool_calls": [
+        {
+          "function_name": "click",
+          "arguments": {
+            "selector": "button:has(svg.lucide-chevron-right)"
+          }
+        }
+      ]
+    },
+    {
+      "source": "agent",
+      "message": [
+        {
+          "type": "text",
+          "text": "[Friction / Failure] Attempted to click the music play button, but the element was obscured by the vehicle control modal overlay."
+        },
+        {
+          "type": "image",
+          "source": {
+            "path": "screenshots/04_friction_failure_state.png"
+          }
+        }
+      ],
+      "tool_calls": [
+        {
+          "function_name": "click",
+          "arguments": {
+            "selector": ".play-button"
+          }
+        }
+      ]
+    },
+    {
+      "source": "agent",
+      "message": [
+        {
+          "type": "text",
+          "text": "Exploration completed. Captured final stage."
+        },
+        {
+          "type": "image",
+          "source": {
+            "path": "screenshots/05_soul_studio_stage.png"
+          }
+        }
+      ],
+      "tool_calls": [
+        {
+          "function_name": "submit_report",
+          "arguments": {
+            "file": "dashboard_experience.json"
+          }
+        }
+      ]
+    }
+  ]
+}

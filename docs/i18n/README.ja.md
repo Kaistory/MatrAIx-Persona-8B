@@ -150,7 +150,7 @@ VENV=.venv bash application/playground/backend/run_dev.sh
 cd application/playground/frontend && npm ci && npm run dev
 ```
 
-**http://localhost:5173** を開く → Playground → ペルソナのコホートを選択 →
+**http://localhost:3000** を開く → Playground → ペルソナのコホートを選択 →
 Survey / Chat / Web / OS app タスクを選択 → **Lock pipeline** → **Run eval**。
 詳細: [Playground §10](../quickstart.md#10-playground--play-tasks-visually)。
 

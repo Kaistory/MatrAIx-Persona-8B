@@ -1,0 +1,216 @@
+{
+  "instrument": {
+    "id": "price_sensitivity_v1",
+    "title": "Price Sensitivity Survey — Hasbro Gaming Candy Land Kingdom"
+  },
+  "answers": [
+    {
+      "questionId": "q_price_matters",
+      "value": 4,
+      "rationale": "",
+      "confidence": null
+    },
+    {
+      "questionId": "q_too_expensive",
+      "value": 3,
+      "rationale": "",
+      "confidence": null
+    },
+    {
+      "questionId": "q_threshold",
+      "value": "hesitate",
+      "rationale": "",
+      "confidence": null
+    },
+    {
+      "questionId": "q_price_vs_quality",
+      "value": "balance",
+      "rationale": "Tengo negocio y entiendo márgenes. Un juego de 4.8 estrellas con 37k reseñas vale algo. Pero $16.24 es 25% más caro que antes — eso duele. Si es buena calidad, pago. Pero necesito ver que justifica el aumento.",
+      "confidence": null
+    }
+  ],
+  "trajectory": [
+    {
+      "timestamp": "2026-08-25T10:29:41Z",
+      "actor": "system",
+      "action": "survey_started",
+      "context": {
+        "instrumentId": "price_sensitivity_v1",
+        "instrumentTitle": "Price Sensitivity Survey — Hasbro Gaming Candy Land Kingdom",
+        "numQuestions": 4
+      },
+      "outcome": {
+        "status": "started"
+      }
+    },
+    {
+      "timestamp": "2026-08-25T10:29:42Z",
+      "actor": "assistant",
+      "action": "ask_question",
+      "context": {
+        "instrumentId": "price_sensitivity_v1",
+        "questionId": "q_price_matters",
+        "questionIndex": 1,
+        "questionType": "likert",
+        "construct": "price_centrality"
+      },
+      "outcome": {
+        "prompt": "The price is the single most important factor in whether I would buy the Hasbro Gaming Candy Land Kingdom.",
+        "options": []
+      }
+    },
+    {
+      "timestamp": "2026-08-25T10:29:43Z",
+      "actor": "user",
+      "action": "answer_question",
+      "context": {
+        "instrumentId": "price_sensitivity_v1",
+        "questionId": "q_price_matters",
+        "questionIndex": 1,
+        "questionType": "likert",
+        "construct": "price_centrality"
+      },
+      "outcome": {
+        "questionId": "q_price_matters",
+        "value": 4,
+        "rationale": "",
+        "confidence": null
+      }
+    },
+    {
+      "timestamp": "2026-08-25T10:29:44Z",
+      "actor": "assistant",
+      "action": "ask_question",
+      "context": {
+        "instrumentId": "price_sensitivity_v1",
+        "questionId": "q_too_expensive",
+        "questionIndex": 2,
+        "questionType": "likert",
+        "construct": "price_pain"
+      },
+      "outcome": {
+        "prompt": "At its current price, the Hasbro Gaming Candy Land Kingdom feels too expensive for me.",
+        "options": []
+      }
+    },
+    {
+      "timestamp": "2026-08-25T10:29:45Z",
+      "actor": "user",
+      "action": "answer_question",
+      "context": {
+        "instrumentId": "price_sensitivity_v1",
+        "questionId": "q_too_expensive",
+        "questionIndex": 2,
+        "questionType": "likert",
+        "construct": "price_pain"
+      },
+      "outcome": {
+        "questionId": "q_too_expensive",
+        "value": 3,
+        "rationale": "",
+        "confidence": null
+      }
+    },
+    {
+      "timestamp": "2026-08-25T10:29:46Z",
+      "actor": "assistant",
+      "action": "ask_question",
+      "context": {
+        "instrumentId": "price_sensitivity_v1",
+        "questionId": "q_threshold",
+        "questionIndex": 3,
+        "questionType": "single_choice",
+        "construct": "price_threshold"
+      },
+      "outcome": {
+        "prompt": "What best describes your reaction to the current price?",
+        "options": [
+          "cheap_stock_up",
+          "fair_buy",
+          "hesitate",
+          "only_on_sale",
+          "walk_away"
+        ]
+      }
+    },
+    {
+      "timestamp": "2026-08-25T10:29:47Z",
+      "actor": "user",
+      "action": "answer_question",
+      "context": {
+        "instrumentId": "price_sensitivity_v1",
+        "questionId": "q_threshold",
+        "questionIndex": 3,
+        "questionType": "single_choice",
+        "construct": "price_threshold"
+      },
+      "outcome": {
+        "questionId": "q_threshold",
+        "value": "hesitate",
+        "rationale": "",
+        "confidence": null
+      }
+    },
+    {
+      "timestamp": "2026-08-25T10:29:48Z",
+      "actor": "assistant",
+      "action": "ask_question",
+      "context": {
+        "instrumentId": "price_sensitivity_v1",
+        "questionId": "q_price_vs_quality",
+        "questionIndex": 4,
+        "questionType": "single_choice",
+        "construct": "price_quality_tradeoff"
+      },
+      "outcome": {
+        "prompt": "When you weigh price against quality here, which wins?",
+        "options": [
+          "price_first",
+          "balance",
+          "quality_first"
+        ]
+      }
+    },
+    {
+      "timestamp": "2026-08-25T10:29:49Z",
+      "actor": "user",
+      "action": "answer_question",
+      "context": {
+        "instrumentId": "price_sensitivity_v1",
+        "questionId": "q_price_vs_quality",
+        "questionIndex": 4,
+        "questionType": "single_choice",
+        "construct": "price_quality_tradeoff"
+      },
+      "outcome": {
+        "questionId": "q_price_vs_quality",
+        "value": "balance",
+        "rationale": "Tengo negocio y entiendo márgenes. Un juego de 4.8 estrellas con 37k reseñas vale algo. Pero $16.24 es 25% más caro que antes — eso duele. Si es buena calidad, pago. Pero necesito ver que justifica el aumento.",
+        "confidence": null
+      }
+    },
+    {
+      "timestamp": "2026-08-25T10:29:50Z",
+      "actor": "system",
+      "action": "survey_completed",
+      "context": {
+        "instrumentId": "price_sensitivity_v1"
+      },
+      "outcome": {
+        "numAnswered": 4,
+        "missingRequiredQuestionIds": [],
+        "valid": true
+      }
+    }
+  ],
+  "usage": {
+    "n_input_tokens": 7973,
+    "n_output_tokens": 249,
+    "n_cache_tokens": 0,
+    "cost_usd": 0.009217999999999999,
+    "request_id": "gen-1787653782-epZhuwBKqSMv9ZZC7Dxm",
+    "model": "anthropic/claude-haiku-4-5",
+    "provider": "anthropic",
+    "cost_source": "estimated"
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "sessionId": "harbor-chat",
+  "messages": [
+    {
+      "role": "customer",
+      "content": "Chào Vita! Hôm nay thời tiết thế nào? Tôi muốn điều chỉnh điều hòa một chút."
+    },
+    {
+      "role": "support",
+      "content": "Mình chưa có dữ liệu thời tiết. Cabin đang 34°C, điều hòa đang bật. Bạn muốn chỉnh nhiệt độ hay tốc độ quạt gió?"
+    },
+    {
+      "role": "customer",
+      "content": "Hãy giảm nhiệt độ xuống 24°C và tăng tốc độ quạt gió lên một chút nhé."
+    },
+    {
+      "role": "support",
+      "content": "Đã chỉnh nhiệt độ ghế lái xuống 24°C và tăng quạt gió lên mức 7 nhé."
+    },
+    {
+      "role": "customer",
+      "content": "Cảm ơn Vita! Bây giờ tôi muốn nghe một bản nhạc nhẹ nhàng. Bạn có thể bật cho tôi một bài hát được không?"
+    },
+    {
+      "role": "support",
+      "content": "Đã mở bài Một Nhà, Lái Xe Một Mình, 3107 2, Dù Cho Tận Thế - Những Bài Hát Nhạc Việt Cực Chill Gây Nghiện."
+    },
+    {
+      "role": "customer",
+      "content": "Tuyệt vời! Hãy tăng âm lượng lên một chút để tôi có thể thưởng thức tốt hơn nhé."
+    },
+    {
+      "role": "support",
+      "content": "Đã tăng âm lượng lên 75 cho bạn nhé."
+    },
+    {
+      "role": "customer",
+      "content": "Cảm ơn Vita! Hãy cho tôi biết tình trạng pin xe hiện tại được không?"
+    },
+    {
+      "role": "support",
+      "content": "Pin xe còn 12%, phạm vi khoảng 52 km. Anh có muốn tìm trạm sạc không?"
+    },
+    {
+      "role": "customer",
+      "content": "Vâng, hãy tìm trạm sạc gần nhất cho tôi nhé!"
+    },
+    {
+      "role": "support",
+      "content": "Đã dẫn đường đến trạm sạc gần nhất."
+    },
+    {
+      "role": "customer",
+      "content": "Cảm ơn Vita! Bây giờ hãy bắt đầu hành trình đến trạm sạc nhé!"
+    },
+    {
+      "role": "support",
+      "content": "Đã dẫn đường đến trạm sạc gần nhất."
+    },
+    {
+      "role": "customer",
+      "content": "Tuyệt vời! Tôi sẽ lái xe đến đó. Cảm ơn Vita đã hỗ trợ!"
+    },
+    {
+      "role": "support",
+      "content": "Bạn lái xe an toàn nhé. Chúc bạn chuyến đi vui vẻ!"
+    },
+    {
+      "role": "customer",
+      "content": "Cảm ơn Vita! Tôi sẽ lái xe cẩn thận. Kết thúc cuộc trò chuyện nhé!"
+    },
+    {
+      "role": "support",
+      "content": "Dạ, cảm ơn bạn. Chúc bạn lái xe an toàn nhé!"
+    }
+  ],
+  "domain": "automotive_ai",
+  "applicationId": "vita_drive_assistant",
+  "applicationContext": "in_cabin_driving"
+}

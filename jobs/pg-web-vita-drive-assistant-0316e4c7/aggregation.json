@@ -1,0 +1,1891 @@
+{
+  "schemaVersion": "1.0",
+  "artifactType": "job_aggregation",
+  "generatedAt": "2026-08-25T09:58:03Z",
+  "coverage": {
+    "trialCount": 1,
+    "completedTrials": 1,
+    "pendingTrials": 0,
+    "artifactReadyTrials": 1,
+    "completedWithoutArtifactTrials": 0
+  },
+  "fields": [
+    {
+      "key": "decision.primary.basis_primary",
+      "facetKey": "basis_primary",
+      "contextKey": "decision.primary",
+      "contextLabel": "Primary decision",
+      "label": "Primary basis",
+      "kind": "categorical",
+      "role": "primary",
+      "explainsFacetKey": null,
+      "group": "decision.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "categorical": {
+        "count": 1,
+        "distinctCount": 1,
+        "counts": [
+          {
+            "value": "features",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "decision.primary.decision_outcome",
+      "facetKey": "decision_outcome",
+      "contextKey": "decision.primary",
+      "contextLabel": "Primary decision",
+      "label": "Decision outcome",
+      "kind": "categorical",
+      "role": "primary",
+      "explainsFacetKey": null,
+      "group": "decision.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "categorical": {
+        "count": 1,
+        "distinctCount": 1,
+        "counts": [
+          {
+            "value": "selected",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "decision.primary.decision_subject_id",
+      "facetKey": "decision_subject_id",
+      "contextKey": "decision.primary",
+      "contextLabel": "Primary decision",
+      "label": "Decision subject ID",
+      "kind": "categorical",
+      "role": "evidence",
+      "explainsFacetKey": null,
+      "group": "decision.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "categorical": {
+        "count": 1,
+        "distinctCount": 1,
+        "counts": [
+          {
+            "value": "vita_car_dashboard",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "decision.primary.decision_subject_label",
+      "facetKey": "decision_subject_label",
+      "contextKey": "decision.primary",
+      "contextLabel": "Primary decision",
+      "label": "Decision subject label",
+      "kind": "categorical",
+      "role": "evidence",
+      "explainsFacetKey": null,
+      "group": "decision.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "categorical": {
+        "count": 1,
+        "distinctCount": 1,
+        "counts": [
+          {
+            "value": "Vita Drive Assistant Dashboard",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "decision.primary.reason",
+      "facetKey": "reason",
+      "contextKey": "decision.primary",
+      "contextLabel": "Primary decision",
+      "label": "Reason",
+      "kind": "textual",
+      "role": "explanation",
+      "explainsFacetKey": "basis_primary",
+      "group": "decision.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "textual": {
+        "count": 1,
+        "uniqueCount": 1,
+        "samples": [
+          "The dashboard offers an intuitive interface with quick access to key features and a modern design that feels user-friendly. The climate control is very well integrated, making adjustments easy while driving, and the navigation aspect is particularly useful for on-the-go assistance. Overall, it presents a well-thought-out experience that puts the user in control."
+        ],
+        "counts": [
+          {
+            "value": "The dashboard offers an intuitive interface with quick access to key features and a modern design that feels user-friendly. The climate control is very well integrated, making adjustments easy while driving, and the navigation aspect is particularly useful for on-the-go assistance. Overall, it presents a well-thought-out experience that puts the user in control.",
+            "count": 1,
+            "samples": [
+              "The dashboard offers an intuitive interface with quick access to key features and a modern design that feels user-friendly. The climate control is very well integrated, making adjustments easy while driving, and the navigation aspect is particularly useful for on-the-go assistance. Overall, it presents a well-thought-out experience that puts the user in control."
+            ]
+          }
+        ],
+        "summary": "All 1 answers converge on one theme: \"The dashboard offers an intuitive interface with quick access to key features and a modern design that feels user-friendly. The climate control is very well integrated, making adjustments easy while driving, and the navigation aspect is particularly useful for on-the-go assistance. Overall, it presents a well-thought-out experience that puts the user in control.\".",
+        "summaryType": "heuristic"
+      }
+    },
+    {
+      "key": "decision.process.exploration_style",
+      "facetKey": "exploration_style",
+      "contextKey": "decision.process",
+      "contextLabel": "Decision process",
+      "label": "Exploration style",
+      "kind": "categorical",
+      "role": "primary",
+      "explainsFacetKey": null,
+      "group": "decision.process",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "categorical": {
+        "count": 1,
+        "distinctCount": 1,
+        "counts": [
+          {
+            "value": "deep_research",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "task_outcome.primary.completion_evidence",
+      "facetKey": "completion_evidence",
+      "contextKey": "task_outcome.primary",
+      "contextLabel": "Task outcome",
+      "label": "Completion evidence",
+      "kind": "textual",
+      "role": "evidence",
+      "explainsFacetKey": null,
+      "group": "task_outcome.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "textual": {
+        "count": 1,
+        "uniqueCount": 1,
+        "samples": [
+          "Saved dashboard_experience.json with decision subject Vita Drive Assistant Dashboard."
+        ],
+        "counts": [
+          {
+            "value": "Saved dashboard_experience.json with decision subject Vita Drive Assistant Dashboard.",
+            "count": 1,
+            "samples": [
+              "Saved dashboard_experience.json with decision subject Vita Drive Assistant Dashboard."
+            ]
+          }
+        ],
+        "summary": "All 1 answers converge on one theme: \"Saved dashboard_experience.json with decision subject Vita Drive Assistant Dashboard.\".",
+        "summaryType": "heuristic"
+      }
+    },
+    {
+      "key": "task_outcome.primary.goal_completion_bucket",
+      "facetKey": "goal_completion_bucket",
+      "contextKey": "task_outcome.primary",
+      "contextLabel": "Task outcome",
+      "label": "Goal completion bucket",
+      "kind": "categorical",
+      "role": "primary",
+      "explainsFacetKey": null,
+      "group": "task_outcome.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "categorical": {
+        "count": 1,
+        "distinctCount": 1,
+        "counts": [
+          {
+            "value": "complete",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "task_outcome.primary.goal_completion_ratio",
+      "facetKey": "goal_completion_ratio",
+      "contextKey": "task_outcome.primary",
+      "contextLabel": "Task outcome",
+      "label": "Goal completion ratio",
+      "kind": "numerical",
+      "role": "score",
+      "explainsFacetKey": null,
+      "group": "task_outcome.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "numerical": {
+        "count": 1,
+        "min": 1.0,
+        "max": 1.0,
+        "avg": 1.0,
+        "std": 0.0,
+        "counts": [
+          {
+            "value": "1",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "task_outcome.primary.outcome_explanation",
+      "facetKey": "outcome_explanation",
+      "contextKey": "task_outcome.primary",
+      "contextLabel": "Task outcome",
+      "label": "Outcome explanation",
+      "kind": "textual",
+      "role": "explanation",
+      "explainsFacetKey": null,
+      "group": "task_outcome.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "textual": {
+        "count": 1,
+        "uniqueCount": 1,
+        "samples": [
+          "The persona explored the vehicle dashboard and saved a valid dashboard_experience.json artifact."
+        ],
+        "counts": [
+          {
+            "value": "The persona explored the vehicle dashboard and saved a valid dashboard_experience.json artifact.",
+            "count": 1,
+            "samples": [
+              "The persona explored the vehicle dashboard and saved a valid dashboard_experience.json artifact."
+            ]
+          }
+        ],
+        "summary": "All 1 answers converge on one theme: \"The persona explored the vehicle dashboard and saved a valid dashboard_experience.json artifact.\".",
+        "summaryType": "heuristic"
+      }
+    },
+    {
+      "key": "task_outcome.primary.outcome_status",
+      "facetKey": "outcome_status",
+      "contextKey": "task_outcome.primary",
+      "contextLabel": "Task outcome",
+      "label": "Outcome status",
+      "kind": "categorical",
+      "role": "primary",
+      "explainsFacetKey": null,
+      "group": "task_outcome.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "categorical": {
+        "count": 1,
+        "distinctCount": 1,
+        "counts": [
+          {
+            "value": "passed",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "task_outcome.primary.primary_failure_reason",
+      "facetKey": "primary_failure_reason",
+      "contextKey": "task_outcome.primary",
+      "contextLabel": "Task outcome",
+      "label": "Primary failure reason",
+      "kind": "categorical",
+      "role": "primary",
+      "explainsFacetKey": null,
+      "group": "task_outcome.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "categorical": {
+        "count": 1,
+        "distinctCount": 1,
+        "counts": [
+          {
+            "value": "none",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "task_outcome.primary.verifier_mode",
+      "facetKey": "verifier_mode",
+      "contextKey": "task_outcome.primary",
+      "contextLabel": "Task outcome",
+      "label": "Verifier mode",
+      "kind": "categorical",
+      "role": "evidence",
+      "explainsFacetKey": null,
+      "group": "task_outcome.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "categorical": {
+        "count": 1,
+        "distinctCount": 1,
+        "counts": [
+          {
+            "value": "artifact_exact",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "user_feedback.primary.clarity_of_next_step",
+      "facetKey": "clarity_of_next_step",
+      "contextKey": "user_feedback.primary",
+      "contextLabel": "User feedback",
+      "label": "Optional: did you find it clear how to operate different vehicle functions?",
+      "kind": "categorical",
+      "role": "evidence",
+      "explainsFacetKey": null,
+      "group": "user_feedback.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": [
+        "true",
+        "false"
+      ],
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "categorical": {
+        "count": 1,
+        "distinctCount": 1,
+        "counts": [
+          {
+            "value": "true",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "user_feedback.primary.effort_rating",
+      "facetKey": "effort_rating",
+      "contextKey": "user_feedback.primary",
+      "contextLabel": "User feedback",
+      "label": "Optional: how effortful did navigating the dashboard feel from 1 to 10?",
+      "kind": "numerical",
+      "role": "score",
+      "explainsFacetKey": null,
+      "group": "user_feedback.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": 1,
+      "scaleMax": 10,
+      "presentCount": 1,
+      "missingCount": 0,
+      "numerical": {
+        "count": 1,
+        "min": 2.0,
+        "max": 2.0,
+        "avg": 2.0,
+        "std": 0.0,
+        "counts": [
+          {
+            "value": "2",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "user_feedback.primary.feedback_reason",
+      "facetKey": "feedback_reason",
+      "contextKey": "user_feedback.primary",
+      "contextLabel": "User feedback",
+      "label": "Briefly explain your rating in your own persona's voice.",
+      "kind": "textual",
+      "role": "explanation",
+      "explainsFacetKey": "overall_experience_rating",
+      "group": "user_feedback.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "textual": {
+        "count": 1,
+        "uniqueCount": 1,
+        "samples": [
+          "The dashboard was very intuitive and user-friendly, making it easy to access the features I needed while driving. The design was modern and appealing, which matched my personal aesthetics well. I felt in control and comfortable using the smart assistant."
+        ],
+        "counts": [
+          {
+            "value": "The dashboard was very intuitive and user-friendly, making it easy to access the features I needed while driving. The design was modern and appealing, which matched my personal aesthetics well. I felt in control and comfortable using the smart assistant.",
+            "count": 1,
+            "samples": [
+              "The dashboard was very intuitive and user-friendly, making it easy to access the features I needed while driving. The design was modern and appealing, which matched my personal aesthetics well. I felt in control and comfortable using the smart assistant."
+            ]
+          }
+        ],
+        "summary": "All 1 answers converge on one theme: \"The dashboard was very intuitive and user-friendly, making it easy to access the features I needed while driving. The design was modern and appealing, which matched my personal aesthetics well. I felt in control and comfortable using the smart assistant.\".",
+        "summaryType": "heuristic"
+      }
+    },
+    {
+      "key": "user_feedback.primary.need_constraint_satisfaction",
+      "facetKey": "need_constraint_satisfaction",
+      "contextKey": "user_feedback.primary",
+      "contextLabel": "User feedback",
+      "label": "How well did the car dashboard and assistant satisfy your in-cabin driving needs?",
+      "kind": "categorical",
+      "role": "evidence",
+      "explainsFacetKey": null,
+      "group": "user_feedback.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": [
+        "yes",
+        "partially",
+        "no"
+      ],
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "categorical": {
+        "count": 1,
+        "distinctCount": 1,
+        "counts": [
+          {
+            "value": "yes",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "user_feedback.primary.overall_experience_rating",
+      "facetKey": "overall_experience_rating",
+      "contextKey": "user_feedback.primary",
+      "contextLabel": "User feedback",
+      "label": "Overall, how would you rate the experience from 1 to 10?",
+      "kind": "numerical",
+      "role": "primary",
+      "explainsFacetKey": null,
+      "group": "user_feedback.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": 1,
+      "scaleMax": 10,
+      "presentCount": 1,
+      "missingCount": 0,
+      "numerical": {
+        "count": 1,
+        "min": 9.0,
+        "max": 9.0,
+        "avg": 9.0,
+        "std": 0.0,
+        "counts": [
+          {
+            "value": "9",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "user_feedback.primary.personal_preference_satisfaction",
+      "facetKey": "personal_preference_satisfaction",
+      "contextKey": "user_feedback.primary",
+      "contextLabel": "User feedback",
+      "label": "How well did the dashboard interface match your personal aesthetics and driving preferences?",
+      "kind": "categorical",
+      "role": "evidence",
+      "explainsFacetKey": null,
+      "group": "user_feedback.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": [
+        "yes",
+        "partially",
+        "no"
+      ],
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "categorical": {
+        "count": 1,
+        "distinctCount": 1,
+        "counts": [
+          {
+            "value": "yes",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "user_feedback.primary.trust_level",
+      "facetKey": "trust_level",
+      "contextKey": "user_feedback.primary",
+      "contextLabel": "User feedback",
+      "label": "Optional: how much did you trust the vehicle assistant from 1 to 10?",
+      "kind": "numerical",
+      "role": "score",
+      "explainsFacetKey": null,
+      "group": "user_feedback.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": 1,
+      "scaleMax": 10,
+      "presentCount": 1,
+      "missingCount": 0,
+      "numerical": {
+        "count": 1,
+        "min": 8.0,
+        "max": 8.0,
+        "avg": 8.0,
+        "std": 0.0,
+        "counts": [
+          {
+            "value": "8",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "web_artifact.primary.artifact_evidence",
+      "facetKey": "artifact_evidence",
+      "contextKey": "web_artifact.primary",
+      "contextLabel": "Web artifact",
+      "label": "Artifact evidence",
+      "kind": "textual",
+      "role": "explanation",
+      "explainsFacetKey": null,
+      "group": "web_artifact.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "textual": {
+        "count": 1,
+        "uniqueCount": 1,
+        "samples": [
+          "The submission artifact dashboard_experience.json matches the persona vehicle dashboard experience."
+        ],
+        "counts": [
+          {
+            "value": "The submission artifact dashboard_experience.json matches the persona vehicle dashboard experience.",
+            "count": 1,
+            "samples": [
+              "The submission artifact dashboard_experience.json matches the persona vehicle dashboard experience."
+            ]
+          }
+        ],
+        "summary": "All 1 answers converge on one theme: \"The submission artifact dashboard_experience.json matches the persona vehicle dashboard experience.\".",
+        "summaryType": "heuristic"
+      }
+    },
+    {
+      "key": "web_artifact.primary.artifact_status",
+      "facetKey": "artifact_status",
+      "contextKey": "web_artifact.primary",
+      "contextLabel": "Web artifact",
+      "label": "Artifact status",
+      "kind": "categorical",
+      "role": "primary",
+      "explainsFacetKey": null,
+      "group": "web_artifact.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "categorical": {
+        "count": 1,
+        "distinctCount": 1,
+        "counts": [
+          {
+            "value": "correct",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "web_artifact.primary.artifact_subject_id",
+      "facetKey": "artifact_subject_id",
+      "contextKey": "web_artifact.primary",
+      "contextLabel": "Web artifact",
+      "label": "Artifact subject id",
+      "kind": "categorical",
+      "role": "evidence",
+      "explainsFacetKey": null,
+      "group": "web_artifact.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "categorical": {
+        "count": 1,
+        "distinctCount": 1,
+        "counts": [
+          {
+            "value": "vita_car_dashboard",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "web_artifact.primary.artifact_subject_label",
+      "facetKey": "artifact_subject_label",
+      "contextKey": "web_artifact.primary",
+      "contextLabel": "Web artifact",
+      "label": "Artifact subject label",
+      "kind": "categorical",
+      "role": "evidence",
+      "explainsFacetKey": null,
+      "group": "web_artifact.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "categorical": {
+        "count": 1,
+        "distinctCount": 1,
+        "counts": [
+          {
+            "value": "Vita Drive Assistant Dashboard",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "web_artifact.primary.artifact_type",
+      "facetKey": "artifact_type",
+      "contextKey": "web_artifact.primary",
+      "contextLabel": "Web artifact",
+      "label": "Artifact type",
+      "kind": "categorical",
+      "role": "primary",
+      "explainsFacetKey": null,
+      "group": "web_artifact.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "categorical": {
+        "count": 1,
+        "distinctCount": 1,
+        "counts": [
+          {
+            "value": "task_submission",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "web_interaction.primary.navigation_path_type",
+      "facetKey": "navigation_path_type",
+      "contextKey": "web_interaction.primary",
+      "contextLabel": "Web interaction",
+      "label": "Navigation path type",
+      "kind": "categorical",
+      "role": "primary",
+      "explainsFacetKey": null,
+      "group": "web_interaction.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "categorical": {
+        "count": 1,
+        "distinctCount": 1,
+        "counts": [
+          {
+            "value": "browse_compare",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "web_interaction.primary.web_interaction_notes",
+      "facetKey": "web_interaction_notes",
+      "contextKey": "web_interaction.primary",
+      "contextLabel": "Web interaction",
+      "label": "Web interaction notes",
+      "kind": "textual",
+      "role": "explanation",
+      "explainsFacetKey": null,
+      "group": "web_interaction.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "textual": {
+        "count": 1,
+        "uniqueCount": 1,
+        "samples": [
+          "The persona used a deep research browsing pattern before submitting."
+        ],
+        "counts": [
+          {
+            "value": "The persona used a deep research browsing pattern before submitting.",
+            "count": 1,
+            "samples": [
+              "The persona used a deep research browsing pattern before submitting."
+            ]
+          }
+        ],
+        "summary": "All 1 answers converge on one theme: \"The persona used a deep research browsing pattern before submitting.\".",
+        "summaryType": "heuristic"
+      }
+    }
+  ],
+  "contexts": [
+    {
+      "key": "decision.primary",
+      "label": "Primary decision",
+      "contextType": "decision",
+      "questionType": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "scaleLabels": null,
+      "summaryAnalyses": [],
+      "signalScans": [],
+      "distributions": [
+        {
+          "id": "decision.basis_by_segment",
+          "facetKey": "basis_primary",
+          "title": "Primary basis"
+        },
+        {
+          "id": "decision.outcome_by_segment",
+          "facetKey": "decision_outcome",
+          "title": "Decision outcome"
+        }
+      ],
+      "facets": [
+        {
+          "key": "decision.primary.decision_outcome",
+          "facetKey": "decision_outcome",
+          "contextKey": "decision.primary",
+          "contextLabel": "Primary decision",
+          "label": "Decision outcome",
+          "kind": "categorical",
+          "role": "primary",
+          "explainsFacetKey": null,
+          "group": "decision.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "categorical": {
+            "count": 1,
+            "distinctCount": 1,
+            "counts": [
+              {
+                "value": "selected",
+                "count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": "decision.primary.basis_primary",
+          "facetKey": "basis_primary",
+          "contextKey": "decision.primary",
+          "contextLabel": "Primary decision",
+          "label": "Primary basis",
+          "kind": "categorical",
+          "role": "primary",
+          "explainsFacetKey": null,
+          "group": "decision.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "categorical": {
+            "count": 1,
+            "distinctCount": 1,
+            "counts": [
+              {
+                "value": "features",
+                "count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": "decision.primary.reason",
+          "facetKey": "reason",
+          "contextKey": "decision.primary",
+          "contextLabel": "Primary decision",
+          "label": "Reason",
+          "kind": "textual",
+          "role": "explanation",
+          "explainsFacetKey": "basis_primary",
+          "group": "decision.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "textual": {
+            "count": 1,
+            "uniqueCount": 1,
+            "samples": [
+              "The dashboard offers an intuitive interface with quick access to key features and a modern design that feels user-friendly. The climate control is very well integrated, making adjustments easy while driving, and the navigation aspect is particularly useful for on-the-go assistance. Overall, it presents a well-thought-out experience that puts the user in control."
+            ],
+            "counts": [
+              {
+                "value": "The dashboard offers an intuitive interface with quick access to key features and a modern design that feels user-friendly. The climate control is very well integrated, making adjustments easy while driving, and the navigation aspect is particularly useful for on-the-go assistance. Overall, it presents a well-thought-out experience that puts the user in control.",
+                "count": 1,
+                "samples": [
+                  "The dashboard offers an intuitive interface with quick access to key features and a modern design that feels user-friendly. The climate control is very well integrated, making adjustments easy while driving, and the navigation aspect is particularly useful for on-the-go assistance. Overall, it presents a well-thought-out experience that puts the user in control."
+                ]
+              }
+            ],
+            "summary": "All 1 answers converge on one theme: \"The dashboard offers an intuitive interface with quick access to key features and a modern design that feels user-friendly. The climate control is very well integrated, making adjustments easy while driving, and the navigation aspect is particularly useful for on-the-go assistance. Overall, it presents a well-thought-out experience that puts the user in control.\".",
+            "summaryType": "heuristic"
+          }
+        },
+        {
+          "key": "decision.primary.decision_subject_id",
+          "facetKey": "decision_subject_id",
+          "contextKey": "decision.primary",
+          "contextLabel": "Primary decision",
+          "label": "Decision subject ID",
+          "kind": "categorical",
+          "role": "evidence",
+          "explainsFacetKey": null,
+          "group": "decision.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "categorical": {
+            "count": 1,
+            "distinctCount": 1,
+            "counts": [
+              {
+                "value": "vita_car_dashboard",
+                "count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": "decision.primary.decision_subject_label",
+          "facetKey": "decision_subject_label",
+          "contextKey": "decision.primary",
+          "contextLabel": "Primary decision",
+          "label": "Decision subject label",
+          "kind": "categorical",
+          "role": "evidence",
+          "explainsFacetKey": null,
+          "group": "decision.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "categorical": {
+            "count": 1,
+            "distinctCount": 1,
+            "counts": [
+              {
+                "value": "Vita Drive Assistant Dashboard",
+                "count": 1
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "key": "decision.process",
+      "label": "Decision process",
+      "contextType": "decision_process",
+      "questionType": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "scaleLabels": null,
+      "summaryAnalyses": [],
+      "signalScans": [],
+      "distributions": [],
+      "facets": [
+        {
+          "key": "decision.process.exploration_style",
+          "facetKey": "exploration_style",
+          "contextKey": "decision.process",
+          "contextLabel": "Decision process",
+          "label": "Exploration style",
+          "kind": "categorical",
+          "role": "primary",
+          "explainsFacetKey": null,
+          "group": "decision.process",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "categorical": {
+            "count": 1,
+            "distinctCount": 1,
+            "counts": [
+              {
+                "value": "deep_research",
+                "count": 1
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "key": "task_outcome.primary",
+      "label": "Task outcome",
+      "contextType": "task_outcome",
+      "questionType": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "scaleLabels": null,
+      "summaryAnalyses": [],
+      "signalScans": [],
+      "distributions": [],
+      "facets": [
+        {
+          "key": "task_outcome.primary.outcome_status",
+          "facetKey": "outcome_status",
+          "contextKey": "task_outcome.primary",
+          "contextLabel": "Task outcome",
+          "label": "Outcome status",
+          "kind": "categorical",
+          "role": "primary",
+          "explainsFacetKey": null,
+          "group": "task_outcome.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "categorical": {
+            "count": 1,
+            "distinctCount": 1,
+            "counts": [
+              {
+                "value": "passed",
+                "count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": "task_outcome.primary.goal_completion_ratio",
+          "facetKey": "goal_completion_ratio",
+          "contextKey": "task_outcome.primary",
+          "contextLabel": "Task outcome",
+          "label": "Goal completion ratio",
+          "kind": "numerical",
+          "role": "score",
+          "explainsFacetKey": null,
+          "group": "task_outcome.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "numerical": {
+            "count": 1,
+            "min": 1.0,
+            "max": 1.0,
+            "avg": 1.0,
+            "std": 0.0,
+            "counts": [
+              {
+                "value": "1",
+                "count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": "task_outcome.primary.goal_completion_bucket",
+          "facetKey": "goal_completion_bucket",
+          "contextKey": "task_outcome.primary",
+          "contextLabel": "Task outcome",
+          "label": "Goal completion bucket",
+          "kind": "categorical",
+          "role": "primary",
+          "explainsFacetKey": null,
+          "group": "task_outcome.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "categorical": {
+            "count": 1,
+            "distinctCount": 1,
+            "counts": [
+              {
+                "value": "complete",
+                "count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": "task_outcome.primary.verifier_mode",
+          "facetKey": "verifier_mode",
+          "contextKey": "task_outcome.primary",
+          "contextLabel": "Task outcome",
+          "label": "Verifier mode",
+          "kind": "categorical",
+          "role": "evidence",
+          "explainsFacetKey": null,
+          "group": "task_outcome.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "categorical": {
+            "count": 1,
+            "distinctCount": 1,
+            "counts": [
+              {
+                "value": "artifact_exact",
+                "count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": "task_outcome.primary.primary_failure_reason",
+          "facetKey": "primary_failure_reason",
+          "contextKey": "task_outcome.primary",
+          "contextLabel": "Task outcome",
+          "label": "Primary failure reason",
+          "kind": "categorical",
+          "role": "primary",
+          "explainsFacetKey": null,
+          "group": "task_outcome.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "categorical": {
+            "count": 1,
+            "distinctCount": 1,
+            "counts": [
+              {
+                "value": "none",
+                "count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": "task_outcome.primary.outcome_explanation",
+          "facetKey": "outcome_explanation",
+          "contextKey": "task_outcome.primary",
+          "contextLabel": "Task outcome",
+          "label": "Outcome explanation",
+          "kind": "textual",
+          "role": "explanation",
+          "explainsFacetKey": null,
+          "group": "task_outcome.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "textual": {
+            "count": 1,
+            "uniqueCount": 1,
+            "samples": [
+              "The persona explored the vehicle dashboard and saved a valid dashboard_experience.json artifact."
+            ],
+            "counts": [
+              {
+                "value": "The persona explored the vehicle dashboard and saved a valid dashboard_experience.json artifact.",
+                "count": 1,
+                "samples": [
+                  "The persona explored the vehicle dashboard and saved a valid dashboard_experience.json artifact."
+                ]
+              }
+            ],
+            "summary": "All 1 answers converge on one theme: \"The persona explored the vehicle dashboard and saved a valid dashboard_experience.json artifact.\".",
+            "summaryType": "heuristic"
+          }
+        },
+        {
+          "key": "task_outcome.primary.completion_evidence",
+          "facetKey": "completion_evidence",
+          "contextKey": "task_outcome.primary",
+          "contextLabel": "Task outcome",
+          "label": "Completion evidence",
+          "kind": "textual",
+          "role": "evidence",
+          "explainsFacetKey": null,
+          "group": "task_outcome.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "textual": {
+            "count": 1,
+            "uniqueCount": 1,
+            "samples": [
+              "Saved dashboard_experience.json with decision subject Vita Drive Assistant Dashboard."
+            ],
+            "counts": [
+              {
+                "value": "Saved dashboard_experience.json with decision subject Vita Drive Assistant Dashboard.",
+                "count": 1,
+                "samples": [
+                  "Saved dashboard_experience.json with decision subject Vita Drive Assistant Dashboard."
+                ]
+              }
+            ],
+            "summary": "All 1 answers converge on one theme: \"Saved dashboard_experience.json with decision subject Vita Drive Assistant Dashboard.\".",
+            "summaryType": "heuristic"
+          }
+        }
+      ]
+    },
+    {
+      "key": "user_feedback.primary",
+      "label": "User feedback",
+      "contextType": "user_feedback",
+      "questionType": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "scaleLabels": null,
+      "summaryAnalyses": [],
+      "signalScans": [],
+      "distributions": [
+        {
+          "id": "user_feedback.rating_by_segment",
+          "facetKey": "overall_experience_rating",
+          "title": "Overall experience rating"
+        }
+      ],
+      "facets": [
+        {
+          "key": "user_feedback.primary.need_constraint_satisfaction",
+          "facetKey": "need_constraint_satisfaction",
+          "contextKey": "user_feedback.primary",
+          "contextLabel": "User feedback",
+          "label": "How well did the car dashboard and assistant satisfy your in-cabin driving needs?",
+          "kind": "categorical",
+          "role": "evidence",
+          "explainsFacetKey": null,
+          "group": "user_feedback.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": [
+            "yes",
+            "partially",
+            "no"
+          ],
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "categorical": {
+            "count": 1,
+            "distinctCount": 1,
+            "counts": [
+              {
+                "value": "yes",
+                "count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": "user_feedback.primary.personal_preference_satisfaction",
+          "facetKey": "personal_preference_satisfaction",
+          "contextKey": "user_feedback.primary",
+          "contextLabel": "User feedback",
+          "label": "How well did the dashboard interface match your personal aesthetics and driving preferences?",
+          "kind": "categorical",
+          "role": "evidence",
+          "explainsFacetKey": null,
+          "group": "user_feedback.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": [
+            "yes",
+            "partially",
+            "no"
+          ],
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "categorical": {
+            "count": 1,
+            "distinctCount": 1,
+            "counts": [
+              {
+                "value": "yes",
+                "count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": "user_feedback.primary.overall_experience_rating",
+          "facetKey": "overall_experience_rating",
+          "contextKey": "user_feedback.primary",
+          "contextLabel": "User feedback",
+          "label": "Overall, how would you rate the experience from 1 to 10?",
+          "kind": "numerical",
+          "role": "primary",
+          "explainsFacetKey": null,
+          "group": "user_feedback.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": 1,
+          "scaleMax": 10,
+          "presentCount": 1,
+          "missingCount": 0,
+          "numerical": {
+            "count": 1,
+            "min": 9.0,
+            "max": 9.0,
+            "avg": 9.0,
+            "std": 0.0,
+            "counts": [
+              {
+                "value": "9",
+                "count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": "user_feedback.primary.feedback_reason",
+          "facetKey": "feedback_reason",
+          "contextKey": "user_feedback.primary",
+          "contextLabel": "User feedback",
+          "label": "Briefly explain your rating in your own persona's voice.",
+          "kind": "textual",
+          "role": "explanation",
+          "explainsFacetKey": "overall_experience_rating",
+          "group": "user_feedback.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "textual": {
+            "count": 1,
+            "uniqueCount": 1,
+            "samples": [
+              "The dashboard was very intuitive and user-friendly, making it easy to access the features I needed while driving. The design was modern and appealing, which matched my personal aesthetics well. I felt in control and comfortable using the smart assistant."
+            ],
+            "counts": [
+              {
+                "value": "The dashboard was very intuitive and user-friendly, making it easy to access the features I needed while driving. The design was modern and appealing, which matched my personal aesthetics well. I felt in control and comfortable using the smart assistant.",
+                "count": 1,
+                "samples": [
+                  "The dashboard was very intuitive and user-friendly, making it easy to access the features I needed while driving. The design was modern and appealing, which matched my personal aesthetics well. I felt in control and comfortable using the smart assistant."
+                ]
+              }
+            ],
+            "summary": "All 1 answers converge on one theme: \"The dashboard was very intuitive and user-friendly, making it easy to access the features I needed while driving. The design was modern and appealing, which matched my personal aesthetics well. I felt in control and comfortable using the smart assistant.\".",
+            "summaryType": "heuristic"
+          }
+        },
+        {
+          "key": "user_feedback.primary.trust_level",
+          "facetKey": "trust_level",
+          "contextKey": "user_feedback.primary",
+          "contextLabel": "User feedback",
+          "label": "Optional: how much did you trust the vehicle assistant from 1 to 10?",
+          "kind": "numerical",
+          "role": "score",
+          "explainsFacetKey": null,
+          "group": "user_feedback.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": 1,
+          "scaleMax": 10,
+          "presentCount": 1,
+          "missingCount": 0,
+          "numerical": {
+            "count": 1,
+            "min": 8.0,
+            "max": 8.0,
+            "avg": 8.0,
+            "std": 0.0,
+            "counts": [
+              {
+                "value": "8",
+                "count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": "user_feedback.primary.effort_rating",
+          "facetKey": "effort_rating",
+          "contextKey": "user_feedback.primary",
+          "contextLabel": "User feedback",
+          "label": "Optional: how effortful did navigating the dashboard feel from 1 to 10?",
+          "kind": "numerical",
+          "role": "score",
+          "explainsFacetKey": null,
+          "group": "user_feedback.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": 1,
+          "scaleMax": 10,
+          "presentCount": 1,
+          "missingCount": 0,
+          "numerical": {
+            "count": 1,
+            "min": 2.0,
+            "max": 2.0,
+            "avg": 2.0,
+            "std": 0.0,
+            "counts": [
+              {
+                "value": "2",
+                "count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": "user_feedback.primary.clarity_of_next_step",
+          "facetKey": "clarity_of_next_step",
+          "contextKey": "user_feedback.primary",
+          "contextLabel": "User feedback",
+          "label": "Optional: did you find it clear how to operate different vehicle functions?",
+          "kind": "categorical",
+          "role": "evidence",
+          "explainsFacetKey": null,
+          "group": "user_feedback.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": [
+            "true",
+            "false"
+          ],
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "categorical": {
+            "count": 1,
+            "distinctCount": 1,
+            "counts": [
+              {
+                "value": "true",
+                "count": 1
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "key": "web_artifact.primary",
+      "label": "Web artifact",
+      "contextType": "web_artifact",
+      "questionType": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "scaleLabels": null,
+      "summaryAnalyses": [],
+      "signalScans": [],
+      "distributions": [],
+      "facets": [
+        {
+          "key": "web_artifact.primary.artifact_type",
+          "facetKey": "artifact_type",
+          "contextKey": "web_artifact.primary",
+          "contextLabel": "Web artifact",
+          "label": "Artifact type",
+          "kind": "categorical",
+          "role": "primary",
+          "explainsFacetKey": null,
+          "group": "web_artifact.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "categorical": {
+            "count": 1,
+            "distinctCount": 1,
+            "counts": [
+              {
+                "value": "task_submission",
+                "count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": "web_artifact.primary.artifact_status",
+          "facetKey": "artifact_status",
+          "contextKey": "web_artifact.primary",
+          "contextLabel": "Web artifact",
+          "label": "Artifact status",
+          "kind": "categorical",
+          "role": "primary",
+          "explainsFacetKey": null,
+          "group": "web_artifact.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "categorical": {
+            "count": 1,
+            "distinctCount": 1,
+            "counts": [
+              {
+                "value": "correct",
+                "count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": "web_artifact.primary.artifact_subject_label",
+          "facetKey": "artifact_subject_label",
+          "contextKey": "web_artifact.primary",
+          "contextLabel": "Web artifact",
+          "label": "Artifact subject label",
+          "kind": "categorical",
+          "role": "evidence",
+          "explainsFacetKey": null,
+          "group": "web_artifact.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "categorical": {
+            "count": 1,
+            "distinctCount": 1,
+            "counts": [
+              {
+                "value": "Vita Drive Assistant Dashboard",
+                "count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": "web_artifact.primary.artifact_subject_id",
+          "facetKey": "artifact_subject_id",
+          "contextKey": "web_artifact.primary",
+          "contextLabel": "Web artifact",
+          "label": "Artifact subject id",
+          "kind": "categorical",
+          "role": "evidence",
+          "explainsFacetKey": null,
+          "group": "web_artifact.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "categorical": {
+            "count": 1,
+            "distinctCount": 1,
+            "counts": [
+              {
+                "value": "vita_car_dashboard",
+                "count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": "web_artifact.primary.artifact_evidence",
+          "facetKey": "artifact_evidence",
+          "contextKey": "web_artifact.primary",
+          "contextLabel": "Web artifact",
+          "label": "Artifact evidence",
+          "kind": "textual",
+          "role": "explanation",
+          "explainsFacetKey": null,
+          "group": "web_artifact.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "textual": {
+            "count": 1,
+            "uniqueCount": 1,
+            "samples": [
+              "The submission artifact dashboard_experience.json matches the persona vehicle dashboard experience."
+            ],
+            "counts": [
+              {
+                "value": "The submission artifact dashboard_experience.json matches the persona vehicle dashboard experience.",
+                "count": 1,
+                "samples": [
+                  "The submission artifact dashboard_experience.json matches the persona vehicle dashboard experience."
+                ]
+              }
+            ],
+            "summary": "All 1 answers converge on one theme: \"The submission artifact dashboard_experience.json matches the persona vehicle dashboard experience.\".",
+            "summaryType": "heuristic"
+          }
+        }
+      ]
+    },
+    {
+      "key": "web_interaction.primary",
+      "label": "Web interaction",
+      "contextType": "web_interaction",
+      "questionType": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "scaleLabels": null,
+      "summaryAnalyses": [],
+      "signalScans": [],
+      "distributions": [],
+      "facets": [
+        {
+          "key": "web_interaction.primary.navigation_path_type",
+          "facetKey": "navigation_path_type",
+          "contextKey": "web_interaction.primary",
+          "contextLabel": "Web interaction",
+          "label": "Navigation path type",
+          "kind": "categorical",
+          "role": "primary",
+          "explainsFacetKey": null,
+          "group": "web_interaction.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "categorical": {
+            "count": 1,
+            "distinctCount": 1,
+            "counts": [
+              {
+                "value": "browse_compare",
+                "count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": "web_interaction.primary.web_interaction_notes",
+          "facetKey": "web_interaction_notes",
+          "contextKey": "web_interaction.primary",
+          "contextLabel": "Web interaction",
+          "label": "Web interaction notes",
+          "kind": "textual",
+          "role": "explanation",
+          "explainsFacetKey": null,
+          "group": "web_interaction.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "textual": {
+            "count": 1,
+            "uniqueCount": 1,
+            "samples": [
+              "The persona used a deep research browsing pattern before submitting."
+            ],
+            "counts": [
+              {
+                "value": "The persona used a deep research browsing pattern before submitting.",
+                "count": 1,
+                "samples": [
+                  "The persona used a deep research browsing pattern before submitting."
+                ]
+              }
+            ],
+            "summary": "All 1 answers converge on one theme: \"The persona used a deep research browsing pattern before submitting.\".",
+            "summaryType": "heuristic"
+          }
+        }
+      ]
+    }
+  ],
+  "reporting": {
+    "status": "not_applicable",
+    "llmEnabled": false,
+    "model": "openai/gpt-4o-mini",
+    "totalUnits": 0,
+    "summaryUnits": 0,
+    "judgeUnits": 0,
+    "readyUnits": 0,
+    "completedUnits": 0,
+    "failedUnits": 0,
+    "updatedAt": "2026-08-25T09:58:03Z"
+  }
+}

@@ -1,0 +1,122 @@
+{
+    "id": "6742b15f-c239-4493-a5aa-4ef0456b4e0e",
+    "task_name": "application/vita-drive-assistant",
+    "trial_name": "chat_vita-drive-assistant__0d9781c",
+    "trial_uri": "file:///home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/jobs/pg-chat-vita-drive-assistant-7182281f/chat_vita-drive-assistant__0d9781c",
+    "task_id": {
+        "path": "application/tasks/chat_vita-drive-assistant"
+    },
+    "source": null,
+    "task_checksum": "9dfae3cd19d4183bff086579cec4f197e4373125de457652b28379c7d3ee714b",
+    "config": {
+        "task": {
+            "path": "application/tasks/chat_vita-drive-assistant",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": null
+        },
+        "trial_name": "chat_vita-drive-assistant__0d9781c",
+        "trials_dir": "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/jobs/pg-chat-vita-drive-assistant-7182281f",
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "persona-user-sim",
+            "import_path": null,
+            "model_name": "openai/gpt-4o-mini",
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {
+                "persona_path": "persona/datasets/generated-persona-dev-3/persona_0002.yaml",
+                "model_info": {
+                    "max_input_tokens": 128000,
+                    "max_output_tokens": 16384
+                }
+            },
+            "env": {},
+            "mcp_servers": []
+        },
+        "environment": {
+            "type": "host",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "env": {},
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "env": {},
+            "disable": false
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "job_id": "93dad101-e876-42d6-ae1a-7f2497a4d14e"
+    },
+    "agent_info": {
+        "name": "persona-user-sim",
+        "version": "1.0.0",
+        "model_info": {
+            "name": "gpt-4o-mini",
+            "provider": "openai"
+        }
+    },
+    "agent_result": {
+        "n_input_tokens": 92492,
+        "n_cache_tokens": 82304,
+        "n_output_tokens": 480,
+        "cost_usd": 0.007989,
+        "rollout_details": null,
+        "metadata": {
+            "request_id": "gen-1787642605-wnCdWhYzzVdaRZkF19fD",
+            "model": "gpt-4o-mini",
+            "provider": "openai",
+            "cost_source": "estimated"
+        }
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 1.0
+        }
+    },
+    "exception_info": null,
+    "started_at": "2026-08-25T07:20:23.697287Z",
+    "finished_at": "2026-08-25T07:23:28.578327Z",
+    "environment_setup": {
+        "started_at": "2026-08-25T07:20:23.721719Z",
+        "finished_at": "2026-08-25T07:20:23.722226Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-08-25T07:20:23.722299Z",
+        "finished_at": "2026-08-25T07:20:23.722350Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-08-25T07:20:23.722431Z",
+        "finished_at": "2026-08-25T07:23:28.478955Z"
+    },
+    "verifier": {
+        "started_at": "2026-08-25T07:23:28.485886Z",
+        "finished_at": "2026-08-25T07:23:28.578198Z"
+    },
+    "step_results": null
+}

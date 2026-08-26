@@ -1,0 +1,44 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 2,
+            "passed": 0,
+            "failed": 2,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1787652528.839325,
+            "stop": 1787652528.8654153
+        },
+        "tests": [
+            {
+                "name": "test_state.py::test_output_exists",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0004545660012809094,
+                "start": 1787652528.8519862,
+                "stop": 1787652528.861337,
+                "retries": 0,
+                "file_path": "test_state.py",
+                "trace": "def test_output_exists():\n>       assert OUTPUT.is_file(), f\"Missing {OUTPUT}\"\nE       AssertionError: Missing /app/output/dashboard_experience.json\nE       assert False\nE        +  where False = is_file()\nE        +    where is_file = PosixPath('/app/output/dashboard_experience.json').is_file\n\n/tests/test_state.py:257: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_state.py::test_output_schema",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0003283100013504736,
+                "start": 1787652528.8615098,
+                "stop": 1787652528.8653045,
+                "retries": 0,
+                "file_path": "test_state.py",
+                "trace": "def test_output_schema():\n>       data = _load()\n               ^^^^^^^\n\n/tests/test_state.py:261: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    def _load() -> dict:\n>       assert OUTPUT.is_file(), f\"Missing {OUTPUT}\"\nE       AssertionError: Missing /app/output/dashboard_experience.json\nE       assert False\nE        +  where False = is_file()\nE        +    where is_file = PosixPath('/app/output/dashboard_experience.json').is_file\n\n/tests/test_state.py:201: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            }
+        ]
+    }
+}
