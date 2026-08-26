@@ -1,0 +1,40 @@
+{
+  "sessionId": "harbor-chat",
+  "messages": [
+    {
+      "role": "customer",
+      "content": "Xin chào, tôi cần kiểm tra trạng thái kỹ thuật của xe trước khi đi chuyến đường dài. Có thể giúp tôi xem tình trạng pin và các thông số khác không?"
+    },
+    {
+      "role": "support",
+      "content": "Để tôi kiểm tra tổng quan tình trạng xe cho bạn nhé."
+    },
+    {
+      "role": "customer",
+      "content": "Cảm ơn. Tôi đặc biệt quan tâm đến mức pin hiện tại, nhiệt độ pin, và áp suất các lốp xe. Chuyến đi sẽ kéo dài khoảng 300 km nên tôi cần biết tầm hoạt động còn lại có đủ không."
+    },
+    {
+      "role": "support",
+      "content": "Điều hòa đang tắt, 3 vùng, quạt mức 3, nhiệt lái 22 độ, ghế phụ 22 độ, hàng sau 22 độ. Sấy kính sau tắt. PM2.5 12, lọc khí bật, ionizer tắt."
+    },
+    {
+      "role": "customer",
+      "content": "Được, nhưng tôi chưa thấy thông tin về pin xe và lốp xe. Bạn có thể cho tôi biết mức pin hiện tại (%), nhiệt độ pin, và áp suất từng lốp trước không?"
+    },
+    {
+      "role": "support",
+      "content": "Điều hòa đang tắt, 3 vùng, quạt mức 3, nhiệt lái 22 độ, ghế phụ 22 độ, hàng sau 22 độ. Sấy kính sau tắt. PM2.5 12, lọc khí bật, ionizer tắt."
+    },
+    {
+      "role": "customer",
+      "content": "Tôi thấy hệ thống chỉ trả lời về điều hòa và khí thải. Có thể bạn kiểm tra lại xem có thể truy cập dữ liệu pin SoC, nhiệt độ pin, và TPMS lốp xe không? Những thông tin này rất quan trọng cho chuyến đi dài của tôi."
+    },
+    {
+      "role": "support",
+      "content": "Điều hòa đang tắt, 3 vùng, quạt mức 3, nhiệt lái 22 độ, ghế phụ 22 độ, hàng sau 22 độ. Sấy kính sau tắt. PM2.5 12, lọc khí bật, ionizer tắt."
+    }
+  ],
+  "domain": "automotive_ai",
+  "applicationId": "vita_drive_diagnostics",
+  "applicationContext": "in_cabin_diagnostics"
+}

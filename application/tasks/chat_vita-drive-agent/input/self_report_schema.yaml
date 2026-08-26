@@ -1,0 +1,27 @@
+artifactName: user_feedback.json
+instructions: |
+  Đánh giá trung thực trải nghiệm sử dụng tác nhân tự hành Vita Agent khi đang lái xe.
+  Tập trung vào độ chính xác khi lập kế hoạch và thực thi lệnh điều khiển xe, sự an toàn và cách giao tiếp.
+fields:
+  - key: needConstraintSatisfaction
+    prompt: Tác nhân Vita Agent có đáp ứng đúng và đủ chuỗi yêu cầu điều khiển/hỗ trợ của bạn không?
+    kind: enum
+    choices: [yes, partially, no]
+  - key: personalPreferenceSatisfaction
+    prompt: Cách tác nhân xử lý và giải thích các hành động có phù hợp với bạn khi lái xe không?
+    kind: enum
+    choices: [yes, partially, no]
+  - key: overallExperienceRating
+    prompt: Đánh giá tổng quan trải nghiệm tác nhân tự hành từ 1 đến 10?
+    kind: integer
+    minimum: 1
+    maximum: 10
+    explanation:
+      key: reason
+      prompt: Nêu ngắn gọn lý do cho số điểm trên.
+  - key: askedUsefulClarificationQuestions
+    prompt: Tác nhân có hỏi lại hoặc xác nhận an toàn trước các hành động rủi ro không?
+    kind: boolean
+    explanation:
+      key: clarifyingNotes
+      prompt: Chi tiết phản hồi an toàn hoặc câu hỏi làm rõ của tác nhân.

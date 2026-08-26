@@ -1,0 +1,178 @@
+{
+  "schemaVersion": "1.0",
+  "artifactType": "matraix.trial_evaluation",
+  "taskType": "survey",
+  "presenceCheck": {
+    "passed": true,
+    "requiredArtifacts": [
+      "survey_result.json"
+    ],
+    "missingArtifacts": []
+  },
+  "sourceArtifacts": {
+    "surveyResult": "/app/output/survey_result.json"
+  },
+  "contexts": [
+    {
+      "key": "question.q_price_matters",
+      "label": "q_price_matters",
+      "contextType": "question_response",
+      "facets": [
+        {
+          "key": "response",
+          "label": "Selected response",
+          "role": "primary",
+          "kind": "numerical",
+          "value": 3
+        }
+      ],
+      "questionType": "likert"
+    },
+    {
+      "key": "question.q_too_expensive",
+      "label": "q_too_expensive",
+      "contextType": "question_response",
+      "facets": [
+        {
+          "key": "response",
+          "label": "Selected response",
+          "role": "primary",
+          "kind": "numerical",
+          "value": 3
+        }
+      ],
+      "questionType": "likert"
+    },
+    {
+      "key": "question.q_threshold",
+      "label": "q_threshold",
+      "contextType": "question_response",
+      "facets": [
+        {
+          "key": "response",
+          "label": "Selected response",
+          "role": "primary",
+          "kind": "categorical",
+          "value": "hesitate"
+        }
+      ],
+      "questionType": "single_choice"
+    },
+    {
+      "key": "question.q_price_vs_quality",
+      "label": "q_price_vs_quality",
+      "contextType": "question_response",
+      "facets": [
+        {
+          "key": "response",
+          "label": "Selected response",
+          "role": "primary",
+          "kind": "categorical",
+          "value": "balance"
+        },
+        {
+          "key": "reason",
+          "label": "Reason",
+          "role": "explanation",
+          "kind": "textual",
+          "value": "For a children's board game, I want both reasonable pricing and proven quality—the 4.8-star rating and 37k reviews suggest solid quality, which justifies some premium, but the 25% price increase gives me pause. I'd want to verify the game delivers on that rating before committing at $16.24."
+        }
+      ],
+      "questionType": "single_choice"
+    },
+    {
+      "key": "survey.summary",
+      "label": "Survey summary",
+      "contextType": "trial_summary",
+      "facets": [
+        {
+          "key": "answer_count",
+          "label": "Answer count",
+          "role": "score",
+          "kind": "numerical",
+          "value": 4
+        },
+        {
+          "key": "trajectory_event_count",
+          "label": "Trajectory event count",
+          "role": "score",
+          "kind": "numerical",
+          "value": 10
+        },
+        {
+          "key": "mean_numeric_answer",
+          "label": "Mean numeric answer",
+          "role": "score",
+          "kind": "numerical",
+          "value": 3.0
+        }
+      ]
+    }
+  ],
+  "fields": [
+    {
+      "key": "question.q_price_matters.response",
+      "label": "Selected response",
+      "group": "question.q_price_matters",
+      "role": "primary",
+      "kind": "numerical",
+      "value": 3
+    },
+    {
+      "key": "question.q_too_expensive.response",
+      "label": "Selected response",
+      "group": "question.q_too_expensive",
+      "role": "primary",
+      "kind": "numerical",
+      "value": 3
+    },
+    {
+      "key": "question.q_threshold.response",
+      "label": "Selected response",
+      "group": "question.q_threshold",
+      "role": "primary",
+      "kind": "categorical",
+      "value": "hesitate"
+    },
+    {
+      "key": "question.q_price_vs_quality.response",
+      "label": "Selected response",
+      "group": "question.q_price_vs_quality",
+      "role": "primary",
+      "kind": "categorical",
+      "value": "balance"
+    },
+    {
+      "key": "question.q_price_vs_quality.reason",
+      "label": "Reason",
+      "group": "question.q_price_vs_quality",
+      "role": "explanation",
+      "kind": "textual",
+      "value": "For a children's board game, I want both reasonable pricing and proven quality—the 4.8-star rating and 37k reviews suggest solid quality, which justifies some premium, but the 25% price increase gives me pause. I'd want to verify the game delivers on that rating before committing at $16.24."
+    },
+    {
+      "key": "survey.summary.answer_count",
+      "label": "Answer count",
+      "group": "survey.summary",
+      "role": "score",
+      "kind": "numerical",
+      "value": 4
+    },
+    {
+      "key": "survey.summary.trajectory_event_count",
+      "label": "Trajectory event count",
+      "group": "survey.summary",
+      "role": "score",
+      "kind": "numerical",
+      "value": 10
+    },
+    {
+      "key": "survey.summary.mean_numeric_answer",
+      "label": "Mean numeric answer",
+      "group": "survey.summary",
+      "role": "score",
+      "kind": "numerical",
+      "value": 3.0
+    }
+  ]
+}

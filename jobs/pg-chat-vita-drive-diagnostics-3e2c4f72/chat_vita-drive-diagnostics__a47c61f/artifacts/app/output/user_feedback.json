@@ -1,0 +1,8 @@
+{
+  "needConstraintSatisfaction": "no",
+  "personalPreferenceSatisfaction": "no",
+  "overallExperienceRating": 2,
+  "reason": "Trợ lý Vita không trả lời được những câu hỏi cụ thể về pin (SoC %, nhiệt độ pin pack), áp suất lốp 4 bánh, và cảnh báo lỗi. Thay vào đó, nó liên tục trả lời về thông số điều hòa không liên quan. Chỉ có một lần trả lời đúng (pin 78%), nhưng vẫn thiếu nhiệt độ pin và áp suất lốp. Hệ thống không hiểu được hoặc không có khả năng truy cập dữ liệu chẩn đoán xe cần thiết.",
+  "askedUsefulClarificationQuestions": false,
+  "clarifyingNotes": "Trợ lý không cung cấp bất kỳ khuyến nghị an toàn, bảo dưỡng nào. Nó không giải thích ý nghĩa của mức pin 78%, không cảnh báo về nhiệt độ pin, không cho biết áp suất lốp có bình thường hay không, và không đề cập đến lịch bảo dưỡng. Người dùng lặp lại yêu cầu 5 lần nhưng chỉ nhận được thông tin điều hòa hoặc lời hứa kiểm tra mà không có kết quả thực tế. Điều này gây thất vọng cao cho một trợ lý chẩn đoán xe được quảng cáo."
+}

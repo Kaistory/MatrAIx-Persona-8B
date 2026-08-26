@@ -1,0 +1,72 @@
+{
+  "sessionId": "harbor-chat",
+  "messages": [
+    {
+      "role": "customer",
+      "content": "Chào, tôi muốn kiểm tra tình trạng xe hôm nay. Có thể cho tôi xem mức pin hiện tại và dự báo tầm hoạt động còn lại được không?"
+    },
+    {
+      "role": "support",
+      "content": "Pin còn 78%, tầm hoạt động khoảng 312 km nhé."
+    },
+    {
+      "role": "customer",
+      "content": "Được rồi, 78% là ổn. Nhưng tôi định đi chuyến dài hôm nay, nên cần kiểm tra thêm áp suất lốp và nhiệt độ pin xem có vấn đề gì không?"
+    },
+    {
+      "role": "support",
+      "content": "Điều hòa đang bật, 3 vùng, quạt mức 3, nhiệt lái 22 độ, ghế phụ 22 độ, hàng sau 22 độ. Sấy kính sau tắt. PM2.5 12, lọc khí bật, ionizer tắt."
+    },
+    {
+      "role": "customer",
+      "content": "Cái này là thông tin điều hòa, không phải cái tôi hỏi. Tôi cần biết áp suất lốp 4 bánh và nhiệt độ pin cụ thể để đảm bảo an toàn trước khi đi đường dài."
+    },
+    {
+      "role": "support",
+      "content": "Điều hòa đang bật, 3 vùng, quạt mức 3, nhiệt lái 22 độ, ghế phụ 22 độ, hàng sau 22 độ. Sấy kính sau tắt. PM2.5 12, lọc khí bật, ionizer tắt."
+    },
+    {
+      "role": "customer",
+      "content": "Vita ơi, tôi hỏi về áp suất lốp và nhiệt độ pin chứ không phải điều hòa. Có thể cho tôi dữ liệu TPMS và nhiệt độ pack pin được không?"
+    },
+    {
+      "role": "support",
+      "content": "Để tôi kiểm tra áp suất lốp và nhiệt độ pin cho bạn."
+    },
+    {
+      "role": "customer",
+      "content": "Cảm ơn, tôi đang chờ kết quả."
+    },
+    {
+      "role": "support",
+      "content": "Xe đang ở Gear P, tốc độ 0 km/h, pin 78%."
+    },
+    {
+      "role": "customer",
+      "content": "Được, nhưng tôi vẫn cần thông tin cụ thể về áp suất lốp 4 bánh (trước trái, trước phải, sau trái, sau phải) và nhiệt độ pin hiện tại. Những con số này quan trọng cho chuyến đi dài của tôi."
+    },
+    {
+      "role": "support",
+      "content": "Áp suất lốp hiện tại: trước trái 2.4 bar, trước phải 2.4 bar, sau trái 2.3 bar, sau phải 2.4 bar. Nhiệt độ pin hiện tại tôi chưa có cảm biến, nhưng pin còn 78% và phạm vi 312 km."
+    },
+    {
+      "role": "customer",
+      "content": "Cảm ơn. Áp suất lốp có vẻ ổn, mặc dù lốp sau trái hơi thấp một chút so với các lốp khác. Còn về pin, 78% và 312 km tầm hoạt động là đủ cho chuyến đi. Có cảnh báo bảo dưỡng nào hoặc đèn lỗi trên táp-lô không?"
+    },
+    {
+      "role": "support",
+      "content": "Pha/cốt đang tắt, đèn đọc tắt, ambient tắt."
+    },
+    {
+      "role": "customer",
+      "content": "Tình hình là Vita không hiểu câu hỏi của tôi rồi. Tôi muốn biết có đèn cảnh báo nào sáng trên bảng điều khiển không - chẳng hạn như đèn pin, đèn động cơ, hoặc bất kỳ thông báo lỗi nào. Còn lịch bảo dưỡng tiếp theo của xe là khi nào?"
+    },
+    {
+      "role": "support",
+      "content": "Để mình kiểm tra cảnh báo trên xe. Lịch bảo dưỡng tiếp theo mình chưa có dữ liệu, bạn kiểm tra trong menu Bảo dưỡng trên xe nhé."
+    }
+  ],
+  "domain": "automotive_ai",
+  "applicationId": "vita_drive_diagnostics",
+  "applicationContext": "in_cabin_diagnostics"
+}

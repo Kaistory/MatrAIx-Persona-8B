@@ -1,0 +1,33 @@
+Traceback (most recent call last):
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/trial/trial.py", line 323, in run
+    await self._run()
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/trial/single_step.py", line 33, in _run
+    await self._run_agent()
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/trial/single_step.py", line 68, in _run_agent
+    await self._run_agent_phase(
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/trial/trial.py", line 408, in _run_agent_phase
+    await asyncio.wait_for(
+  File "/home/khaidq9/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/agents/matraix/agents/persona/user_sim.py", line 61, in run
+    result, session_id = await run_harbor_chat_eval_for_persona(
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/packages/playground/src/playground/harbor/chat_eval.py", line 604, in run_harbor_chat_eval_for_persona
+    result = await run_harbor_chat_eval(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/packages/playground/src/playground/harbor/chat_eval.py", line 552, in run_harbor_chat_eval
+    return await run_playground_async(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/packages/playground/src/playground/user_sim/runner.py", line 346, in run_playground_async
+    raw_view = await run_session_action_async(session, action)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/packages/playground/src/playground/user_sim/port.py", line 83, in run_session_action_async
+    return await result
+           ^^^^^^^^^^^^
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/packages/playground/src/playground/harbor/chat_eval.py", line 294, in run_turn_sync
+    response = await self._request_json(protocol.method, protocol.path, body=body)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/packages/playground/src/playground/harbor/chat_eval.py", line 270, in _request_json
+    raise RuntimeError(
+RuntimeError: chat sidecar request failed (POST /api/agent/chat): HTTP 503: {"error":"Agent service chưa được cấu hình (thiếu AGENT_SERVICE_URL)."}

@@ -1,0 +1,48 @@
+{
+  "sessionId": "harbor-chat",
+  "messages": [
+    {
+      "role": "customer",
+      "content": "Chào Vita, tôi cần tìm đường đi từ Hà Nội đến Hải Phòng. Xe tôi là xe điện nên cần biết có trạm sạc nào trên đường không."
+    },
+    {
+      "role": "support",
+      "content": "Đã dẫn đường đến Hải Phòng."
+    },
+    {
+      "role": "customer",
+      "content": "Được rồi. Nhưng tôi cần biết tuyến đường cụ thể thế nào? Đi qua đâu và mất bao lâu? Còn trạm sạc điện trên đường có không?"
+    },
+    {
+      "role": "support",
+      "content": "Đã dẫn đường đến Hải Phòng."
+    },
+    {
+      "role": "customer",
+      "content": "Vita ơi, tôi muốn biết chi tiết hơn nữa. Tuyến đường nào nhanh nhất? Và có trạm sạc xe điện gần đây không để tôi sạc pin trước khi đi?"
+    },
+    {
+      "role": "support",
+      "content": "Tuyến đường nhanh nhất đến Hải Phòng là cao tốc Hà Nội - Hải Phòng, mất khoảng 45 phút. Bạn muốn tôi chuyển sang lộ trình này không? Tôi cũng sẽ tìm trạm sạc gần đây để bạn sạc trước chuyến đi."
+    },
+    {
+      "role": "customer",
+      "content": "Được, tôi chọn tuyến cao tốc đó. Nhưng trước tiên cho tôi xem trạm sạc nào gần nhất từ vị trí hiện tại của tôi, và nó mở cửa lúc mấy giờ?"
+    },
+    {
+      "role": "support",
+      "content": "Đã dẫn đường đến Hải Phòng."
+    },
+    {
+      "role": "customer",
+      "content": "Vita, bạn không trả lời câu hỏi của tôi. Tôi cần biết trạm sạc gần nhất ở đâu và giờ mở cửa. Còn trên đường đi Hải Phòng có trạm sạc khác không?"
+    },
+    {
+      "role": "support",
+      "content": "Đã dẫn đường đến trạm sạc gần nhất."
+    }
+  ],
+  "domain": "automotive_ai",
+  "applicationId": "vita_drive_navigation",
+  "applicationContext": "in_cabin_navigation"
+}

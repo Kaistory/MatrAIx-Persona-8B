@@ -1,0 +1,122 @@
+{
+    "id": "db176d43-fe4e-4362-8cea-5a4d24ab663a",
+    "task_name": "application/chat_vita-drive-diagnostics",
+    "trial_name": "chat_vita-drive-diagnostics__16c8d80",
+    "trial_uri": "file:///home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/jobs/pg-chat-vita-drive-diagnostics-3e2c4f72/chat_vita-drive-diagnostics__16c8d80",
+    "task_id": {
+        "path": "application/tasks/chat_vita-drive-diagnostics"
+    },
+    "source": null,
+    "task_checksum": "a1ea54b0533d8e8c0e8674c6f0fc837336431ce8830c285042ed3170fbd36dd1",
+    "config": {
+        "task": {
+            "path": "application/tasks/chat_vita-drive-diagnostics",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": null
+        },
+        "trial_name": "chat_vita-drive-diagnostics__16c8d80",
+        "trials_dir": "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/jobs/pg-chat-vita-drive-diagnostics-3e2c4f72",
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "persona-user-sim",
+            "import_path": null,
+            "model_name": "anthropic/claude-haiku-4-5",
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {
+                "persona_path": "persona/datasets/matraix-persona-dev-sample/persona_0108.yaml",
+                "model_info": {
+                    "max_input_tokens": 200000,
+                    "max_output_tokens": 16384
+                }
+            },
+            "env": {},
+            "mcp_servers": []
+        },
+        "environment": {
+            "type": "host",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "env": {},
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "env": {},
+            "disable": false
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "job_id": "29a9916d-2b20-4afa-9011-493dde47d488"
+    },
+    "agent_info": {
+        "name": "persona-user-sim",
+        "version": "1.0.0",
+        "model_info": {
+            "name": "claude-haiku-4-5",
+            "provider": "anthropic"
+        }
+    },
+    "agent_result": {
+        "n_input_tokens": 30287,
+        "n_cache_tokens": 0,
+        "n_output_tokens": 1048,
+        "cost_usd": 0.035527,
+        "rollout_details": null,
+        "metadata": {
+            "request_id": "gen-1787735761-708DQM6wTiedNsM6Md3b",
+            "model": "anthropic/claude-haiku-4-5",
+            "provider": "anthropic",
+            "cost_source": "estimated"
+        }
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 1.0
+        }
+    },
+    "exception_info": null,
+    "started_at": "2026-08-26T09:14:25.240046Z",
+    "finished_at": "2026-08-26T09:16:05.895100Z",
+    "environment_setup": {
+        "started_at": "2026-08-26T09:14:25.260841Z",
+        "finished_at": "2026-08-26T09:14:25.261427Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-08-26T09:14:25.261514Z",
+        "finished_at": "2026-08-26T09:14:25.261579Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-08-26T09:14:25.261660Z",
+        "finished_at": "2026-08-26T09:16:05.792281Z"
+    },
+    "verifier": {
+        "started_at": "2026-08-26T09:16:05.799670Z",
+        "finished_at": "2026-08-26T09:16:05.894925Z"
+    },
+    "step_results": null
+}

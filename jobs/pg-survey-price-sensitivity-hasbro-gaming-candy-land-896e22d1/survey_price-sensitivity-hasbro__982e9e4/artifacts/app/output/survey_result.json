@@ -1,0 +1,216 @@
+{
+  "instrument": {
+    "id": "price_sensitivity_v1",
+    "title": "Price Sensitivity Survey — Hasbro Gaming Candy Land Kingdom"
+  },
+  "answers": [
+    {
+      "questionId": "q_price_matters",
+      "value": 3,
+      "rationale": "",
+      "confidence": null
+    },
+    {
+      "questionId": "q_too_expensive",
+      "value": 3,
+      "rationale": "",
+      "confidence": null
+    },
+    {
+      "questionId": "q_threshold",
+      "value": "hesitate",
+      "rationale": "",
+      "confidence": null
+    },
+    {
+      "questionId": "q_price_vs_quality",
+      "value": "balance",
+      "rationale": "For a children's board game, I want both reasonable pricing and proven quality—the 4.8-star rating and 37k reviews suggest solid quality, which justifies some premium, but the 25% price increase gives me pause. I'd want to verify the game delivers on that rating before committing at $16.24.",
+      "confidence": null
+    }
+  ],
+  "trajectory": [
+    {
+      "timestamp": "2026-08-26T07:49:49Z",
+      "actor": "system",
+      "action": "survey_started",
+      "context": {
+        "instrumentId": "price_sensitivity_v1",
+        "instrumentTitle": "Price Sensitivity Survey — Hasbro Gaming Candy Land Kingdom",
+        "numQuestions": 4
+      },
+      "outcome": {
+        "status": "started"
+      }
+    },
+    {
+      "timestamp": "2026-08-26T07:49:50Z",
+      "actor": "assistant",
+      "action": "ask_question",
+      "context": {
+        "instrumentId": "price_sensitivity_v1",
+        "questionId": "q_price_matters",
+        "questionIndex": 1,
+        "questionType": "likert",
+        "construct": "price_centrality"
+      },
+      "outcome": {
+        "prompt": "The price is the single most important factor in whether I would buy the Hasbro Gaming Candy Land Kingdom.",
+        "options": []
+      }
+    },
+    {
+      "timestamp": "2026-08-26T07:49:51Z",
+      "actor": "user",
+      "action": "answer_question",
+      "context": {
+        "instrumentId": "price_sensitivity_v1",
+        "questionId": "q_price_matters",
+        "questionIndex": 1,
+        "questionType": "likert",
+        "construct": "price_centrality"
+      },
+      "outcome": {
+        "questionId": "q_price_matters",
+        "value": 3,
+        "rationale": "",
+        "confidence": null
+      }
+    },
+    {
+      "timestamp": "2026-08-26T07:49:52Z",
+      "actor": "assistant",
+      "action": "ask_question",
+      "context": {
+        "instrumentId": "price_sensitivity_v1",
+        "questionId": "q_too_expensive",
+        "questionIndex": 2,
+        "questionType": "likert",
+        "construct": "price_pain"
+      },
+      "outcome": {
+        "prompt": "At its current price, the Hasbro Gaming Candy Land Kingdom feels too expensive for me.",
+        "options": []
+      }
+    },
+    {
+      "timestamp": "2026-08-26T07:49:53Z",
+      "actor": "user",
+      "action": "answer_question",
+      "context": {
+        "instrumentId": "price_sensitivity_v1",
+        "questionId": "q_too_expensive",
+        "questionIndex": 2,
+        "questionType": "likert",
+        "construct": "price_pain"
+      },
+      "outcome": {
+        "questionId": "q_too_expensive",
+        "value": 3,
+        "rationale": "",
+        "confidence": null
+      }
+    },
+    {
+      "timestamp": "2026-08-26T07:49:54Z",
+      "actor": "assistant",
+      "action": "ask_question",
+      "context": {
+        "instrumentId": "price_sensitivity_v1",
+        "questionId": "q_threshold",
+        "questionIndex": 3,
+        "questionType": "single_choice",
+        "construct": "price_threshold"
+      },
+      "outcome": {
+        "prompt": "What best describes your reaction to the current price?",
+        "options": [
+          "cheap_stock_up",
+          "fair_buy",
+          "hesitate",
+          "only_on_sale",
+          "walk_away"
+        ]
+      }
+    },
+    {
+      "timestamp": "2026-08-26T07:49:55Z",
+      "actor": "user",
+      "action": "answer_question",
+      "context": {
+        "instrumentId": "price_sensitivity_v1",
+        "questionId": "q_threshold",
+        "questionIndex": 3,
+        "questionType": "single_choice",
+        "construct": "price_threshold"
+      },
+      "outcome": {
+        "questionId": "q_threshold",
+        "value": "hesitate",
+        "rationale": "",
+        "confidence": null
+      }
+    },
+    {
+      "timestamp": "2026-08-26T07:49:56Z",
+      "actor": "assistant",
+      "action": "ask_question",
+      "context": {
+        "instrumentId": "price_sensitivity_v1",
+        "questionId": "q_price_vs_quality",
+        "questionIndex": 4,
+        "questionType": "single_choice",
+        "construct": "price_quality_tradeoff"
+      },
+      "outcome": {
+        "prompt": "When you weigh price against quality here, which wins?",
+        "options": [
+          "price_first",
+          "balance",
+          "quality_first"
+        ]
+      }
+    },
+    {
+      "timestamp": "2026-08-26T07:49:57Z",
+      "actor": "user",
+      "action": "answer_question",
+      "context": {
+        "instrumentId": "price_sensitivity_v1",
+        "questionId": "q_price_vs_quality",
+        "questionIndex": 4,
+        "questionType": "single_choice",
+        "construct": "price_quality_tradeoff"
+      },
+      "outcome": {
+        "questionId": "q_price_vs_quality",
+        "value": "balance",
+        "rationale": "For a children's board game, I want both reasonable pricing and proven quality—the 4.8-star rating and 37k reviews suggest solid quality, which justifies some premium, but the 25% price increase gives me pause. I'd want to verify the game delivers on that rating before committing at $16.24.",
+        "confidence": null
+      }
+    },
+    {
+      "timestamp": "2026-08-26T07:49:58Z",
+      "actor": "system",
+      "action": "survey_completed",
+      "context": {
+        "instrumentId": "price_sensitivity_v1"
+      },
+      "outcome": {
+        "numAnswered": 4,
+        "missingRequiredQuestionIds": [],
+        "valid": true
+      }
+    }
+  ],
+  "usage": {
+    "n_input_tokens": 1361,
+    "n_output_tokens": 239,
+    "n_cache_tokens": 0,
+    "cost_usd": 0.002556,
+    "request_id": "gen-1787730589-Dc4wtLQa26D1RcdZNteK",
+    "model": "anthropic/claude-haiku-4-5",
+    "provider": "anthropic",
+    "cost_source": "estimated"
+  }
+}

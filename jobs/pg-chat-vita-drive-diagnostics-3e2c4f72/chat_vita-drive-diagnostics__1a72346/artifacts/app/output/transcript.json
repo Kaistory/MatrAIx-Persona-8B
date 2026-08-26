@@ -1,0 +1,56 @@
+{
+  "sessionId": "harbor-chat",
+  "messages": [
+    {
+      "role": "customer",
+      "content": "Chào! Tôi muốn kiểm tra trạng thái kỹ thuật của xe trước khi đi chuyến đường dài. Có thể xem thông tin pin, lốp xe và các cảnh báo bảo dưỡng được không?"
+    },
+    {
+      "role": "support",
+      "content": "Dạ được, để tôi kiểm tra trạng thái pin, lốp xe và các cảnh báo cho bạn."
+    },
+    {
+      "role": "customer",
+      "content": "Cảm ơn! Mình đặc biệt quan tâm đến mức pin hiện tại là bao nhiêu phần trăm, và nhiệt độ pin có bình thường không? Mình định chạy khoảng 300km nên muốn chắc chắn pin đủ."
+    },
+    {
+      "role": "support",
+      "content": "Điều hòa đang bật, 3 vùng, quạt mức 3, nhiệt lái 22 độ, ghế phụ 22 độ, hàng sau 22 độ. Sấy kính sau tắt. PM2.5 12, lọc khí bật, ionizer tắt."
+    },
+    {
+      "role": "customer",
+      "content": "Cảm ơn thông tin! Nhưng mình chưa thấy thông số pin và lốp xe mà mình cần. Có thể cho mình biết SoC (mức sạc pin) hiện tại bao nhiêu %, nhiệt độ pin pack, và áp suất lốp 4 bánh không? Đó là những thông tin quan trọng cho chuyến đi dài."
+    },
+    {
+      "role": "support",
+      "content": "Điều hòa đang bật, 3 vùng, quạt mức 3, nhiệt lái 22 độ, ghế phụ 22 độ, hàng sau 22 độ. Sấy kính sau tắt. PM2.5 12, lọc khí bật, ionizer tắt."
+    },
+    {
+      "role": "customer",
+      "content": "Hệ thống có vẻ đang lặp lại thông tin điều hòa. Mình cần truy cập vào phần Diagnostics hoặc Vehicle Status để xem chi tiết pin và lốp xe. Có menu riêng để kiểm tra SoC pin, nhiệt độ pin, và TPMS lốp không?"
+    },
+    {
+      "role": "support",
+      "content": "Dạ, xe hiển thị pin 78%, đi được 312 km; lốp trước 2.4/2.4, sau 2.3/2.4 bar. Chưa có mục nhiệt độ pin riêng ạ."
+    },
+    {
+      "role": "customer",
+      "content": "Tốt lắm! Pin 78% và tầm hoạt động 312km là đủ cho chuyến 300km của mình. Lốp sau bên phải hơi thấp một chút so với bên trái (2.3 vs 2.4 bar) - có cần bơm thêm không? Và hiện tại có cảnh báo bảo dưỡng nào không?"
+    },
+    {
+      "role": "support",
+      "content": "Pha/cốt đang tắt, đèn đọc tắt, ambient tắt."
+    },
+    {
+      "role": "customer",
+      "content": "Hệ thống có vẻ không trả lời về lốp và bảo dưỡng. Để chắc chắn, mình hỏi lại: hiện tại có đèn cảnh báo nào trên táp-lô không? Và xe có thông báo lịch bảo dưỡng sắp tới không?"
+    },
+    {
+      "role": "support",
+      "content": "Pha/cốt đang tắt, đèn đọc tắt, ambient tắt."
+    }
+  ],
+  "domain": "automotive_ai",
+  "applicationId": "vita_drive_diagnostics",
+  "applicationContext": "in_cabin_diagnostics"
+}

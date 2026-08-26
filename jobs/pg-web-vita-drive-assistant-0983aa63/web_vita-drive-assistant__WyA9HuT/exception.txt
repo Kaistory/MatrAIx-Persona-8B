@@ -1,0 +1,24 @@
+Traceback (most recent call last):
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/trial/trial.py", line 322, in run
+    await self._prepare()
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/trial/trial.py", line 354, in _prepare
+    await self._setup_agent()
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/trial/trial.py", line 1106, in _setup_agent
+    await asyncio.wait_for(
+  File "/home/khaidq9/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/agents/installed/base.py", line 433, in setup
+    await self.install(environment)
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/agents/matraix/agents/installed/cocoa.py", line 64, in install
+    await self.exec_as_agent(
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/agents/installed/base.py", line 407, in exec_as_agent
+    return await self._exec(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/agents/installed/base.py", line 374, in _exec
+    raise self._classify_exec_error(command, result)
+harbor.agents.installed.base.NonZeroAgentExitCodeError: Command failed (exit 127): set -euo pipefail; if [ ! -d /opt/cocoa-agent-src ]; then git clone --depth 1 https://github.com/cocoabench/cocoa-agent.git /opt/cocoa-agent-src; fi && /opt/python3.12/bin/python3 -m pip install --no-cache-dir -r /opt/cocoa-agent-src/requirements.txt openai anthropic colorama agent-sandbox && ln -sfn /opt/cocoa-agent-src /opt/cocoa-agent
+stdout: Cloning into '/opt/cocoa-agent-src'...
+bash: line 1: /opt/python3.12/bin/python3: No such file or directory
+
+stderr: None

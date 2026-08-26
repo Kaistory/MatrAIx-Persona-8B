@@ -1,0 +1,40 @@
+{
+  "sessionId": "harbor-chat",
+  "messages": [
+    {
+      "role": "customer",
+      "content": "Anh/chị ơi, xe tôi vừa báo lỗi pin quá nóng và tốc độ giảm đột ngột trên cao tốc. Tôi không biết phải làm gì bây giờ, cần hướng dẫn ngay."
+    },
+    {
+      "role": "support",
+      "content": "Giảm tốc từ từ, bật đèn khẩn cấp và tấp vào lề ngay khi có thể. Sau khi dừng hẳn ở nơi an toàn, mình sẽ tìm điểm hỗ trợ gần nhất. Bạn có đang kiểm soát được tay lái không?"
+    },
+    {
+      "role": "customer",
+      "content": "Có, tôi kiểm soát được. Đang bật đèn hazard rồi, tấp vào lề bây giờ. Xe còn chạy được không? Cần gọi cứu hộ 114 không?"
+    },
+    {
+      "role": "support",
+      "content": "Trạng thái xe đã đúng yêu cầu rồi."
+    },
+    {
+      "role": "customer",
+      "content": "Vừa dừng hẳn ở lề rồi. Xe vẫn báo pin quá nóng, động cơ tắt không nổ lại. Tôi có nên gọi 114 cứu hộ không? Hay chờ xem sao?"
+    },
+    {
+      "role": "support",
+      "content": "Xe báo pin quá nóng là khẩn cấp. Bạn cần rời khỏi xe ngay, tránh xa ít nhất 15 m và cảnh báo những người xung quanh. Sau đó nên gọi ngay 114 để được cứu hộ chuyên nghiệp. Mình chưa hỗ trợ gọi trực tiếp số này, vui lòng gọi từ điện thoại của bạn."
+    },
+    {
+      "role": "customer",
+      "content": "Được, tôi rời xe ngay, chạy ra xa khoảng 15 mét. Đang gọi 114 bây giờ."
+    },
+    {
+      "role": "support",
+      "content": "Được rồi, bạn nhớ giữ khoảng cách an toàn. Mình vẫn ở đây nếu bạn cần hỗ trợ."
+    }
+  ],
+  "domain": "automotive_ai",
+  "applicationId": "vita_drive_emergency",
+  "applicationContext": "in_cabin_emergency"
+}

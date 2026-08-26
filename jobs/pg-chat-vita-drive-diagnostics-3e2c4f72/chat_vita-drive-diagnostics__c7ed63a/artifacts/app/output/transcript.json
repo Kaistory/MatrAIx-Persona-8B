@@ -1,0 +1,48 @@
+{
+  "sessionId": "harbor-chat",
+  "messages": [
+    {
+      "role": "customer",
+      "content": "Xin chào, tôi muốn kiểm tra tình trạng xe của tôi. Pin còn bao nhiêu phần trăm và có thể chạy được bao xa nữa?"
+    },
+    {
+      "role": "support",
+      "content": "Pha/cốt đang tắt, đèn đọc tắt, ambient tắt."
+    },
+    {
+      "role": "customer",
+      "content": "Ơi, tôi cần bật xe lên trước. Để tôi khởi động và kiểm tra lại nhé."
+    },
+    {
+      "role": "support",
+      "content": "Đã kiểm tra, xe đã sẵn sàng ạ."
+    },
+    {
+      "role": "customer",
+      "content": "Được rồi. Bây giờ cho tôi xem pin hiện tại bao nhiêu %, nhiệt độ pin thế nào, và xe tôi có thể chạy được khoảng bao xa với pin còn lại?"
+    },
+    {
+      "role": "support",
+      "content": "Điều hòa đang bật, 3 vùng, quạt mức 3, nhiệt lái 22 độ, ghế phụ 22 độ, hàng sau 22 độ. Sấy kính sau tắt. PM2.5 12, lọc khí bật, ionizer tắt."
+    },
+    {
+      "role": "customer",
+      "content": "Được, nhưng tôi cần thông tin về pin xe chứ. Mức SoC bao nhiêu phần trăm, nhiệt độ pin pack bao nhiêu độ, và tầm hoạt động còn lại là bao nhiêu km?"
+    },
+    {
+      "role": "support",
+      "content": "Điều hòa đang bật, 3 vùng, quạt mức 3, nhiệt lái 22 độ, ghế phụ 22 độ, hàng sau 22 độ. Sấy kính sau tắt. PM2.5 12, lọc khí bật, ionizer tắt."
+    },
+    {
+      "role": "customer",
+      "content": "Anh ơi, hệ thống sao cứ trả lời về điều hòa hoài? Tôi muốn xem thông tin pin SoC, nhiệt độ pin, và tầm chạy còn lại thôi. Có cách nào để xem trực tiếp không?"
+    },
+    {
+      "role": "support",
+      "content": "Điều hòa đang bật, 3 vùng, quạt mức 3, nhiệt lái 22 độ, ghế phụ 22 độ, hàng sau 22 độ. Sấy kính sau tắt. PM2.5 12, lọc khí bật, ionizer tắt."
+    }
+  ],
+  "domain": "automotive_ai",
+  "applicationId": "vita_drive_diagnostics",
+  "applicationContext": "in_cabin_diagnostics"
+}

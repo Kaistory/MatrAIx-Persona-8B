@@ -1,0 +1,48 @@
+{
+  "sessionId": "harbor-chat",
+  "messages": [
+    {
+      "role": "customer",
+      "content": "Xin chào, tôi đang lái xe từ Hà Nội đến Hải Phòng. Có thể bạn giúp tôi tìm tuyến đường tốt nhất và các trạm sạc điện trên đường không?"
+    },
+    {
+      "role": "support",
+      "content": "Đã dẫn đường đến Hải Phòng."
+    },
+    {
+      "role": "customer",
+      "content": "Cảm ơn. Nhưng tôi muốn biết thêm chi tiết - có bao nhiêu km, mất bao lâu, và trên đường có những trạm sạc điện nào gần đó không?"
+    },
+    {
+      "role": "support",
+      "content": "Trạng thái xe đã đúng yêu cầu rồi."
+    },
+    {
+      "role": "customer",
+      "content": "Được rồi. Vậy bạn có thể chỉ cho tôi các trạm sạc EV dọc theo tuyến Hà Nội - Hải Phòng không? Tôi muốn biết khoảng cách và thời gian để có kế hoạch dừng nghỉ hợp lý."
+    },
+    {
+      "role": "support",
+      "content": "Đã dẫn đường đến Hải Phòng."
+    },
+    {
+      "role": "customer",
+      "content": "Tôi hiểu rồi. Vậy ngoài tuyến đường chính, bạn có thể gợi ý thêm các nhà hàng hoặc điểm dừng nghỉ trên đường để tôi có thể ăn uống và thư giãn một chút không?"
+    },
+    {
+      "role": "support",
+      "content": "Bạn muốn mình dẫn đường tới đâu?"
+    },
+    {
+      "role": "customer",
+      "content": "Tôi muốn đi từ Hà Nội đến Hải Phòng. Tôi đang lái xe điện nên cần tìm trạm sạc EV trên đường, và cũng muốn biết có nhà hàng nào tốt để dừng nghỉ giữa chừng."
+    },
+    {
+      "role": "support",
+      "content": "Đã dẫn đường đến Hải Phòng."
+    }
+  ],
+  "domain": "automotive_ai",
+  "applicationId": "vita_drive_navigation",
+  "applicationContext": "in_cabin_navigation"
+}

@@ -1,0 +1,27 @@
+artifactName: user_feedback.json
+instructions: |
+  Đánh giá trung thực trải nghiệm sử dụng trợ lý dẫn đường Vita khi đang lái xe.
+  Tập trung vào độ chính xác của lộ trình, tính hữu ích của gợi ý điểm đến/trạm sạc và sự an toàn khi nghe chỉ dẫn.
+fields:
+  - key: needConstraintSatisfaction
+    prompt: Trợ lý Vita có cung cấp đúng lộ trình/địa điểm hoặc trạm sạc bạn cần không?
+    kind: enum
+    choices: [yes, partially, no]
+  - key: personalPreferenceSatisfaction
+    prompt: Chỉ dẫn đường đi có ngắn gọn, rõ ràng và dễ nghe khi đang lái xe không?
+    kind: enum
+    choices: [yes, partially, no]
+  - key: overallExperienceRating
+    prompt: Đánh giá tổng quan trải nghiệm dẫn đường từ 1 đến 10?
+    kind: integer
+    minimum: 1
+    maximum: 10
+    explanation:
+      key: reason
+      prompt: Nêu ngắn gọn lý do cho số điểm trên.
+  - key: askedUsefulClarificationQuestions
+    prompt: Trợ lý có xác nhận điểm đến hoặc đưa ra lựa chọn lộ trình phù hợp không?
+    kind: boolean
+    explanation:
+      key: clarifyingNotes
+      prompt: Chi tiết phản hồi lộ trình hoặc câu hỏi làm rõ của trợ lý.

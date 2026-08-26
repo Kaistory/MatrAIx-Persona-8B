@@ -1,0 +1,27 @@
+artifactName: user_feedback.json
+instructions: |
+  Đánh giá trung thực trải nghiệm sử dụng trợ lý Vita khi gọi điện và nhắn tin rảnh tay.
+  Tập trung vào độ chính xác khi bắt tên danh bạ, nội dung tin nhắn và xác nhận an toàn.
+fields:
+  - key: needConstraintSatisfaction
+    prompt: Trợ lý Vita có soạn đúng tin nhắn hoặc kết nối đúng liên hệ bạn muốn không?
+    kind: enum
+    choices: [yes, partially, no]
+  - key: personalPreferenceSatisfaction
+    prompt: Trợ lý có đọc lại tin nhắn rõ ràng và xác nhận trước khi gửi không?
+    kind: enum
+    choices: [yes, partially, no]
+  - key: overallExperienceRating
+    prompt: Đánh giá tổng quan trải nghiệm gọi điện / nhắn tin từ 1 đến 10?
+    kind: integer
+    minimum: 1
+    maximum: 10
+    explanation:
+      key: reason
+      prompt: Nêu ngắn gọn lý do cho số điểm trên.
+  - key: askedUsefulClarificationQuestions
+    prompt: Trợ lý có hỏi lại hoặc xác nhận số điện thoại/nội dung tin nhắn không?
+    kind: boolean
+    explanation:
+      key: clarifyingNotes
+      prompt: Chi tiết phản hồi xác nhận tin nhắn hoặc cuộc gọi.

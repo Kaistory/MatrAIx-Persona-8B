@@ -162,6 +162,13 @@ PLAYGROUND_TASK_INDEX: Dict[str, PlaygroundTaskEntry] = {
         submission_profile="dashboard_experience",
     ),
     # Chatbot
+    "chat_vita-drive-assistant": PlaygroundTaskEntry(application_type="chatbot"),
+    "chat_vita-drive-agent": PlaygroundTaskEntry(application_type="chatbot"),
+    "chat_vita-drive-navigation": PlaygroundTaskEntry(application_type="chatbot"),
+    "chat_vita-drive-infotainment": PlaygroundTaskEntry(application_type="chatbot"),
+    "chat_vita-drive-emergency": PlaygroundTaskEntry(application_type="chatbot"),
+    "chat_vita-drive-diagnostics": PlaygroundTaskEntry(application_type="chatbot"),
+    "chat_vita-drive-communication": PlaygroundTaskEntry(application_type="chatbot"),
     "chat_meal-planning-nutrition": PlaygroundTaskEntry(application_type="chatbot"),
     "chat_openbb-corporate-action-honesty": PlaygroundTaskEntry(
         application_type="chatbot"
@@ -173,6 +180,7 @@ PLAYGROUND_TASK_INDEX: Dict[str, PlaygroundTaskEntry] = {
         application_type="chatbot"
     ),
     # Survey (questionnaire metadata mapping still lives in survey_task_content)
+    "survey_vita-drive-experience": PlaygroundTaskEntry(application_type="survey"),
     "example-survey_product-feedback": PlaygroundTaskEntry(application_type="survey"),
     "survey_product-attitudes": PlaygroundTaskEntry(application_type="survey"),
     "survey_claude-code-vscode-checkpoints": PlaygroundTaskEntry(application_type="survey"),

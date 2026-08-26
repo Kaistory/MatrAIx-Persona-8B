@@ -1,0 +1,342 @@
+{
+  "schemaVersion": "1.0",
+  "artifactType": "matraix.trial_evaluation",
+  "taskType": "survey",
+  "contexts": [
+    {
+      "key": "question.q0",
+      "label": "q0",
+      "contextType": "question_response",
+      "facets": [
+        {
+          "key": "response",
+          "label": "Selected response",
+          "role": "primary",
+          "kind": "categorical",
+          "value": "rarely"
+        }
+      ],
+      "questionType": "single_choice"
+    },
+    {
+      "key": "question.q1",
+      "label": "q1",
+      "contextType": "question_response",
+      "facets": [
+        {
+          "key": "response",
+          "label": "Selected response",
+          "role": "primary",
+          "kind": "categorical",
+          "value": "voice"
+        }
+      ],
+      "questionType": "single_choice"
+    },
+    {
+      "key": "question.q2",
+      "label": "q2",
+      "contextType": "question_response",
+      "facets": [
+        {
+          "key": "response",
+          "label": "Selected response",
+          "role": "primary",
+          "kind": "numerical",
+          "value": 3
+        }
+      ],
+      "questionType": "likert"
+    },
+    {
+      "key": "question.q3",
+      "label": "q3",
+      "contextType": "question_response",
+      "facets": [
+        {
+          "key": "response",
+          "label": "Selected response",
+          "role": "primary",
+          "kind": "numerical",
+          "value": 2
+        }
+      ],
+      "questionType": "likert"
+    },
+    {
+      "key": "question.q4",
+      "label": "q4",
+      "contextType": "question_response",
+      "facets": [
+        {
+          "key": "response",
+          "label": "Selected response",
+          "role": "primary",
+          "kind": "numerical",
+          "value": 3
+        }
+      ],
+      "questionType": "likert"
+    },
+    {
+      "key": "question.q5",
+      "label": "q5",
+      "contextType": "question_response",
+      "facets": [
+        {
+          "key": "response",
+          "label": "Selected response",
+          "role": "primary",
+          "kind": "categorical",
+          "value": "concise"
+        }
+      ],
+      "questionType": "single_choice"
+    },
+    {
+      "key": "question.q6",
+      "label": "q6",
+      "contextType": "question_response",
+      "facets": [
+        {
+          "key": "response",
+          "label": "Selected response",
+          "role": "primary",
+          "kind": "categorical",
+          "value": "essential"
+        }
+      ],
+      "questionType": "single_choice"
+    },
+    {
+      "key": "question.q7",
+      "label": "q7",
+      "contextType": "question_response",
+      "facets": [
+        {
+          "key": "response",
+          "label": "Selected response",
+          "role": "primary",
+          "kind": "categorical",
+          "value": [
+            "distraction",
+            "privacy"
+          ]
+        }
+      ],
+      "questionType": "multi_choice"
+    },
+    {
+      "key": "question.q8",
+      "label": "q8",
+      "contextType": "question_response",
+      "facets": [
+        {
+          "key": "response",
+          "label": "Selected response",
+          "role": "primary",
+          "kind": "categorical",
+          "value": "premium_sub"
+        }
+      ],
+      "questionType": "single_choice"
+    },
+    {
+      "key": "question.q9",
+      "label": "q9",
+      "contextType": "question_response",
+      "facets": [
+        {
+          "key": "response",
+          "label": "Selected response",
+          "role": "primary",
+          "kind": "numerical",
+          "value": 4
+        }
+      ],
+      "questionType": "likert"
+    },
+    {
+      "key": "question.q10",
+      "label": "q10",
+      "contextType": "question_response",
+      "facets": [
+        {
+          "key": "response",
+          "label": "Selected response",
+          "role": "primary",
+          "kind": "categorical",
+          "value": "6"
+        }
+      ],
+      "questionType": "single_choice"
+    },
+    {
+      "key": "question.q11",
+      "label": "q11",
+      "contextType": "question_response",
+      "facets": [
+        {
+          "key": "response",
+          "label": "Selected response",
+          "role": "primary",
+          "kind": "categorical",
+          "value": "pure_ev"
+        }
+      ],
+      "questionType": "single_choice"
+    },
+    {
+      "key": "question.q12",
+      "label": "q12",
+      "contextType": "question_response",
+      "facets": [
+        {
+          "key": "response",
+          "label": "Selected response",
+          "role": "primary",
+          "kind": "categorical",
+          "value": "30_to_60m"
+        }
+      ],
+      "questionType": "single_choice"
+    },
+    {
+      "key": "trial_summary.primary",
+      "label": "Trial summary",
+      "contextType": "trial_summary",
+      "facets": [
+        {
+          "key": "completed_questions",
+          "label": "Completed questions",
+          "role": "metric",
+          "kind": "numerical",
+          "value": 13
+        },
+        {
+          "key": "trajectory_steps",
+          "label": "Trajectory steps",
+          "role": "metric",
+          "kind": "numerical",
+          "value": 28
+        },
+        {
+          "key": "mean_numeric_answer",
+          "label": "Mean numeric answer",
+          "role": "score",
+          "kind": "numerical",
+          "value": 3.0
+        }
+      ]
+    }
+  ],
+  "fields": [
+    {
+      "key": "question.q0.response",
+      "label": "Selected response",
+      "group": "question.q0",
+      "role": "primary",
+      "kind": "categorical",
+      "value": "rarely"
+    },
+    {
+      "key": "question.q1.response",
+      "label": "Selected response",
+      "group": "question.q1",
+      "role": "primary",
+      "kind": "categorical",
+      "value": "voice"
+    },
+    {
+      "key": "question.q2.response",
+      "label": "Selected response",
+      "group": "question.q2",
+      "role": "primary",
+      "kind": "numerical",
+      "value": 3
+    },
+    {
+      "key": "question.q3.response",
+      "label": "Selected response",
+      "group": "question.q3",
+      "role": "primary",
+      "kind": "numerical",
+      "value": 2
+    },
+    {
+      "key": "question.q4.response",
+      "label": "Selected response",
+      "group": "question.q4",
+      "role": "primary",
+      "kind": "numerical",
+      "value": 3
+    },
+    {
+      "key": "question.q5.response",
+      "label": "Selected response",
+      "group": "question.q5",
+      "role": "primary",
+      "kind": "categorical",
+      "value": "concise"
+    },
+    {
+      "key": "question.q6.response",
+      "label": "Selected response",
+      "group": "question.q6",
+      "role": "primary",
+      "kind": "categorical",
+      "value": "essential"
+    },
+    {
+      "key": "question.q7.response",
+      "label": "Selected response",
+      "group": "question.q7",
+      "role": "primary",
+      "kind": "categorical",
+      "value": [
+        "distraction",
+        "privacy"
+      ]
+    },
+    {
+      "key": "question.q8.response",
+      "label": "Selected response",
+      "group": "question.q8",
+      "role": "primary",
+      "kind": "categorical",
+      "value": "premium_sub"
+    },
+    {
+      "key": "question.q9.response",
+      "label": "Selected response",
+      "group": "question.q9",
+      "role": "primary",
+      "kind": "numerical",
+      "value": 4
+    },
+    {
+      "key": "question.q10.response",
+      "label": "Selected response",
+      "group": "question.q10",
+      "role": "primary",
+      "kind": "categorical",
+      "value": "6"
+    },
+    {
+      "key": "question.q11.response",
+      "label": "Selected response",
+      "group": "question.q11",
+      "role": "primary",
+      "kind": "categorical",
+      "value": "pure_ev"
+    },
+    {
+      "key": "question.q12.response",
+      "label": "Selected response",
+      "group": "question.q12",
+      "role": "primary",
+      "kind": "categorical",
+      "value": "30_to_60m"
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "job_name": "pg-survey-vita-drive-experience-15cb976e",
+  "jobs_dir": "jobs",
+  "n_attempts": 1,
+  "timeout_multiplier": 1.0,
+  "n_concurrent_trials": 2,
+  "quiet": false,
+  "environment": {
+    "type": "host",
+    "delete": true
+  },
+  "agents": [
+    {
+      "name": "persona-json-survey",
+      "model_name": "openai/gpt-4o-mini",
+      "kwargs": {
+        "persona_path": "persona/datasets/matraix-persona-dev-sample/persona_0137.yaml",
+        "model_info": {
+          "max_input_tokens": 128000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-json-survey",
+      "model_name": "openai/gpt-4o-mini",
+      "kwargs": {
+        "persona_path": "persona/datasets/matraix-persona-dev-sample/persona_0065.yaml",
+        "model_info": {
+          "max_input_tokens": 128000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-json-survey",
+      "model_name": "openai/gpt-4o-mini",
+      "kwargs": {
+        "persona_path": "persona/datasets/matraix-persona-dev-sample/persona_0015.yaml",
+        "model_info": {
+          "max_input_tokens": 128000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-json-survey",
+      "model_name": "openai/gpt-4o-mini",
+      "kwargs": {
+        "persona_path": "persona/datasets/matraix-persona-dev-sample/persona_0159.yaml",
+        "model_info": {
+          "max_input_tokens": 128000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-json-survey",
+      "model_name": "openai/gpt-4o-mini",
+      "kwargs": {
+        "persona_path": "persona/datasets/matraix-persona-dev-sample/persona_0086.yaml",
+        "model_info": {
+          "max_input_tokens": 128000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-json-survey",
+      "model_name": "openai/gpt-4o-mini",
+      "kwargs": {
+        "persona_path": "persona/datasets/matraix-persona-dev-sample/persona_0082.yaml",
+        "model_info": {
+          "max_input_tokens": 128000,
+          "max_output_tokens": 16384
+        }
+      }
+    }
+  ],
+  "tasks": [
+    {
+      "path": "application/tasks/survey_vita-drive-experience"
+    }
+  ]
+}

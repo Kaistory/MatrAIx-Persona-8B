@@ -1,0 +1,107 @@
+{
+    "id": "5e91cb0f-5df4-4bcd-8887-7d377f6bdab1",
+    "task_name": "application/note-to-csv",
+    "trial_name": "example-computer-use-linux_note__sMgKDU6",
+    "trial_uri": "file:///home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/jobs/pg-example-computer-use-linux-note-to-csv-a67e875f/example-computer-use-linux_note__sMgKDU6",
+    "task_id": {
+        "path": "application/tasks/example-computer-use-linux_note-to-csv"
+    },
+    "source": null,
+    "task_checksum": "3b434482cc21cce32f2d7b97e56f8e8449d2c8e37b98adcef9084f74ab3e0c3b",
+    "config": {
+        "task": {
+            "path": "application/tasks/example-computer-use-linux_note-to-csv",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": null
+        },
+        "trial_name": "example-computer-use-linux_note__sMgKDU6",
+        "trials_dir": "jobs/pg-example-computer-use-linux-note-to-csv-a67e875f",
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "persona-computer-1",
+            "import_path": null,
+            "model_name": "dashscope/qwen3-max",
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {
+                "persona_path": "persona/datasets/matraix-persona-dev-sample/persona_0070.yaml",
+                "model_info": {
+                    "max_input_tokens": 258048,
+                    "max_output_tokens": 16384
+                },
+                "cua_backend": "docker",
+                "max_turns": 100
+            },
+            "env": {},
+            "mcp_servers": []
+        },
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "env": {},
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "env": {},
+            "disable": false
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "job_id": "7aefb911-6590-42e7-9df1-11d446a7e492"
+    },
+    "agent_info": {
+        "name": "persona-computer-1",
+        "version": "1.0.0",
+        "model_info": {
+            "name": "qwen3-max",
+            "provider": "dashscope"
+        }
+    },
+    "agent_result": null,
+    "verifier_result": null,
+    "exception_info": {
+        "exception_type": "ValueError",
+        "exception_message": "Model 'dashscope/qwen3-max' does not support vision input, but computer-1's generic harness is screenshot-driven. Use a vision-capable model, or pass enable_images explicitly to override litellm's metadata.",
+        "exception_traceback": "Traceback (most recent call last):\n  File \"/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/trial/trial.py\", line 322, in run\n    await self._prepare()\n  File \"/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/trial/trial.py\", line 354, in _prepare\n    await self._setup_agent()\n  File \"/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/trial/trial.py\", line 1106, in _setup_agent\n    await asyncio.wait_for(\n  File \"/home/khaidq9/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/asyncio/tasks.py\", line 520, in wait_for\n    return await fut\n           ^^^^^^^^^\n  File \"/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/agents/matraix/agents/persona/computer_1.py\", line 249, in setup\n    await self._get_delegate(environment).setup(environment)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/agents/matraix/agents/persona/computer_1.py\", line 222, in _get_delegate\n    self._delegate = _build_cua_delegate(\n                     ^^^^^^^^^^^^^^^^^^^^\n  File \"/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/agents/matraix/agents/persona/computer_1.py\", line 158, in _build_cua_delegate\n    return Computer1(**docker_kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/agents/computer_1/computer_1.py\", line 645, in __init__\n    self._validate_vision_support(model_name)\n  File \"/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/agents/computer_1/computer_1.py\", line 737, in _validate_vision_support\n    raise ValueError(\nValueError: Model 'dashscope/qwen3-max' does not support vision input, but computer-1's generic harness is screenshot-driven. Use a vision-capable model, or pass enable_images explicitly to override litellm's metadata.\n",
+        "occurred_at": "2026-08-26T14:53:20.253885"
+    },
+    "started_at": "2026-08-26T07:53:12.101600Z",
+    "finished_at": "2026-08-26T07:53:31.338923Z",
+    "environment_setup": {
+        "started_at": "2026-08-26T07:53:12.107720Z",
+        "finished_at": "2026-08-26T07:53:20.252943Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-08-26T07:53:20.252990Z",
+        "finished_at": "2026-08-26T07:53:20.253179Z"
+    },
+    "agent_execution": null,
+    "verifier": null,
+    "step_results": null
+}

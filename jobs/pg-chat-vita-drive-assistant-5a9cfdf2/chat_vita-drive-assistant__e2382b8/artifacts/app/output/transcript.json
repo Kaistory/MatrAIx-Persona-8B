@@ -1,0 +1,56 @@
+{
+  "sessionId": "harbor-chat",
+  "messages": [
+    {
+      "role": "customer",
+      "content": "Chào Vita, tôi muốn điều chỉnh điều hòa một chút. Có thể tăng nhiệt độ lên 24 độ C được không?"
+    },
+    {
+      "role": "support",
+      "content": "Đã tăng nhiệt độ điều hòa lên 24 độ."
+    },
+    {
+      "role": "customer",
+      "content": "Cảm ơn Vita! Bây giờ, tôi muốn nghe một bài hát vui vẻ. Bạn có thể tìm cho tôi một bài nào đó không?"
+    },
+    {
+      "role": "support",
+      "content": "Đã mở bài Xanh Playlist 1🍃 BÀI CA MÙA HẠ| Nhạc Chill Yêu Đời ~ Ngồi Dưới Tán Cây Nghe Mùa Hè."
+    },
+    {
+      "role": "customer",
+      "content": "Nghe có vẻ tuyệt! Cảm ơn Vita. Bây giờ, hãy cho tôi biết tình trạng pin của xe được không?"
+    },
+    {
+      "role": "support",
+      "content": "Pin xe còn 78%, phạm vi khoảng 312 km, hiện không đang sạc."
+    },
+    {
+      "role": "customer",
+      "content": "Cảm ơn thông tin, Vita! Tôi muốn mở cửa sổ một chút, bạn có thể giúp tôi làm điều đó không?"
+    },
+    {
+      "role": "support",
+      "content": "Mình mở hé cửa sổ khoảng 30% cho bạn nhé."
+    },
+    {
+      "role": "customer",
+      "content": "Cảm ơn Vita! Tôi thấy thoải mái hơn rồi. Bây giờ, hãy cho tôi biết hướng đi đến quán cà phê gần nhất."
+    },
+    {
+      "role": "support",
+      "content": "Đã dẫn đường đến quán cà phê gần nhất."
+    },
+    {
+      "role": "customer",
+      "content": "Tuyệt vời! Cảm ơn Vita đã giúp đỡ. Tôi hài lòng với trải nghiệm này. Kết thúc cuộc trò chuyện nhé!"
+    },
+    {
+      "role": "support",
+      "content": "Cảm ơn bạn. Chúc bạn lái xe an toàn nhé!"
+    }
+  ],
+  "domain": "automotive_ai",
+  "applicationId": "vita_drive_assistant",
+  "applicationContext": "in_cabin_driving"
+}

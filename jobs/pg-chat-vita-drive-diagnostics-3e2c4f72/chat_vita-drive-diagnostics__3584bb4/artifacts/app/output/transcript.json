@@ -1,0 +1,40 @@
+{
+  "sessionId": "harbor-chat",
+  "messages": [
+    {
+      "role": "customer",
+      "content": "Hi, I'm about to take a long drive and want to check how my car is doing. Can you help me see the battery status and tire pressure?"
+    },
+    {
+      "role": "support",
+      "content": "Sure, let me check your battery and tire pressure."
+    },
+    {
+      "role": "customer",
+      "content": "Great! What's the current battery percentage and temperature? I'm wondering if I need to charge before I head out."
+    },
+    {
+      "role": "support",
+      "content": "Battery is at 78%, range 312 km. Cabin temperature is 22°C, outside 31°C."
+    },
+    {
+      "role": "customer",
+      "content": "Okay, 78% is good. What about the tire pressures on all four wheels? And is there anything I should know about before a long drive?"
+    },
+    {
+      "role": "support",
+      "content": "Áp suất lốp trước trái 2.4, trước phải 2.4, sau trái 2.3, sau phải 2.4 bar, tất cả đều ổn. Lốp sau trái hơi thấp hơn chút nhưng vẫn trong ngưỡng an toàn. Pin còn 78%, phạm vi 312 km. Ngoài ra mọi hệ thống an toàn như cảnh báo chệch làn, điểm mù, va chạm đều đang hoạt động tốt. Anh/chị yên tâm lên đường nhé."
+    },
+    {
+      "role": "customer",
+      "content": "Cảm ơn! Vậy lốp sau trái thấp hơn một chút - tôi có nên bơm thêm không hay để như vậy cũng được? Và 312 km đủ cho chuyến đi của tôi rồi."
+    },
+    {
+      "role": "support",
+      "content": "Xe đang ở Gear P, tốc độ 0 km/h, pin 78%."
+    }
+  ],
+  "domain": "automotive_ai",
+  "applicationId": "vita_drive_diagnostics",
+  "applicationContext": "in_cabin_diagnostics"
+}

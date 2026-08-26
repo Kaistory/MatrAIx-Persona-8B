@@ -1,0 +1,88 @@
+{
+  "sessionId": "harbor-chat",
+  "messages": [
+    {
+      "role": "customer",
+      "content": "Chào, mình cần kiểm tra tình trạng xe trước khi đi chuyến dài. Pin còn bao nhiêu phần trăm và lốp có bị yếu không?"
+    },
+    {
+      "role": "support",
+      "content": "Pha/cốt đang tắt, đèn đọc tắt, ambient tắt."
+    },
+    {
+      "role": "customer",
+      "content": "Mình muốn bật xe lên để kiểm tra. Sau khi khởi động, có thể cho mình xem mức pin SoC, nhiệt độ pin và áp suất lốp 4 bánh không?"
+    },
+    {
+      "role": "support",
+      "content": "Đã bật hệ thống, mình kiểm tra thông tin xe ngay nhé."
+    },
+    {
+      "role": "customer",
+      "content": "Được, cảm ơn. Cho mình xem chi tiết: pin hiện tại bao nhiêu %, nhiệt độ pin bao nhiêu độ, và áp suất từng bánh lốp trước sau?"
+    },
+    {
+      "role": "support",
+      "content": "Dạ, để mình kiểm tra ngay."
+    },
+    {
+      "role": "customer",
+      "content": "Vâng, mình đợi. Ngoài ra có đèn cảnh báo nào trên táp-lô không? Và tầm hoạt động còn lại (range) bao nhiêu km?"
+    },
+    {
+      "role": "support",
+      "content": "Pha/cốt đang tắt, đèn đọc tắt, ambient tắt."
+    },
+    {
+      "role": "customer",
+      "content": "Sao mình bật hệ thống rồi mà vẫn tắt? Có vấn đề gì không? Thử bật lại xem có hiển thị thông tin pin và lốp không?"
+    },
+    {
+      "role": "support",
+      "content": "Để em kiểm tra trạng thái xe và phản hồi lại ngay nhé!"
+    },
+    {
+      "role": "customer",
+      "content": "Được, mình chờ. Nhưng cần gấp vì muốn khởi hành sớm, nên vui lòng check nhanh các thông số chính: pin %, nhiệt độ pin, áp suất lốp 4 bánh, và có lỗi gì không?"
+    },
+    {
+      "role": "support",
+      "content": "Đã kiểm tra: pin 78%, áp suất lốp trước trái/phải 2.4 bar, sau trái/phải 2.3 bar; xe không có lỗi. Nhiệt độ pin không hiển thị, nhưng pin hoạt động bình thường."
+    },
+    {
+      "role": "customer",
+      "content": "Tốt, cảm ơn. Pin 78% thì đủ cho chuyến dài rồi. Nhưng áp suất lốp sau 2.3 bar hơi thấp so với trước, có cần bơm thêm không? Và tầm hoạt động còn lại bao nhiêu km?"
+    },
+    {
+      "role": "support",
+      "content": "Áp suất lốp: trước trái 2.4 bar, trước phải 2.4 bar, sau trái 2.3 bar, sau phải 2.4 bar."
+    },
+    {
+      "role": "customer",
+      "content": "Hiểu rồi, lốp sau trái 2.3 bar thấp hơn một chút. Mình nên bơm lên bao nhiêu bar là chuẩn? Và còn bao nhiêu km có thể đi được với pin 78% hiện tại?"
+    },
+    {
+      "role": "support",
+      "content": "Pin 78%, còn khoảng 312 km. Pin VF9 46.4 kWh LFP, giới hạn sạc đang đặt 78%."
+    },
+    {
+      "role": "customer",
+      "content": "Ổn rồi, 312 km đủ cho chuyến của mình. Nhưng lốp sau trái 2.3 bar vẫn thấp, nên bơm lên 2.4 bar để cân bằng với lốp khác. Còn có lịch bảo dưỡng tiếp theo không, hay xe đang ổn định?"
+    },
+    {
+      "role": "support",
+      "content": "Xe đang ở Gear P, tốc độ 0 km/h, pin 78%."
+    },
+    {
+      "role": "customer",
+      "content": "Được, xe đang dừng. Vậy theo kiểm tra, xe không có lỗi, pin 78% với tầm 312 km là ổn. Chỉ cần bơm lốp sau trái lên 2.4 bar là xong. Có thông báo bảo dưỡng định kỳ nào không?"
+    },
+    {
+      "role": "support",
+      "content": "Xe không có cảnh báo bảo dưỡng nào. Bạn muốn mô phỏng nhắc nhở bảo dưỡng định kỳ tiếp theo không?"
+    }
+  ],
+  "domain": "automotive_ai",
+  "applicationId": "vita_drive_diagnostics",
+  "applicationContext": "in_cabin_diagnostics"
+}

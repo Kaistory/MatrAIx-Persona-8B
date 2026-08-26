@@ -1,0 +1,625 @@
+{
+  "instrument": {
+    "id": "vita_drive_experience_v1",
+    "title": "Khảo sát Trải nghiệm Trợ lý Xe Thông minh Vita"
+  },
+  "answers": [
+    {
+      "questionId": "q0",
+      "value": "weekly",
+      "rationale": "",
+      "confidence": null
+    },
+    {
+      "questionId": "q1",
+      "value": "voice",
+      "rationale": "",
+      "confidence": null
+    },
+    {
+      "questionId": "q2",
+      "value": 4,
+      "rationale": "",
+      "confidence": null
+    },
+    {
+      "questionId": "q3",
+      "value": 4,
+      "rationale": "",
+      "confidence": null
+    },
+    {
+      "questionId": "q4",
+      "value": 5,
+      "rationale": "",
+      "confidence": null
+    },
+    {
+      "questionId": "q5",
+      "value": "professional",
+      "rationale": "",
+      "confidence": null
+    },
+    {
+      "questionId": "q6",
+      "value": "essential",
+      "rationale": "",
+      "confidence": null
+    },
+    {
+      "questionId": "q7",
+      "value": [
+        "distraction",
+        "misexecution"
+      ],
+      "rationale": "",
+      "confidence": null
+    },
+    {
+      "questionId": "q8",
+      "value": "premium_sub",
+      "rationale": "",
+      "confidence": null
+    },
+    {
+      "questionId": "q9",
+      "value": 5,
+      "rationale": "",
+      "confidence": null
+    },
+    {
+      "questionId": "q10",
+      "value": "8",
+      "rationale": "",
+      "confidence": null
+    },
+    {
+      "questionId": "q11",
+      "value": "pure_ev",
+      "rationale": "",
+      "confidence": null
+    },
+    {
+      "questionId": "q12",
+      "value": "1_to_2h",
+      "rationale": "",
+      "confidence": null
+    }
+  ],
+  "trajectory": [
+    {
+      "timestamp": "2026-08-26T08:28:36Z",
+      "actor": "system",
+      "action": "survey_started",
+      "context": {
+        "instrumentId": "vita_drive_experience_v1",
+        "instrumentTitle": "Khảo sát Trải nghiệm Trợ lý Xe Thông minh Vita",
+        "numQuestions": 13
+      },
+      "outcome": {
+        "status": "started"
+      }
+    },
+    {
+      "timestamp": "2026-08-26T08:28:37Z",
+      "actor": "assistant",
+      "action": "ask_question",
+      "context": {
+        "instrumentId": "vita_drive_experience_v1",
+        "questionId": "q0",
+        "questionIndex": 1,
+        "questionType": "single_choice",
+        "construct": "in_car_voice_assistant_frequency"
+      },
+      "outcome": {
+        "prompt": "Bạn có thường xuyên sử dụng trợ lý giọng nói (Siri, Google Assistant, trợ lý tích hợp trên xe) khi đang lái xe không?",
+        "options": [
+          "daily",
+          "weekly",
+          "rarely",
+          "never"
+        ]
+      }
+    },
+    {
+      "timestamp": "2026-08-26T08:28:38Z",
+      "actor": "user",
+      "action": "answer_question",
+      "context": {
+        "instrumentId": "vita_drive_experience_v1",
+        "questionId": "q0",
+        "questionIndex": 1,
+        "questionType": "single_choice",
+        "construct": "in_car_voice_assistant_frequency"
+      },
+      "outcome": {
+        "questionId": "q0",
+        "value": "weekly",
+        "rationale": "",
+        "confidence": null
+      }
+    },
+    {
+      "timestamp": "2026-08-26T08:28:39Z",
+      "actor": "assistant",
+      "action": "ask_question",
+      "context": {
+        "instrumentId": "vita_drive_experience_v1",
+        "questionId": "q1",
+        "questionIndex": 2,
+        "questionType": "single_choice",
+        "construct": "primary_driving_interaction_mode"
+      },
+      "outcome": {
+        "prompt": "Khi đang lái xe trên đường, bạn ưu tiên phương thức điều khiển nào nhất để thao tác điều hòa, bản đồ hoặc bài hát?",
+        "options": [
+          "voice",
+          "physical_buttons",
+          "touchscreen",
+          "passenger"
+        ]
+      }
+    },
+    {
+      "timestamp": "2026-08-26T08:28:40Z",
+      "actor": "user",
+      "action": "answer_question",
+      "context": {
+        "instrumentId": "vita_drive_experience_v1",
+        "questionId": "q1",
+        "questionIndex": 2,
+        "questionType": "single_choice",
+        "construct": "primary_driving_interaction_mode"
+      },
+      "outcome": {
+        "questionId": "q1",
+        "value": "voice",
+        "rationale": "",
+        "confidence": null
+      }
+    },
+    {
+      "timestamp": "2026-08-26T08:28:41Z",
+      "actor": "assistant",
+      "action": "ask_question",
+      "context": {
+        "instrumentId": "vita_drive_experience_v1",
+        "questionId": "q2",
+        "questionIndex": 3,
+        "questionType": "likert",
+        "construct": "voice_vehicle_control_comfort"
+      },
+      "outcome": {
+        "prompt": "Mức độ an tâm của bạn khi ra lệnh giọng nói để điều khiển các chức năng vật lý của xe (điều hòa, cửa sổ, gạt mưa, đèn xe):",
+        "options": []
+      }
+    },
+    {
+      "timestamp": "2026-08-26T08:28:42Z",
+      "actor": "user",
+      "action": "answer_question",
+      "context": {
+        "instrumentId": "vita_drive_experience_v1",
+        "questionId": "q2",
+        "questionIndex": 3,
+        "questionType": "likert",
+        "construct": "voice_vehicle_control_comfort"
+      },
+      "outcome": {
+        "questionId": "q2",
+        "value": 4,
+        "rationale": "",
+        "confidence": null
+      }
+    },
+    {
+      "timestamp": "2026-08-26T08:28:43Z",
+      "actor": "assistant",
+      "action": "ask_question",
+      "context": {
+        "instrumentId": "vita_drive_experience_v1",
+        "questionId": "q3",
+        "questionIndex": 4,
+        "questionType": "likert",
+        "construct": "ev_routing_and_range_trust"
+      },
+      "outcome": {
+        "prompt": "Mức độ tin cậy của bạn vào tính năng AI tự động tính toán dung lượng pin và đề xuất trạm sạc xe điện tối ưu dọc lộ trình:",
+        "options": []
+      }
+    },
+    {
+      "timestamp": "2026-08-26T08:28:44Z",
+      "actor": "user",
+      "action": "answer_question",
+      "context": {
+        "instrumentId": "vita_drive_experience_v1",
+        "questionId": "q3",
+        "questionIndex": 4,
+        "questionType": "likert",
+        "construct": "ev_routing_and_range_trust"
+      },
+      "outcome": {
+        "questionId": "q3",
+        "value": 4,
+        "rationale": "",
+        "confidence": null
+      }
+    },
+    {
+      "timestamp": "2026-08-26T08:28:45Z",
+      "actor": "assistant",
+      "action": "ask_question",
+      "context": {
+        "instrumentId": "vita_drive_experience_v1",
+        "questionId": "q4",
+        "questionIndex": 5,
+        "questionType": "likert",
+        "construct": "in_car_media_voice_importance"
+      },
+      "outcome": {
+        "prompt": "Tính năng tìm kiếm và phát nhạc theo tên bài hát / ca sĩ tiếng Việt qua giọng nói trên xe quan trọng với bạn như thế nào?",
+        "options": []
+      }
+    },
+    {
+      "timestamp": "2026-08-26T08:28:46Z",
+      "actor": "user",
+      "action": "answer_question",
+      "context": {
+        "instrumentId": "vita_drive_experience_v1",
+        "questionId": "q4",
+        "questionIndex": 5,
+        "questionType": "likert",
+        "construct": "in_car_media_voice_importance"
+      },
+      "outcome": {
+        "questionId": "q4",
+        "value": 5,
+        "rationale": "",
+        "confidence": null
+      }
+    },
+    {
+      "timestamp": "2026-08-26T08:28:47Z",
+      "actor": "assistant",
+      "action": "ask_question",
+      "context": {
+        "instrumentId": "vita_drive_experience_v1",
+        "questionId": "q5",
+        "questionIndex": 6,
+        "questionType": "single_choice",
+        "construct": "preferred_voice_tone"
+      },
+      "outcome": {
+        "prompt": "Bạn mong muốn phong cách phản hồi giọng nói của trợ lý xe Vita như thế nào khi xe đang chạy?",
+        "options": [
+          "concise",
+          "friendly",
+          "professional",
+          "silent_action"
+        ]
+      }
+    },
+    {
+      "timestamp": "2026-08-26T08:28:48Z",
+      "actor": "user",
+      "action": "answer_question",
+      "context": {
+        "instrumentId": "vita_drive_experience_v1",
+        "questionId": "q5",
+        "questionIndex": 6,
+        "questionType": "single_choice",
+        "construct": "preferred_voice_tone"
+      },
+      "outcome": {
+        "questionId": "q5",
+        "value": "professional",
+        "rationale": "",
+        "confidence": null
+      }
+    },
+    {
+      "timestamp": "2026-08-26T08:28:49Z",
+      "actor": "assistant",
+      "action": "ask_question",
+      "context": {
+        "instrumentId": "vita_drive_experience_v1",
+        "questionId": "q6",
+        "questionIndex": 7,
+        "questionType": "single_choice",
+        "construct": "safety_confirmation_attitude"
+      },
+      "outcome": {
+        "prompt": "Khi bạn yêu cầu thao tác có rủi ro (ví dụ: gọi điện khẩn cấp, mở cửa xe khi đang di chuyển), bạn đánh giá câu hỏi xác nhận an toàn của trợ lý ra sao?",
+        "options": [
+          "essential",
+          "sensitive_only",
+          "annoying"
+        ]
+      }
+    },
+    {
+      "timestamp": "2026-08-26T08:28:50Z",
+      "actor": "user",
+      "action": "answer_question",
+      "context": {
+        "instrumentId": "vita_drive_experience_v1",
+        "questionId": "q6",
+        "questionIndex": 7,
+        "questionType": "single_choice",
+        "construct": "safety_confirmation_attitude"
+      },
+      "outcome": {
+        "questionId": "q6",
+        "value": "essential",
+        "rationale": "",
+        "confidence": null
+      }
+    },
+    {
+      "timestamp": "2026-08-26T08:28:51Z",
+      "actor": "assistant",
+      "action": "ask_question",
+      "context": {
+        "instrumentId": "vita_drive_experience_v1",
+        "questionId": "q7",
+        "questionIndex": 8,
+        "questionType": "multi_choice",
+        "construct": "in_cabin_ai_top_concerns"
+      },
+      "outcome": {
+        "prompt": "Mối bận tâm hoặc rủi ro lớn nhất của bạn đối với trợ lý AI trong khoang lái là gì? (Chọn tối đa 2)",
+        "options": [
+          "distraction",
+          "misexecution",
+          "privacy",
+          "latency",
+          "offline_failure"
+        ]
+      }
+    },
+    {
+      "timestamp": "2026-08-26T08:28:52Z",
+      "actor": "user",
+      "action": "answer_question",
+      "context": {
+        "instrumentId": "vita_drive_experience_v1",
+        "questionId": "q7",
+        "questionIndex": 8,
+        "questionType": "multi_choice",
+        "construct": "in_cabin_ai_top_concerns"
+      },
+      "outcome": {
+        "questionId": "q7",
+        "value": [
+          "distraction",
+          "misexecution"
+        ],
+        "rationale": "",
+        "confidence": null
+      }
+    },
+    {
+      "timestamp": "2026-08-26T08:28:53Z",
+      "actor": "assistant",
+      "action": "ask_question",
+      "context": {
+        "instrumentId": "vita_drive_experience_v1",
+        "questionId": "q8",
+        "questionIndex": 9,
+        "questionType": "single_choice",
+        "construct": "ai_assistant_willingness_to_pay"
+      },
+      "outcome": {
+        "prompt": "Nếu hệ thống Vita Drive Assistant cung cấp gói tính năng nâng cao (Tác nhân tự hành thông minh, dẫn đường thời gian thực không quảng cáo, gợi ý âm nhạc cá nhân hóa), bạn sẵn sàng chi trả ở mức nào?",
+        "options": [
+          "free_only",
+          "basic_sub",
+          "premium_sub",
+          "one_time_bundle"
+        ]
+      }
+    },
+    {
+      "timestamp": "2026-08-26T08:28:54Z",
+      "actor": "user",
+      "action": "answer_question",
+      "context": {
+        "instrumentId": "vita_drive_experience_v1",
+        "questionId": "q8",
+        "questionIndex": 9,
+        "questionType": "single_choice",
+        "construct": "ai_assistant_willingness_to_pay"
+      },
+      "outcome": {
+        "questionId": "q8",
+        "value": "premium_sub",
+        "rationale": "",
+        "confidence": null
+      }
+    },
+    {
+      "timestamp": "2026-08-26T08:28:55Z",
+      "actor": "assistant",
+      "action": "ask_question",
+      "context": {
+        "instrumentId": "vita_drive_experience_v1",
+        "questionId": "q9",
+        "questionIndex": 10,
+        "questionType": "likert",
+        "construct": "offline_edge_ai_importance"
+      },
+      "outcome": {
+        "prompt": "Tầm quan trọng của tính năng xử lý cục bộ trên xe (Offline Edge AI - hoạt động không cần Internet):",
+        "options": []
+      }
+    },
+    {
+      "timestamp": "2026-08-26T08:28:56Z",
+      "actor": "user",
+      "action": "answer_question",
+      "context": {
+        "instrumentId": "vita_drive_experience_v1",
+        "questionId": "q9",
+        "questionIndex": 10,
+        "questionType": "likert",
+        "construct": "offline_edge_ai_importance"
+      },
+      "outcome": {
+        "questionId": "q9",
+        "value": 5,
+        "rationale": "",
+        "confidence": null
+      }
+    },
+    {
+      "timestamp": "2026-08-26T08:28:57Z",
+      "actor": "assistant",
+      "action": "ask_question",
+      "context": {
+        "instrumentId": "vita_drive_experience_v1",
+        "questionId": "q10",
+        "questionIndex": 11,
+        "questionType": "single_choice",
+        "construct": "nps_likelihood_recommend_vita"
+      },
+      "outcome": {
+        "prompt": "Trên thang điểm từ 0 đến 10, khả năng bạn sẽ giới thiệu một chiếc xe ô tô có trang bị Trợ lý Vita cho đồng nghiệp hoặc người thân là bao nhiêu?",
+        "options": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10"
+        ]
+      }
+    },
+    {
+      "timestamp": "2026-08-26T08:28:58Z",
+      "actor": "user",
+      "action": "answer_question",
+      "context": {
+        "instrumentId": "vita_drive_experience_v1",
+        "questionId": "q10",
+        "questionIndex": 11,
+        "questionType": "single_choice",
+        "construct": "nps_likelihood_recommend_vita"
+      },
+      "outcome": {
+        "questionId": "q10",
+        "value": "8",
+        "rationale": "",
+        "confidence": null
+      }
+    },
+    {
+      "timestamp": "2026-08-26T08:28:59Z",
+      "actor": "assistant",
+      "action": "ask_question",
+      "context": {
+        "instrumentId": "vita_drive_experience_v1",
+        "questionId": "q11",
+        "questionIndex": 12,
+        "questionType": "single_choice",
+        "construct": "vehicle_ownership_type"
+      },
+      "outcome": {
+        "prompt": "Loại phương tiện bạn đang sở hữu hoặc thường xuyên điều khiển nhất hiện nay:",
+        "options": [
+          "pure_ev",
+          "hybrid",
+          "ice",
+          "motorbike",
+          "none"
+        ]
+      }
+    },
+    {
+      "timestamp": "2026-08-26T08:29:00Z",
+      "actor": "user",
+      "action": "answer_question",
+      "context": {
+        "instrumentId": "vita_drive_experience_v1",
+        "questionId": "q11",
+        "questionIndex": 12,
+        "questionType": "single_choice",
+        "construct": "vehicle_ownership_type"
+      },
+      "outcome": {
+        "questionId": "q11",
+        "value": "pure_ev",
+        "rationale": "",
+        "confidence": null
+      }
+    },
+    {
+      "timestamp": "2026-08-26T08:29:01Z",
+      "actor": "assistant",
+      "action": "ask_question",
+      "context": {
+        "instrumentId": "vita_drive_experience_v1",
+        "questionId": "q12",
+        "questionIndex": 13,
+        "questionType": "single_choice",
+        "construct": "daily_driving_time"
+      },
+      "outcome": {
+        "prompt": "Thời gian lái xe trung bình mỗi ngày của bạn là bao lâu?",
+        "options": [
+          "under_30m",
+          "30_to_60m",
+          "1_to_2h",
+          "over_2h"
+        ]
+      }
+    },
+    {
+      "timestamp": "2026-08-26T08:29:02Z",
+      "actor": "user",
+      "action": "answer_question",
+      "context": {
+        "instrumentId": "vita_drive_experience_v1",
+        "questionId": "q12",
+        "questionIndex": 13,
+        "questionType": "single_choice",
+        "construct": "daily_driving_time"
+      },
+      "outcome": {
+        "questionId": "q12",
+        "value": "1_to_2h",
+        "rationale": "",
+        "confidence": null
+      }
+    },
+    {
+      "timestamp": "2026-08-26T08:29:03Z",
+      "actor": "system",
+      "action": "survey_completed",
+      "context": {
+        "instrumentId": "vita_drive_experience_v1"
+      },
+      "outcome": {
+        "numAnswered": 13,
+        "missingRequiredQuestionIds": [],
+        "valid": true
+      }
+    }
+  ],
+  "usage": {
+    "n_input_tokens": 2785,
+    "n_output_tokens": 314,
+    "n_cache_tokens": 0,
+    "cost_usd": 0.00060615,
+    "request_id": "gen-1787732917-54jCMFiV21hkklWcf8CX",
+    "model": "gpt-4o-mini",
+    "provider": "openai",
+    "cost_source": "estimated"
+  }
+}

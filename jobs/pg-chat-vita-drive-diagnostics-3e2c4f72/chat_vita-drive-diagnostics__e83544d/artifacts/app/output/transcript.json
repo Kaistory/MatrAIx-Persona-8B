@@ -1,0 +1,56 @@
+{
+  "sessionId": "harbor-chat",
+  "messages": [
+    {
+      "role": "customer",
+      "content": "Xin chào, tôi muốn kiểm tra tình trạng kỹ thuật của xe trước khi khởi hành. Có thể cung cấp cho tôi thông tin về mức pin hiện tại và các thông số quan trọng khác được không?"
+    },
+    {
+      "role": "support",
+      "content": "Pin 78%, còn khoảng 312 km. Pin VF9 46.4 kWh LFP, giới hạn sạc đang đặt 78%."
+    },
+    {
+      "role": "customer",
+      "content": "Tốt, mức pin 78% là hợp lý. Tôi cần biết thêm về áp suất lốp xe và nhiệt độ pin hiện tại. Ngoài ra, có cảnh báo bảo dưỡng nào cần chú ý không?"
+    },
+    {
+      "role": "support",
+      "content": "Để tôi kiểm tra thông tin xe mới nhất cho bạn."
+    },
+    {
+      "role": "customer",
+      "content": "Được, tôi đợi. Vừa mới khởi động xe nên muốn chắc chắn mọi thứ an toàn trước khi đi đường dài."
+    },
+    {
+      "role": "support",
+      "content": "Để tôi kiểm tra tổng quan xe cho bạn nhé."
+    },
+    {
+      "role": "customer",
+      "content": "Tôi hiểu. Khi bạn có dữ liệu, vui lòng cung cấp cho tôi đặc biệt là: áp suất lốp 4 bánh, nhiệt độ pin, và bất kỳ cảnh báo nào trên bảng điều khiển. Điều này rất quan trọng cho hành trình của tôi."
+    },
+    {
+      "role": "support",
+      "content": "Hiện tại, áp suất lốp trước trái và phải là 2.4 bar, sau trái và phải là 2.3 bar. Nhiệt độ pin đang ở mức an toàn, xe không có cảnh báo bất thường nào. Bạn muốn tôi bắt đầu điều hướng đến điểm nào hay chỉ theo dõi tiếp các thông số này?"
+    },
+    {
+      "role": "customer",
+      "content": "Tốt lắm. Áp suất lốp và nhiệt độ pin đều bình thường. Với 312 km còn lại, tôi có thể đi được khoảng cách tôi cần. Hãy tiếp tục theo dõi các thông số này và cảnh báo cho tôi nếu có bất kỳ vấn đề nào phát sinh trong hành trình."
+    },
+    {
+      "role": "support",
+      "content": "Điều hòa đang bật, 3 vùng, quạt mức 3, nhiệt lái 22 độ, ghế phụ 22 độ, hàng sau 22 độ. Sấy kính sau tắt. PM2.5 12, lọc khí bật, ionizer tắt."
+    },
+    {
+      "role": "customer",
+      "content": "Cảm ơn thông tin chi tiết. Những cài đặt này đều ổn. Tôi muốn xác nhận một lần nữa: xe không có cảnh báo lỗi nào, pin ở 78% với tầm hoạt động 312 km, và lịch bảo dưỡng tiếp theo là khi nào?"
+    },
+    {
+      "role": "support",
+      "content": "Pin 78%, còn khoảng 312 km. Pin VF9 46.4 kWh LFP, giới hạn sạc đang đặt 78%."
+    }
+  ],
+  "domain": "automotive_ai",
+  "applicationId": "vita_drive_diagnostics",
+  "applicationContext": "in_cabin_diagnostics"
+}

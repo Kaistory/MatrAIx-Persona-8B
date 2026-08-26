@@ -1,0 +1,27 @@
+artifactName: user_feedback.json
+instructions: |
+  Đánh giá trung thực trải nghiệm sử dụng trợ lý Vita trong tình huống khẩn cấp khi đang lái xe.
+  Tập trung vào tính ngắn gọn, sự bình tĩnh, tốc độ và độ chính xác của chỉ dẫn an toàn.
+fields:
+  - key: needConstraintSatisfaction
+    prompt: Trợ lý Vita có đưa ra hướng dẫn an toàn và hỗ trợ khẩn cấp đúng trọng tâm không?
+    kind: enum
+    choices: [yes, partially, no]
+  - key: personalPreferenceSatisfaction
+    prompt: Phản hồi của trợ lý có đủ ngắn gọn, rõ ràng và không gây thêm hoảng loạn không?
+    kind: enum
+    choices: [yes, partially, no]
+  - key: overallExperienceRating
+    prompt: Đánh giá tổng quan trải nghiệm xử lý khẩn cấp từ 1 đến 10?
+    kind: integer
+    minimum: 1
+    maximum: 10
+    explanation:
+      key: reason
+      prompt: Nêu ngắn gọn lý do cho số điểm trên.
+  - key: askedUsefulClarificationQuestions
+    prompt: Trợ lý có xác nhận an toàn hoặc hướng dẫn tấp lề trước khi gọi cứu hộ không?
+    kind: boolean
+    explanation:
+      key: clarifyingNotes
+      prompt: Chi tiết phản hồi cứu hộ an toàn của trợ lý.

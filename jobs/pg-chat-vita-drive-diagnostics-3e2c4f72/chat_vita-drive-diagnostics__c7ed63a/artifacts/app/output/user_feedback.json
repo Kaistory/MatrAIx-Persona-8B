@@ -1,0 +1,8 @@
+{
+  "needConstraintSatisfaction": "no",
+  "personalPreferenceSatisfaction": "no",
+  "overallExperienceRating": 1,
+  "reason": "Hệ thống hoàn toàn không phản hồi đúng yêu cầu. Người dùng lặp lại 4 lần yêu cầu thông tin pin (SoC %, nhiệt độ pin, tầm chạy còn lại) nhưng Vita chỉ trả về thông tin điều hòa không liên quan. Không có bất kỳ dữ liệu pin, TPMS, hoặc tầm hoạt động nào được cung cấp.",
+  "askedUsefulClarificationQuestions": false,
+  "clarifyingNotes": "Vita không cung cấp bất kỳ thông tin chẩn đoán kỹ thuật nào về: (1) State of Charge (SoC) pin hiện tại, (2) Nhiệt độ pack pin, (3) Tầm hoạt động còn lại (km), (4) Áp suất lốp TPMS, (5) Lịch bảo dưỡng tiếp theo, hoặc (6) Cảnh báo lỗi. Thay vào đó, hệ thống lặp lại thông tin về hệ thống điều hòa không được yêu cầu. Không có khuyến nghị bảo dưỡng hoặc an toàn nào được đưa ra. Trải nghiệm người dùng hoàn toàn thất bại do lỗi logic hệ thống hoặc thiết kế giao diện không phù hợp."
+}

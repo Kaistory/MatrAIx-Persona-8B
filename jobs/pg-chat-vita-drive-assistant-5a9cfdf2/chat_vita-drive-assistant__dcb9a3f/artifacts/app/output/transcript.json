@@ -1,0 +1,56 @@
+{
+  "sessionId": "harbor-chat",
+  "messages": [
+    {
+      "role": "customer",
+      "content": "Chào Vita, hãy giúp tôi điều chỉnh điều hòa cho mát một chút nhé."
+    },
+    {
+      "role": "support",
+      "content": "Mình bật điều hòa và giảm nhiệt độ ghế lái xuống 20°C cho mát nhé."
+    },
+    {
+      "role": "customer",
+      "content": "Cảm ơn Vita! Bây giờ hãy mở một bài nhạc vui vẻ cho tôi nghe nhé."
+    },
+    {
+      "role": "support",
+      "content": "Đã mở bài Xanh Playlist 1🍃 BÀI CA MÙA HẠ| Nhạc Chill Yêu Đời ~ Ngồi Dưới Tán Cây Nghe Mùa Hè."
+    },
+    {
+      "role": "customer",
+      "content": "Tuyệt vời! Bây giờ cho tôi biết tình trạng pin xe và áp suất lốp nhé."
+    },
+    {
+      "role": "support",
+      "content": "Đây là thông tin pin và áp suất lốp của bạn."
+    },
+    {
+      "role": "customer",
+      "content": "Cảm ơn Vita! Bây giờ hãy dẫn đường đến quán cà phê gần nhất nhé."
+    },
+    {
+      "role": "support",
+      "content": "Đã dẫn đường đến quán cà phê gần nhất."
+    },
+    {
+      "role": "customer",
+      "content": "Rất tốt! Hãy tiếp tục lái xe và cho tôi biết khi nào đến nơi nhé."
+    },
+    {
+      "role": "support",
+      "content": "Trạng thái xe đã đúng yêu cầu rồi."
+    },
+    {
+      "role": "customer",
+      "content": "Cảm ơn Vita! Tôi đã hài lòng với những gì bạn đã làm. Hãy tiếp tục lái xe an toàn nhé!"
+    },
+    {
+      "role": "support",
+      "content": "Cảm ơn bạn. Mình luôn hỗ trợ bạn lái xe an toàn."
+    }
+  ],
+  "domain": "automotive_ai",
+  "applicationId": "vita_drive_assistant",
+  "applicationContext": "in_cabin_driving"
+}

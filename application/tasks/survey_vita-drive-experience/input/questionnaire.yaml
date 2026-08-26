@@ -1,0 +1,187 @@
+schemaVersion: "1.0"
+id: vita_drive_experience_v1
+title: "Khảo sát Trải nghiệm Trợ lý Xe Thông minh Vita"
+description: "Khảo sát thói quen, mức độ tin cậy, nhu cầu tính năng và thái độ đối với Trợ lý Lái xe Thông minh Vita (In-Cabin Assistant)."
+questions:
+  - id: q0
+    prompt: "Bạn có thường xuyên sử dụng trợ lý giọng nói (Siri, Google Assistant, trợ lý tích hợp trên xe) khi đang lái xe không?"
+    type: single_choice
+    construct: in_car_voice_assistant_frequency
+    required: true
+    options:
+      - id: "daily"
+        label: "Hàng ngày mỗi khi lái xe"
+      - id: "weekly"
+        label: "Vài lần một tuần"
+      - id: "rarely"
+        label: "Hiếm khi, chỉ khi thực sự cần thiết"
+      - id: "never"
+        label: "Chưa bao giờ sử dụng"
+
+  - id: q1
+    prompt: "Khi đang lái xe trên đường, bạn ưu tiên phương thức điều khiển nào nhất để thao tác điều hòa, bản đồ hoặc bài hát?"
+    type: single_choice
+    construct: primary_driving_interaction_mode
+    required: true
+    options:
+      - id: "voice"
+        label: "Giọng nói (Hands-free Voice Commands)"
+      - id: "physical_buttons"
+        label: "Phím bấm vật lý trên vô lăng / táp-lô"
+      - id: "touchscreen"
+        label: "Màn hình cảm ứng trung tâm"
+      - id: "passenger"
+        label: "Nhờ người ngồi bên cạnh thao tác hộ"
+
+  - id: q2
+    prompt: "Mức độ an tâm của bạn khi ra lệnh giọng nói để điều khiển các chức năng vật lý của xe (điều hòa, cửa sổ, gạt mưa, đèn xe):"
+    type: likert
+    construct: voice_vehicle_control_comfort
+    required: true
+    minValue: 1
+    maxValue: 5
+
+  - id: q3
+    prompt: "Mức độ tin cậy của bạn vào tính năng AI tự động tính toán dung lượng pin và đề xuất trạm sạc xe điện tối ưu dọc lộ trình:"
+    type: likert
+    construct: ev_routing_and_range_trust
+    required: true
+    minValue: 1
+    maxValue: 5
+
+  - id: q4
+    prompt: "Tính năng tìm kiếm và phát nhạc theo tên bài hát / ca sĩ tiếng Việt qua giọng nói trên xe quan trọng với bạn như thế nào?"
+    type: likert
+    construct: in_car_media_voice_importance
+    required: true
+    minValue: 1
+    maxValue: 5
+
+  - id: q5
+    prompt: "Bạn mong muốn phong cách phản hồi giọng nói của trợ lý xe Vita như thế nào khi xe đang chạy?"
+    type: single_choice
+    construct: preferred_voice_tone
+    required: true
+    options:
+      - id: "concise"
+        label: "Cực kỳ ngắn gọn, dứt khoát để không gây phân tâm lái xe"
+      - id: "friendly"
+        label: "Tự nhiên, thân thiện và ấm áp"
+      - id: "professional"
+        label: "Trang trọng, chuẩn mực và thông thái"
+      - id: "silent_action"
+        label: "Chỉ thực thi trong im lặng, không cần phát âm xác nhận"
+
+  - id: q6
+    prompt: "Khi bạn yêu cầu thao tác có rủi ro (ví dụ: gọi điện khẩn cấp, mở cửa xe khi đang di chuyển), bạn đánh giá câu hỏi xác nhận an toàn của trợ lý ra sao?"
+    type: single_choice
+    construct: safety_confirmation_attitude
+    required: true
+    options:
+      - id: "essential"
+        label: "Rất cần thiết, bắt buộc phải hỏi lại để đảm bảo an toàn tuyệt đối"
+      - id: "sensitive_only"
+        label: "Chỉ cần thiết cho các thao tác cực kỳ nguy hiểm"
+      - id: "annoying"
+        label: "Không cần thiết, gây mất thời gian — nên thực thi ngay"
+
+  - id: q7
+    prompt: "Mối bận tâm hoặc rủi ro lớn nhất của bạn đối với trợ lý AI trong khoang lái là gì? (Chọn tối đa 2)"
+    type: multi_choice
+    construct: in_cabin_ai_top_concerns
+    required: true
+    options:
+      - id: "distraction"
+        label: "Gây xao nhãng hoặc mất tập trung khi lái xe"
+      - id: "misexecution"
+        label: "Nhận diện sai giọng nói dẫn đến thực thi sai tính năng xe"
+      - id: "privacy"
+        label: "Thu âm và thu thập dữ liệu riêng tư trong khoang lái"
+      - id: "latency"
+        label: "Độ trễ phản hồi lâu khi cần thao tác khẩn cấp"
+      - id: "offline_failure"
+        label: "Không hoạt động được khi xe đi vào vùng mất sóng/hầm"
+
+  - id: q8
+    prompt: "Nếu hệ thống Vita Drive Assistant cung cấp gói tính năng nâng cao (Tác nhân tự hành thông minh, dẫn đường thời gian thực không quảng cáo, gợi ý âm nhạc cá nhân hóa), bạn sẵn sàng chi trả ở mức nào?"
+    type: single_choice
+    construct: ai_assistant_willingness_to_pay
+    required: true
+    options:
+      - id: "free_only"
+        label: "Chỉ dùng bản miễn phí cơ bản, không sẵn sàng trả thêm phí thuê bao"
+      - id: "basic_sub"
+        label: "Khoảng 50.000 - 100.000 VNĐ / tháng ($2 - $4/tháng)"
+      - id: "premium_sub"
+        label: "Khoảng 150.000 - 250.000 VNĐ / tháng ($6 - $10/tháng)"
+      - id: "one_time_bundle"
+        label: "Sẵn sàng trả trọn gói 1 lần khi mua xe (5 - 10 triệu VNĐ) để dùng vĩnh viễn"
+
+  - id: q9
+    prompt: "Tầm quan trọng của tính năng xử lý cục bộ trên xe (Offline Edge AI - hoạt động không cần Internet):"
+    type: likert
+    construct: offline_edge_ai_importance
+    required: true
+    minValue: 1
+    maxValue: 5
+
+  - id: q10
+    prompt: "Trên thang điểm từ 0 đến 10, khả năng bạn sẽ giới thiệu một chiếc xe ô tô có trang bị Trợ lý Vita cho đồng nghiệp hoặc người thân là bao nhiêu?"
+    type: single_choice
+    construct: nps_likelihood_recommend_vita
+    required: true
+    options:
+      - id: "0"
+        label: "0 - Hoàn toàn không bao giờ"
+      - id: "1"
+        label: "1"
+      - id: "2"
+        label: "2"
+      - id: "3"
+        label: "3"
+      - id: "4"
+        label: "4"
+      - id: "5"
+        label: "5 - Bình thường"
+      - id: "6"
+        label: "6"
+      - id: "7"
+        label: "7"
+      - id: "8"
+        label: "8"
+      - id: "9"
+        label: "9"
+      - id: "10"
+        label: "10 - Chắc chắn sẽ giới thiệu"
+
+  - id: q11
+    prompt: "Loại phương tiện bạn đang sở hữu hoặc thường xuyên điều khiển nhất hiện nay:"
+    type: single_choice
+    construct: vehicle_ownership_type
+    required: true
+    options:
+      - id: "pure_ev"
+        label: "Xe ô tô thuần điện (BEV)"
+      - id: "hybrid"
+        label: "Xe ô tô Hybrid / Plug-in Hybrid"
+      - id: "ice"
+        label: "Xe ô tô động cơ đốt trong (Xăng / Dầu)"
+      - id: "motorbike"
+        label: "Xe máy"
+      - id: "none"
+        label: "Chưa sở hữu phương tiện cá nhân"
+
+  - id: q12
+    prompt: "Thời gian lái xe trung bình mỗi ngày của bạn là bao lâu?"
+    type: single_choice
+    construct: daily_driving_time
+    required: true
+    options:
+      - id: "under_30m"
+        label: "Dưới 30 phút / ngày"
+      - id: "30_to_60m"
+        label: "Từ 30 đến 60 phút / ngày"
+      - id: "1_to_2h"
+        label: "Từ 1 đến 2 tiếng / ngày"
+      - id: "over_2h"
+        label: "Trên 2 tiếng / ngày (lái xe đường dài, dịch vụ)"

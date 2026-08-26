@@ -1,0 +1,8 @@
+{
+  "needConstraintSatisfaction": "no",
+  "personalPreferenceSatisfaction": "no",
+  "overallExperienceRating": 2,
+  "reason": "Vita lặp lại câu trả lời 'Đã dẫn đường đến Hải Phòng' nhiều lần mà không cung cấp thông tin cụ thể. Khi được hỏi chi tiết về trạm sạc, giờ mở cửa, và lộ trình chi tiết, trợ lý không trả lời đúng câu hỏi. Chỉ một lần Vita cung cấp thông tin hữu ích (cao tốc Hà Nội - Hải Phòng, 45 phút), nhưng sau đó lại quay lại phản hồi cơ khí. Điều này gây thất vọng và không an toàn khi lái xe vì tài xế không nhận được thông tin cần thiết.",
+  "askedUsefulClarificationQuestions": false,
+  "clarifyingNotes": "Vita không xác nhận điểm đến cụ thể hoặc đưa ra lựa chọn lộ trình phù hợp. Khi tài xế hỏi về trạm sạc gần nhất, giờ mở cửa, và trạm sạc trên đường, Vita không trả lời mà chỉ lặp lại câu mệnh lệnh ban đầu. Lần duy nhất Vita cung cấp chi tiết là khi nói về cao tốc Hà Nội - Hải Phòng (45 phút), nhưng sau đó không tiếp tục cung cấp thông tin về trạm sạc điện như tài xế yêu cầu. Trợ lý cần cải thiện khả năng lắng nghe câu hỏi và trả lời chính xác thông tin POI (giờ mở cửa, vị trí, dịch vụ) để tăng độ an toàn và hữu ích."
+}

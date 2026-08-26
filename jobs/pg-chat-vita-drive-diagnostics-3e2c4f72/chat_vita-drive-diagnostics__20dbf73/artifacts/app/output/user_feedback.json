@@ -1,0 +1,8 @@
+{
+  "needConstraintSatisfaction": "no",
+  "personalPreferenceSatisfaction": "no",
+  "overallExperienceRating": 2,
+  "reason": "Vita Drive Diagnostics không trả lời các câu hỏi cụ thể của người dùng. Khi được hỏi về nhiệt độ pin và cảnh báo bảo dưỡng, hệ thống lặp lại thông tin về điều hòa không liên quan thay vì cung cấp dữ liệu được yêu cầu. Hệ thống không hiểu ngữ cảnh và không giải quyết được vấn đề lốp sau phải áp suất thấp.",
+  "askedUsefulClarificationQuestions": false,
+  "clarifyingNotes": "Trợ lý chỉ cung cấp thông tin sơ bộ (pin 78%, tầm 312 km, áp suất lốp) nhưng không trả lời các câu hỏi theo dõi về: (1) nhiệt độ pack pin hiện tại, (2) lịch bảo dưỡng sắp tới, (3) ý nghĩa và mức độ nguy hiểm của áp suất lốp sau phải 2.3 bar thấp hơn chuẩn 2.4 bar. Hệ thống không đưa ra khuyến nghị nào về việc cần điều chỉnh lốp trước khi đi chuyến đường dài. Phản hồi cuối cùng ('Pha/cốt đang tắt...') không liên quan đến bất kỳ câu hỏi nào của người dùng."
+}

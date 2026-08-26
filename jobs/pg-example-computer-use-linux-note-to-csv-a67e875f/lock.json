@@ -1,0 +1,199 @@
+{
+    "schema_version": 1,
+    "created_at": "2026-08-26T07:49:22.161485Z",
+    "harbor": {
+        "version": "0.1.0",
+        "is_editable": false
+    },
+    "invocation": [
+        "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/cli/main.py",
+        "run",
+        "--yes",
+        "-c",
+        "configs/jobs/application-task-job-recipe/pg-example-computer-use-linux-note-to-csv-a67e875f.yaml"
+    ],
+    "n_concurrent_trials": 2,
+    "retry": {
+        "max_retries": 0,
+        "exclude_exceptions": [
+            "VerifierOutputParseError",
+            "AgentTimeoutError",
+            "RewardFileEmptyError",
+            "VerifierTimeoutError",
+            "RewardFileNotFoundError"
+        ],
+        "wait_multiplier": 1.0,
+        "min_wait_sec": 1.0,
+        "max_wait_sec": 60.0
+    },
+    "trials": [
+        {
+            "task": {
+                "name": "example-computer-use-linux_note-to-csv",
+                "type": "local",
+                "digest": "sha256:3b434482cc21cce32f2d7b97e56f8e8449d2c8e37b98adcef9084f74ab3e0c3b",
+                "path": "application/tasks/example-computer-use-linux_note-to-csv"
+            },
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "persona-computer-1",
+                "model_name": "dashscope/qwen3-max",
+                "skills": [],
+                "extra_allowed_hosts": [],
+                "kwargs": {
+                    "persona_path": "persona/datasets/matraix-persona-dev-sample/persona_0171.yaml",
+                    "model_info": {
+                        "max_input_tokens": 258048,
+                        "max_output_tokens": 16384
+                    },
+                    "cua_backend": "docker",
+                    "max_turns": 100
+                },
+                "env": {},
+                "mcp_servers": []
+            },
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "env": {},
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "env": {},
+                "disable": false
+            }
+        },
+        {
+            "task": {
+                "name": "example-computer-use-linux_note-to-csv",
+                "type": "local",
+                "digest": "sha256:3b434482cc21cce32f2d7b97e56f8e8449d2c8e37b98adcef9084f74ab3e0c3b",
+                "path": "application/tasks/example-computer-use-linux_note-to-csv"
+            },
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "persona-computer-1",
+                "model_name": "dashscope/qwen3-max",
+                "skills": [],
+                "extra_allowed_hosts": [],
+                "kwargs": {
+                    "persona_path": "persona/datasets/matraix-persona-dev-sample/persona_0021.yaml",
+                    "model_info": {
+                        "max_input_tokens": 258048,
+                        "max_output_tokens": 16384
+                    },
+                    "cua_backend": "docker",
+                    "max_turns": 100
+                },
+                "env": {},
+                "mcp_servers": []
+            },
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "env": {},
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "env": {},
+                "disable": false
+            }
+        },
+        {
+            "task": {
+                "name": "example-computer-use-linux_note-to-csv",
+                "type": "local",
+                "digest": "sha256:3b434482cc21cce32f2d7b97e56f8e8449d2c8e37b98adcef9084f74ab3e0c3b",
+                "path": "application/tasks/example-computer-use-linux_note-to-csv"
+            },
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "persona-computer-1",
+                "model_name": "dashscope/qwen3-max",
+                "skills": [],
+                "extra_allowed_hosts": [],
+                "kwargs": {
+                    "persona_path": "persona/datasets/matraix-persona-dev-sample/persona_0070.yaml",
+                    "model_info": {
+                        "max_input_tokens": 258048,
+                        "max_output_tokens": 16384
+                    },
+                    "cua_backend": "docker",
+                    "max_turns": 100
+                },
+                "env": {},
+                "mcp_servers": []
+            },
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "env": {},
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "env": {},
+                "disable": false
+            }
+        },
+        {
+            "task": {
+                "name": "example-computer-use-linux_note-to-csv",
+                "type": "local",
+                "digest": "sha256:3b434482cc21cce32f2d7b97e56f8e8449d2c8e37b98adcef9084f74ab3e0c3b",
+                "path": "application/tasks/example-computer-use-linux_note-to-csv"
+            },
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "persona-computer-1",
+                "model_name": "dashscope/qwen3-max",
+                "skills": [],
+                "extra_allowed_hosts": [],
+                "kwargs": {
+                    "persona_path": "persona/datasets/matraix-persona-dev-sample/persona_0059.yaml",
+                    "model_info": {
+                        "max_input_tokens": 258048,
+                        "max_output_tokens": 16384
+                    },
+                    "cua_backend": "docker",
+                    "max_turns": 100
+                },
+                "env": {},
+                "mcp_servers": []
+            },
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "env": {},
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "env": {},
+                "disable": false
+            }
+        }
+    ]
+}

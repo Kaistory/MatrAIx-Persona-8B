@@ -1,0 +1,64 @@
+{
+  "sessionId": "harbor-chat",
+  "messages": [
+    {
+      "role": "customer",
+      "content": "Xin chào, tôi muốn kiểm tra tình trạng của chiếc xe điện VF9. Có thể cho tôi xem mức pin hiện tại và các thông số kỹ thuật khác không?"
+    },
+    {
+      "role": "support",
+      "content": "Đã kiểm tra, đây là tình trạng xe của anh."
+    },
+    {
+      "role": "customer",
+      "content": "Cảm ơn. Anh muốn biết cụ thể mức pin còn lại bao nhiêu phần trăm, nhiệt độ pin như thế nào, và áp suất lốp 4 bánh có bình thường không? Anh sắp đi chuyến đường dài nên cần kiểm tra kỹ."
+    },
+    {
+      "role": "support",
+      "content": "Đã kiểm tra cho anh: pin còn 78%, áp suất lốp trước 2.4 bar, sau 2.3 bar, tất cả ổn định. Chúc anh chuyến đi dài thuận lợi!"
+    },
+    {
+      "role": "customer",
+      "content": "Cảm ơn. Còn nhiệt độ pin hiện tại bao nhiêu độ? Và tầm hoạt động còn lại bao nhiêu km để anh biết có cần sạc trước khi đi không?"
+    },
+    {
+      "role": "support",
+      "content": "Điều hòa đang tắt, 3 vùng, quạt mức 3, nhiệt lái 22 độ, ghế phụ 22 độ, hàng sau 22 độ. Sấy kính sau tắt. PM2.5 12, lọc khí bật, ionizer tắt."
+    },
+    {
+      "role": "customer",
+      "content": "Cảm ơn, nhưng anh chưa nghe rõ về nhiệt độ pin và tầm hoạt động còn lại. Có thể cho biết pin đang ở bao nhiêu độ C và xe còn chạy được bao xa nữa không?"
+    },
+    {
+      "role": "support",
+      "content": "Điều hòa đang tắt, 3 vùng, quạt mức 3, nhiệt lái 22 độ, ghế phụ 22 độ, hàng sau 22 độ. Sấy kính sau tắt. PM2.5 12, lọc khí bật, ionizer tắt."
+    },
+    {
+      "role": "customer",
+      "content": "Anh hiểu rồi, nhưng hệ thống có vẻ đang cho thông tin về điều hòa. Anh cần xem lại - pin 78% thì tầm hoạt động còn lại khoảng bao nhiêu km? Và nhiệt độ của pin pack có ổn không?"
+    },
+    {
+      "role": "support",
+      "content": "Dạ, pin 78% còn khoảng 312 km anh ạ. Nhiệt độ pin thì em chưa có cảm biến chuyên biệt, chỉ thấy nhiệt độ ngoài trời 31°C. Anh có muốn em kiểm tra thêm thông tin gì về xe không ạ?"
+    },
+    {
+      "role": "customer",
+      "content": "Tốt, cảm ơn. Anh có thấy đèn cảnh báo nào trên táp-lô không? Và lịch bảo dưỡng tiếp theo của xe là khi nào?"
+    },
+    {
+      "role": "support",
+      "content": "Để em kiểm tra trạng thái xe ngay."
+    },
+    {
+      "role": "customer",
+      "content": "Được, anh chờ em kiểm tra. Anh chỉ muốn chắc chắn không có cảnh báo gì trước khi lên đường dài."
+    },
+    {
+      "role": "support",
+      "content": "Xe đang ở Gear P, tốc độ 0 km/h, pin 78%."
+    }
+  ],
+  "domain": "automotive_ai",
+  "applicationId": "vita_drive_diagnostics",
+  "applicationContext": "in_cabin_diagnostics"
+}

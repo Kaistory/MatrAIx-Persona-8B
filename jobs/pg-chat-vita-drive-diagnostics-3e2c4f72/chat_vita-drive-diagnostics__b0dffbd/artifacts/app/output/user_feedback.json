@@ -1,0 +1,8 @@
+{
+  "needConstraintSatisfaction": "partially",
+  "personalPreferenceSatisfaction": "partially",
+  "overallExperienceRating": 5,
+  "reason": "Vita cung cấp một số thông tin hữu ích (pin 78%, 312 km, áp suất lốp chi tiết) nhưng lặp lại nhiều lần mà không trả lời rõ ràng. Trợ lý không giải thích tại sao không có cảm biến nhiệt độ pin, không đưa ra lời khuyên bảo dưỡng cụ thể, và kết thúc bằng cách lặp lại thông tin không liên quan (Pha/cốt đang tắt). Giao tiếp không mạch lạc, thiếu tính chủ động trong việc cảnh báo hoặc khuyến nghị an toàn cho chuyến đi dài.",
+  "askedUsefulClarificationQuestions": false,
+  "clarifyingNotes": "Vita không đưa ra bất kỳ khuyến nghị bảo dưỡng hoặc an toàn nào. Khi được hỏi về lỗi hay cảnh báo, trợ lý chỉ hỏi lại người dùng có thấy đèn cảnh báo nào không, thay vì chủ động kiểm tra và báo cáo. Không có lời khuyên về tình trạng lốp (áp suất lốp sau trái 2.3 bar thấp hơn các bánh khác), không có gợi ý kiểm tra trước chuyến đi dài, và không giải thích ý nghĩa của các thông số được cung cấp (ví dụ: áp suất lốp có bình thường không cho chuyến đi xa)."
+}

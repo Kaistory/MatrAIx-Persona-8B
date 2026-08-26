@@ -1,0 +1,48 @@
+{
+  "sessionId": "harbor-chat",
+  "messages": [
+    {
+      "role": "customer",
+      "content": "Xin chào, tôi muốn kiểm tra trạng thái kỹ thuật của xe. Có thể cho tôi xem thông tin về pin và các thông số khác không?"
+    },
+    {
+      "role": "support",
+      "content": "Dưới đây là thông tin chi tiết về xe của bạn."
+    },
+    {
+      "role": "customer",
+      "content": "Cảm ơn. Tôi muốn biết cụ thể mức pin hiện tại là bao nhiêu phần trăm, nhiệt độ pin, và tầm hoạt động còn lại là bao nhiêu km?"
+    },
+    {
+      "role": "support",
+      "content": "Điều hòa đang tắt, 3 vùng, quạt mức 3, nhiệt lái 22 độ, ghế phụ 22 độ, hàng sau 22 độ. Sấy kính sau tắt. PM2.5 12, lọc khí bật, ionizer tắt."
+    },
+    {
+      "role": "customer",
+      "content": "Được rồi, nhưng tôi cần thông tin về pin xe và tầm hoạt động. Mức pin hiện tại bao nhiêu % và xe còn chạy được bao xa?"
+    },
+    {
+      "role": "support",
+      "content": "Pin 78%, còn khoảng 312 km. Pin VF9 46.4 kWh LFP, giới hạn sạc đang đặt 78%."
+    },
+    {
+      "role": "customer",
+      "content": "Tốt, pin 78% và tầm 312 km là ổn. Bây giờ cho tôi xem áp suất lốp 4 bánh và nhiệt độ lốp có bình thường không?"
+    },
+    {
+      "role": "support",
+      "content": "Đã kiểm tra, đây là thông tin áp suất lốp ạ."
+    },
+    {
+      "role": "customer",
+      "content": "Cảm ơn. Áp suất lốp trước và sau cụ thể là bao nhiêu bar? Và có cảnh báo bảo dưỡng nào trên xe không?"
+    },
+    {
+      "role": "support",
+      "content": "Áp suất lốp trước trái 2.4 bar, trước phải 2.4 bar, sau trái 2.3 bar, sau phải 2.4 bar. Hiện tại không có cảnh báo bảo dưỡng nào."
+    }
+  ],
+  "domain": "automotive_ai",
+  "applicationId": "vita_drive_diagnostics",
+  "applicationContext": "in_cabin_diagnostics"
+}

@@ -1,0 +1,56 @@
+{
+  "sessionId": "harbor-chat",
+  "messages": [
+    {
+      "role": "customer",
+      "content": "Xin chào. Tôi muốn kiểm tra tình trạng xe của tôi trước khi đi một chuyến xa. Pin còn bao nhiêu phần trăm và có thể chạy được bao xa nữa?"
+    },
+    {
+      "role": "support",
+      "content": "Pha/cốt đang tắt, đèn đọc tắt, ambient tắt."
+    },
+    {
+      "role": "customer",
+      "content": "Tôi cần bật xe lên trước. Để tôi khởi động và sau đó kiểm tra các thông số. Bạn có thể cho tôi xem pin, áp suất lốp và cảnh báo bảo dưỡng không?"
+    },
+    {
+      "role": "support",
+      "content": "Đây, tôi đã kiểm tra cho bạn."
+    },
+    {
+      "role": "customer",
+      "content": "Được, nhưng tôi không thấy con số cụ thể. Pin hiện tại bao nhiêu phần trăm? Và lốp xe 4 bánh có bình thường không?"
+    },
+    {
+      "role": "support",
+      "content": "Pha/cốt đang tắt, đèn đọc tắt, ambient tắt."
+    },
+    {
+      "role": "customer",
+      "content": "Sao vậy? Tôi đã bật xe rồi mà sao hệ thống vẫn không hiển thị dữ liệu pin và lốp? Có vấn đề gì với hệ thống chẩn đoán không?"
+    },
+    {
+      "role": "support",
+      "content": "Để tôi kiểm tra trạng thái xe ngay nhé."
+    },
+    {
+      "role": "customer",
+      "content": "Được. Tôi đang chờ. Vui lòng cho tôi thấy mức pin SoC, nhiệt độ pin, áp suất từng bánh lốp, và có cảnh báo bảo dưỡng nào không."
+    },
+    {
+      "role": "support",
+      "content": "Đây là thông tin trạng thái xe hiện tại ạ."
+    },
+    {
+      "role": "customer",
+      "content": "Tôi vẫn không thấy con số cụ thể nào cả. Bạn có thể liệt kê rõ ràng không? Ví dụ: pin bao nhiêu %, lốp trước trái bao nhiêu psi, có đèn cảnh báo nào sáng không?"
+    },
+    {
+      "role": "support",
+      "content": "Pha/cốt đang tắt, đèn đọc tắt, ambient tắt."
+    }
+  ],
+  "domain": "automotive_ai",
+  "applicationId": "vita_drive_diagnostics",
+  "applicationContext": "in_cabin_diagnostics"
+}

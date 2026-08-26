@@ -1,0 +1,8 @@
+{
+  "needConstraintSatisfaction": "no",
+  "personalPreferenceSatisfaction": "no",
+  "overallExperienceRating": 2,
+  "reason": "Vita sistemi kullanıcının sorularına tutarsız ve alakasız cevaplar verdi. Arka sol lastik basıncı (2.3 bar) hakkındaki doğrudan soruya hiçbir şekilde cevap vermedi, bunun yerine tekrarlayan ve bağlamsız bilgiler (Gear P, hız 0, pin %78) sundu. Sistem başlangıçta iyi veri sağladı ancak sonrasında tamamen çöktü.",
+  "askedUsefulClarificationQuestions": false,
+  "clarifyingNotes": "Vita ilk yanıtta batarya (%78), menzil (312 km) ve lastik basınçlarını doğru bildirdi. Ancak kullanıcı arka sol lastikteki 2.3 bar ile ilgili spesifik soruyu 3 kez sormasına rağmen, sistem hiçbir teknik tavsiye, güvenlik uyarısı veya bakım önerisi sunmadı. Standart TPMS uyarı eşiğine göre 2.3 bar düşük olabilir ve uzun yolculuk için basınç ayarlaması önerilmeliydi. Sistem, sorgulanmaya başlandıktan sonra yalnızca araç durumunu tekrarlayan cümlelere dönüştü ve hiçbir yararlı tanı bilgisi sağlamadı."
+}

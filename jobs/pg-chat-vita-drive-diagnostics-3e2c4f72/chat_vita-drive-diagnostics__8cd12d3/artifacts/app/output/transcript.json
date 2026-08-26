@@ -1,0 +1,48 @@
+{
+  "sessionId": "harbor-chat",
+  "messages": [
+    {
+      "role": "customer",
+      "content": "Xin chào! Tôi đang chuẩn bị cho một chuyến đi dài, bạn có thể giúp tôi kiểm tra tình trạng xe được không?"
+    },
+    {
+      "role": "support",
+      "content": "Để mình kiểm tra tình trạng xe cho bạn nhé."
+    },
+    {
+      "role": "customer",
+      "content": "Cảm ơn! Đầu tiên, mình muốn biết pin xe còn bao nhiêu phần trăm và nhiệt độ pin hiện tại thế nào?"
+    },
+    {
+      "role": "support",
+      "content": "Điều hòa đang bật, 3 vùng, quạt mức 3, nhiệt lái 22 độ, ghế phụ 22 độ, hàng sau 22 độ. Sấy kính sau tắt. PM2.5 12, lọc khí bật, ionizer tắt."
+    },
+    {
+      "role": "customer",
+      "content": "Cảm ơn, nhưng mình đang hỏi về pin xe chứ không phải điều hòa. Bạn có thể cho biết mức pin (SoC) và nhiệt độ của pin cao áp hiện tại không?"
+    },
+    {
+      "role": "support",
+      "content": "Điều hòa đang bật, 3 vùng, quạt mức 3, nhiệt lái 22 độ, ghế phụ 22 độ, hàng sau 22 độ. Sấy kính sau tắt. PM2.5 12, lọc khí bật, ionizer tắt."
+    },
+    {
+      "role": "customer",
+      "content": "Được rồi, vậy còn thông tin về pin xe và áp suất lốp thì sao? Mình cần kiểm tra những thông số đó trước khi đi đường dài."
+    },
+    {
+      "role": "support",
+      "content": "Để mình kiểm tra pin và lốp cho bạn nhé."
+    },
+    {
+      "role": "customer",
+      "content": "Tốt lắm! Mình đang chuẩn bị cho chuyến đi khoảng 200km, vậy pin còn bao nhiêu phần trăm, nhiệt độ pin như thế nào, và áp suất 4 bánh có bình thường không?"
+    },
+    {
+      "role": "support",
+      "content": "Điều hòa đang bật, 3 vùng, quạt mức 3, nhiệt lái 22 độ, ghế phụ 22 độ, hàng sau 22 độ. Sấy kính sau tắt. PM2.5 12, lọc khí bật, ionizer tắt."
+    }
+  ],
+  "domain": "automotive_ai",
+  "applicationId": "vita_drive_diagnostics",
+  "applicationContext": "in_cabin_diagnostics"
+}

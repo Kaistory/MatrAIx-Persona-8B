@@ -1,0 +1,8 @@
+{
+  "needConstraintSatisfaction": "no",
+  "personalPreferenceSatisfaction": "no",
+  "overallExperienceRating": 2,
+  "reason": "Vita Drive Diagnostics failed to provide the requested battery information (SoC %, battery temperature, remaining range) repeatedly. Instead, it returned irrelevant climate control and air quality data. The system appeared unable to access or retrieve core EV diagnostics, leaving critical pre-trip information unavailable. Only tire pressure data was useful.",
+  "askedUsefulClarificationQuestions": false,
+  "clarifyingNotes": "Only tire pressure information was successfully retrieved: front-left 2.4 bar, front-right 2.4 bar, rear-left 2.3 bar (slightly low), rear-right 2.4 bar. The assistant recommended checking rear-left tire pressure before long trips, which was the only practical guidance. Battery status, engine/motor temperature, remaining range, maintenance schedule, and error codes were not available in the system response. The assistant's repeated attempts to 'check' the system without returning actual data created frustration and wasted interaction cycles."
+}

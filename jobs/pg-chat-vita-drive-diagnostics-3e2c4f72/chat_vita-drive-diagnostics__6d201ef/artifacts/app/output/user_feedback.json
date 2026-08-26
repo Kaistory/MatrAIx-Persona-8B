@@ -1,0 +1,8 @@
+{
+  "needConstraintSatisfaction": "no",
+  "personalPreferenceSatisfaction": "no",
+  "overallExperienceRating": 1,
+  "reason": "Vita Drive Diagnostics completely failed to address my explicit requests for battery SoC percentage, battery temperature, and tire pressure (TPMS) data. Instead, it repeatedly returned irrelevant climate control and air quality information. For a 300 km journey requiring critical range assessment, this was a catastrophic failure in meeting core diagnostic needs.",
+  "askedUsefulClarificationQuestions": false,
+  "clarifyingNotes": "The system provided zero useful diagnostic information relevant to pre-trip vehicle assessment. No battery health metrics, no tire pressure readings, no range estimates, and no maintenance alerts were delivered. The assistant appeared to malfunction or access incorrect data streams, returning only HVAC and environmental sensor readings. For someone planning a long-distance EV journey, this represented a complete breakdown of the diagnostic system's primary function. No safety recommendations or maintenance guidance were offered."
+}

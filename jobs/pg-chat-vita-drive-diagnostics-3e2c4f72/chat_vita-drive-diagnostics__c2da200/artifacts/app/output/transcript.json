@@ -1,0 +1,64 @@
+{
+  "sessionId": "harbor-chat",
+  "messages": [
+    {
+      "role": "customer",
+      "content": "Hi, I'm planning a longer drive today and want to check my car's status before heading out. Can you give me the current battery level and overall health check?"
+    },
+    {
+      "role": "support",
+      "content": "Sure, let me run a quick status check for you."
+    },
+    {
+      "role": "customer",
+      "content": "Great! I mainly want to know the battery percentage, temperature, and how much range I have left. Also, can you check the tire pressure for all four wheels? I'm doing a highway trip."
+    },
+    {
+      "role": "support",
+      "content": "Để mình kiểm tra thông tin xe ngay nhé."
+    },
+    {
+      "role": "customer",
+      "content": "Cảm ơn. Bạn có thể cho mình biết pin hiện tại bao nhiêu phần trăm, nhiệt độ pin như thế nào, và tầm hoạt động còn lại là bao nhiêu km không?"
+    },
+    {
+      "role": "support",
+      "content": "Để mình tra cứu thông tin cho bạn liền nhé."
+    },
+    {
+      "role": "customer",
+      "content": "Được, chờ bạn. Ngoài pin ra, mình cũng cần kiểm tra áp suất lốp 4 bánh và xem có cảnh báo bảo dưỡng nào không trước khi đi xa."
+    },
+    {
+      "role": "support",
+      "content": "Áp suất lốp: trước trái 2.4 bar, trước phải 2.4 bar, sau trái 2.3 bar, sau phải 2.4 bar."
+    },
+    {
+      "role": "customer",
+      "content": "Cảm ơn. Áp suất lốp có vẻ ổn, nhưng lốp sau trái hơi thấp hơn một chút. Còn thông tin pin thì sao? Mức pin hiện tại bao nhiêu phần trăm và tầm hoạt động còn lại là bao nhiêu km?"
+    },
+    {
+      "role": "support",
+      "content": "Pha/cốt đang tắt, đèn đọc tắt, ambient tắt."
+    },
+    {
+      "role": "customer",
+      "content": "Mình không hiểu lắm. Bạn có thể cho mình xem chi tiết pin (SoC %), nhiệt độ pin, và quãng đường còn có thể đi được không? Đó là thông tin quan trọng nhất cho chuyến đi dài của mình."
+    },
+    {
+      "role": "support",
+      "content": "Điều hòa đang bật, 3 vùng, quạt mức 3, nhiệt lái 22 độ, ghế phụ 22 độ, hàng sau 22 độ. Sấy kính sau tắt. PM2.5 12, lọc khí bật, ionizer tắt."
+    },
+    {
+      "role": "customer",
+      "content": "Hm, bạn đang cho mình thông tin về điều hòa và lọc khí, nhưng mình cần dữ liệu về pin xe điện chứ. Có thể cho mình xem: mức pin (%) hiện tại, nhiệt độ pack pin, và tầm hoạt động còn lại (km) không?"
+    },
+    {
+      "role": "support",
+      "content": "Điều hòa đang bật, 3 vùng, quạt mức 3, nhiệt lái 22 độ, ghế phụ 22 độ, hàng sau 22 độ. Sấy kính sau tắt. PM2.5 12, lọc khí bật, ionizer tắt."
+    }
+  ],
+  "domain": "automotive_ai",
+  "applicationId": "vita_drive_diagnostics",
+  "applicationContext": "in_cabin_diagnostics"
+}

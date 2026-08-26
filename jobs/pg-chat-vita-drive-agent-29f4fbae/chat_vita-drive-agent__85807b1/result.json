@@ -1,0 +1,115 @@
+{
+    "id": "2ea35554-5dec-4574-9d62-49a38b2a9442",
+    "task_name": "application/chat_vita-drive-agent",
+    "trial_name": "chat_vita-drive-agent__85807b1",
+    "trial_uri": "file:///home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/jobs/pg-chat-vita-drive-agent-29f4fbae/chat_vita-drive-agent__85807b1",
+    "task_id": {
+        "path": "application/tasks/chat_vita-drive-agent"
+    },
+    "source": null,
+    "task_checksum": "1e766bda052a6bb5280114bc1ed36c1ae054cb3cb88cd44fe5488368d5df6778",
+    "config": {
+        "task": {
+            "path": "application/tasks/chat_vita-drive-agent",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": null
+        },
+        "trial_name": "chat_vita-drive-agent__85807b1",
+        "trials_dir": "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/jobs/pg-chat-vita-drive-agent-29f4fbae",
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "persona-user-sim",
+            "import_path": null,
+            "model_name": "anthropic/claude-haiku-4-5",
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {
+                "persona_path": "persona/datasets/matraix-persona-dev-sample/persona_0155.yaml",
+                "model_info": {
+                    "max_input_tokens": 200000,
+                    "max_output_tokens": 16384
+                }
+            },
+            "env": {},
+            "mcp_servers": []
+        },
+        "environment": {
+            "type": "host",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "env": {},
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "env": {},
+            "disable": false
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "job_id": "d7f55bd1-f8fb-491f-ad02-f25a937547aa"
+    },
+    "agent_info": {
+        "name": "persona-user-sim",
+        "version": "1.0.0",
+        "model_info": {
+            "name": "claude-haiku-4-5",
+            "provider": "anthropic"
+        }
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "rollout_details": null,
+        "metadata": null
+    },
+    "verifier_result": null,
+    "exception_info": {
+        "exception_type": "RuntimeError",
+        "exception_message": "chat sidecar request failed (POST /api/agent/chat): HTTP 503: {\"error\":\"Agent service chưa được cấu hình (thiếu AGENT_SERVICE_URL).\"}",
+        "exception_traceback": "Traceback (most recent call last):\n  File \"/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/trial/trial.py\", line 323, in run\n    await self._run()\n  File \"/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/trial/single_step.py\", line 33, in _run\n    await self._run_agent()\n  File \"/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/trial/single_step.py\", line 68, in _run_agent\n    await self._run_agent_phase(\n  File \"/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/trial/trial.py\", line 408, in _run_agent_phase\n    await asyncio.wait_for(\n  File \"/home/khaidq9/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/asyncio/tasks.py\", line 520, in wait_for\n    return await fut\n           ^^^^^^^^^\n  File \"/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/agents/matraix/agents/persona/user_sim.py\", line 61, in run\n    result, session_id = await run_harbor_chat_eval_for_persona(\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/packages/playground/src/playground/harbor/chat_eval.py\", line 604, in run_harbor_chat_eval_for_persona\n    result = await run_harbor_chat_eval(\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/packages/playground/src/playground/harbor/chat_eval.py\", line 552, in run_harbor_chat_eval\n    return await run_playground_async(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/packages/playground/src/playground/user_sim/runner.py\", line 346, in run_playground_async\n    raw_view = await run_session_action_async(session, action)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/packages/playground/src/playground/user_sim/port.py\", line 83, in run_session_action_async\n    return await result\n           ^^^^^^^^^^^^\n  File \"/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/packages/playground/src/playground/harbor/chat_eval.py\", line 294, in run_turn_sync\n    response = await self._request_json(protocol.method, protocol.path, body=body)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/packages/playground/src/playground/harbor/chat_eval.py\", line 270, in _request_json\n    raise RuntimeError(\nRuntimeError: chat sidecar request failed (POST /api/agent/chat): HTTP 503: {\"error\":\"Agent service chưa được cấu hình (thiếu AGENT_SERVICE_URL).\"}\n",
+        "occurred_at": "2026-08-26T14:37:32.933369"
+    },
+    "started_at": "2026-08-26T07:37:21.000260Z",
+    "finished_at": "2026-08-26T07:37:32.937790Z",
+    "environment_setup": {
+        "started_at": "2026-08-26T07:37:21.022378Z",
+        "finished_at": "2026-08-26T07:37:21.022725Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-08-26T07:37:21.022786Z",
+        "finished_at": "2026-08-26T07:37:21.022824Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-08-26T07:37:21.022879Z",
+        "finished_at": "2026-08-26T07:37:32.931664Z"
+    },
+    "verifier": null,
+    "step_results": null
+}

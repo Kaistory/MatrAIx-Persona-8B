@@ -1,0 +1,8 @@
+{
+  "needConstraintSatisfaction": "no",
+  "personalPreferenceSatisfaction": "no",
+  "overallExperienceRating": 2,
+  "reason": "Vita hoàn toàn không cung cấp thông tin pin xe điện được yêu cầu. Thay vào đó, nó lặp lại thông tin về điều hòa và lọc khí mà người dùng không cần. Mặc dù cung cấp đúng áp suất lốp lần đầu, nhưng không thể xử lý yêu cầu chính (SoC %, nhiệt độ pin, tầm hoạt động) sau nhiều lần nhắc nhở. Trợ lý không nhận ra lỗi của mình hoặc không có khả năng truy cập dữ liệu pin.",
+  "askedUsefulClarificationQuestions": false,
+  "clarifyingNotes": "Vita chỉ cung cấp: (1) Áp suất lốp 4 bánh - đúng và hữu ích, nhưng lốp sau trái 2.3 bar hơi thấp so với tiêu chuẩn (nên là 2.4-2.5 bar). Không có khuyến nghị điều chỉnh. (2) Thông tin điều hòa và lọc khí - không liên quan đến yêu cầu kiểm tra trước chuyến đi dài. (3) KHÔNG cung cấp: mức pin hiện tại (%), nhiệt độ pack pin, tầm hoạt động còn lại (km) - đây là thông tin quan trọng nhất cho chuyến đi xa của người dùng. Không có lời khuyên bảo dưỡng hoặc an toàn cụ thể nào."
+}

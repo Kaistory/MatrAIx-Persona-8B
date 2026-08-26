@@ -1,0 +1,8 @@
+{
+  "needConstraintSatisfaction": "partially",
+  "personalPreferenceSatisfaction": "partially",
+  "overallExperienceRating": 4,
+  "reason": "Vita cung cấp một số thông tin hữu ích (áp suất lốp cụ thể, mức pin, tầm hoạt động) nhưng không nhất quán trong việc hiểu và trả lời câu hỏi. Trợ lý lặp lại thông tin điều hòa không liên quan, không cung cấp nhiệt độ pin (cho rằng không có cảm biến), và không rõ ràng về cảnh báo bảo dưỡng. Điều này gây khó chịu cho người dùng cần thông tin kỹ thuật chính xác trước chuyến đi dài.",
+  "askedUsefulClarificationQuestions": false,
+  "clarifyingNotes": "Vita không đưa ra khuyến nghị an toàn hoặc bảo dưỡng cụ thể. Khi phát hiện lốp sau trái áp suất 2.3 bar (thấp hơn các lốp khác 0.1 bar), trợ lý không cảnh báo hoặc khuyến nghị kiểm tra. Không có lời khuyên về việc sạc pin trước chuyến đi dài, mặc dù 78% và 312 km tầm hoạt động có thể chưa đủ cho một số chuyến dài. Trợ lý cũng không cung cấp thông tin lịch bảo dưỡng, chỉ hướng dẫn người dùng kiểm tra trong menu xe. Nhìn chung, Vita thiếu khả năng phân tích dữ liệu kỹ thuật và đưa ra lời khuyên chủ động để đảm bảo an toàn."
+}

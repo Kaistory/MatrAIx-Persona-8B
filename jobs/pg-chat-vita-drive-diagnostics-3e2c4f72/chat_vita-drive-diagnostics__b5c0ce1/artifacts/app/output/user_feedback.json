@@ -1,0 +1,8 @@
+{
+  "needConstraintSatisfaction": "no",
+  "personalPreferenceSatisfaction": "no",
+  "overallExperienceRating": 2,
+  "reason": "Vita repeatedly failed to deliver the specific technical data requested (tyre pressures for all four wheels and battery temperature). Despite multiple direct requests for precise numbers, the assistant provided vague responses, switched languages inconsistently, and returned generic vehicle status (gear position, speed) rather than the diagnostics needed. For a driver preparing for a long journey, this is unacceptable.",
+  "askedUsefulClarificationQuestions": false,
+  "clarifyingNotes": "The assistant provided only partial information: battery SoC (78%), remaining range (312 km), and battery capacity (46.4 kWh LFP with 80% charge limit set). However, it completely failed to deliver: (1) individual tyre pressure readings for all four wheels, (2) battery temperature status, (3) any warning lights or maintenance alerts, (4) service schedule details. The responses were repetitive and unhelpful, often reverting to basic telemetry (gear P, 0 km/h, 78% battery) without addressing the user's explicit requests. No safety recommendations or maintenance guidance was offered."
+}

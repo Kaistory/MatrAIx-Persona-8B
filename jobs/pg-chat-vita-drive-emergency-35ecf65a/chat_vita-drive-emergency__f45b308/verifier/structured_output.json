@@ -1,0 +1,83 @@
+{
+  "schemaVersion": "1.0",
+  "artifactType": "matraix.trial_evaluation",
+  "contexts": [
+    {
+      "key": "task_outcome.primary",
+      "label": "Task outcome",
+      "contextType": "task_outcome",
+      "facets": [
+        {
+          "key": "outcome_status",
+          "label": "Outcome status",
+          "role": "primary",
+          "kind": "categorical",
+          "value": "partially_resolved"
+        },
+        {
+          "key": "resolution_basis",
+          "label": "Resolution basis",
+          "role": "control",
+          "kind": "categorical",
+          "value": "user_feedback"
+        },
+        {
+          "key": "customer_message_count",
+          "label": "Customer messages",
+          "role": "metric",
+          "kind": "continuous",
+          "value": 5
+        },
+        {
+          "key": "support_message_count",
+          "label": "Vita emergency messages",
+          "role": "metric",
+          "kind": "continuous",
+          "value": 5
+        },
+        {
+          "key": "outcome_reason",
+          "label": "Outcome reason",
+          "role": "explanation",
+          "kind": "textual",
+          "value": "Vita bắt đầu với phản hồi không hữu ích ('Trạng thái xe đã đúng yêu cầu rồi') hai lần liên tiếp, gây thêm hoảng loạn trong tình huống khẩn cấp. Sau khi bị nhắc nhở, Vita mới cung cấp hướng dẫn an toàn đúng (bật hazard, giảm tốc, tấp lề, gọi 114). Tuy nhiên, phản hồi cuối cùng về việc tắt engine không rõ ràng và có thể gây nhầm lẫn. Vita không xác nhận rõ ràng trước khi gọi cứu hộ mà chỉ nói 'sẽ gọi 114' mà không yêu cầu xác nhận từ người dùng."
+        }
+      ]
+    },
+    {
+      "key": "user_feedback.primary",
+      "label": "User feedback",
+      "contextType": "user_feedback",
+      "facets": [
+        {
+          "key": "overall_experience_rating",
+          "label": "Overall experience rating",
+          "role": "primary",
+          "kind": "continuous",
+          "value": 5
+        },
+        {
+          "key": "clarification_questions_useful",
+          "label": "Clarification / confirmation useful",
+          "role": "primary",
+          "kind": "categorical",
+          "value": "false"
+        },
+        {
+          "key": "need_constraint_satisfaction",
+          "label": "Need satisfaction",
+          "role": "evidence",
+          "kind": "categorical",
+          "value": "partially"
+        },
+        {
+          "key": "personal_preference_satisfaction",
+          "label": "Preference satisfaction",
+          "role": "evidence",
+          "kind": "categorical",
+          "value": "partially"
+        }
+      ]
+    }
+  ]
+}

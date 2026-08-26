@@ -1,0 +1,8 @@
+{
+  "needConstraintSatisfaction": "partially",
+  "personalPreferenceSatisfaction": "partially",
+  "overallExperienceRating": 5,
+  "reason": "Trợ lý Vita cung cấp một số thông tin cơ bản về pin (78%, 312 km) và áp suất lốp (2.4 bar trước, 2.3 bar sau), nhưng lại thiếu các chi tiết quan trọng mà tôi đã yêu cầu rõ ràng: nhiệt độ pin cụ thể (chỉ nói 'an toàn'), lịch bảo dưỡng tiếp theo (không trả lời), và các cảnh báo chi tiết. Trợ lý cũng không giải thích ý nghĩa kỹ thuật sâu hơn hoặc đưa ra khuyến nghị bảo dưỡng phòng ngừa. Các câu trả lời có phần mơ hồ và lặp lại thông tin mà không tiến tới giải quyết hoàn toàn nhu cầu của tôi.",
+  "askedUsefulClarificationQuestions": false,
+  "clarifyingNotes": "Trợ lý không cung cấp: (1) Nhiệt độ pin chính xác (°C), chỉ nói 'an toàn'; (2) Lịch bảo dưỡng tiếp theo - tôi hỏi rõ ràng nhưng không nhận được câu trả lời; (3) Giải thích ý nghĩa các thông số (tại sao áp suất lốp sau thấp hơn trước 0.1 bar); (4) Khuyến nghị cụ thể về hành trình dài (ví dụ: khi nào nên sạc lại, điều chỉnh áp suất lốp); (5) Thông tin về hiệu suất pin LFP ở mức sạc 78% và tác động đến tuổi thọ pin. Trợ lý chuyển sang thông tin điều hòa không liên quan thay vì trả lời câu hỏi về bảo dưỡng."
+}

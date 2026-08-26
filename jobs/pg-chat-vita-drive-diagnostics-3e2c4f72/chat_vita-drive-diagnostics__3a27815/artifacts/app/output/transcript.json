@@ -1,0 +1,64 @@
+{
+  "sessionId": "harbor-chat",
+  "messages": [
+    {
+      "role": "customer",
+      "content": "Xin chào, tôi cần kiểm tra trạng thái kỹ thuật của xe trước khi đi chuyến đường dài. Có thể xem được thông tin pin và các chỉ số khác không?"
+    },
+    {
+      "role": "support",
+      "content": "Dạ, em kiểm tra trạng thái xe ngay."
+    },
+    {
+      "role": "customer",
+      "content": "Cảm ơn. Tôi muốn biết mức pin hiện tại bao nhiêu phần trăm, nhiệt độ pin thế nào, và tầm hoạt động còn lại bao xa?"
+    },
+    {
+      "role": "support",
+      "content": "Điều hòa đang bật, 3 vùng, quạt mức 3, nhiệt lái 22 độ, ghế phụ 22 độ, hàng sau 22 độ. Sấy kính sau tắt. PM2.5 12, lọc khí bật, ionizer tắt."
+    },
+    {
+      "role": "customer",
+      "content": "Được, nhưng tôi cần xem thông tin pin SoC, áp suất lốp 4 bánh, và tầm hoạt động còn lại. Những thông số này quan trọng cho chuyến đi dài."
+    },
+    {
+      "role": "support",
+      "content": "Đây là thông số xe: pin 78%, tầm hoạt động 312 km, áp suất lốp trước trái 2.4 bar, trước phải 2.4 bar, sau trái 2.3 bar, sau phải 2.4 bar."
+    },
+    {
+      "role": "customer",
+      "content": "Cảm ơn. Lốp sau trái 2.3 bar có phải thấp hơn bình thường không? Và nhiệt độ pin hiện tại là bao nhiêu độ?"
+    },
+    {
+      "role": "support",
+      "content": "Điều hòa đang bật, 3 vùng, quạt mức 3, nhiệt lái 22 độ, ghế phụ 22 độ, hàng sau 22 độ. Sấy kính sau tắt. PM2.5 12, lọc khí bật, ionizer tắt."
+    },
+    {
+      "role": "customer",
+      "content": "Tôi thấy hệ thống trả lời về điều hòa, nhưng tôi cần biết nhiệt độ pin pack cụ thể là bao nhiêu độ C, và lốp sau trái có cần bơm thêm không?"
+    },
+    {
+      "role": "support",
+      "content": "Để tôi kiểm tra chi tiết nhiệt độ pin pack và áp suất lốp sau trái cho bạn nhé."
+    },
+    {
+      "role": "customer",
+      "content": "Được, tôi đợi kết quả chi tiết từ bạn."
+    },
+    {
+      "role": "support",
+      "content": "Đây là thông tin trạng thái xe của bạn:"
+    },
+    {
+      "role": "customer",
+      "content": "Vâng, tôi đang chờ xem những thông số cụ thể: nhiệt độ pin pack bao nhiêu độ C, và áp suất lốp sau trái 2.3 bar có an toàn cho chuyến đường dài không?"
+    },
+    {
+      "role": "support",
+      "content": "Để tôi kiểm tra thông số pin và lốp cho bạn."
+    }
+  ],
+  "domain": "automotive_ai",
+  "applicationId": "vita_drive_diagnostics",
+  "applicationContext": "in_cabin_diagnostics"
+}

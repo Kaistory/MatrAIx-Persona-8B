@@ -1,0 +1,31 @@
+{
+  "task": {
+    "path": "application/tasks/chat_vita-drive-assistant"
+  },
+  "trial_name": "chat_vita-drive-assistant__dcb9a3f",
+  "trials_dir": "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/jobs/pg-chat-vita-drive-assistant-5a9cfdf2",
+  "timeout_multiplier": 1.0,
+  "agent_timeout_multiplier": null,
+  "verifier_timeout_multiplier": null,
+  "agent_setup_timeout_multiplier": null,
+  "environment_build_timeout_multiplier": null,
+  "agent": {
+    "name": "persona-user-sim",
+    "model_name": "openai/gpt-4o-mini",
+    "kwargs": {
+      "persona_path": "persona/datasets/matraix-persona-dev-sample/persona_0155.yaml",
+      "model_info": {
+        "max_input_tokens": 128000,
+        "max_output_tokens": 16384
+      }
+    }
+  },
+  "environment": {
+    "type": "host",
+    "delete": true
+  },
+  "verifier": {},
+  "artifacts": [],
+  "extra_instruction_paths": [],
+  "job_id": "e617c8d3-9d26-442f-8a91-b7dd75c42cb2"
+}

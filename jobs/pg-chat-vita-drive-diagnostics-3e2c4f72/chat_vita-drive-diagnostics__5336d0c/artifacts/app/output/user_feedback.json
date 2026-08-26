@@ -1,0 +1,8 @@
+{
+  "needConstraintSatisfaction": "no",
+  "personalPreferenceSatisfaction": "no",
+  "overallExperienceRating": 1,
+  "reason": "Trợ lý Vita hoàn toàn không cung cấp bất kỳ thông số kỹ thuật cụ thể nào mà người dùng yêu cầu. Thay vì trả lời các câu hỏi cụ thể về pin SoC, nhiệt độ pin, áp suất lốp từng bánh, Vita chỉ lặp lại các thông báo về trạng thái hệ thống (pha/cốt tắt, đèn đọc tắt) mà không liên quan đến nhu cầu chẩn đoán. Đây là thất bại hoàn toàn trong việc hỗ trợ người dùng.",
+  "askedUsefulClarificationQuestions": false,
+  "clarifyingNotes": "Vita không cung cấp bất kỳ thông tin chẩn đoán nào: không có số % pin, không có nhiệt độ pin, không có áp suất lốp (psi), không có cảnh báo bảo dưỡng, không có tầm hoạt động còn lại. Trợ lý chỉ lặp lại các thông báo không liên quan và không đưa ra bất kỳ khuyến nghị bảo dưỡng hoặc an toàn nào. Hệ thống chẩn đoán Vita hoàn toàn không hoạt động theo yêu cầu của người dùng."
+}

@@ -1,0 +1,8 @@
+{
+  "needConstraintSatisfaction": "partially",
+  "personalPreferenceSatisfaction": "partially",
+  "overallExperienceRating": 5,
+  "reason": "Trợ lý Vita cung cấp một số thông tin hữu ích (pin 78%, tầm hoạt động 312 km, áp suất lốp), nhưng có những hạn chế đáng kể. Hệ thống lặp lại thông tin về điều hòa khi tôi hỏi về nhiệt độ pin, không cung cấp dữ liệu nhiệt độ pin pack cụ thể, và không hoàn thành yêu cầu về danh sách cảnh báo hay lịch bảo dưỡng. Điều này gây khó chịu vì tôi là người cao tuổi chuẩn bị chuyến đi dài và cần thông tin đầy đủ để an tâm.",
+  "askedUsefulClarificationQuestions": false,
+  "clarifyingNotes": "Trợ lý không cung cấp khuyến nghị bảo dưỡng cụ thể. Khi tôi hỏi về cảnh báo trên táp-lô và lịch bảo dưỡng tiếp theo, trợ lý chỉ nói 'để em kiểm tra' nhưng không đưa ra kết quả. Về mặt an toàn cho chuyến đi dài, trợ lý đã xác nhận pin 78% và tầm hoạt động 312 km là đủ, nhưng thiếu thông tin về nhiệt độ pin pack (chỉ nói 'chưa có cảm biến chuyên biệt'), áp suất lốp sau thấp hơn trước (2.3 vs 2.4 bar), và không có cảnh báo bảo dưỡng định kỳ. Với tư cách người cao tuổi vừa phục hồi sức khỏe, tôi cần sự rõ ràng và đầy đủ thông tin, nhưng trợ lý chưa đáp ứng đủ nhu cầu này."
+}

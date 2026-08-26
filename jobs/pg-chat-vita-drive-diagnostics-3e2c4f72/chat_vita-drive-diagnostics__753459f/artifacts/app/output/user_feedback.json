@@ -1,0 +1,8 @@
+{
+  "needConstraintSatisfaction": "partially",
+  "personalPreferenceSatisfaction": "partially",
+  "overallExperienceRating": 5,
+  "reason": "Vita cung cấp thông tin kỹ thuật cơ bản (pin 78%, tầm 312km, áp suất lốp) nhưng thiếu độ sâu. Trợ lý không giải thích ý nghĩa các con số (ví dụ: tại sao 2.3-2.4 bar là 'bình thường'), không cảnh báo trước về ngưỡng pin nguy hiểm, và lặp lại câu hỏi về dẫn đường thay vì trả lời câu hỏi về chiến lược sạc pin. Phong cách giao tiếp tự nhiên nhưng thiếu proactive.",
+  "askedUsefulClarificationQuestions": false,
+  "clarifyingNotes": "Vita không đưa ra bất kỳ khuyến nghị an toàn nào. Khi được hỏi về ngưỡng an toàn pin (dưới 20%), trợ lý không giải thích rủi ro hoặc gợi ý thời điểm nên sạc pin. Không có thông tin về: (1) tốc độ tiêu thụ pin dự kiến cho chuyến đi dài, (2) vị trí trạm sạc dọc đường, (3) thời gian sạc từ 20% lên mức an toàn, (4) tác động của nhiệt độ 31°C đến hiệu suất pin. Lịch bảo dưỡng bị bỏ qua với lý do 'chưa có dữ liệu' thay vì hướng dẫn kiểm tra chi tiết."
+}

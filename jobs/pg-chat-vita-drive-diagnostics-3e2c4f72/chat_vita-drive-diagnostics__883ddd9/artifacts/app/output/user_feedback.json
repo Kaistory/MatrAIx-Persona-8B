@@ -1,0 +1,8 @@
+{
+  "needConstraintSatisfaction": "no",
+  "personalPreferenceSatisfaction": "no",
+  "overallExperienceRating": 2,
+  "reason": "Vita Drive Diagnostics failed repeatedly to provide the specific technical parameters I explicitly requested: battery temperature in Celsius, individual tire pressures (TPMS) for all four wheels, and maintenance schedule. Instead, it provided irrelevant climate control settings multiple times despite clear correction. As someone with a legal and analytical background accustomed to precise information, this represents a fundamental failure in task execution and attention to user requirements.",
+  "askedUsefulClarificationQuestions": false,
+  "clarifyingNotes": "The assistant provided no useful maintenance recommendations or diagnostic guidance. It demonstrated a critical system failure by repeatedly returning climate control information (AC temperature, fan speed, cabin zones, air filter status) when asked for battery temperature, tire pressure readings, and maintenance schedules. This suggests either a database query failure, a routing error in the diagnostic system, or a fundamental misunderstanding of vehicle telemetry categories. For a driver planning a long journey, this is an unacceptable level of service failure."
+}

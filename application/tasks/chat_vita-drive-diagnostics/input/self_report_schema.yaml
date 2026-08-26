@@ -1,0 +1,27 @@
+artifactName: user_feedback.json
+instructions: |
+  Đánh giá trung thực trải nghiệm sử dụng trợ lý Vita khi tra cứu thông số và tình trạng xe.
+  Tập trung vào độ chính xác, tính dễ hiểu của thuật ngữ kỹ thuật và lời khuyên xử lý.
+fields:
+  - key: needConstraintSatisfaction
+    prompt: Trợ lý Vita có giải thích rõ ràng và chính xác tình trạng kỹ thuật của xe không?
+    kind: enum
+    choices: [yes, partially, no]
+  - key: personalPreferenceSatisfaction
+    prompt: Cách trợ lý giải thích thông số có dễ hiểu và phù hợp với bạn không?
+    kind: enum
+    choices: [yes, partially, no]
+  - key: overallExperienceRating
+    prompt: Đánh giá tổng quan trải nghiệm tra cứu kỹ thuật từ 1 đến 10?
+    kind: integer
+    minimum: 1
+    maximum: 10
+    explanation:
+      key: reason
+      prompt: Nêu ngắn gọn lý do cho số điểm trên.
+  - key: askedUsefulClarificationQuestions
+    prompt: Trợ lý có đưa ra khuyến nghị an toàn hoặc bảo dưỡng phù hợp không?
+    kind: boolean
+    explanation:
+      key: clarifyingNotes
+      prompt: Chi tiết lời khuyên bảo dưỡng hoặc chẩn đoán của trợ lý.

@@ -1,0 +1,56 @@
+{
+  "sessionId": "harbor-chat",
+  "messages": [
+    {
+      "role": "customer",
+      "content": "Chào Vita, tôi đang trên đường từ Hà Nội đến Hải Phòng. Xe điện của tôi còn khoảng 40% pin, bạn có thể giúp tôi tìm trạm sạc trên đường đi không?"
+    },
+    {
+      "role": "support",
+      "content": "Đã dẫn đường đến Hải Phòng. Xe điện của còn khoảng 40% pin, bạn có thể tìm trạm sạc trên đường không."
+    },
+    {
+      "role": "customer",
+      "content": "Ừ, tôi cần trạm sạc nhanh gần nhất trên tuyến Hà Nội - Hải Phòng. Còn bao lâu nữa thì hết pin với tốc độ hiện tại?"
+    },
+    {
+      "role": "support",
+      "content": "Hiện tại tôi chưa có chức năng tìm trạm sạc dọc đường. Pin 78% còn ~312 km, đủ đi Hải Phòng (60,5 km). Bạn muốn tôi dẫn đến trạm sạc cụ thể nào không?"
+    },
+    {
+      "role": "customer",
+      "content": "Thế thì được, 312 km cũng đủ rồi. Nhưng trên đường có quán ăn hay điểm dừng nào đáng ghé không? Tôi muốn nghỉ chân một chút trước khi tới Hải Phòng."
+    },
+    {
+      "role": "support",
+      "content": "Đã dẫn đường đến Hải Phòng."
+    },
+    {
+      "role": "customer",
+      "content": "Vita ơi, bạn có thể gợi ý quán ăn hoặc điểm dừng nào trên tuyến Hà Nội - Hải Phòng không? Tôi muốn ăn cơm trưa trước khi tiếp tục."
+    },
+    {
+      "role": "support",
+      "content": "Bạn muốn mình dẫn đường tới đâu?"
+    },
+    {
+      "role": "customer",
+      "content": "Tìm quán ăn dọc đường từ vị trí hiện tại đến Hải Phòng với, ưu tiên những chỗ gần xa lộ chính."
+    },
+    {
+      "role": "support",
+      "content": "Bạn muốn dừng ở quán ăn cụ thể nào dọc đường không? Cho mình tên quán hoặc địa chỉ để mở đường nhé."
+    },
+    {
+      "role": "customer",
+      "content": "Okee, thôi để vậy. Thế bạn cho tôi xem tuyến đường nhanh nhất tới Hải Phòng với, tránh tắc đường nếu có thể."
+    },
+    {
+      "role": "support",
+      "content": "Đã dẫn đường đến Hải Phòng."
+    }
+  ],
+  "domain": "automotive_ai",
+  "applicationId": "vita_drive_navigation",
+  "applicationContext": "in_cabin_navigation"
+}

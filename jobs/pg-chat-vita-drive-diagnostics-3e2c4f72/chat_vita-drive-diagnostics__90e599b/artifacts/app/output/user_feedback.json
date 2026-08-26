@@ -1,0 +1,8 @@
+{
+  "needConstraintSatisfaction": "partially",
+  "personalPreferenceSatisfaction": "partially",
+  "overallExperienceRating": 5,
+  "reason": "Vita cung cấp một số thông số cơ bản (pin 78%, áp suất lốp, tầm hoạt động 312 km) nhưng phản hồi không nhất quán và thiếu độ sâu. Trợ lý lặp lại thông tin hoặc không trả lời trực tiếp câu hỏi nhiều lần, gây mất thời gian khi mình cần gấp. Thiếu thông tin nhiệt độ pin, lịch bảo dưỡng cụ thể, và khuyến nghị áp suất lốp chuẩn.",
+  "askedUsefulClarificationQuestions": false,
+  "clarifyingNotes": "Vita chỉ cung cấp: (1) Pin 78% với tầm 312 km - đủ cho chuyến dài; (2) Áp suất lốp: trước 2.4 bar, sau trái 2.3 bar (thấp hơn), sau phải 2.4 bar - cần bơm lốp sau trái lên 2.4 bar; (3) Không có cảnh báo lỗi hoặc bảo dưỡng. Tuy nhiên, trợ lý KHÔNG cung cấp: áp suất lốp chuẩn (tiêu chuẩn VF9 thường là 2.5 bar), khuyến nghị khi nào nên bảo dưỡng tiếp theo, phân tích chi tiết tình trạng pin (tuổi thọ, chu kỳ sạc), hay cảnh báo an toàn cho chuyến dài. Phản hồi chậm chạp và lặp lại, không phù hợp với nhu cầu gấp gáp của người dùng."
+}

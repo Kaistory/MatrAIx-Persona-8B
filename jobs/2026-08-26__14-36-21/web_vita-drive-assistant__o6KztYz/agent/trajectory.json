@@ -1,0 +1,97 @@
+{
+  "version": "1.0",
+  "steps": [
+    {
+      "source": "agent",
+      "message": [
+        {
+          "type": "text",
+          "text": "Truy cập vào trang đăng nhập VoiceLab."
+        },
+        {
+          "type": "image",
+          "source": {
+            "path": "screenshots/01_login_gate.png"
+          }
+        }
+      ],
+      "tool_calls": [
+        {
+          "function_name": "goto",
+          "arguments": {
+            "url": "http://172.17.0.1:5173/"
+          }
+        }
+      ]
+    },
+    {
+      "source": "agent",
+      "message": [
+        {
+          "type": "text",
+          "text": "Đăng nhập thành công vào buồng lái xe VinFast VF9 3D."
+        },
+        {
+          "type": "image",
+          "source": {
+            "path": "screenshots/02_main_dashboard.png"
+          }
+        }
+      ],
+      "tool_calls": [
+        {
+          "function_name": "click",
+          "arguments": {
+            "selector": "button[type='submit']"
+          }
+        }
+      ]
+    },
+    {
+      "source": "agent",
+      "message": [
+        {
+          "type": "text",
+          "text": "Mở bảng điều khiển chi tiết điều hòa và các thiết bị trên xe."
+        },
+        {
+          "type": "image",
+          "source": {
+            "path": "screenshots/03_climate_controls.png"
+          }
+        }
+      ],
+      "tool_calls": [
+        {
+          "function_name": "click",
+          "arguments": {
+            "selector": "button:has(svg.lucide-chevron-right)"
+          }
+        }
+      ]
+    },
+    {
+      "source": "agent",
+      "message": [
+        {
+          "type": "text",
+          "text": "Hoàn tất các bước trải nghiệm và xuất báo cáo."
+        },
+        {
+          "type": "image",
+          "source": {
+            "path": "screenshots/04_final_view.png"
+          }
+        }
+      ],
+      "tool_calls": [
+        {
+          "function_name": "submit_report",
+          "arguments": {
+            "file": "dashboard_experience.json"
+          }
+        }
+      ]
+    }
+  ]
+}

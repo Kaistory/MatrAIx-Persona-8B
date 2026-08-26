@@ -1,0 +1,349 @@
+{
+  "job_name": "pg-chat-vita-drive-diagnostics-3e2c4f72",
+  "jobs_dir": "jobs",
+  "n_attempts": 1,
+  "timeout_multiplier": 1.0,
+  "n_concurrent_trials": 2,
+  "quiet": false,
+  "environment": {
+    "type": "host",
+    "delete": true
+  },
+  "agents": [
+    {
+      "name": "persona-user-sim",
+      "model_name": "anthropic/claude-haiku-4-5",
+      "kwargs": {
+        "persona_path": "persona/datasets/matraix-persona-dev-sample/persona_0164.yaml",
+        "model_info": {
+          "max_input_tokens": 200000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-user-sim",
+      "model_name": "anthropic/claude-haiku-4-5",
+      "kwargs": {
+        "persona_path": "persona/datasets/matraix-persona-dev-sample/persona_0029.yaml",
+        "model_info": {
+          "max_input_tokens": 200000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-user-sim",
+      "model_name": "anthropic/claude-haiku-4-5",
+      "kwargs": {
+        "persona_path": "persona/datasets/matraix-persona-dev-sample/persona_0007.yaml",
+        "model_info": {
+          "max_input_tokens": 200000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-user-sim",
+      "model_name": "anthropic/claude-haiku-4-5",
+      "kwargs": {
+        "persona_path": "persona/datasets/matraix-persona-dev-sample/persona_0190.yaml",
+        "model_info": {
+          "max_input_tokens": 200000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-user-sim",
+      "model_name": "anthropic/claude-haiku-4-5",
+      "kwargs": {
+        "persona_path": "persona/datasets/matraix-persona-dev-sample/persona_0071.yaml",
+        "model_info": {
+          "max_input_tokens": 200000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-user-sim",
+      "model_name": "anthropic/claude-haiku-4-5",
+      "kwargs": {
+        "persona_path": "persona/datasets/matraix-persona-dev-sample/persona_0063.yaml",
+        "model_info": {
+          "max_input_tokens": 200000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-user-sim",
+      "model_name": "anthropic/claude-haiku-4-5",
+      "kwargs": {
+        "persona_path": "persona/datasets/matraix-persona-dev-sample/persona_0058.yaml",
+        "model_info": {
+          "max_input_tokens": 200000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-user-sim",
+      "model_name": "anthropic/claude-haiku-4-5",
+      "kwargs": {
+        "persona_path": "persona/datasets/matraix-persona-dev-sample/persona_0036.yaml",
+        "model_info": {
+          "max_input_tokens": 200000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-user-sim",
+      "model_name": "anthropic/claude-haiku-4-5",
+      "kwargs": {
+        "persona_path": "persona/datasets/matraix-persona-dev-sample/persona_0189.yaml",
+        "model_info": {
+          "max_input_tokens": 200000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-user-sim",
+      "model_name": "anthropic/claude-haiku-4-5",
+      "kwargs": {
+        "persona_path": "persona/datasets/matraix-persona-dev-sample/persona_0027.yaml",
+        "model_info": {
+          "max_input_tokens": 200000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-user-sim",
+      "model_name": "anthropic/claude-haiku-4-5",
+      "kwargs": {
+        "persona_path": "persona/datasets/matraix-persona-dev-sample/persona_0174.yaml",
+        "model_info": {
+          "max_input_tokens": 200000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-user-sim",
+      "model_name": "anthropic/claude-haiku-4-5",
+      "kwargs": {
+        "persona_path": "persona/datasets/matraix-persona-dev-sample/persona_0140.yaml",
+        "model_info": {
+          "max_input_tokens": 200000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-user-sim",
+      "model_name": "anthropic/claude-haiku-4-5",
+      "kwargs": {
+        "persona_path": "persona/datasets/matraix-persona-dev-sample/persona_0023.yaml",
+        "model_info": {
+          "max_input_tokens": 200000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-user-sim",
+      "model_name": "anthropic/claude-haiku-4-5",
+      "kwargs": {
+        "persona_path": "persona/datasets/matraix-persona-dev-sample/persona_0152.yaml",
+        "model_info": {
+          "max_input_tokens": 200000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-user-sim",
+      "model_name": "anthropic/claude-haiku-4-5",
+      "kwargs": {
+        "persona_path": "persona/datasets/matraix-persona-dev-sample/persona_0109.yaml",
+        "model_info": {
+          "max_input_tokens": 200000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-user-sim",
+      "model_name": "anthropic/claude-haiku-4-5",
+      "kwargs": {
+        "persona_path": "persona/datasets/matraix-persona-dev-sample/persona_0009.yaml",
+        "model_info": {
+          "max_input_tokens": 200000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-user-sim",
+      "model_name": "anthropic/claude-haiku-4-5",
+      "kwargs": {
+        "persona_path": "persona/datasets/matraix-persona-dev-sample/persona_0008.yaml",
+        "model_info": {
+          "max_input_tokens": 200000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-user-sim",
+      "model_name": "anthropic/claude-haiku-4-5",
+      "kwargs": {
+        "persona_path": "persona/datasets/matraix-persona-dev-sample/persona_0024.yaml",
+        "model_info": {
+          "max_input_tokens": 200000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-user-sim",
+      "model_name": "anthropic/claude-haiku-4-5",
+      "kwargs": {
+        "persona_path": "persona/datasets/matraix-persona-dev-sample/persona_0056.yaml",
+        "model_info": {
+          "max_input_tokens": 200000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-user-sim",
+      "model_name": "anthropic/claude-haiku-4-5",
+      "kwargs": {
+        "persona_path": "persona/datasets/matraix-persona-dev-sample/persona_0060.yaml",
+        "model_info": {
+          "max_input_tokens": 200000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-user-sim",
+      "model_name": "anthropic/claude-haiku-4-5",
+      "kwargs": {
+        "persona_path": "persona/datasets/matraix-persona-dev-sample/persona_0130.yaml",
+        "model_info": {
+          "max_input_tokens": 200000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-user-sim",
+      "model_name": "anthropic/claude-haiku-4-5",
+      "kwargs": {
+        "persona_path": "persona/datasets/matraix-persona-dev-sample/persona_0155.yaml",
+        "model_info": {
+          "max_input_tokens": 200000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-user-sim",
+      "model_name": "anthropic/claude-haiku-4-5",
+      "kwargs": {
+        "persona_path": "persona/datasets/matraix-persona-dev-sample/persona_0198.yaml",
+        "model_info": {
+          "max_input_tokens": 200000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-user-sim",
+      "model_name": "anthropic/claude-haiku-4-5",
+      "kwargs": {
+        "persona_path": "persona/datasets/matraix-persona-dev-sample/persona_0144.yaml",
+        "model_info": {
+          "max_input_tokens": 200000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-user-sim",
+      "model_name": "anthropic/claude-haiku-4-5",
+      "kwargs": {
+        "persona_path": "persona/datasets/matraix-persona-dev-sample/persona_0051.yaml",
+        "model_info": {
+          "max_input_tokens": 200000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-user-sim",
+      "model_name": "anthropic/claude-haiku-4-5",
+      "kwargs": {
+        "persona_path": "persona/datasets/matraix-persona-dev-sample/persona_0167.yaml",
+        "model_info": {
+          "max_input_tokens": 200000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-user-sim",
+      "model_name": "anthropic/claude-haiku-4-5",
+      "kwargs": {
+        "persona_path": "persona/datasets/matraix-persona-dev-sample/persona_0192.yaml",
+        "model_info": {
+          "max_input_tokens": 200000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-user-sim",
+      "model_name": "anthropic/claude-haiku-4-5",
+      "kwargs": {
+        "persona_path": "persona/datasets/matraix-persona-dev-sample/persona_0108.yaml",
+        "model_info": {
+          "max_input_tokens": 200000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-user-sim",
+      "model_name": "anthropic/claude-haiku-4-5",
+      "kwargs": {
+        "persona_path": "persona/datasets/matraix-persona-dev-sample/persona_0057.yaml",
+        "model_info": {
+          "max_input_tokens": 200000,
+          "max_output_tokens": 16384
+        }
+      }
+    },
+    {
+      "name": "persona-user-sim",
+      "model_name": "anthropic/claude-haiku-4-5",
+      "kwargs": {
+        "persona_path": "persona/datasets/matraix-persona-dev-sample/persona_0115.yaml",
+        "model_info": {
+          "max_input_tokens": 200000,
+          "max_output_tokens": 16384
+        }
+      }
+    }
+  ],
+  "tasks": [
+    {
+      "path": "application/tasks/chat_vita-drive-diagnostics"
+    }
+  ]
+}

@@ -1,0 +1,111 @@
+Traceback (most recent call last):
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/.venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/.venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/.venv/lib/python3.12/site-packages/httpcore/_sync/connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/.venv/lib/python3.12/site-packages/httpcore/_sync/connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/.venv/lib/python3.12/site-packages/httpcore/_sync/connection.py", line 101, in handle_request
+    raise exc
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/.venv/lib/python3.12/site-packages/httpcore/_sync/connection.py", line 78, in handle_request
+    stream = self._connect(request)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/.venv/lib/python3.12/site-packages/httpcore/_sync/connection.py", line 156, in _connect
+    stream = stream.start_tls(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/.venv/lib/python3.12/site-packages/httpcore/_backends/sync.py", line 154, in start_tls
+    with map_exceptions(exc_map):
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/khaidq9/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/.venv/lib/python3.12/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectTimeout: _ssl.c:993: The handshake operation timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/.venv/lib/python3.12/site-packages/openai/_base_client.py", line 1037, in request
+    response = self._send_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/.venv/lib/python3.12/site-packages/openai/_client.py", line 478, in _send_request
+    response = self._send_with_auth_retry(request, stream=stream, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/.venv/lib/python3.12/site-packages/openai/_client.py", line 456, in _send_with_auth_retry
+    response = super()._send_request(request, stream=stream, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/.venv/lib/python3.12/site-packages/openai/_base_client.py", line 964, in _send_request
+    return self._client.send(request, stream=stream, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/.venv/lib/python3.12/site-packages/httpx/_client.py", line 914, in send
+    response = self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/.venv/lib/python3.12/site-packages/httpx/_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/.venv/lib/python3.12/site-packages/httpx/_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/.venv/lib/python3.12/site-packages/httpx/_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/.venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 249, in handle_request
+    with map_httpcore_exceptions():
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/khaidq9/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/.venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectTimeout: _ssl.c:993: The handshake operation timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/trial/trial.py", line 323, in run
+    await self._run()
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/trial/single_step.py", line 33, in _run
+    await self._run_agent()
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/trial/single_step.py", line 68, in _run_agent
+    await self._run_agent_phase(
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/trial/trial.py", line 408, in _run_agent_phase
+    await asyncio.wait_for(
+  File "/home/khaidq9/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/agents/matraix/agents/persona/user_sim.py", line 61, in run
+    result, session_id = await run_harbor_chat_eval_for_persona(
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/packages/playground/src/playground/harbor/chat_eval.py", line 604, in run_harbor_chat_eval_for_persona
+    result = await run_harbor_chat_eval(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/packages/playground/src/playground/harbor/chat_eval.py", line 552, in run_harbor_chat_eval
+    return await run_playground_async(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/packages/playground/src/playground/user_sim/runner.py", line 336, in run_playground_async
+    action = sim.opening_action()
+             ^^^^^^^^^^^^^^^^^^^^
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/packages/playground/src/playground/user_sim/session.py", line 85, in opening_action
+    return self.next_action(_START_OBSERVATION)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/packages/playground/src/playground/user_sim/session.py", line 70, in next_action
+    calls = self._client.complete_with_tools(self._messages)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/packages/playground/src/playground/user_sim/tool_client.py", line 79, in complete_with_tools
+    completion = self._client.chat.completions.create(**kwargs)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/.venv/lib/python3.12/site-packages/openai/_utils/_utils.py", line 298, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/.venv/lib/python3.12/site-packages/openai/resources/chat/completions/completions.py", line 1251, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/.venv/lib/python3.12/site-packages/openai/_base_client.py", line 1332, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/.venv/lib/python3.12/site-packages/openai/_base_client.py", line 1055, in request
+    raise APITimeoutError(request=request) from err
+openai.APITimeoutError: Request timed out.

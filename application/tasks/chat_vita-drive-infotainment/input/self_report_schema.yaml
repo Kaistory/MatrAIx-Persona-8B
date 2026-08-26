@@ -1,0 +1,27 @@
+artifactName: user_feedback.json
+instructions: |
+  Đánh giá trung thực trải nghiệm sử dụng trợ lý âm nhạc & giải trí Vita khi đang ở trên xe.
+  Tập trung vào độ chính xác khi tìm và mở bài hát, sự tự nhiên khi xác nhận giọng nói và trải nghiệm người dùng.
+fields:
+  - key: needConstraintSatisfaction
+    prompt: Trợ lý Vita có mở đúng bài hát/thể loại nhạc hoặc điều chỉnh âm lượng theo ý bạn không?
+    kind: enum
+    choices: [yes, partially, no]
+  - key: personalPreferenceSatisfaction
+    prompt: Giọng điệu và cách phản hồi âm nhạc có làm bạn hài lòng và thoải mái không?
+    kind: enum
+    choices: [yes, partially, no]
+  - key: overallExperienceRating
+    prompt: Đánh giá tổng quan trải nghiệm giải trí âm nhạc từ 1 đến 10?
+    kind: integer
+    minimum: 1
+    maximum: 10
+    explanation:
+      key: reason
+      prompt: Nêu ngắn gọn lý do cho số điểm trên.
+  - key: askedUsefulClarificationQuestions
+    prompt: Trợ lý có xác nhận bài hát hoặc đưa ra gợi ý phù hợp khi tên bài chưa rõ không?
+    kind: boolean
+    explanation:
+      key: clarifyingNotes
+      prompt: Chi tiết phản hồi âm nhạc hoặc câu hỏi làm rõ của trợ lý.

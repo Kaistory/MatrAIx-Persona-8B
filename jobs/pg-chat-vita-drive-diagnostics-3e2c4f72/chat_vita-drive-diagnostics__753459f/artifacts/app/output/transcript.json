@@ -1,0 +1,48 @@
+{
+  "sessionId": "harbor-chat",
+  "messages": [
+    {
+      "role": "customer",
+      "content": "Xin chào, tôi muốn kiểm tra tình trạng xe của mình. Pin còn bao nhiêu phần trăm và có bất kỳ cảnh báo nào không? 🚗"
+    },
+    {
+      "role": "support",
+      "content": "Pha/cốt đang tắt, đèn đọc tắt, ambient tắt."
+    },
+    {
+      "role": "customer",
+      "content": "Được, tôi sắp khởi động xe. Bạn có thể cho tôi xem chi tiết về pin hiện tại không? Mức pin bao nhiêu %, nhiệt độ pin như thế nào, và tầm hoạt động còn lại bao xa? 🔋"
+    },
+    {
+      "role": "support",
+      "content": "Mức pin hiện tại còn 78%, phạm vi hoạt động khoảng 312 km. Nhiệt độ ngoài trời là 31°C. Các thông số pin và lốp đều đang ở mức bình thường."
+    },
+    {
+      "role": "customer",
+      "content": "Tốt, pin còn khá. Nhưng trước khi đi đường dài, tôi muốn xem chi tiết áp suất lốp 4 bánh có bình thường không? Và có lịch bảo dưỡng sắp tới không? 🛞"
+    },
+    {
+      "role": "support",
+      "content": "Để mình kiểm tra nhanh nhé. Áp suất lốp: trước trái 2.4, trước phải 2.4, sau trái 2.3, sau phải 2.4 bar – tất cả bình thường. Lịch bảo dưỡng thì mình chưa có dữ liệu, bạn nên kiểm tra trong ứng dụng nhé."
+    },
+    {
+      "role": "customer",
+      "content": "Cảm ơn. Vậy pin 78%, tầm 312 km, lốp đều bình thường thì mình có thể đi được rồi. Nhưng nếu pin xuống dưới 20% thì sao? Mình có nên tìm trạm sạc trước không? 🔌"
+    },
+    {
+      "role": "support",
+      "content": "Bạn muốn mình dẫn đường tới đâu?"
+    },
+    {
+      "role": "customer",
+      "content": "À không, mình chỉ hỏi thôi. Mình sẽ tự lái, nhưng nếu pin xuống dưới 20% thì bạn có thể cảnh báo và gợi ý trạm sạc gần nhất không? 😊"
+    },
+    {
+      "role": "support",
+      "content": "Bạn muốn mình dẫn đường tới đâu?"
+    }
+  ],
+  "domain": "automotive_ai",
+  "applicationId": "vita_drive_diagnostics",
+  "applicationContext": "in_cabin_diagnostics"
+}

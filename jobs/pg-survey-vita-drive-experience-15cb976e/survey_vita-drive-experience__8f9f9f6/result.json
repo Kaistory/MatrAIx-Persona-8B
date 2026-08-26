@@ -1,0 +1,122 @@
+{
+    "id": "edc62115-19be-4d6a-9c3d-c93e48ff957e",
+    "task_name": "application/survey-vita-drive-experience",
+    "trial_name": "survey_vita-drive-experience__8f9f9f6",
+    "trial_uri": "file:///home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/jobs/pg-survey-vita-drive-experience-15cb976e/survey_vita-drive-experience__8f9f9f6",
+    "task_id": {
+        "path": "application/tasks/survey_vita-drive-experience"
+    },
+    "source": null,
+    "task_checksum": "759ef6ce1a955ecca1b24eedae8c134de30a34c24893b335c0b3ef3501e038f4",
+    "config": {
+        "task": {
+            "path": "application/tasks/survey_vita-drive-experience",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": null
+        },
+        "trial_name": "survey_vita-drive-experience__8f9f9f6",
+        "trials_dir": "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/jobs/pg-survey-vita-drive-experience-15cb976e",
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "persona-json-survey",
+            "import_path": null,
+            "model_name": "openai/gpt-4o-mini",
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {
+                "persona_path": "persona/datasets/matraix-persona-dev-sample/persona_0065.yaml",
+                "model_info": {
+                    "max_input_tokens": 128000,
+                    "max_output_tokens": 16384
+                }
+            },
+            "env": {},
+            "mcp_servers": []
+        },
+        "environment": {
+            "type": "host",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "env": {},
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "env": {},
+            "disable": false
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "job_id": "f86dd0e3-1e60-443f-80ea-14e8c2e93a97"
+    },
+    "agent_info": {
+        "name": "persona-json-survey",
+        "version": "1.0.0",
+        "model_info": {
+            "name": "gpt-4o-mini",
+            "provider": "openai"
+        }
+    },
+    "agent_result": {
+        "n_input_tokens": 2712,
+        "n_cache_tokens": 0,
+        "n_output_tokens": 313,
+        "cost_usd": 0.0005945999999999999,
+        "rollout_details": null,
+        "metadata": {
+            "request_id": "gen-1787732905-wqqiAK2loXlXQFdI4EgN",
+            "model": "gpt-4o-mini",
+            "provider": "openai",
+            "cost_source": "estimated"
+        }
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 1.0
+        }
+    },
+    "exception_info": null,
+    "started_at": "2026-08-26T08:28:20.086115Z",
+    "finished_at": "2026-08-26T08:28:35.235168Z",
+    "environment_setup": {
+        "started_at": "2026-08-26T08:28:20.111054Z",
+        "finished_at": "2026-08-26T08:28:20.111791Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-08-26T08:28:20.111909Z",
+        "finished_at": "2026-08-26T08:28:20.111995Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-08-26T08:28:20.112106Z",
+        "finished_at": "2026-08-26T08:28:35.142948Z"
+    },
+    "verifier": {
+        "started_at": "2026-08-26T08:28:35.148282Z",
+        "finished_at": "2026-08-26T08:28:35.235046Z"
+    },
+    "step_results": null
+}

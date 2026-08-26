@@ -1,0 +1,80 @@
+{
+  "sessionId": "harbor-chat",
+  "messages": [
+    {
+      "role": "customer",
+      "content": "Xin chào, tôi muốn kiểm tra tình trạng của xe trước khi đi du lịch. Bạn có thể giúp tôi xem pin xe hiện tại như thế nào không?"
+    },
+    {
+      "role": "support",
+      "content": "Để tôi kiểm tra tình trạng xe ngay cho bạn..."
+    },
+    {
+      "role": "customer",
+      "content": "Cảm ơn! Ngoài pin, tôi cũng muốn biết áp suất lốp 4 bánh có bình thường không, vì tôi sắp đi chuyến đường dài."
+    },
+    {
+      "role": "support",
+      "content": "Áp suất lốp: trước trái 2.4 bar, trước phải 2.4 bar, sau trái 2.3 bar, sau phải 2.4 bar."
+    },
+    {
+      "role": "customer",
+      "content": "Được, cảm ơn. Còn có đèn cảnh báo nào trên táp-lô không? Và tầm hoạt động còn lại của xe bao nhiêu km?"
+    },
+    {
+      "role": "support",
+      "content": "Pha/cốt đang tắt, đèn đọc tắt, ambient tắt."
+    },
+    {
+      "role": "customer",
+      "content": "Được, không có đèn cảnh báo gì. Nhưng bạn chưa cho tôi biết tầm hoạt động còn lại là bao nhiêu km? Và mức pin hiện tại là bao nhiêu phần trăm?"
+    },
+    {
+      "role": "support",
+      "content": "Pha/cốt đang tắt, đèn đọc tắt, ambient tắt."
+    },
+    {
+      "role": "customer",
+      "content": "Bạn có thể cho tôi biết cụ thể mức pin (%) và tầm hoạt động còn lại (km) được không? Tôi cần những thông tin này để lên kế hoạch sạc xe trên đường đi."
+    },
+    {
+      "role": "support",
+      "content": "Pin 78%, còn khoảng 312 km. Pin VF9 46.4 kWh LFP, giới hạn sạc đang đặt 78%."
+    },
+    {
+      "role": "customer",
+      "content": "Tốt, pin 78% với tầm 312 km là đủ cho chuyến đi của tôi. Nhiệt độ pin hiện tại bao nhiêu độ? Và có lịch bảo dưỡng sắp tới không?"
+    },
+    {
+      "role": "support",
+      "content": "Điều hòa đang tắt, 3 vùng, quạt mức 3, nhiệt lái 22 độ, ghế phụ 22 độ, hàng sau 22 độ. Sấy kính sau tắt. PM2.5 12, lọc khí bật, ionizer tắt."
+    },
+    {
+      "role": "customer",
+      "content": "Cảm ơn thông tin. Nhưng tôi vẫn chưa rõ về nhiệt độ pin và lịch bảo dưỡng tiếp theo. Bạn có thể cho tôi biết những thông tin đó không?"
+    },
+    {
+      "role": "support",
+      "content": "Để tôi kiểm tra thông tin xe và bảo dưỡng cho bạn."
+    },
+    {
+      "role": "customer",
+      "content": "Được, tôi đợi. Cảm ơn bạn kiểm tra cho tôi."
+    },
+    {
+      "role": "support",
+      "content": "Xe đang ở Gear P, tốc độ 0 km/h, pin 78%."
+    },
+    {
+      "role": "customer",
+      "content": "Tôi thấy thông tin pin và tốc độ rồi, nhưng vẫn chưa có nhiệt độ pin và lịch bảo dưỡng. Những thông tin này rất quan trọng cho chuyến đi dài của tôi, bạn có thể tìm được không?"
+    },
+    {
+      "role": "support",
+      "content": "Tôi hiểu bạn muốn xem nhiệt độ pin và lịch bảo dưỡng. Hiện tại, tôi chưa có cảm biến đo nhiệt độ pin và truy cập lịch bảo dưỡng trên xe này. Bạn có muốn tôi báo cáo trạng thái pin (%, phạm vi) và áp suất lốp chi tiết không?"
+    }
+  ],
+  "domain": "automotive_ai",
+  "applicationId": "vita_drive_diagnostics",
+  "applicationContext": "in_cabin_diagnostics"
+}

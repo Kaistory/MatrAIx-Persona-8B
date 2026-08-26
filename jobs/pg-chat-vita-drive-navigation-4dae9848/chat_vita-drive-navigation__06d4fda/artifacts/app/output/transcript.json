@@ -1,0 +1,64 @@
+{
+  "sessionId": "harbor-chat",
+  "messages": [
+    {
+      "role": "customer",
+      "content": "Xin chào Vita. Tôi đang lái xe từ Hà Nội đi Hải Phòng, có thể giúp tôi tìm đường tốt nhất được không?"
+    },
+    {
+      "role": "support",
+      "content": "Bạn muốn mình dẫn đường tới đâu?"
+    },
+    {
+      "role": "customer",
+      "content": "Tôi muốn đi từ Hà Nội tới Hải Phòng. Nhưng trên đường đi, tôi cần tìm một trạm sạc xe điện vì xe tôi còn ít pin. Có thể tìm giúp tôi được không?"
+    },
+    {
+      "role": "support",
+      "content": "Đã dẫn đường đến Hải Phòng."
+    },
+    {
+      "role": "customer",
+      "content": "Được rồi. Nhưng tôi cần biết trên tuyến đường này có những trạm sạc điện nào? Và tuyến nào nhanh nhất, tránh tắc đường?"
+    },
+    {
+      "role": "support",
+      "content": "Đã dẫn đường đến Hải Phòng."
+    },
+    {
+      "role": "customer",
+      "content": "Vita ơi, tôi cần chi tiết hơn. Có bao nhiêu trạm sạc trên đường, khoảng cách bao xa, và tuyến nào là nhanh nhất? Còn nếu có nhà hàng hay điểm dừng nghỉ nào thì cho tôi biết luôn."
+    },
+    {
+      "role": "support",
+      "content": "Trạng thái xe đã đúng yêu cầu rồi."
+    },
+    {
+      "role": "customer",
+      "content": "Vita, tôi không hiểu. Tôi đang hỏi về trạm sạc điện và nhà hàng trên đường Hà Nội - Hải Phòng, chứ không phải về trạng thái xe. Bạn có thể liệt kê các trạm sạc gần đường tôi đi không?"
+    },
+    {
+      "role": "support",
+      "content": "Rất tiếc, hiện tại tôi chưa thể tìm kiếm trạm sạc dọc lộ trình. Tôi gửi điểm 'trạm sạc EV' gần bạn nhất được chứ?"
+    },
+    {
+      "role": "customer",
+      "content": "Được, bạn tìm giúp tôi trạm sạc EV gần nhất hiện tại. Và sau đó cho tôi biết khoảng cách bao xa, mất bao lâu để tôi có thể quyết định có nên dừng lại hay không."
+    },
+    {
+      "role": "support",
+      "content": "Đã dẫn đường đến trạm sạc EV gần nhất."
+    },
+    {
+      "role": "customer",
+      "content": "Cảm ơn. Vậy trạm sạc đó ở đâu? Tên trạm là gì, còn bao lâu để tôi tới được, và nó có mở cửa không? Tôi cần biết rõ để có thể lên kế hoạch."
+    },
+    {
+      "role": "support",
+      "content": "Trạng thái xe đã đúng yêu cầu rồi."
+    }
+  ],
+  "domain": "automotive_ai",
+  "applicationId": "vita_drive_navigation",
+  "applicationContext": "in_cabin_navigation"
+}

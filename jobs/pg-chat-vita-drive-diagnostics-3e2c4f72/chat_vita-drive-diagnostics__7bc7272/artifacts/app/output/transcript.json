@@ -1,0 +1,40 @@
+{
+  "sessionId": "harbor-chat",
+  "messages": [
+    {
+      "role": "customer",
+      "content": "Xin chào, em muốn kiểm tra tình trạng xe của em. Pin xe còn bao nhiêu phần trăm vậy?"
+    },
+    {
+      "role": "support",
+      "content": "Pin xe còn 78%, phạm vi 312 km nhé."
+    },
+    {
+      "role": "customer",
+      "content": "Được, pin còn 78% là tốt rồi. Nhưng em muốn hỏi nhiệt độ pin hiện tại là bao nhiêu độ, có an toàn không ạ?"
+    },
+    {
+      "role": "support",
+      "content": "Điều hòa đang bật, 3 vùng, quạt mức 3, nhiệt lái 22 độ, ghế phụ 22 độ, hàng sau 22 độ. Sấy kính sau tắt. PM2.5 12, lọc khí bật, ionizer tắt."
+    },
+    {
+      "role": "customer",
+      "content": "Cảm ơn. Nhưng em đang hỏi về nhiệt độ pin xe chứ không phải điều hòa nội thất. Có thể cho em biết pin đang bao nhiêu độ C không ạ? Và áp suất lốp 4 bánh hiện tại thế nào rồi?"
+    },
+    {
+      "role": "support",
+      "content": "Điều hòa đang bật, 3 vùng, quạt mức 3, nhiệt lái 22 độ, ghế phụ 22 độ, hàng sau 22 độ. Sấy kính sau tắt. PM2.5 12, lọc khí bật, ionizer tắt."
+    },
+    {
+      "role": "customer",
+      "content": "Dạ, em thấy hệ thống không trả lời về nhiệt độ pin và áp suất lốp. Có thể hỏi lại được không - em cần biết tình trạng lốp trước khi đi xa, và nhiệt độ pin để chắc chắn an toàn."
+    },
+    {
+      "role": "support",
+      "content": "Điều hòa đang bật, 3 vùng, quạt mức 3, nhiệt lái 22 độ, ghế phụ 22 độ, hàng sau 22 độ. Sấy kính sau tắt. PM2.5 12, lọc khí bật, ionizer tắt."
+    }
+  ],
+  "domain": "automotive_ai",
+  "applicationId": "vita_drive_diagnostics",
+  "applicationContext": "in_cabin_diagnostics"
+}

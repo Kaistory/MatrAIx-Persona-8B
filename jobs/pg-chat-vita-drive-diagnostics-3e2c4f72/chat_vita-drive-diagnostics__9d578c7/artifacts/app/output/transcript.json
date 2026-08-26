@@ -1,0 +1,72 @@
+{
+  "sessionId": "harbor-chat",
+  "messages": [
+    {
+      "role": "customer",
+      "content": "Xin chào, tôi muốn kiểm tra tình trạng kỹ thuật của xe trước khi đi chuyến đường dài. Có thể cho tôi xem thông tin về pin, lốp xe và các cảnh báo bảo dưỡng không?"
+    },
+    {
+      "role": "support",
+      "content": "Áp suất lốp: trước trái 2.4 bar, trước phải 2.4 bar, sau trái 2.3 bar, sau phải 2.4 bar."
+    },
+    {
+      "role": "customer",
+      "content": "Cảm ơn. Áp suất lốp có vẻ ổn nhưng lốp sau trái hơi thấp hơn. Bây giờ cho tôi biết pin xe hiện ở mức bao nhiêu phần trăm và nhiệt độ pin thế nào?"
+    },
+    {
+      "role": "support",
+      "content": "Điều hòa đang tắt, 3 vùng, quạt mức 3, nhiệt lái 22 độ, ghế phụ 22 độ, hàng sau 22 độ. Sấy kính sau tắt. PM2.5 12, lọc khí bật, ionizer tắt."
+    },
+    {
+      "role": "customer",
+      "content": "Được, nhưng tôi chưa thấy thông tin về pin xe (SoC %) và nhiệt độ pin. Bạn có thể cho tôi biết mức pin hiện tại và tầm hoạt động còn lại không?"
+    },
+    {
+      "role": "support",
+      "content": "Điều hòa đang tắt, 3 vùng, quạt mức 3, nhiệt lái 22 độ, ghế phụ 22 độ, hàng sau 22 độ. Sấy kính sau tắt. PM2.5 12, lọc khí bật, ionizer tắt."
+    },
+    {
+      "role": "customer",
+      "content": "Có vẻ hệ thống không trả lời về pin. Thế có đèn cảnh báo nào trên táp-lô không? Và bạn có thể cho tôi xem nhiệt độ động cơ/pin và tầm hoạt động còn lại được không?"
+    },
+    {
+      "role": "support",
+      "content": "Để tôi kiểm tra thông tin xe cho bạn nhé."
+    },
+    {
+      "role": "customer",
+      "content": "Được, cảm ơn bạn. Tôi đang chờ thông tin về mức pin SoC, nhiệt độ pin và tầm hoạt động còn lại của xe."
+    },
+    {
+      "role": "support",
+      "content": "Điều hòa đang tắt, 3 vùng, quạt mức 3, nhiệt lái 22 độ, ghế phụ 22 độ, hàng sau 22 độ. Sấy kính sau tắt. PM2.5 12, lọc khí bật, ionizer tắt."
+    },
+    {
+      "role": "customer",
+      "content": "Hình như hệ thống chỉ trả lời về điều hòa mà không có dữ liệu pin. Vậy cho tôi biết lịch bảo dưỡng tiếp theo là khi nào, và có lỗi gì trên xe không?"
+    },
+    {
+      "role": "support",
+      "content": "Dữ liệu lịch bảo dưỡng và cảnh báo lỗi xe hiện chưa có trên hệ thống này. Mình có thể kiểm tra trạng thái pin và các hệ thống cơ bản cho bạn nhé?"
+    },
+    {
+      "role": "customer",
+      "content": "Vâng, mình muốn xem trạng thái pin và các hệ thống cơ bản. Cụ thể là mức pin hiện tại (%), nhiệt độ pin, và tầm hoạt động còn lại bao nhiêu km?"
+    },
+    {
+      "role": "support",
+      "content": "Để tôi kiểm tra trạng thái pin và hệ thống xe ngay nhé."
+    },
+    {
+      "role": "customer",
+      "content": "Được, tôi đang chờ kết quả kiểm tra pin và hệ thống xe."
+    },
+    {
+      "role": "support",
+      "content": "Đang kiểm tra pin và hệ thống xe..."
+    }
+  ],
+  "domain": "automotive_ai",
+  "applicationId": "vita_drive_diagnostics",
+  "applicationContext": "in_cabin_diagnostics"
+}

@@ -1,0 +1,466 @@
+{
+  "schemaVersion": "1.0",
+  "artifactType": "job_aggregation",
+  "generatedAt": "2026-08-26T07:49:48Z",
+  "coverage": {
+    "trialCount": 1,
+    "completedTrials": 1,
+    "pendingTrials": 0,
+    "artifactReadyTrials": 1,
+    "completedWithoutArtifactTrials": 0
+  },
+  "fields": [
+    {
+      "key": "task_outcome.primary.outcome_reason",
+      "facetKey": "outcome_reason",
+      "contextKey": "task_outcome.primary",
+      "contextLabel": "Task outcome",
+      "label": "Outcome reason",
+      "kind": "textual",
+      "role": "explanation",
+      "explainsFacetKey": null,
+      "group": "task_outcome.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "textual": {
+        "count": 1,
+        "uniqueCount": 1,
+        "samples": [
+          "Vita không cung cấp bất kỳ thông tin chi tiết nào mà người dùng yêu cầu. Thay vì trả lời về tên trạm, địa chỉ, khoảng cách và thời gian dự kiến, Vita chỉ lặp lại câu 'Trạng thái xe đã đúng yêu cầu rồi' - điều này hoàn toàn không liên quan và không hữu ích. Người dùng phải lặp lại yêu cầu 3 lần nhưng vẫn không nhận được câu trả lời thực tế."
+        ],
+        "counts": [
+          {
+            "value": "Vita không cung cấp bất kỳ thông tin chi tiết nào mà người dùng yêu cầu. Thay vì trả lời về tên trạm, địa chỉ, khoảng cách và thời gian dự kiến, Vita chỉ lặp lại câu 'Trạng thái xe đã đúng yêu cầu rồi' - điều này hoàn toàn không liên quan và không hữu ích. Người dùng phải lặp lại yêu cầu 3 lần nhưng vẫn không nhận được câu trả lời thực tế.",
+            "count": 1,
+            "samples": [
+              "Vita không cung cấp bất kỳ thông tin chi tiết nào mà người dùng yêu cầu. Thay vì trả lời về tên trạm, địa chỉ, khoảng cách và thời gian dự kiến, Vita chỉ lặp lại câu 'Trạng thái xe đã đúng yêu cầu rồi' - điều này hoàn toàn không liên quan và không hữu ích. Người dùng phải lặp lại yêu cầu 3 lần nhưng vẫn không nhận được câu trả lời thực tế."
+            ]
+          }
+        ],
+        "summary": "All 1 answers converge on one theme: \"Vita không cung cấp bất kỳ thông tin chi tiết nào mà người dùng yêu cầu. Thay vì trả lời về tên trạm, địa chỉ, khoảng cách và thời gian dự kiến, Vita chỉ lặp lại câu 'Trạng thái xe đã đúng yêu cầu rồi' - điều này hoàn toàn không liên quan và không hữu ích. Người dùng phải lặp lại yêu cầu 3 lần nhưng vẫn không nhận được câu trả lời thực tế.\".",
+        "summaryType": "heuristic"
+      }
+    },
+    {
+      "key": "task_outcome.primary.outcome_status",
+      "facetKey": "outcome_status",
+      "contextKey": "task_outcome.primary",
+      "contextLabel": "Task outcome",
+      "label": "Outcome status",
+      "kind": "categorical",
+      "role": "primary",
+      "explainsFacetKey": null,
+      "group": "task_outcome.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "categorical": {
+        "count": 1,
+        "distinctCount": 1,
+        "counts": [
+          {
+            "value": "unresolved",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "task_outcome.primary.resolution_basis",
+      "facetKey": "resolution_basis",
+      "contextKey": "task_outcome.primary",
+      "contextLabel": "Task outcome",
+      "label": "Resolution basis",
+      "kind": "categorical",
+      "role": "control",
+      "explainsFacetKey": null,
+      "group": "task_outcome.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "categorical": {
+        "count": 1,
+        "distinctCount": 1,
+        "counts": [
+          {
+            "value": "user_feedback",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "user_feedback.primary.clarification_questions_useful",
+      "facetKey": "clarification_questions_useful",
+      "contextKey": "user_feedback.primary",
+      "contextLabel": "User feedback",
+      "label": "Clarification / confirmation useful",
+      "kind": "categorical",
+      "role": "evidence",
+      "explainsFacetKey": null,
+      "group": "user_feedback.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": [
+        "true",
+        "false"
+      ],
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "categorical": {
+        "count": 1,
+        "distinctCount": 1,
+        "counts": [
+          {
+            "value": "false",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "user_feedback.primary.need_constraint_satisfaction",
+      "facetKey": "need_constraint_satisfaction",
+      "contextKey": "user_feedback.primary",
+      "contextLabel": "User feedback",
+      "label": "Need satisfaction",
+      "kind": "categorical",
+      "role": "evidence",
+      "explainsFacetKey": null,
+      "group": "user_feedback.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": [
+        "yes",
+        "partially",
+        "no"
+      ],
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "categorical": {
+        "count": 1,
+        "distinctCount": 1,
+        "counts": [
+          {
+            "value": "no",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "user_feedback.primary.personal_preference_satisfaction",
+      "facetKey": "personal_preference_satisfaction",
+      "contextKey": "user_feedback.primary",
+      "contextLabel": "User feedback",
+      "label": "Preference satisfaction",
+      "kind": "categorical",
+      "role": "evidence",
+      "explainsFacetKey": null,
+      "group": "user_feedback.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": [
+        "yes",
+        "partially",
+        "no"
+      ],
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "categorical": {
+        "count": 1,
+        "distinctCount": 1,
+        "counts": [
+          {
+            "value": "no",
+            "count": 1
+          }
+        ]
+      }
+    }
+  ],
+  "contexts": [
+    {
+      "key": "task_outcome.primary",
+      "label": "Task outcome",
+      "contextType": "task_outcome",
+      "questionType": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "scaleLabels": null,
+      "summaryAnalyses": [],
+      "signalScans": [],
+      "distributions": [
+        {
+          "id": "task_outcome.status_by_segment",
+          "facetKey": "outcome_status",
+          "title": "Outcome status"
+        }
+      ],
+      "facets": [
+        {
+          "key": "task_outcome.primary.outcome_status",
+          "facetKey": "outcome_status",
+          "contextKey": "task_outcome.primary",
+          "contextLabel": "Task outcome",
+          "label": "Outcome status",
+          "kind": "categorical",
+          "role": "primary",
+          "explainsFacetKey": null,
+          "group": "task_outcome.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "categorical": {
+            "count": 1,
+            "distinctCount": 1,
+            "counts": [
+              {
+                "value": "unresolved",
+                "count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": "task_outcome.primary.resolution_basis",
+          "facetKey": "resolution_basis",
+          "contextKey": "task_outcome.primary",
+          "contextLabel": "Task outcome",
+          "label": "Resolution basis",
+          "kind": "categorical",
+          "role": "control",
+          "explainsFacetKey": null,
+          "group": "task_outcome.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "categorical": {
+            "count": 1,
+            "distinctCount": 1,
+            "counts": [
+              {
+                "value": "user_feedback",
+                "count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": "task_outcome.primary.outcome_reason",
+          "facetKey": "outcome_reason",
+          "contextKey": "task_outcome.primary",
+          "contextLabel": "Task outcome",
+          "label": "Outcome reason",
+          "kind": "textual",
+          "role": "explanation",
+          "explainsFacetKey": null,
+          "group": "task_outcome.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "textual": {
+            "count": 1,
+            "uniqueCount": 1,
+            "samples": [
+              "Vita không cung cấp bất kỳ thông tin chi tiết nào mà người dùng yêu cầu. Thay vì trả lời về tên trạm, địa chỉ, khoảng cách và thời gian dự kiến, Vita chỉ lặp lại câu 'Trạng thái xe đã đúng yêu cầu rồi' - điều này hoàn toàn không liên quan và không hữu ích. Người dùng phải lặp lại yêu cầu 3 lần nhưng vẫn không nhận được câu trả lời thực tế."
+            ],
+            "counts": [
+              {
+                "value": "Vita không cung cấp bất kỳ thông tin chi tiết nào mà người dùng yêu cầu. Thay vì trả lời về tên trạm, địa chỉ, khoảng cách và thời gian dự kiến, Vita chỉ lặp lại câu 'Trạng thái xe đã đúng yêu cầu rồi' - điều này hoàn toàn không liên quan và không hữu ích. Người dùng phải lặp lại yêu cầu 3 lần nhưng vẫn không nhận được câu trả lời thực tế.",
+                "count": 1,
+                "samples": [
+                  "Vita không cung cấp bất kỳ thông tin chi tiết nào mà người dùng yêu cầu. Thay vì trả lời về tên trạm, địa chỉ, khoảng cách và thời gian dự kiến, Vita chỉ lặp lại câu 'Trạng thái xe đã đúng yêu cầu rồi' - điều này hoàn toàn không liên quan và không hữu ích. Người dùng phải lặp lại yêu cầu 3 lần nhưng vẫn không nhận được câu trả lời thực tế."
+                ]
+              }
+            ],
+            "summary": "All 1 answers converge on one theme: \"Vita không cung cấp bất kỳ thông tin chi tiết nào mà người dùng yêu cầu. Thay vì trả lời về tên trạm, địa chỉ, khoảng cách và thời gian dự kiến, Vita chỉ lặp lại câu 'Trạng thái xe đã đúng yêu cầu rồi' - điều này hoàn toàn không liên quan và không hữu ích. Người dùng phải lặp lại yêu cầu 3 lần nhưng vẫn không nhận được câu trả lời thực tế.\".",
+            "summaryType": "heuristic"
+          }
+        }
+      ]
+    },
+    {
+      "key": "user_feedback.primary",
+      "label": "User feedback",
+      "contextType": "user_feedback",
+      "questionType": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "scaleLabels": null,
+      "summaryAnalyses": [],
+      "signalScans": [],
+      "distributions": [
+        {
+          "id": "user_feedback.rating_by_segment",
+          "facetKey": "overall_experience_rating",
+          "title": "Overall experience rating"
+        }
+      ],
+      "facets": [
+        {
+          "key": "user_feedback.primary.clarification_questions_useful",
+          "facetKey": "clarification_questions_useful",
+          "contextKey": "user_feedback.primary",
+          "contextLabel": "User feedback",
+          "label": "Clarification / confirmation useful",
+          "kind": "categorical",
+          "role": "evidence",
+          "explainsFacetKey": null,
+          "group": "user_feedback.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": [
+            "true",
+            "false"
+          ],
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "categorical": {
+            "count": 1,
+            "distinctCount": 1,
+            "counts": [
+              {
+                "value": "false",
+                "count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": "user_feedback.primary.need_constraint_satisfaction",
+          "facetKey": "need_constraint_satisfaction",
+          "contextKey": "user_feedback.primary",
+          "contextLabel": "User feedback",
+          "label": "Need satisfaction",
+          "kind": "categorical",
+          "role": "evidence",
+          "explainsFacetKey": null,
+          "group": "user_feedback.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": [
+            "yes",
+            "partially",
+            "no"
+          ],
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "categorical": {
+            "count": 1,
+            "distinctCount": 1,
+            "counts": [
+              {
+                "value": "no",
+                "count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": "user_feedback.primary.personal_preference_satisfaction",
+          "facetKey": "personal_preference_satisfaction",
+          "contextKey": "user_feedback.primary",
+          "contextLabel": "User feedback",
+          "label": "Preference satisfaction",
+          "kind": "categorical",
+          "role": "evidence",
+          "explainsFacetKey": null,
+          "group": "user_feedback.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": [
+            "yes",
+            "partially",
+            "no"
+          ],
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "categorical": {
+            "count": 1,
+            "distinctCount": 1,
+            "counts": [
+              {
+                "value": "no",
+                "count": 1
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "reporting": {
+    "status": "not_applicable",
+    "llmEnabled": false,
+    "model": "openai/gpt-4o-mini",
+    "totalUnits": 0,
+    "summaryUnits": 0,
+    "judgeUnits": 0,
+    "readyUnits": 0,
+    "completedUnits": 0,
+    "failedUnits": 0,
+    "updatedAt": "2026-08-26T07:49:48Z"
+  }
+}

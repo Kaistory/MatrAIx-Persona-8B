@@ -1,0 +1,32 @@
+{
+  "sessionId": "harbor-chat",
+  "messages": [
+    {
+      "role": "customer",
+      "content": "Xin chào Vita. Tôi đang trên đường và cần tìm trạm sạc xe điện gần nhất. Bạn có thể giúp tôi không?"
+    },
+    {
+      "role": "support",
+      "content": "Đã dẫn đường đến trạm sạc xe điện gần nhất."
+    },
+    {
+      "role": "customer",
+      "content": "Được rồi. Nhưng tôi muốn biết trạm đó ở đâu, cách đây bao xa, và còn bao lâu nữa mới đến? Bạn có thể cho tôi thông tin chi tiết không?"
+    },
+    {
+      "role": "support",
+      "content": "Trạng thái xe đã đúng yêu cầu rồi."
+    },
+    {
+      "role": "customer",
+      "content": "Vita ơi, tôi không hiểu lắm. Tôi cần biết tên trạm sạc, địa chỉ cụ thể, và thời gian đến dự kiến là bao nhiêu. Bạn có thể nói rõ hơn được không?"
+    },
+    {
+      "role": "support",
+      "content": "Trạng thái xe đã đúng yêu cầu rồi."
+    }
+  ],
+  "domain": "automotive_ai",
+  "applicationId": "vita_drive_navigation",
+  "applicationContext": "in_cabin_navigation"
+}

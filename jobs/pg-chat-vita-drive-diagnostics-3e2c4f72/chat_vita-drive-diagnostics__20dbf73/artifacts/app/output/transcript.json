@@ -1,0 +1,48 @@
+{
+  "sessionId": "harbor-chat",
+  "messages": [
+    {
+      "role": "customer",
+      "content": "Xin chào, tôi muốn kiểm tra trạng thái kỹ thuật của xe trước khi đi chuyến đường dài. Có thể cho tôi xem thông tin pin và lốp không?"
+    },
+    {
+      "role": "support",
+      "content": "Xe hiện tại pin 78%, phạm vi 312 km, lốp trước 2.4/2.4 bar, sau 2.3/2.4 bar, mọi thông số kỹ thuật ổn định."
+    },
+    {
+      "role": "customer",
+      "content": "78% pin và 312 km tầm hoạt động là được. Nhưng tôi thấy lốp sau bên phải 2.3 bar thấp hơn một chút — có cần điều chỉnh không? Còn nhiệt độ pin hiện tại bao nhiêu độ?"
+    },
+    {
+      "role": "support",
+      "content": "Điều hòa đang bật, 3 vùng, quạt mức 3, nhiệt lái 22 độ, ghế phụ 22 độ, hàng sau 22 độ. Sấy kính sau tắt. PM2.5 12, lọc khí bật, ionizer tắt."
+    },
+    {
+      "role": "customer",
+      "content": "Được rồi, nhưng bạn chưa trả lời về nhiệt độ pin của tôi. Còn có cảnh báo bảo dưỡng nào không? Và lốp sau bên phải 2.3 bar đó có ảnh hưởng gì không hay chỉ cần chú ý thôi?"
+    },
+    {
+      "role": "support",
+      "content": "Điều hòa đang bật, 3 vùng, quạt mức 3, nhiệt lái 22 độ, ghế phụ 22 độ, hàng sau 22 độ. Sấy kính sau tắt. PM2.5 12, lọc khí bật, ionizer tắt."
+    },
+    {
+      "role": "customer",
+      "content": "Hệ thống không trả lời về nhiệt độ pin và cảnh báo bảo dưỡng. Tôi cần xem rõ thông tin pin — nhiệt độ pack pin hiện tại là bao nhiêu độ C? Và có lịch bảo dưỡng sắp tới không?"
+    },
+    {
+      "role": "support",
+      "content": "Đã dẫn đường đến không."
+    },
+    {
+      "role": "customer",
+      "content": "Được, tôi hiểu. Vậy tóm lại: pin 78%, tầm 312 km, lốp ổn định (chỉ lốp sau phải 2.3 bar thấp một chút), và hệ thống không có cảnh báo gì đặc biệt. Tôi sẽ theo dõi lốp sau đó trên đường đi. Cảm ơn thông tin!"
+    },
+    {
+      "role": "support",
+      "content": "Pha/cốt đang tắt, đèn đọc tắt, ambient tắt."
+    }
+  ],
+  "domain": "automotive_ai",
+  "applicationId": "vita_drive_diagnostics",
+  "applicationContext": "in_cabin_diagnostics"
+}
