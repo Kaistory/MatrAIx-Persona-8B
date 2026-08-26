@@ -1,0 +1,146 @@
+{
+    "id": "d9f223d5-b5b1-44bb-895a-d27591c22986",
+    "task_name": "application/web-example-domain",
+    "trial_name": "web_example-domain__7JXNHdF",
+    "trial_uri": "file:///home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/jobs/pg-web-example-domain-d317ed2a/web_example-domain__7JXNHdF",
+    "task_id": {
+        "path": "application/tasks/web_example-domain"
+    },
+    "source": null,
+    "task_checksum": "f13d2a416d3eec72f047b13cb6b9a2fb26b4423a16d8a1036ba5c2d25611b987",
+    "config": {
+        "task": {
+            "path": "application/tasks/web_example-domain",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": null
+        },
+        "trial_name": "web_example-domain__7JXNHdF",
+        "trials_dir": "jobs/pg-web-example-domain-d317ed2a",
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "persona-browser-use",
+            "import_path": null,
+            "model_name": "openai/gpt-4o-mini",
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {
+                "persona_path": "persona/datasets/generated-persona-dev-1/persona_0042.yaml",
+                "model_info": {
+                    "max_input_tokens": 128000,
+                    "max_output_tokens": 16384
+                }
+            },
+            "env": {},
+            "mcp_servers": []
+        },
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "env": {},
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "env": {},
+            "disable": false
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "job_id": "88db93a3-bfbd-43c6-a7d1-8463ab1e6657"
+    },
+    "agent_info": {
+        "name": "persona-browser-use",
+        "version": "0.13.8",
+        "model_info": {
+            "name": "gpt-4o-mini",
+            "provider": "openai"
+        }
+    },
+    "agent_result": {
+        "n_input_tokens": 312419,
+        "n_cache_tokens": null,
+        "n_output_tokens": 1572,
+        "cost_usd": 0.0,
+        "rollout_details": null,
+        "metadata": {
+            "browser_use": {
+                "final_result": "The assessment of the site has been completed successfully, with all required data saved in JSON format.\n\nAttachments:\n\n/app/output/example_choice.json:\n{\"decision_subject_id\": \"example-domain\", \"decision_subject_label\": \"Example Domain\", \"decision_outcome\": \"selected\", \"basis_primary\": \"quality\", \"basis_secondary\": null, \"exploration_style\": \"quick_pick\", \"reason\": \"This resource provides a clear example domain for documentation purposes.\", \"task_site_url\": \"https://example.com/\", \"task_more_info_url\": \"https://www.iana.org/domains/example\"}\n",
+                "is_done": true,
+                "is_successful": true,
+                "urls": [
+                    "about:blank",
+                    "about:blank",
+                    "about:blank",
+                    "https://example.com/",
+                    "https://example.com/",
+                    "https://example.com/"
+                ],
+                "action_names": [
+                    "wait",
+                    "wait",
+                    "navigate",
+                    "save_as_pdf",
+                    "write_file",
+                    "write_file",
+                    "done"
+                ],
+                "promoted_outputs": [
+                    "/app/output/screenshot.png.pdf",
+                    "/app/output/example_choice.json",
+                    "/app/output/todo.md",
+                    "/app/output/final_answer.txt"
+                ]
+            }
+        }
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 1.0
+        }
+    },
+    "exception_info": null,
+    "started_at": "2026-08-26T22:40:06.448467Z",
+    "finished_at": "2026-08-26T22:42:54.785491Z",
+    "environment_setup": {
+        "started_at": "2026-08-26T22:40:06.452432Z",
+        "finished_at": "2026-08-26T22:40:08.705293Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-08-26T22:40:08.705377Z",
+        "finished_at": "2026-08-26T22:41:48.508947Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-08-26T22:41:48.509042Z",
+        "finished_at": "2026-08-26T22:42:39.152500Z"
+    },
+    "verifier": {
+        "started_at": "2026-08-26T22:42:39.559054Z",
+        "finished_at": "2026-08-26T22:42:43.793848Z"
+    },
+    "step_results": null
+}

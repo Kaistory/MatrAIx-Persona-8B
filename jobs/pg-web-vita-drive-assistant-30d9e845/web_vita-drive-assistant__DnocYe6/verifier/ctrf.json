@@ -1,0 +1,41 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 2,
+            "passed": 1,
+            "failed": 1,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1787767627.790038,
+            "stop": 1787767627.8788443
+        },
+        "tests": [
+            {
+                "name": "test_state.py::test_output_exists",
+                "status": "passed",
+                "duration": 0.001008993000141345,
+                "start": 1787767627.8203907,
+                "stop": 1787767627.821866,
+                "retries": 0,
+                "file_path": "test_state.py"
+            },
+            {
+                "name": "test_state.py::test_output_schema",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.03382104599995728,
+                "start": 1787767627.8222861,
+                "stop": 1787767627.8784668,
+                "retries": 0,
+                "file_path": "test_state.py",
+                "trace": "def test_output_schema():\n        data = _load()\n        feedback = _load_user_feedback()\n        subject_id = data.get(\"decision_subject_id\")\n        assert isinstance(subject_id, str) and subject_id.strip(), \"decision_subject_id must be non-empty\"\n        subject_label = data.get(\"decision_subject_label\")\n        assert isinstance(subject_label, str) and subject_label.strip(), \"decision_subject_label must be non-empty\"\n        outcome = data.get(\"decision_outcome\")\n>       assert outcome in DECISION_OUTCOMES, \"decision_outcome must use a supported bucket\"\nE       AssertionError: decision_outcome must use a supported bucket\nE       assert 'not_accessed' in {'considered', 'deferred', 'rejected', 'selected', 'skipped'}\n\n/tests/test_state.py:268: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            }
+        ]
+    }
+}

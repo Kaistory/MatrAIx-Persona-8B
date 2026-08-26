@@ -1,0 +1,41 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 2,
+            "passed": 1,
+            "failed": 1,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1787785976.9450955,
+            "stop": 1787785976.9867315
+        },
+        "tests": [
+            {
+                "name": "test_state.py::test_output_exists",
+                "status": "passed",
+                "duration": 0.0006408460000102423,
+                "start": 1787785976.9684758,
+                "stop": 1787785976.969411,
+                "retries": 0,
+                "file_path": "test_state.py"
+            },
+            {
+                "name": "test_state.py::test_output_schema",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.000991601000009723,
+                "start": 1787785976.9696724,
+                "stop": 1787785976.9863553,
+                "retries": 0,
+                "file_path": "test_state.py",
+                "trace": "def test_output_schema():\n        data = _load()\n        feedback = _load_user_feedback()\n        subject_id = data.get(\"decision_subject_id\")\n        assert isinstance(subject_id, str) and subject_id.strip(), \"decision_subject_id must be non-empty\"\n        subject_label = data.get(\"decision_subject_label\")\n        assert isinstance(subject_label, str) and subject_label.strip(), \"decision_subject_label must be non-empty\"\n        outcome = data.get(\"decision_outcome\")\n>       assert outcome in DECISION_OUTCOMES, \"decision_outcome must use a supported bucket\"\nE       AssertionError: decision_outcome must use a supported bucket\nE       assert 'not_accessed' in {'considered', 'deferred', 'rejected', 'selected', 'skipped'}\n\n/tests/test_state.py:268: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            }
+        ]
+    }
+}

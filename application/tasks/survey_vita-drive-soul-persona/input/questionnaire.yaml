@@ -1,0 +1,95 @@
+schemaVersion: "1.0"
+id: vita_drive_soul_persona_v1
+title: "Khảo sát Phong cách Biểu đạt Giọng nói & Cá tính Trợ lý Vita Soul"
+description: "Đo lường mức độ yêu thích, tính phù hợp theo bối cảnh và sự tiếp nhận đối với 6 phong cách biểu đạt Vita Soul của Trợ lý xe thông minh."
+questions:
+  - id: q0
+    prompt: "Khi lái xe hàng ngày, bạn mong muốn trợ lý giọng nói có phong cách giao tiếp như thế nào nhất?"
+    type: single_choice
+    construct: default_voice_persona_preference
+    required: true
+    options:
+      - id: "normal"
+        label: "Chuẩn mực & Chuyên nghiệp (Normal)"
+      - id: "sweet"
+        label: "Ngọt ngào & Ân cần (Sweet)"
+      - id: "cheeky"
+        label: "Hóm hỉnh & Tinh nghịch (Cheeky)"
+      - id: "bright"
+        label: "Tươi sáng & Trẻ trung (Tươi sáng)"
+      - id: "rustic"
+        label: "Mộc mạc & Gần gũi (Mộc mạc)"
+      - id: "calm"
+        label: "Điềm tĩnh & Thư thái (Điềm tĩnh)"
+
+  - id: q1
+    prompt: "Mức độ yêu thích của bạn đối với phong cách giọng điệu ngọt ngào, ân cần (Sweet) khi ngồi trên xe:"
+    type: likert
+    construct: sweet_profile_rating
+    required: true
+    minValue: 1
+    maxValue: 5
+
+  - id: q2
+    prompt: "Mức độ yêu thích của bạn đối với phong cách giọng điệu hóm hỉnh, pha chút hài hước (Cheeky) khi lái xe:"
+    type: likert
+    construct: cheeky_profile_rating
+    required: true
+    minValue: 1
+    maxValue: 5
+
+  - id: q3
+    prompt: "Mức độ yêu thích của bạn đối với phong cách giọng điệu điềm tĩnh, nhẹ nhàng (Điềm tĩnh) khi di chuyển vào ban đêm hoặc khi kẹt xe:"
+    type: likert
+    construct: calm_profile_rating
+    required: true
+    minValue: 1
+    maxValue: 5
+
+  - id: q4
+    prompt: "Khi có người lớn tuổi hoặc đối tác kinh doanh ngồi cùng trên xe, bạn sẽ ưu tiên chọn phong cách giọng nói nào cho trợ lý?"
+    type: single_choice
+    construct: passenger_present_persona_choice
+    required: true
+    options:
+      - id: "normal"
+        label: "Normal - Chuẩn mực, lịch sự tối đa"
+      - id: "calm"
+        label: "Điềm tĩnh - Trang nhã, nhẹ nhàng"
+      - id: "rustic"
+        label: "Mộc mạc - Ấm cúng, tự nhiên"
+      - id: "sweet"
+        label: "Sweet - Nhẹ nhàng, ân cần"
+      - id: "mute"
+        label: "Tắt tiếng trợ lý, chỉ hiển thị chữ"
+
+  - id: q5
+    prompt: "Khả năng tự động thay đổi giọng điệu theo thời gian trong ngày (sáng tươi vui, tối điềm tĩnh thư giãn) có quan trọng với bạn không?"
+    type: likert
+    construct: dynamic_soul_adaptation_importance
+    required: true
+    minValue: 1
+    maxValue: 5
+
+  - id: q6
+    prompt: "Bạn đánh giá như thế nào về việc trợ lý AI ghi nhớ cách xưng hô và sở thích cá nhân của từng tài xế (Context Memory)?"
+    type: single_choice
+    construct: memory_and_personalization_attitude
+    required: true
+    options:
+      - id: "essential"
+        label: "Rất cần thiết, tạo cảm giác được quan tâm cá nhân hóa"
+      - id: "nice_to_have"
+        label: "Thú vị nhưng không bắt buộc"
+      - id: "neutral"
+        label: "Bình thường / Không quan trọng"
+      - id: "dislike"
+        label: "Không thích AI ghi nhớ quá nhiều thói quen cá nhân"
+
+  - id: q7
+    prompt: "Mức độ sẵn sàng chi trả thêm một khoản phí nhỏ hàng tháng để sở hữu gói giọng nói AI độc quyền và các phong cách Soul nâng cao:"
+    type: likert
+    construct: premium_voice_willingness_to_pay
+    required: true
+    minValue: 1
+    maxValue: 5

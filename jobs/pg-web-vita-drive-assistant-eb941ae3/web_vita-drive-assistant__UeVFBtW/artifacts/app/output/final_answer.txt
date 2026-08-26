@@ -1,0 +1,7 @@
+It seems that I cannot directly access the web interface for the Vita Drive Assistant Dashboard. However, you can follow these instructions to access it:
+
+1. Open a web browser.
+2. Navigate to `http://localhost:8000/`.
+3. If prompted for a password, enter `dev` and click the "Đăng nhập" button to enter the dashboard.
+
+Once you are in the dashboard, you can explore its various features. After that, please share your experiences, and I will help you document your assessment using the provided JSON format.

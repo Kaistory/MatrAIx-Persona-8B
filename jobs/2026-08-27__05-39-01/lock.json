@@ -1,0 +1,65 @@
+{
+    "schema_version": 1,
+    "created_at": "2026-08-26T22:39:01.785523Z",
+    "harbor": {
+        "version": "0.1.0",
+        "is_editable": false
+    },
+    "invocation": [
+        "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/.venv/bin/matraix",
+        "run",
+        "-a",
+        "oracle",
+        "-p",
+        "application/tasks/web_example-domain"
+    ],
+    "n_concurrent_trials": 4,
+    "retry": {
+        "max_retries": 0,
+        "exclude_exceptions": [
+            "RewardFileNotFoundError",
+            "VerifierTimeoutError",
+            "RewardFileEmptyError",
+            "VerifierOutputParseError",
+            "AgentTimeoutError"
+        ],
+        "wait_multiplier": 1.0,
+        "min_wait_sec": 1.0,
+        "max_wait_sec": 60.0
+    },
+    "trials": [
+        {
+            "task": {
+                "name": "web_example-domain",
+                "type": "local",
+                "digest": "sha256:f13d2a416d3eec72f047b13cb6b9a2fb26b4423a16d8a1036ba5c2d25611b987",
+                "path": "application/tasks/web_example-domain"
+            },
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "oracle",
+                "skills": [],
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "env": {},
+                "mcp_servers": []
+            },
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "env": {},
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "env": {},
+                "disable": false
+            }
+        }
+    ]
+}

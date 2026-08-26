@@ -1,0 +1,28 @@
+Traceback (most recent call last):
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/trial/trial.py", line 1106, in _setup_agent
+    await asyncio.wait_for(
+  File "/home/khaidq9/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/agents/matraix/agents/persona/computer_1.py", line 249, in setup
+    await self._get_delegate(environment).setup(environment)
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/agents/computer_1/computer_1.py", line 826, in setup
+    await self._session.start()
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/agents/computer_1/runtime.py", line 521, in start
+    await self._wait_for_chromium_window()
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/agents/computer_1/runtime.py", line 695, in _wait_for_chromium_window
+    raise TimeoutError(
+TimeoutError: Chromium did not become ready within 120s.
+--- chromium.log tail ---
+nohup: failed to run command '/usr/bin/chromium': No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/trial/trial.py", line 322, in run
+    await self._prepare()
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/trial/trial.py", line 354, in _prepare
+    await self._setup_agent()
+  File "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/trial/trial.py", line 1111, in _setup_agent
+    raise AgentSetupTimeoutError(
+harbor.trial.errors.AgentSetupTimeoutError: Agent setup timed out after 360.0 seconds

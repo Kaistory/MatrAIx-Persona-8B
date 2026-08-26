@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "1.0",
+  "sources": [],
+  "dimensionFilters": {
+    "intent": [
+      "Get task done",
+      "Quick question",
+      "Vent / support"
+    ],
+    "age_bracket": [
+      "25-34",
+      "35-44",
+      "45-54"
+    ]
+  },
+  "sampling": {
+    "mode": "random",
+    "sampleSize": 4
+  }
+}

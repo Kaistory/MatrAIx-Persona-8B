@@ -23,14 +23,14 @@ with sync_playwright() as p:
     page.goto("http://172.17.0.1:5173/", wait_until="networkidle", timeout=15000)
     page.screenshot(path=str(screenshots_dir / "01_login_gate.png"), full_page=True)
     
-    # 2. Đăng nhập vào Dashboard buồng lái xe
+    # 2. Đăng nhập vào Dashboard buồng lái xe VF9
     btn = page.locator('button[type="submit"]')
     if btn.count() > 0:
         btn.click()
         page.wait_for_timeout(2000)
     page.screenshot(path=str(screenshots_dir / "02_main_dashboard.png"), full_page=True)
     
-    # 3. Mở bảng điều khiển khí hậu xe
+    # 3. Mở bảng điều khiển khí hậu xe 3 vùng
     temp_up_btn = page.locator('button:has(svg.lucide-chevron-right)').first
     if temp_up_btn.count() > 0:
         temp_up_btn.click()

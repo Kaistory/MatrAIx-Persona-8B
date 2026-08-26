@@ -1,0 +1,37 @@
+{
+    "id": "f04eee29-942c-4950-8c7a-0eeec05a3871",
+    "started_at": "2026-08-27T06:36:51.502753",
+    "updated_at": "2026-08-27T06:39:31.140053",
+    "finished_at": "2026-08-27T06:39:31.140053",
+    "n_total_trials": 1,
+    "stats": {
+        "n_completed_trials": 1,
+        "n_errored_trials": 1,
+        "n_running_trials": 0,
+        "n_pending_trials": 0,
+        "n_cancelled_trials": 0,
+        "n_retries": 0,
+        "evals": {
+            "persona-computer-1__gpt-4o-mini__adhoc": {
+                "n_trials": 0,
+                "n_errors": 1,
+                "metrics": [
+                    {
+                        "mean": 0.0
+                    }
+                ],
+                "pass_at_k": {},
+                "reward_stats": {},
+                "exception_stats": {
+                    "FileNotFoundError": [
+                        "web-cua_vita-drive-assistant__uZdZy2b"
+                    ]
+                }
+            }
+        },
+        "n_input_tokens": 9054476,
+        "n_cache_tokens": 7769344,
+        "n_output_tokens": 2060,
+        "cost_usd": 0.7767065999999999
+    }
+}

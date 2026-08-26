@@ -1,0 +1,71 @@
+{
+    "schema_version": 1,
+    "created_at": "2026-08-26T22:40:04.374501Z",
+    "harbor": {
+        "version": "0.1.0",
+        "is_editable": false
+    },
+    "invocation": [
+        "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/cli/main.py",
+        "run",
+        "--yes",
+        "-c",
+        "configs/jobs/application-task-job-recipe/pg-web-example-domain-d317ed2a.yaml"
+    ],
+    "n_concurrent_trials": 1,
+    "retry": {
+        "max_retries": 0,
+        "exclude_exceptions": [
+            "VerifierOutputParseError",
+            "AgentTimeoutError",
+            "RewardFileEmptyError",
+            "VerifierTimeoutError",
+            "RewardFileNotFoundError"
+        ],
+        "wait_multiplier": 1.0,
+        "min_wait_sec": 1.0,
+        "max_wait_sec": 60.0
+    },
+    "trials": [
+        {
+            "task": {
+                "name": "web_example-domain",
+                "type": "local",
+                "digest": "sha256:f13d2a416d3eec72f047b13cb6b9a2fb26b4423a16d8a1036ba5c2d25611b987",
+                "path": "application/tasks/web_example-domain"
+            },
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "persona-browser-use",
+                "model_name": "openai/gpt-4o-mini",
+                "skills": [],
+                "extra_allowed_hosts": [],
+                "kwargs": {
+                    "persona_path": "persona/datasets/generated-persona-dev-1/persona_0042.yaml",
+                    "model_info": {
+                        "max_input_tokens": 128000,
+                        "max_output_tokens": 16384
+                    }
+                },
+                "env": {},
+                "mcp_servers": []
+            },
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "env": {},
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "env": {},
+                "disable": false
+            }
+        }
+    ]
+}

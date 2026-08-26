@@ -137,34 +137,47 @@ class BrowserUseHarborAgent(BaseInstalledAgent):
         if not self.model_name:
             raise ValueError("No LLM model specified for browser-use")
 
+        def _is_placeholder(v: str | None) -> bool:
+            if not v:
+                return True
+            cleaned = v.strip()
+            return not cleaned or "your-key-here" in cleaned or cleaned.startswith("sk-ant-your-key") or cleaned.startswith("sk-your-key")
+
         env: dict[str, str] = {}
         for key_name in get_api_key_var_names_from_model_name(self.model_name):
             value = self._get_env(key_name)
-            if value is not None:
+            if value is not None and not _is_placeholder(value):
                 env[key_name] = value
 
-        if not any(
-            self._get_env(name)
-            for name in (
-                "ANTHROPIC_API_KEY",
-                "OPENAI_API_KEY",
-                "LLM_API_KEY",
-                "DASHSCOPE_API_KEY",
-            )
+        for name in (
+            "ANTHROPIC_API_KEY",
+            "OPENAI_API_KEY",
+            "LLM_API_KEY",
+            "DASHSCOPE_API_KEY",
+            "OPENROUTER_API_KEY",
         ):
+            val = self._get_env(name)
+            if val and not _is_placeholder(val):
+                env[name] = val
+
+        if not env:
             raise ValueError(
-                "Set ANTHROPIC_API_KEY, OPENAI_API_KEY, DASHSCOPE_API_KEY, or LLM_API_KEY for browser-use"
+                "Set ANTHROPIC_API_KEY, OPENAI_API_KEY, DASHSCOPE_API_KEY, OPENROUTER_API_KEY, or LLM_API_KEY for browser-use"
             )
 
-        llm_api_key = self._get_env("LLM_API_KEY")
+        llm_api_key = self._get_env("LLM_API_KEY") or self._get_env("OPENROUTER_API_KEY")
         if (
             llm_api_key
+            and not _is_placeholder(llm_api_key)
             and "ANTHROPIC_API_KEY" not in env
             and "OPENAI_API_KEY" not in env
             and "DASHSCOPE_API_KEY" not in env
         ):
             if self.model_name.startswith("anthropic/"):
-                env["ANTHROPIC_API_KEY"] = llm_api_key
+                if not llm_api_key.startswith("sk-or-"):
+                    env["ANTHROPIC_API_KEY"] = llm_api_key
+                else:
+                    env["OPENROUTER_API_KEY"] = llm_api_key
             elif self.model_name.startswith("dashscope/"):
                 env["DASHSCOPE_API_KEY"] = llm_api_key
             else:
@@ -178,7 +191,8 @@ class BrowserUseHarborAgent(BaseInstalledAgent):
             "ANTHROPIC_BASE_URL",
         ):
             if val := self._get_env(var_name):
-                env[var_name] = val
+                if not _is_placeholder(val):
+                    env[var_name] = val
 
         env["AGENT_LOGS_DIR"] = "/logs/agent"
         env["TRAJECTORY_PATH"] = f"/logs/agent/{self._TRAJECTORY_FILENAME}"
@@ -191,6 +205,10 @@ class BrowserUseHarborAgent(BaseInstalledAgent):
         persona_system = self._get_env("PERSONA_SYSTEM")
         if persona_system:
             env["PERSONA_SYSTEM"] = persona_system
+
+        extra_args = self._get_env("BROWSER_USE_EXTRA_ARGS")
+        if extra_args:
+            env["BROWSER_USE_EXTRA_ARGS"] = extra_args
 
         escaped_instruction = shlex.quote(instruction)
         escaped_model = shlex.quote(self.model_name)

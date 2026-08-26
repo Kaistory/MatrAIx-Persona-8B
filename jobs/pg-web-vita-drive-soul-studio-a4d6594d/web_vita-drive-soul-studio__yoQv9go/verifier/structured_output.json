@@ -1,0 +1,133 @@
+{
+  "schemaVersion": "1.0",
+  "artifactType": "matraix.trial_evaluation",
+  "taskType": "web",
+  "contexts": [
+    {
+      "key": "task_outcome.primary",
+      "label": "Task outcome",
+      "contextType": "task_outcome",
+      "facets": [
+        {
+          "key": "outcome_status",
+          "label": "Outcome status",
+          "role": "primary",
+          "kind": "categorical",
+          "value": "passed"
+        },
+        {
+          "key": "goal_completion_ratio",
+          "label": "Goal completion ratio",
+          "role": "score",
+          "kind": "numerical",
+          "value": 1.0
+        },
+        {
+          "key": "goal_completion_bucket",
+          "label": "Goal completion bucket",
+          "role": "primary",
+          "kind": "categorical",
+          "value": "complete"
+        },
+        {
+          "key": "verifier_mode",
+          "label": "Verifier mode",
+          "role": "evidence",
+          "kind": "categorical",
+          "value": "artifact_exact"
+        },
+        {
+          "key": "primary_failure_reason",
+          "label": "Primary failure reason",
+          "role": "primary",
+          "kind": "categorical",
+          "value": "none"
+        },
+        {
+          "key": "outcome_explanation",
+          "label": "Outcome explanation",
+          "role": "explanation",
+          "kind": "textual",
+          "value": "The persona explored Vita Soul Studio and saved a valid soul_studio_experience.json artifact."
+        },
+        {
+          "key": "completion_evidence",
+          "label": "Completion evidence",
+          "role": "evidence",
+          "kind": "textual",
+          "value": "Saved soul_studio_experience.json with subject Vita Soul Studio & Voice Persona."
+        }
+      ]
+    },
+    {
+      "key": "decision.primary",
+      "label": "Primary decision",
+      "contextType": "decision",
+      "facets": [
+        {
+          "key": "decision_subject_id",
+          "label": "Decision subject id",
+          "role": "primary",
+          "kind": "categorical",
+          "value": "vita_soul_studio"
+        },
+        {
+          "key": "decision_subject_label",
+          "label": "Decision subject label",
+          "role": "identifier",
+          "kind": "categorical",
+          "value": "Vita Soul Studio & Voice Persona"
+        },
+        {
+          "key": "decision_outcome",
+          "label": "Decision outcome",
+          "role": "primary",
+          "kind": "categorical",
+          "value": "selected"
+        },
+        {
+          "key": "basis_primary",
+          "label": "Primary basis",
+          "role": "primary",
+          "kind": "categorical",
+          "value": "quality"
+        },
+        {
+          "key": "exploration_style",
+          "label": "Exploration style",
+          "role": "control",
+          "kind": "categorical",
+          "value": "quick_pick"
+        },
+        {
+          "key": "reason",
+          "label": "Reason",
+          "role": "explanation",
+          "kind": "textual",
+          "value": "Giao diện dễ sử dụng và các profile giọng nói đa dạng, giúp tạo cảm giác gần gũi và thân thiện."
+        },
+        {
+          "key": "favorite_feature",
+          "label": "Favorite feature",
+          "role": "evidence",
+          "kind": "categorical",
+          "value": "profile_switching"
+        },
+        {
+          "key": "favorite_profile",
+          "label": "Favorite profile",
+          "role": "evidence",
+          "kind": "categorical",
+          "value": "sweet"
+        },
+        {
+          "key": "ease_of_use_rating",
+          "label": "Ease of use rating",
+          "role": "metric",
+          "kind": "numerical",
+          "value": 5
+        }
+      ]
+    }
+  ]
+}

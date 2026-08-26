@@ -1,0 +1,1634 @@
+{
+  "schemaVersion": "1.0",
+  "artifactType": "job_aggregation",
+  "generatedAt": "2026-08-26T22:54:57Z",
+  "coverage": {
+    "trialCount": 1,
+    "completedTrials": 1,
+    "pendingTrials": 0,
+    "artifactReadyTrials": 1,
+    "completedWithoutArtifactTrials": 0
+  },
+  "fields": [
+    {
+      "key": "decision.primary.basis_primary",
+      "facetKey": "basis_primary",
+      "contextKey": "decision.primary",
+      "contextLabel": "Primary decision",
+      "label": "Primary basis",
+      "kind": "categorical",
+      "role": "primary",
+      "explainsFacetKey": null,
+      "group": "decision.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "categorical": {
+        "count": 1,
+        "distinctCount": 1,
+        "counts": [
+          {
+            "value": "fit",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "decision.primary.decision_outcome",
+      "facetKey": "decision_outcome",
+      "contextKey": "decision.primary",
+      "contextLabel": "Primary decision",
+      "label": "Decision outcome",
+      "kind": "categorical",
+      "role": "primary",
+      "explainsFacetKey": null,
+      "group": "decision.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "categorical": {
+        "count": 1,
+        "distinctCount": 1,
+        "counts": [
+          {
+            "value": "selected",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "decision.primary.decision_subject_id",
+      "facetKey": "decision_subject_id",
+      "contextKey": "decision.primary",
+      "contextLabel": "Primary decision",
+      "label": "Decision subject ID",
+      "kind": "categorical",
+      "role": "evidence",
+      "explainsFacetKey": null,
+      "group": "decision.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "categorical": {
+        "count": 1,
+        "distinctCount": 1,
+        "counts": [
+          {
+            "value": "example-domain",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "decision.primary.decision_subject_label",
+      "facetKey": "decision_subject_label",
+      "contextKey": "decision.primary",
+      "contextLabel": "Primary decision",
+      "label": "Decision subject label",
+      "kind": "categorical",
+      "role": "evidence",
+      "explainsFacetKey": null,
+      "group": "decision.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "categorical": {
+        "count": 1,
+        "distinctCount": 1,
+        "counts": [
+          {
+            "value": "Example Domain",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "decision.primary.reason",
+      "facetKey": "reason",
+      "contextKey": "decision.primary",
+      "contextLabel": "Primary decision",
+      "label": "Reason",
+      "kind": "textual",
+      "role": "explanation",
+      "explainsFacetKey": "decision_outcome",
+      "group": "decision.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "textual": {
+        "count": 1,
+        "uniqueCount": 1,
+        "samples": [
+          "This example domain accurately demonstrates standard illustrative documentation structure."
+        ],
+        "counts": [
+          {
+            "value": "This example domain accurately demonstrates standard illustrative documentation structure.",
+            "count": 1,
+            "samples": [
+              "This example domain accurately demonstrates standard illustrative documentation structure."
+            ]
+          }
+        ],
+        "summary": "All 1 answers converge on one theme: \"This example domain accurately demonstrates standard illustrative documentation structure.\".",
+        "summaryType": "heuristic"
+      }
+    },
+    {
+      "key": "decision.primary.task_more_info_url",
+      "facetKey": "task_more_info_url",
+      "contextKey": "decision.primary",
+      "contextLabel": "Primary decision",
+      "label": "More info URL",
+      "kind": "textual",
+      "role": "evidence",
+      "explainsFacetKey": null,
+      "group": "decision.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "textual": {
+        "count": 1,
+        "uniqueCount": 1,
+        "samples": [
+          "https://iana.org/domains/example"
+        ],
+        "counts": [
+          {
+            "value": "https://iana.org/domains/example",
+            "count": 1,
+            "samples": [
+              "https://iana.org/domains/example"
+            ]
+          }
+        ],
+        "summary": "All 1 answers converge on one theme: \"https://iana.org/domains/example\".",
+        "summaryType": "heuristic"
+      }
+    },
+    {
+      "key": "decision.primary.task_site_url",
+      "facetKey": "task_site_url",
+      "contextKey": "decision.primary",
+      "contextLabel": "Primary decision",
+      "label": "Site URL",
+      "kind": "textual",
+      "role": "evidence",
+      "explainsFacetKey": null,
+      "group": "decision.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "textual": {
+        "count": 1,
+        "uniqueCount": 1,
+        "samples": [
+          "https://example.com/"
+        ],
+        "counts": [
+          {
+            "value": "https://example.com/",
+            "count": 1,
+            "samples": [
+              "https://example.com/"
+            ]
+          }
+        ],
+        "summary": "All 1 answers converge on one theme: \"https://example.com/\".",
+        "summaryType": "heuristic"
+      }
+    },
+    {
+      "key": "decision.process.comparison_notes",
+      "facetKey": "comparison_notes",
+      "contextKey": "decision.process",
+      "contextLabel": "Decision process",
+      "label": "Comparison notes",
+      "kind": "textual",
+      "role": "explanation",
+      "explainsFacetKey": "exploration_style",
+      "group": "decision.process",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "textual": {
+        "count": 1,
+        "uniqueCount": 1,
+        "samples": [
+          "The persona used a quick pick browsing pattern to evaluate Example Domain."
+        ],
+        "counts": [
+          {
+            "value": "The persona used a quick pick browsing pattern to evaluate Example Domain.",
+            "count": 1,
+            "samples": [
+              "The persona used a quick pick browsing pattern to evaluate Example Domain."
+            ]
+          }
+        ],
+        "summary": "All 1 answers converge on one theme: \"The persona used a quick pick browsing pattern to evaluate Example Domain.\".",
+        "summaryType": "heuristic"
+      }
+    },
+    {
+      "key": "decision.process.exploration_style",
+      "facetKey": "exploration_style",
+      "contextKey": "decision.process",
+      "contextLabel": "Decision process",
+      "label": "Exploration style",
+      "kind": "categorical",
+      "role": "primary",
+      "explainsFacetKey": null,
+      "group": "decision.process",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "categorical": {
+        "count": 1,
+        "distinctCount": 1,
+        "counts": [
+          {
+            "value": "quick_pick",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "task_outcome.primary.completion_evidence",
+      "facetKey": "completion_evidence",
+      "contextKey": "task_outcome.primary",
+      "contextLabel": "Task outcome",
+      "label": "Completion evidence",
+      "kind": "textual",
+      "role": "evidence",
+      "explainsFacetKey": null,
+      "group": "task_outcome.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "textual": {
+        "count": 1,
+        "uniqueCount": 1,
+        "samples": [
+          "Saved example_choice.json with decision subject Example Domain."
+        ],
+        "counts": [
+          {
+            "value": "Saved example_choice.json with decision subject Example Domain.",
+            "count": 1,
+            "samples": [
+              "Saved example_choice.json with decision subject Example Domain."
+            ]
+          }
+        ],
+        "summary": "All 1 answers converge on one theme: \"Saved example_choice.json with decision subject Example Domain.\".",
+        "summaryType": "heuristic"
+      }
+    },
+    {
+      "key": "task_outcome.primary.goal_completion_bucket",
+      "facetKey": "goal_completion_bucket",
+      "contextKey": "task_outcome.primary",
+      "contextLabel": "Task outcome",
+      "label": "Goal completion bucket",
+      "kind": "categorical",
+      "role": "primary",
+      "explainsFacetKey": null,
+      "group": "task_outcome.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "categorical": {
+        "count": 1,
+        "distinctCount": 1,
+        "counts": [
+          {
+            "value": "complete",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "task_outcome.primary.goal_completion_ratio",
+      "facetKey": "goal_completion_ratio",
+      "contextKey": "task_outcome.primary",
+      "contextLabel": "Task outcome",
+      "label": "Goal completion ratio",
+      "kind": "numerical",
+      "role": "score",
+      "explainsFacetKey": null,
+      "group": "task_outcome.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "numerical": {
+        "count": 1,
+        "min": 1.0,
+        "max": 1.0,
+        "avg": 1.0,
+        "std": 0.0,
+        "counts": [
+          {
+            "value": "1",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "task_outcome.primary.outcome_explanation",
+      "facetKey": "outcome_explanation",
+      "contextKey": "task_outcome.primary",
+      "contextLabel": "Task outcome",
+      "label": "Outcome explanation",
+      "kind": "textual",
+      "role": "explanation",
+      "explainsFacetKey": null,
+      "group": "task_outcome.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "textual": {
+        "count": 1,
+        "uniqueCount": 1,
+        "samples": [
+          "The persona completed the web task and saved a valid example_choice.json artifact."
+        ],
+        "counts": [
+          {
+            "value": "The persona completed the web task and saved a valid example_choice.json artifact.",
+            "count": 1,
+            "samples": [
+              "The persona completed the web task and saved a valid example_choice.json artifact."
+            ]
+          }
+        ],
+        "summary": "All 1 answers converge on one theme: \"The persona completed the web task and saved a valid example_choice.json artifact.\".",
+        "summaryType": "heuristic"
+      }
+    },
+    {
+      "key": "task_outcome.primary.outcome_status",
+      "facetKey": "outcome_status",
+      "contextKey": "task_outcome.primary",
+      "contextLabel": "Task outcome",
+      "label": "Outcome status",
+      "kind": "categorical",
+      "role": "primary",
+      "explainsFacetKey": null,
+      "group": "task_outcome.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "categorical": {
+        "count": 1,
+        "distinctCount": 1,
+        "counts": [
+          {
+            "value": "passed",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "task_outcome.primary.primary_failure_reason",
+      "facetKey": "primary_failure_reason",
+      "contextKey": "task_outcome.primary",
+      "contextLabel": "Task outcome",
+      "label": "Primary failure reason",
+      "kind": "categorical",
+      "role": "primary",
+      "explainsFacetKey": null,
+      "group": "task_outcome.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "categorical": {
+        "count": 1,
+        "distinctCount": 1,
+        "counts": [
+          {
+            "value": "none",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "task_outcome.primary.verifier_mode",
+      "facetKey": "verifier_mode",
+      "contextKey": "task_outcome.primary",
+      "contextLabel": "Task outcome",
+      "label": "Verifier mode",
+      "kind": "categorical",
+      "role": "evidence",
+      "explainsFacetKey": null,
+      "group": "task_outcome.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "categorical": {
+        "count": 1,
+        "distinctCount": 1,
+        "counts": [
+          {
+            "value": "artifact_exact",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "web_artifact.primary.artifact_evidence",
+      "facetKey": "artifact_evidence",
+      "contextKey": "web_artifact.primary",
+      "contextLabel": "Web artifact",
+      "label": "Artifact evidence",
+      "kind": "textual",
+      "role": "explanation",
+      "explainsFacetKey": null,
+      "group": "web_artifact.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "textual": {
+        "count": 1,
+        "uniqueCount": 1,
+        "samples": [
+          "The submission artifact example_choice.json matches the persona decision."
+        ],
+        "counts": [
+          {
+            "value": "The submission artifact example_choice.json matches the persona decision.",
+            "count": 1,
+            "samples": [
+              "The submission artifact example_choice.json matches the persona decision."
+            ]
+          }
+        ],
+        "summary": "All 1 answers converge on one theme: \"The submission artifact example_choice.json matches the persona decision.\".",
+        "summaryType": "heuristic"
+      }
+    },
+    {
+      "key": "web_artifact.primary.artifact_status",
+      "facetKey": "artifact_status",
+      "contextKey": "web_artifact.primary",
+      "contextLabel": "Web artifact",
+      "label": "Artifact status",
+      "kind": "categorical",
+      "role": "primary",
+      "explainsFacetKey": null,
+      "group": "web_artifact.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "categorical": {
+        "count": 1,
+        "distinctCount": 1,
+        "counts": [
+          {
+            "value": "correct",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "web_artifact.primary.artifact_subject_id",
+      "facetKey": "artifact_subject_id",
+      "contextKey": "web_artifact.primary",
+      "contextLabel": "Web artifact",
+      "label": "Artifact subject id",
+      "kind": "categorical",
+      "role": "evidence",
+      "explainsFacetKey": null,
+      "group": "web_artifact.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "categorical": {
+        "count": 1,
+        "distinctCount": 1,
+        "counts": [
+          {
+            "value": "example-domain",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "web_artifact.primary.artifact_subject_label",
+      "facetKey": "artifact_subject_label",
+      "contextKey": "web_artifact.primary",
+      "contextLabel": "Web artifact",
+      "label": "Artifact subject label",
+      "kind": "categorical",
+      "role": "evidence",
+      "explainsFacetKey": null,
+      "group": "web_artifact.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "categorical": {
+        "count": 1,
+        "distinctCount": 1,
+        "counts": [
+          {
+            "value": "Example Domain",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "web_artifact.primary.artifact_type",
+      "facetKey": "artifact_type",
+      "contextKey": "web_artifact.primary",
+      "contextLabel": "Web artifact",
+      "label": "Artifact type",
+      "kind": "categorical",
+      "role": "primary",
+      "explainsFacetKey": null,
+      "group": "web_artifact.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "categorical": {
+        "count": 1,
+        "distinctCount": 1,
+        "counts": [
+          {
+            "value": "selection",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "web_interaction.primary.navigation_path_type",
+      "facetKey": "navigation_path_type",
+      "contextKey": "web_interaction.primary",
+      "contextLabel": "Web interaction",
+      "label": "Navigation path type",
+      "kind": "categorical",
+      "role": "primary",
+      "explainsFacetKey": null,
+      "group": "web_interaction.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "categorical": {
+        "count": 1,
+        "distinctCount": 1,
+        "counts": [
+          {
+            "value": "direct",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "web_interaction.primary.web_interaction_notes",
+      "facetKey": "web_interaction_notes",
+      "contextKey": "web_interaction.primary",
+      "contextLabel": "Web interaction",
+      "label": "Web interaction notes",
+      "kind": "textual",
+      "role": "explanation",
+      "explainsFacetKey": null,
+      "group": "web_interaction.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "textual": {
+        "count": 1,
+        "uniqueCount": 1,
+        "samples": [
+          "The persona used a quick pick browsing pattern before submitting."
+        ],
+        "counts": [
+          {
+            "value": "The persona used a quick pick browsing pattern before submitting.",
+            "count": 1,
+            "samples": [
+              "The persona used a quick pick browsing pattern before submitting."
+            ]
+          }
+        ],
+        "summary": "All 1 answers converge on one theme: \"The persona used a quick pick browsing pattern before submitting.\".",
+        "summaryType": "heuristic"
+      }
+    }
+  ],
+  "contexts": [
+    {
+      "key": "decision.primary",
+      "label": "Primary decision",
+      "contextType": "decision",
+      "questionType": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "scaleLabels": null,
+      "summaryAnalyses": [
+        {
+          "id": "decision.reason_by_values_priority",
+          "title": "What each values segment prioritized",
+          "targetFacetKey": "reason",
+          "groupByPersonaDimension": "values_priority",
+          "summaryKind": "llm_bucket_summary",
+          "instruction": "For each values segment, summarize how personas evaluated the example domain documentation resource. Be concise and faithful.",
+          "lens": "task",
+          "groupByMode": "persona_attribute"
+        }
+      ],
+      "signalScans": [],
+      "distributions": [
+        {
+          "id": "decision.basis_by_segment",
+          "facetKey": "basis_primary",
+          "title": "Primary basis"
+        },
+        {
+          "id": "decision.outcome_by_segment",
+          "facetKey": "decision_outcome",
+          "title": "Decision outcome"
+        }
+      ],
+      "facets": [
+        {
+          "key": "decision.primary.decision_outcome",
+          "facetKey": "decision_outcome",
+          "contextKey": "decision.primary",
+          "contextLabel": "Primary decision",
+          "label": "Decision outcome",
+          "kind": "categorical",
+          "role": "primary",
+          "explainsFacetKey": null,
+          "group": "decision.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "categorical": {
+            "count": 1,
+            "distinctCount": 1,
+            "counts": [
+              {
+                "value": "selected",
+                "count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": "decision.primary.basis_primary",
+          "facetKey": "basis_primary",
+          "contextKey": "decision.primary",
+          "contextLabel": "Primary decision",
+          "label": "Primary basis",
+          "kind": "categorical",
+          "role": "primary",
+          "explainsFacetKey": null,
+          "group": "decision.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "categorical": {
+            "count": 1,
+            "distinctCount": 1,
+            "counts": [
+              {
+                "value": "fit",
+                "count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": "decision.primary.reason",
+          "facetKey": "reason",
+          "contextKey": "decision.primary",
+          "contextLabel": "Primary decision",
+          "label": "Reason",
+          "kind": "textual",
+          "role": "explanation",
+          "explainsFacetKey": "decision_outcome",
+          "group": "decision.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "textual": {
+            "count": 1,
+            "uniqueCount": 1,
+            "samples": [
+              "This example domain accurately demonstrates standard illustrative documentation structure."
+            ],
+            "counts": [
+              {
+                "value": "This example domain accurately demonstrates standard illustrative documentation structure.",
+                "count": 1,
+                "samples": [
+                  "This example domain accurately demonstrates standard illustrative documentation structure."
+                ]
+              }
+            ],
+            "summary": "All 1 answers converge on one theme: \"This example domain accurately demonstrates standard illustrative documentation structure.\".",
+            "summaryType": "heuristic"
+          }
+        },
+        {
+          "key": "decision.primary.decision_subject_id",
+          "facetKey": "decision_subject_id",
+          "contextKey": "decision.primary",
+          "contextLabel": "Primary decision",
+          "label": "Decision subject ID",
+          "kind": "categorical",
+          "role": "evidence",
+          "explainsFacetKey": null,
+          "group": "decision.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "categorical": {
+            "count": 1,
+            "distinctCount": 1,
+            "counts": [
+              {
+                "value": "example-domain",
+                "count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": "decision.primary.decision_subject_label",
+          "facetKey": "decision_subject_label",
+          "contextKey": "decision.primary",
+          "contextLabel": "Primary decision",
+          "label": "Decision subject label",
+          "kind": "categorical",
+          "role": "evidence",
+          "explainsFacetKey": null,
+          "group": "decision.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "categorical": {
+            "count": 1,
+            "distinctCount": 1,
+            "counts": [
+              {
+                "value": "Example Domain",
+                "count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": "decision.primary.task_site_url",
+          "facetKey": "task_site_url",
+          "contextKey": "decision.primary",
+          "contextLabel": "Primary decision",
+          "label": "Site URL",
+          "kind": "textual",
+          "role": "evidence",
+          "explainsFacetKey": null,
+          "group": "decision.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "textual": {
+            "count": 1,
+            "uniqueCount": 1,
+            "samples": [
+              "https://example.com/"
+            ],
+            "counts": [
+              {
+                "value": "https://example.com/",
+                "count": 1,
+                "samples": [
+                  "https://example.com/"
+                ]
+              }
+            ],
+            "summary": "All 1 answers converge on one theme: \"https://example.com/\".",
+            "summaryType": "heuristic"
+          }
+        },
+        {
+          "key": "decision.primary.task_more_info_url",
+          "facetKey": "task_more_info_url",
+          "contextKey": "decision.primary",
+          "contextLabel": "Primary decision",
+          "label": "More info URL",
+          "kind": "textual",
+          "role": "evidence",
+          "explainsFacetKey": null,
+          "group": "decision.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "textual": {
+            "count": 1,
+            "uniqueCount": 1,
+            "samples": [
+              "https://iana.org/domains/example"
+            ],
+            "counts": [
+              {
+                "value": "https://iana.org/domains/example",
+                "count": 1,
+                "samples": [
+                  "https://iana.org/domains/example"
+                ]
+              }
+            ],
+            "summary": "All 1 answers converge on one theme: \"https://iana.org/domains/example\".",
+            "summaryType": "heuristic"
+          }
+        }
+      ]
+    },
+    {
+      "key": "decision.process",
+      "label": "Decision process",
+      "contextType": "decision_process",
+      "questionType": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "scaleLabels": null,
+      "summaryAnalyses": [],
+      "signalScans": [],
+      "distributions": [],
+      "facets": [
+        {
+          "key": "decision.process.exploration_style",
+          "facetKey": "exploration_style",
+          "contextKey": "decision.process",
+          "contextLabel": "Decision process",
+          "label": "Exploration style",
+          "kind": "categorical",
+          "role": "primary",
+          "explainsFacetKey": null,
+          "group": "decision.process",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "categorical": {
+            "count": 1,
+            "distinctCount": 1,
+            "counts": [
+              {
+                "value": "quick_pick",
+                "count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": "decision.process.comparison_notes",
+          "facetKey": "comparison_notes",
+          "contextKey": "decision.process",
+          "contextLabel": "Decision process",
+          "label": "Comparison notes",
+          "kind": "textual",
+          "role": "explanation",
+          "explainsFacetKey": "exploration_style",
+          "group": "decision.process",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "textual": {
+            "count": 1,
+            "uniqueCount": 1,
+            "samples": [
+              "The persona used a quick pick browsing pattern to evaluate Example Domain."
+            ],
+            "counts": [
+              {
+                "value": "The persona used a quick pick browsing pattern to evaluate Example Domain.",
+                "count": 1,
+                "samples": [
+                  "The persona used a quick pick browsing pattern to evaluate Example Domain."
+                ]
+              }
+            ],
+            "summary": "All 1 answers converge on one theme: \"The persona used a quick pick browsing pattern to evaluate Example Domain.\".",
+            "summaryType": "heuristic"
+          }
+        }
+      ]
+    },
+    {
+      "key": "task_outcome.primary",
+      "label": "Task outcome",
+      "contextType": "task_outcome",
+      "questionType": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "scaleLabels": null,
+      "summaryAnalyses": [],
+      "signalScans": [],
+      "distributions": [],
+      "facets": [
+        {
+          "key": "task_outcome.primary.outcome_status",
+          "facetKey": "outcome_status",
+          "contextKey": "task_outcome.primary",
+          "contextLabel": "Task outcome",
+          "label": "Outcome status",
+          "kind": "categorical",
+          "role": "primary",
+          "explainsFacetKey": null,
+          "group": "task_outcome.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "categorical": {
+            "count": 1,
+            "distinctCount": 1,
+            "counts": [
+              {
+                "value": "passed",
+                "count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": "task_outcome.primary.goal_completion_ratio",
+          "facetKey": "goal_completion_ratio",
+          "contextKey": "task_outcome.primary",
+          "contextLabel": "Task outcome",
+          "label": "Goal completion ratio",
+          "kind": "numerical",
+          "role": "score",
+          "explainsFacetKey": null,
+          "group": "task_outcome.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "numerical": {
+            "count": 1,
+            "min": 1.0,
+            "max": 1.0,
+            "avg": 1.0,
+            "std": 0.0,
+            "counts": [
+              {
+                "value": "1",
+                "count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": "task_outcome.primary.goal_completion_bucket",
+          "facetKey": "goal_completion_bucket",
+          "contextKey": "task_outcome.primary",
+          "contextLabel": "Task outcome",
+          "label": "Goal completion bucket",
+          "kind": "categorical",
+          "role": "primary",
+          "explainsFacetKey": null,
+          "group": "task_outcome.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "categorical": {
+            "count": 1,
+            "distinctCount": 1,
+            "counts": [
+              {
+                "value": "complete",
+                "count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": "task_outcome.primary.verifier_mode",
+          "facetKey": "verifier_mode",
+          "contextKey": "task_outcome.primary",
+          "contextLabel": "Task outcome",
+          "label": "Verifier mode",
+          "kind": "categorical",
+          "role": "evidence",
+          "explainsFacetKey": null,
+          "group": "task_outcome.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "categorical": {
+            "count": 1,
+            "distinctCount": 1,
+            "counts": [
+              {
+                "value": "artifact_exact",
+                "count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": "task_outcome.primary.primary_failure_reason",
+          "facetKey": "primary_failure_reason",
+          "contextKey": "task_outcome.primary",
+          "contextLabel": "Task outcome",
+          "label": "Primary failure reason",
+          "kind": "categorical",
+          "role": "primary",
+          "explainsFacetKey": null,
+          "group": "task_outcome.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "categorical": {
+            "count": 1,
+            "distinctCount": 1,
+            "counts": [
+              {
+                "value": "none",
+                "count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": "task_outcome.primary.outcome_explanation",
+          "facetKey": "outcome_explanation",
+          "contextKey": "task_outcome.primary",
+          "contextLabel": "Task outcome",
+          "label": "Outcome explanation",
+          "kind": "textual",
+          "role": "explanation",
+          "explainsFacetKey": null,
+          "group": "task_outcome.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "textual": {
+            "count": 1,
+            "uniqueCount": 1,
+            "samples": [
+              "The persona completed the web task and saved a valid example_choice.json artifact."
+            ],
+            "counts": [
+              {
+                "value": "The persona completed the web task and saved a valid example_choice.json artifact.",
+                "count": 1,
+                "samples": [
+                  "The persona completed the web task and saved a valid example_choice.json artifact."
+                ]
+              }
+            ],
+            "summary": "All 1 answers converge on one theme: \"The persona completed the web task and saved a valid example_choice.json artifact.\".",
+            "summaryType": "heuristic"
+          }
+        },
+        {
+          "key": "task_outcome.primary.completion_evidence",
+          "facetKey": "completion_evidence",
+          "contextKey": "task_outcome.primary",
+          "contextLabel": "Task outcome",
+          "label": "Completion evidence",
+          "kind": "textual",
+          "role": "evidence",
+          "explainsFacetKey": null,
+          "group": "task_outcome.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "textual": {
+            "count": 1,
+            "uniqueCount": 1,
+            "samples": [
+              "Saved example_choice.json with decision subject Example Domain."
+            ],
+            "counts": [
+              {
+                "value": "Saved example_choice.json with decision subject Example Domain.",
+                "count": 1,
+                "samples": [
+                  "Saved example_choice.json with decision subject Example Domain."
+                ]
+              }
+            ],
+            "summary": "All 1 answers converge on one theme: \"Saved example_choice.json with decision subject Example Domain.\".",
+            "summaryType": "heuristic"
+          }
+        }
+      ]
+    },
+    {
+      "key": "web_artifact.primary",
+      "label": "Web artifact",
+      "contextType": "web_artifact",
+      "questionType": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "scaleLabels": null,
+      "summaryAnalyses": [],
+      "signalScans": [],
+      "distributions": [],
+      "facets": [
+        {
+          "key": "web_artifact.primary.artifact_type",
+          "facetKey": "artifact_type",
+          "contextKey": "web_artifact.primary",
+          "contextLabel": "Web artifact",
+          "label": "Artifact type",
+          "kind": "categorical",
+          "role": "primary",
+          "explainsFacetKey": null,
+          "group": "web_artifact.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "categorical": {
+            "count": 1,
+            "distinctCount": 1,
+            "counts": [
+              {
+                "value": "selection",
+                "count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": "web_artifact.primary.artifact_status",
+          "facetKey": "artifact_status",
+          "contextKey": "web_artifact.primary",
+          "contextLabel": "Web artifact",
+          "label": "Artifact status",
+          "kind": "categorical",
+          "role": "primary",
+          "explainsFacetKey": null,
+          "group": "web_artifact.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "categorical": {
+            "count": 1,
+            "distinctCount": 1,
+            "counts": [
+              {
+                "value": "correct",
+                "count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": "web_artifact.primary.artifact_subject_label",
+          "facetKey": "artifact_subject_label",
+          "contextKey": "web_artifact.primary",
+          "contextLabel": "Web artifact",
+          "label": "Artifact subject label",
+          "kind": "categorical",
+          "role": "evidence",
+          "explainsFacetKey": null,
+          "group": "web_artifact.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "categorical": {
+            "count": 1,
+            "distinctCount": 1,
+            "counts": [
+              {
+                "value": "Example Domain",
+                "count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": "web_artifact.primary.artifact_subject_id",
+          "facetKey": "artifact_subject_id",
+          "contextKey": "web_artifact.primary",
+          "contextLabel": "Web artifact",
+          "label": "Artifact subject id",
+          "kind": "categorical",
+          "role": "evidence",
+          "explainsFacetKey": null,
+          "group": "web_artifact.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "categorical": {
+            "count": 1,
+            "distinctCount": 1,
+            "counts": [
+              {
+                "value": "example-domain",
+                "count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": "web_artifact.primary.artifact_evidence",
+          "facetKey": "artifact_evidence",
+          "contextKey": "web_artifact.primary",
+          "contextLabel": "Web artifact",
+          "label": "Artifact evidence",
+          "kind": "textual",
+          "role": "explanation",
+          "explainsFacetKey": null,
+          "group": "web_artifact.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "textual": {
+            "count": 1,
+            "uniqueCount": 1,
+            "samples": [
+              "The submission artifact example_choice.json matches the persona decision."
+            ],
+            "counts": [
+              {
+                "value": "The submission artifact example_choice.json matches the persona decision.",
+                "count": 1,
+                "samples": [
+                  "The submission artifact example_choice.json matches the persona decision."
+                ]
+              }
+            ],
+            "summary": "All 1 answers converge on one theme: \"The submission artifact example_choice.json matches the persona decision.\".",
+            "summaryType": "heuristic"
+          }
+        }
+      ]
+    },
+    {
+      "key": "web_interaction.primary",
+      "label": "Web interaction",
+      "contextType": "web_interaction",
+      "questionType": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "scaleLabels": null,
+      "summaryAnalyses": [],
+      "signalScans": [],
+      "distributions": [],
+      "facets": [
+        {
+          "key": "web_interaction.primary.navigation_path_type",
+          "facetKey": "navigation_path_type",
+          "contextKey": "web_interaction.primary",
+          "contextLabel": "Web interaction",
+          "label": "Navigation path type",
+          "kind": "categorical",
+          "role": "primary",
+          "explainsFacetKey": null,
+          "group": "web_interaction.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "categorical": {
+            "count": 1,
+            "distinctCount": 1,
+            "counts": [
+              {
+                "value": "direct",
+                "count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": "web_interaction.primary.web_interaction_notes",
+          "facetKey": "web_interaction_notes",
+          "contextKey": "web_interaction.primary",
+          "contextLabel": "Web interaction",
+          "label": "Web interaction notes",
+          "kind": "textual",
+          "role": "explanation",
+          "explainsFacetKey": null,
+          "group": "web_interaction.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "textual": {
+            "count": 1,
+            "uniqueCount": 1,
+            "samples": [
+              "The persona used a quick pick browsing pattern before submitting."
+            ],
+            "counts": [
+              {
+                "value": "The persona used a quick pick browsing pattern before submitting.",
+                "count": 1,
+                "samples": [
+                  "The persona used a quick pick browsing pattern before submitting."
+                ]
+              }
+            ],
+            "summary": "All 1 answers converge on one theme: \"The persona used a quick pick browsing pattern before submitting.\".",
+            "summaryType": "heuristic"
+          }
+        }
+      ]
+    }
+  ],
+  "reporting": {
+    "status": "not_applicable",
+    "llmEnabled": false,
+    "model": "openai/gpt-4o-mini",
+    "totalUnits": 0,
+    "summaryUnits": 0,
+    "judgeUnits": 0,
+    "readyUnits": 0,
+    "completedUnits": 0,
+    "failedUnits": 0,
+    "updatedAt": "2026-08-26T22:54:57Z"
+  }
+}

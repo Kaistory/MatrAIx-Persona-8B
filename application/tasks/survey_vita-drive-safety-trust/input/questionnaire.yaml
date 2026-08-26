@@ -1,0 +1,96 @@
+schemaVersion: "1.0"
+id: vita_drive_safety_trust_v1
+title: "Khảo sát Mức độ Tin cậy An toàn & Quyền Riêng tư Xe Thông minh"
+description: "Đo lường mức độ tin tưởng, sự sẵn sàng trao quyền và thái độ đối với cơ chế an toàn cùng bảo mật dữ liệu của Trợ lý AI trên ô tô."
+questions:
+  - id: q0
+    prompt: "Bạn cảm thấy an tâm ở mức độ nào khi để trợ lý AI tự động điều khiển các chức năng phần cứng của xe (cửa kính, điều hòa, gạt mưa, khóa cửa)?"
+    type: likert
+    construct: ai_hardware_control_comfort
+    required: true
+    minValue: 1
+    maxValue: 5
+
+  - id: q1
+    prompt: "Khi xe đang chạy trên cao tốc, nếu bạn lỡ ra lệnh mở cốp sau hoặc gập gương và trợ lý từ chối thực hiện để đảm bảo an toàn, bạn đánh giá chính sách này như thế nào?"
+    type: single_choice
+    construct: safety_gate_enforcement_attitude
+    required: true
+    options:
+      - id: "strongly_support"
+        label: "Hoàn toàn ủng hộ, an toàn là ưu tiên tuyệt đối"
+      - id: "support_with_explanation"
+        label: "Ủng hộ nếu trợ lý giải thích rõ nguyên nhân an toàn"
+      - id: "neutral"
+        label: "Bình thường / Không có ý kiến"
+      - id: "annoyed"
+        label: "Cảm thấy bất tiện và muốn có quyền ghi đè (override)"
+
+  - id: q2
+    prompt: "Mức độ đồng thuận của bạn đối với việc bật camera giám sát trong xe (DMS) để AI theo dõi ánh mắt và nhắc nhở khi bạn có dấu hiệu buồn ngủ/mất tập trung:"
+    type: likert
+    construct: dms_monitoring_acceptance
+    required: true
+    minValue: 1
+    maxValue: 5
+
+  - id: q3
+    prompt: "Khi trợ lý AI phát hiện bạn có dấu hiệu mệt mỏi, bạn mong muốn AI can thiệp theo phương thức nào nhất?"
+    type: single_choice
+    construct: fatigue_intervention_preference
+    required: true
+    options:
+      - id: "voice_and_poi"
+        label: "Cảnh báo bằng giọng nói và tự động gợi ý trạm dừng nghỉ gần nhất"
+      - id: "voice_and_stimulus"
+        label: "Hạ nhiệt độ điều hòa và phát bản nhạc sôi động để tỉnh táo"
+      - id: "visual_only"
+        label: "Chỉ hiện biểu tượng cốc cà phê cảnh báo trên bảng đồng hồ"
+      - id: "none"
+        label: "Không can thiệp gì, để tài xế tự quyết định"
+
+  - id: q4
+    prompt: "Mức độ lo ngại của bạn về việc dữ liệu cá nhân (giọng nói, danh bạ, vị trí GPS thời gian thực) được hệ thống AI trên xe lưu trữ và xử lý:"
+    type: likert
+    construct: in_car_privacy_concern
+    required: true
+    minValue: 1
+    maxValue: 5
+
+  - id: q5
+    prompt: "Bạn có sẵn sàng chia sẻ dữ liệu ẩn danh về hành trình và thói quen lái xe để nhà sản xuất nâng cấp các tính năng an toàn cho xe không?"
+    type: single_choice
+    construct: anonymous_data_sharing_willingness
+    required: true
+    options:
+      - id: "yes_fully"
+        label: "Sẵn sàng chia sẻ hoàn toàn nếu được ẩn danh"
+      - id: "yes_with_incentives"
+        label: "Sẵn sàng nếu có ưu đãi (gói cước dữ liệu, bảo dưỡng)"
+      - id: "selective"
+        label: "Chỉ chia sẻ dữ liệu liên quan đến lỗi kỹ thuật xe"
+      - id: "no"
+        label: "Hoàn toàn không muốn chia sẻ bất kỳ dữ liệu nào"
+
+  - id: q6
+    prompt: "Mức độ tin cậy của bạn vào các tính năng hỗ trợ lái thông minh ADAS (tự động giữ làn, bám đuôi xe trước, phanh khẩn cấp):"
+    type: likert
+    construct: adas_system_trust
+    required: true
+    minValue: 1
+    maxValue: 5
+
+  - id: q7
+    prompt: "Yếu tố nào quan trọng nhất để bạn hoàn toàn tin tưởng vào một trợ lý AI tích hợp sâu trong ô tô?"
+    type: single_choice
+    construct: primary_trust_factor
+    required: true
+    options:
+      - id: "zero_critical_mistakes"
+        label: "Không bao giờ thực hiện sai các lệnh liên quan đến an toàn"
+      - id: "transparent_privacy"
+        label: "Chính sách bảo mật dữ liệu riêng tư minh bạch, rõ ràng"
+      - id: "fast_accurate_voice"
+        label: "Nhận diện giọng nói tiếng Việt cực nhanh và chuẩn xác"
+      - id: "smooth_personality"
+        label: "Cách giao tiếp tự nhiên, thấu cảm và tôn trọng người lái"

@@ -1,0 +1,65 @@
+{
+    "task": {
+        "path": "application/tasks/web_vita-drive-scenario-playground",
+        "git_url": null,
+        "git_commit_id": null,
+        "name": null,
+        "ref": null,
+        "overwrite": false,
+        "download_dir": null,
+        "source": null
+    },
+    "trial_name": "web_vita-drive-scenario-playgrou__TonSUw5",
+    "trials_dir": "jobs/pg-web-vita-drive-scenario-playground-73461354",
+    "timeout_multiplier": 1.0,
+    "agent_timeout_multiplier": null,
+    "verifier_timeout_multiplier": null,
+    "agent_setup_timeout_multiplier": null,
+    "environment_build_timeout_multiplier": null,
+    "agent": {
+        "name": "persona-browser-use",
+        "import_path": null,
+        "model_name": "openai/gpt-4o-mini",
+        "skills": [],
+        "override_timeout_sec": null,
+        "override_setup_timeout_sec": null,
+        "max_timeout_sec": null,
+        "extra_allowed_hosts": [],
+        "kwargs": {
+            "persona_path": "persona/datasets/matraix-persona-dev-sample/persona_0042.yaml",
+            "model_info": {
+                "max_input_tokens": 128000,
+                "max_output_tokens": 16384
+            }
+        },
+        "env": {},
+        "mcp_servers": []
+    },
+    "environment": {
+        "type": "docker",
+        "import_path": null,
+        "force_build": false,
+        "delete": true,
+        "cpu_enforcement_policy": "auto",
+        "memory_enforcement_policy": "auto",
+        "override_cpus": null,
+        "override_memory_mb": null,
+        "override_storage_mb": null,
+        "override_gpus": null,
+        "override_tpu": null,
+        "mounts": null,
+        "extra_docker_compose": [],
+        "env": {},
+        "kwargs": {},
+        "extra_allowed_hosts": []
+    },
+    "verifier": {
+        "override_timeout_sec": null,
+        "max_timeout_sec": null,
+        "env": {},
+        "disable": false
+    },
+    "artifacts": [],
+    "extra_instruction_paths": [],
+    "job_id": "2edc0cd0-b3fe-4a63-ba15-eb2e898ae4fa"
+}

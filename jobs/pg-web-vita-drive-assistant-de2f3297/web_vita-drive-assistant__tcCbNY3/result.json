@@ -1,0 +1,109 @@
+{
+  "id": "97bde45b-7539-4a17-9eb3-02c1f16bd9eb",
+  "task_name": "application/web_vita-drive-assistant",
+  "trial_name": "web_vita-drive-assistant__tcCbNY3",
+  "trial_uri": "file:///home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/jobs/pg-web-vita-drive-assistant-de2f3297/web_vita-drive-assistant__tcCbNY3",
+  "task_id": {
+    "path": "application/tasks/web_vita-drive-assistant"
+  },
+  "source": null,
+  "task_checksum": "43d97ac058f4d6af012bf13af6385787e72723a4116ec1c143d2bf542ffcb8fd",
+  "config": {
+    "task": {
+      "path": "application/tasks/web_vita-drive-assistant",
+      "git_url": null,
+      "git_commit_id": null,
+      "name": null,
+      "ref": null,
+      "overwrite": false,
+      "download_dir": null,
+      "source": null
+    },
+    "trial_name": "web_vita-drive-assistant__tcCbNY3",
+    "trials_dir": "jobs/pg-web-vita-drive-assistant-de2f3297",
+    "timeout_multiplier": 1.0,
+    "agent_timeout_multiplier": null,
+    "verifier_timeout_multiplier": null,
+    "agent_setup_timeout_multiplier": null,
+    "environment_build_timeout_multiplier": null,
+    "agent": {
+      "name": "persona-computer-1",
+      "import_path": null,
+      "model_name": "openai/gpt-4o-mini",
+      "skills": [],
+      "override_timeout_sec": null,
+      "override_setup_timeout_sec": null,
+      "max_timeout_sec": null,
+      "extra_allowed_hosts": [],
+      "kwargs": {
+        "persona_path": "persona/datasets/generated-persona-dev-1/persona_0042.yaml",
+        "model_info": {
+          "max_input_tokens": 128000,
+          "max_output_tokens": 16384
+        }
+      },
+      "env": {},
+      "mcp_servers": []
+    },
+    "environment": {
+      "type": "docker",
+      "import_path": null,
+      "force_build": false,
+      "delete": true,
+      "cpu_enforcement_policy": "auto",
+      "memory_enforcement_policy": "auto",
+      "override_cpus": null,
+      "override_memory_mb": null,
+      "override_storage_mb": null,
+      "override_gpus": null,
+      "override_tpu": null,
+      "mounts": null,
+      "extra_docker_compose": [],
+      "env": {},
+      "kwargs": {},
+      "extra_allowed_hosts": []
+    },
+    "verifier": {
+      "override_timeout_sec": null,
+      "max_timeout_sec": null,
+      "env": {},
+      "disable": false
+    },
+    "artifacts": [],
+    "extra_instruction_paths": [],
+    "job_id": "4292eba8-7ce7-4872-a7b0-5568900153b5"
+  },
+  "agent_info": {
+    "name": "persona-computer-1",
+    "version": "1.0.0",
+    "model_info": {
+      "name": "gpt-4o-mini",
+      "provider": "openai"
+    }
+  },
+  "agent_result": null,
+  "verifier_result": {
+    "rewards": {
+      "reward": 0.0
+    }
+  },
+  "exception_info": {
+    "exception_type": "AgentSetupTimeoutError",
+    "exception_message": "Agent setup timed out after 360.0 seconds",
+    "exception_traceback": "Traceback (most recent call last):\n  File \"/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/trial/trial.py\", line 1106, in _setup_agent\n    await asyncio.wait_for(\n  File \"/home/khaidq9/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/asyncio/tasks.py\", line 520, in wait_for\n    return await fut\n           ^^^^^^^^^\n  File \"/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/agents/matraix/agents/persona/computer_1.py\", line 249, in setup\n    await self._get_delegate(environment).setup(environment)\n  File \"/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/agents/computer_1/computer_1.py\", line 826, in setup\n    await self._session.start()\n  File \"/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/agents/computer_1/runtime.py\", line 521, in start\n    await self._wait_for_chromium_window()\n  File \"/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/agents/computer_1/runtime.py\", line 695, in _wait_for_chromium_window\n    raise TimeoutError(\nTimeoutError: Chromium did not become ready within 120s.\n--- chromium.log tail ---\nnohup: failed to run command '/usr/bin/chromium': No such file or directory\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/trial/trial.py\", line 322, in run\n    await self._prepare()\n  File \"/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/trial/trial.py\", line 354, in _prepare\n    await self._setup_agent()\n  File \"/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/trial/trial.py\", line 1111, in _setup_agent\n    raise AgentSetupTimeoutError(\nharbor.trial.errors.AgentSetupTimeoutError: Agent setup timed out after 360.0 seconds\n",
+    "occurred_at": "2026-08-27T06:22:08.017438"
+  },
+  "started_at": "2026-08-26T23:19:59.454128Z",
+  "finished_at": "2026-08-26T23:22:19.199168Z",
+  "environment_setup": {
+    "started_at": "2026-08-26T23:19:59.461730Z",
+    "finished_at": "2026-08-26T23:20:01.334247Z"
+  },
+  "agent_setup": {
+    "started_at": "2026-08-26T23:20:01.334340Z",
+    "finished_at": "2026-08-26T23:22:08.014769Z"
+  },
+  "agent_execution": null,
+  "verifier": null,
+  "step_results": null
+}

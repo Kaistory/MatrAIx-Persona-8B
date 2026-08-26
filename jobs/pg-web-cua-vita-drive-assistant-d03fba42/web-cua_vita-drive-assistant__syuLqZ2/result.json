@@ -1,0 +1,135 @@
+{
+  "id": "44eab454-40e8-4166-98c9-33a04eec46b6",
+  "task_name": "application/web-cua_vita-drive-assistant",
+  "trial_name": "web-cua_vita-drive-assistant__syuLqZ2",
+  "trial_uri": "file:///home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/jobs/pg-web-cua-vita-drive-assistant-d03fba42/web-cua_vita-drive-assistant__syuLqZ2",
+  "task_id": {
+    "path": "application/tasks/web-cua_vita-drive-assistant"
+  },
+  "source": null,
+  "task_checksum": "05b1cda16e747eeb058af38de2c3be36ddfda299fa0a72343e01404868d5a985",
+  "config": {
+    "task": {
+      "path": "application/tasks/web-cua_vita-drive-assistant",
+      "git_url": null,
+      "git_commit_id": null,
+      "name": null,
+      "ref": null,
+      "overwrite": false,
+      "download_dir": null,
+      "source": null
+    },
+    "trial_name": "web-cua_vita-drive-assistant__syuLqZ2",
+    "trials_dir": "jobs/pg-web-cua-vita-drive-assistant-d03fba42",
+    "timeout_multiplier": 1.0,
+    "agent_timeout_multiplier": null,
+    "verifier_timeout_multiplier": null,
+    "agent_setup_timeout_multiplier": null,
+    "environment_build_timeout_multiplier": null,
+    "agent": {
+      "name": "persona-computer-1",
+      "import_path": null,
+      "model_name": "openai/gpt-4o-mini",
+      "skills": [],
+      "override_timeout_sec": null,
+      "override_setup_timeout_sec": null,
+      "max_timeout_sec": null,
+      "extra_allowed_hosts": [],
+      "kwargs": {
+        "persona_path": "persona/datasets/matraix-persona-dev-sample/persona_0042.yaml",
+        "model_info": {
+          "max_input_tokens": 128000,
+          "max_output_tokens": 16384
+        }
+      },
+      "env": {},
+      "mcp_servers": []
+    },
+    "environment": {
+      "type": "docker",
+      "import_path": null,
+      "force_build": false,
+      "delete": true,
+      "cpu_enforcement_policy": "auto",
+      "memory_enforcement_policy": "auto",
+      "override_cpus": null,
+      "override_memory_mb": null,
+      "override_storage_mb": null,
+      "override_gpus": null,
+      "override_tpu": null,
+      "mounts": null,
+      "extra_docker_compose": [],
+      "env": {},
+      "kwargs": {},
+      "extra_allowed_hosts": []
+    },
+    "verifier": {
+      "override_timeout_sec": null,
+      "max_timeout_sec": null,
+      "env": {},
+      "disable": false
+    },
+    "artifacts": [],
+    "extra_instruction_paths": [],
+    "job_id": "0c2acd2a-5e4e-4e9f-bc9c-e017d36e600e"
+  },
+  "agent_info": {
+    "name": "persona-computer-1",
+    "version": "1.0.0",
+    "model_info": {
+      "name": "gpt-4o-mini",
+      "provider": "openai"
+    }
+  },
+  "agent_result": {
+    "n_input_tokens": 2029583,
+    "n_cache_tokens": 1438336,
+    "n_output_tokens": 887,
+    "cost_usd": 0.19709444999999998,
+    "rollout_details": [],
+    "metadata": {
+      "n_episodes": 12,
+      "api_request_times_msec": [
+        3250.7636547088623,
+        2016.1809921264648,
+        2177.0706176757812,
+        2926.138162612915,
+        2709.836006164551,
+        3036.654233932495,
+        2830.2574157714844,
+        3741.210699081421,
+        3919.3098545074463,
+        3829.0834426879883,
+        4380.454778671265,
+        5798.123598098755
+      ],
+      "early_termination_reason": "task_complete",
+      "compaction_count": 0
+    }
+  },
+  "verifier_result": {
+    "rewards": {
+      "reward": 0.0
+    }
+  },
+  "exception_info": null,
+  "started_at": "2026-08-26T23:45:42.871708Z",
+  "finished_at": "2026-08-26T23:47:04.799093Z",
+  "environment_setup": {
+    "started_at": "2026-08-26T23:45:42.881041Z",
+    "finished_at": "2026-08-26T23:45:48.047782Z"
+  },
+  "agent_setup": {
+    "started_at": "2026-08-26T23:45:48.047882Z",
+    "finished_at": "2026-08-26T23:45:55.888733Z"
+  },
+  "agent_execution": {
+    "started_at": "2026-08-26T23:45:55.888912Z",
+    "finished_at": "2026-08-26T23:46:47.431464Z"
+  },
+  "verifier": {
+    "started_at": "2026-08-26T23:46:48.239837Z",
+    "finished_at": "2026-08-26T23:46:53.772856Z"
+  },
+  "step_results": null
+}

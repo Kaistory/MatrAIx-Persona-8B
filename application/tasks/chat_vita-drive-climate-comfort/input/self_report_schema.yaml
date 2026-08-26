@@ -1,0 +1,27 @@
+artifactName: user_feedback.json
+instructions: |
+  Đánh giá trung thực trải nghiệm sử dụng trợ lý Vita để điều khiển điều hòa và tiện nghi ghế.
+  Tập trung vào độ chính xác khi nhận diện vùng ghế/thông số nhiệt độ và sự thoải mái trong khoang lái.
+fields:
+  - key: needConstraintSatisfaction
+    prompt: Trợ lý Vita có điều chỉnh đúng nhiệt độ/quạt gió/vùng ghế hoặc tiện nghi bạn yêu cầu không?
+    kind: enum
+    choices: [yes, partially, no]
+  - key: personalPreferenceSatisfaction
+    prompt: Phản hồi của trợ lý có ngắn gọn, lịch sự và không làm xao nhãng khi đang lái xe không?
+    kind: enum
+    choices: [yes, partially, no]
+  - key: overallExperienceRating
+    prompt: Đánh giá tổng quan trải nghiệm điều khiển điều hòa & tiện nghi từ 1 đến 10?
+    kind: integer
+    minimum: 1
+    maximum: 10
+    explanation:
+      key: reason
+      prompt: Nêu ngắn gọn lý do cho số điểm trên.
+  - key: askedUsefulClarificationQuestions
+    prompt: Trợ lý có hỏi lại hoặc xác nhận thông số phù hợp khi yêu cầu chưa rõ vùng ghế không?
+    kind: boolean
+    explanation:
+      key: clarifyingNotes
+      prompt: Chi tiết câu hỏi làm rõ hoặc phản hồi của trợ lý.

@@ -1,0 +1,133 @@
+{
+  "schemaVersion": "1.0",
+  "artifactType": "matraix.trial_evaluation",
+  "taskType": "web",
+  "contexts": [
+    {
+      "key": "task_outcome.primary",
+      "label": "Task outcome",
+      "contextType": "task_outcome",
+      "facets": [
+        {
+          "key": "outcome_status",
+          "label": "Outcome status",
+          "role": "primary",
+          "kind": "categorical",
+          "value": "passed"
+        },
+        {
+          "key": "goal_completion_ratio",
+          "label": "Goal completion ratio",
+          "role": "score",
+          "kind": "numerical",
+          "value": 1.0
+        },
+        {
+          "key": "goal_completion_bucket",
+          "label": "Goal completion bucket",
+          "role": "primary",
+          "kind": "categorical",
+          "value": "complete"
+        },
+        {
+          "key": "verifier_mode",
+          "label": "Verifier mode",
+          "role": "evidence",
+          "kind": "categorical",
+          "value": "artifact_exact"
+        },
+        {
+          "key": "primary_failure_reason",
+          "label": "Primary failure reason",
+          "role": "primary",
+          "kind": "categorical",
+          "value": "none"
+        },
+        {
+          "key": "outcome_explanation",
+          "label": "Outcome explanation",
+          "role": "explanation",
+          "kind": "textual",
+          "value": "The persona explored Scenario Playground & Evaluation Lab and saved a valid playground_experience.json artifact."
+        },
+        {
+          "key": "completion_evidence",
+          "label": "Completion evidence",
+          "role": "evidence",
+          "kind": "textual",
+          "value": "Saved playground_experience.json with subject Vita Scenario Playground & Evaluation Lab."
+        }
+      ]
+    },
+    {
+      "key": "decision.primary",
+      "label": "Primary decision",
+      "contextType": "decision",
+      "facets": [
+        {
+          "key": "decision_subject_id",
+          "label": "Decision subject id",
+          "role": "primary",
+          "kind": "categorical",
+          "value": "vita_scenario_playground"
+        },
+        {
+          "key": "decision_subject_label",
+          "label": "Decision subject label",
+          "role": "identifier",
+          "kind": "categorical",
+          "value": "Vita Scenario Playground & Evaluation Lab"
+        },
+        {
+          "key": "decision_outcome",
+          "label": "Decision outcome",
+          "role": "primary",
+          "kind": "categorical",
+          "value": "failed"
+        },
+        {
+          "key": "basis_primary",
+          "label": "Primary basis",
+          "role": "primary",
+          "kind": "categorical",
+          "value": "trust"
+        },
+        {
+          "key": "exploration_style",
+          "label": "Exploration style",
+          "role": "control",
+          "kind": "categorical",
+          "value": "hesitant"
+        },
+        {
+          "key": "reason",
+          "label": "Reason",
+          "role": "explanation",
+          "kind": "textual",
+          "value": "I was unable to access the Scenario Playground due to persistent connection errors, which hindered my ability to evaluate its features effectively."
+        },
+        {
+          "key": "favorite_feature",
+          "label": "Favorite feature",
+          "role": "evidence",
+          "kind": "categorical",
+          "value": "N/A"
+        },
+        {
+          "key": "favorite_scenario",
+          "label": "Favorite scenario",
+          "role": "evidence",
+          "kind": "categorical",
+          "value": "N/A"
+        },
+        {
+          "key": "ease_of_use_rating",
+          "label": "Ease of use rating",
+          "role": "metric",
+          "kind": "numerical",
+          "value": 1
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+
+{
+  "decision_subject_id": "vita_scenario_playground",
+  "decision_subject_label": "Vita Scenario Playground & Evaluation Lab",
+  "decision_outcome": "failed",
+  "basis_primary": "trust",
+  "exploration_style": "hesitant",
+  "reason": "I was unable to access the Scenario Playground due to persistent connection errors, which hindered my ability to evaluate its features effectively.",
+  "task_favorite_feature": "N/A",
+  "task_favorite_scenario": "N/A",
+  "task_ease_of_use_rating": 1
+}

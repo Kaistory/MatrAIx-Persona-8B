@@ -1,0 +1,24 @@
+services:
+  main:
+    depends_on:
+      vita-drive-web:
+        condition: service_healthy
+
+  vita-drive-web:
+    build:
+      context: /home/khaidq9/Documents/GitHub/vita-drive-assistant-lab
+      dockerfile: Dockerfile
+    expose:
+      - "8888"
+      - "3001"
+      - "8787"
+    environment:
+      - PORT=3001
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - ELEVENLABS_API_KEY=${ELEVENLABS_API_KEY:-}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://127.0.0.1:3001/health"]
+      interval: 5s
+      timeout: 5s
+      retries: 15
+      start_period: 10s

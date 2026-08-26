@@ -1,0 +1,10 @@
+{
+  "decision_subject_id": "example-domain",
+  "decision_subject_label": "Example Domain",
+  "decision_outcome": "selected",
+  "basis_primary": "fit",
+  "exploration_style": "quick_pick",
+  "reason": "This example domain accurately demonstrates standard illustrative documentation structure.",
+  "task_site_url": "https://example.com/",
+  "task_more_info_url": "https://iana.org/domains/example"
+}

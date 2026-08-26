@@ -156,10 +156,31 @@ PLAYGROUND_TASK_INDEX: Dict[str, PlaygroundTaskEntry] = {
     ),
     "web_vita-drive-assistant": PlaygroundTaskEntry(
         application_type="web",
-        site_name="Vita Drive Assistant Lab",
+        site_name="Vita Drive Assistant",
         site_url="http://172.17.0.1:5173/",
         output_artifact="dashboard_experience.json",
         submission_profile="dashboard_experience",
+    ),
+    "web_vita-drive-scenario-playground": PlaygroundTaskEntry(
+        application_type="web",
+        site_name="Vita Drive Scenario Playground",
+        site_url="http://172.17.0.1:5173/",
+        output_artifact="playground_experience.json",
+        submission_profile="playground_experience",
+    ),
+    "web_vita-drive-soul-studio": PlaygroundTaskEntry(
+        application_type="web",
+        site_name="Vita Drive Soul Studio",
+        site_url="http://172.17.0.1:5173/",
+        output_artifact="soul_studio_experience.json",
+        submission_profile="soul_studio_experience",
+    ),
+    "web_example-domain": PlaygroundTaskEntry(
+        application_type="web",
+        site_name="Example Domain",
+        site_url="https://example.com/",
+        output_artifact="example_choice.json",
+        submission_profile="example_choice",
     ),
     # Chatbot
     "chat_vita-drive-assistant": PlaygroundTaskEntry(application_type="chatbot"),

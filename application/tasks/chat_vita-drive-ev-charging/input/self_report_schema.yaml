@@ -1,0 +1,27 @@
+artifactName: user_feedback.json
+instructions: |
+  Đánh giá trung thực trải nghiệm sử dụng trợ lý Vita để quản lý hoạt động sạc pin EV và năng lượng xe.
+  Tập trung vào độ chính xác khi nhận diện thông số sạc (SoC, lịch hẹn) và kiến thức về hệ thống điện xe VinFast.
+fields:
+  - key: needConstraintSatisfaction
+    prompt: Trợ lý Vita có thực hiện đúng yêu cầu về mở cổng sạc/đặt giới hạn pin/hẹn giờ sạc/V2L không?
+    kind: enum
+    choices: [yes, partially, no]
+  - key: personalPreferenceSatisfaction
+    prompt: Hướng dẫn và xác nhận về pin/sạc có dễ hiểu, an toàn và chính xác không?
+    kind: enum
+    choices: [yes, partially, no]
+  - key: overallExperienceRating
+    prompt: Đánh giá tổng quan trải nghiệm quản lý sạc & pin EV từ 1 đến 10?
+    kind: integer
+    minimum: 1
+    maximum: 10
+    explanation:
+      key: reason
+      prompt: Nêu ngắn gọn lý do cho số điểm trên.
+  - key: askedUsefulClarificationQuestions
+    prompt: Trợ lý có nhắc nhở các lưu ý an toàn hoặc xác nhận đúng mục tiêu sạc trước khi thực thi không?
+    kind: boolean
+    explanation:
+      key: clarifyingNotes
+      prompt: Chi tiết lời nhắc hoặc phản hồi của trợ lý.

@@ -2,3 +2,7 @@ services:
   main:
     image: ${PREBUILT_IMAGE_NAME}
     command: [ "sh", "-c", "sleep infinity" ]
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
+      - 192.168.0.1

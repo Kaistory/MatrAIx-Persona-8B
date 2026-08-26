@@ -1,0 +1,1 @@
+PASS: Vita Scenario Playground web evaluation artifacts are valid

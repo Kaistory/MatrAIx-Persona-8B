@@ -1,0 +1,224 @@
+{
+    "id": "7bc37ce5-b617-4a50-b040-452098762b55",
+    "task_name": "application/web_vita-drive-assistant",
+    "trial_name": "web_vita-drive-assistant__DnocYe6",
+    "trial_uri": "file:///home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/jobs/pg-web-vita-drive-assistant-30d9e845/web_vita-drive-assistant__DnocYe6",
+    "task_id": {
+        "path": "application/tasks/web_vita-drive-assistant"
+    },
+    "source": null,
+    "task_checksum": "401bd213a7d2ab5e2a307d721a20d4529614ab06b75e414c1ed8ef2b9c6e0631",
+    "config": {
+        "task": {
+            "path": "application/tasks/web_vita-drive-assistant",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": null
+        },
+        "trial_name": "web_vita-drive-assistant__DnocYe6",
+        "trials_dir": "jobs/pg-web-vita-drive-assistant-30d9e845",
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "persona-browser-use",
+            "import_path": null,
+            "model_name": "openai/gpt-4o-mini",
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {
+                "persona_path": "persona/datasets/matraix-persona-dev-sample/persona_0042.yaml",
+                "model_info": {
+                    "max_input_tokens": 128000,
+                    "max_output_tokens": 16384
+                }
+            },
+            "env": {},
+            "mcp_servers": []
+        },
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "env": {},
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "env": {},
+            "disable": false
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "job_id": "259afe9b-a3f6-438c-8449-de9cc0991e53"
+    },
+    "agent_info": {
+        "name": "persona-browser-use",
+        "version": "0.13.8",
+        "model_info": {
+            "name": "gpt-4o-mini",
+            "provider": "openai"
+        }
+    },
+    "agent_result": {
+        "n_input_tokens": 2704374,
+        "n_cache_tokens": null,
+        "n_output_tokens": 13394,
+        "cost_usd": 0.0,
+        "rollout_details": null,
+        "metadata": {
+            "browser_use": {
+                "final_result": "Unable to access the dashboard due to persistent connection errors. Documented findings in dashboard_experience.json.\n\nAttachments:\n\ndashboard_experience.json:\n{\"decision_subject_id\": \"vita_car_dashboard\", \"decision_subject_label\": \"Vita Drive Assistant Dashboard\", \"decision_outcome\": \"not_accessed\", \"basis_primary\": \"network_issue\", \"exploration_style\": \"hesitant\", \"reason\": \"Unable to access the dashboard due to persistent connection errors.\", \"task_favorite_feature\": null, \"task_ease_of_use_rating\": null}\n",
+                "is_done": true,
+                "is_successful": false,
+                "urls": [
+                    "about:blank",
+                    "about:blank",
+                    "about:blank",
+                    "http://localhost:8000/",
+                    "http://localhost:8000/",
+                    "http://localhost:8000/",
+                    "https://duckduckgo.com/?q=check+local+server+settings+or+network+connections&ia=web",
+                    "https://duckduckgo.com/?q=check+local+server+settings+or+network+connections&ia=web",
+                    "https://duckduckgo.com/?q=check+local+server+settings+or+network+connections&ia=web",
+                    "https://duckduckgo.com/?q=check+local+server+settings+or+network+connections&ia=web",
+                    "https://duckduckgo.com/?q=check+local+server+settings+or+network+connections&ia=web",
+                    "https://duckduckgo.com/?q=how+to+check+local+server+settings+or+network+connections&ia=web",
+                    "https://duckduckgo.com/?q=how+to+check+local+server+settings+or+network+connections&ia=web",
+                    "https://duckduckgo.com/?q=how+to+troubleshoot+network+connectivity&ia=web",
+                    "https://duckduckgo.com/?q=how+to+troubleshoot+network+connectivity&ia=web",
+                    "https://duckduckgo.com/?q=how+to+troubleshoot+network+connectivity&ia=web",
+                    "https://duckduckgo.com/?q=how+to+troubleshoot+network+connectivity&ia=web",
+                    "https://duckduckgo.com/?q=how+to+troubleshoot+network+connectivity&ia=web",
+                    "https://duckduckgo.com/?q=how+to+troubleshoot+network+connectivity&ia=web",
+                    "https://duckduckgo.com/?q=how+to+troubleshoot+network+connectivity&ia=web",
+                    "https://duckduckgo.com/?q=how+to+troubleshoot+network+connectivity&ia=web",
+                    "https://duckduckgo.com/?q=how+to+troubleshoot+network+connectivity&ia=web",
+                    "https://duckduckgo.com/?q=how+to+troubleshoot+network+connectivity&ia=web",
+                    "https://duckduckgo.com/?q=how+to+troubleshoot+network+connectivity&ia=web",
+                    "https://duckduckgo.com/?q=how+to+troubleshoot+network+connectivity&ia=web",
+                    "https://duckduckgo.com/?q=how+to+troubleshoot+network+connectivity&ia=web",
+                    "https://duckduckgo.com/?q=how+to+troubleshoot+network+connectivity&ia=web",
+                    "https://duckduckgo.com/?q=how+to+troubleshoot+network+connectivity&ia=web",
+                    "https://duckduckgo.com/?q=how+to+troubleshoot+network+connectivity&ia=web",
+                    "https://duckduckgo.com/?q=how+to+troubleshoot+network+connectivity&ia=web",
+                    "https://duckduckgo.com/?q=how+to+troubleshoot+network+connectivity&ia=web",
+                    "https://duckduckgo.com/?q=how+to+troubleshoot+network+connectivity&ia=web",
+                    "https://duckduckgo.com/?q=how+to+troubleshoot+network+connectivity&ia=web",
+                    "https://duckduckgo.com/?q=how+to+troubleshoot+network+connectivity&ia=web",
+                    "https://duckduckgo.com/?q=how+to+troubleshoot+network+connectivity&ia=web",
+                    "https://duckduckgo.com/?q=how+to+troubleshoot+network+connectivity&ia=web",
+                    "https://duckduckgo.com/?q=how+to+troubleshoot+network+connectivity&ia=web",
+                    "https://duckduckgo.com/?q=how+to+troubleshoot+network+connectivity&ia=web",
+                    "https://networkcheckr.com/how-to-troubleshoot-network-connectivity/",
+                    "https://networkcheckr.com/author/jherwick/",
+                    "https://networkcheckr.com/author/jherwick/",
+                    "https://networkcheckr.com/author/jherwick/",
+                    "https://networkcheckr.com/author/jherwick/",
+                    "https://networkcheckr.com/author/jherwick/",
+                    "https://networkcheckr.com/author/jherwick/"
+                ],
+                "action_names": [
+                    "wait",
+                    "wait",
+                    "navigate",
+                    "click",
+                    "click",
+                    "search",
+                    "search",
+                    "search",
+                    "search",
+                    "search",
+                    "search",
+                    "search_page",
+                    "search",
+                    "search_page",
+                    "search",
+                    "search_page",
+                    "search_page",
+                    "search_page",
+                    "search_page",
+                    "search_page",
+                    "search_page",
+                    "search_page",
+                    "search_page",
+                    "search_page",
+                    "search_page",
+                    "search_page",
+                    "search",
+                    "search_page",
+                    "search_page",
+                    "search_page",
+                    "search_page",
+                    "search_page",
+                    "search_page",
+                    "search_page",
+                    "search_page",
+                    "search_page",
+                    "search_page",
+                    "click",
+                    "click",
+                    "write_file",
+                    "write_file",
+                    "done",
+                    "write_file",
+                    "write_file",
+                    "done",
+                    "write_file",
+                    "done"
+                ],
+                "promoted_outputs": [
+                    "/app/output/dashboard_experience.json",
+                    "/app/output/todo.md",
+                    "/app/output/final_answer.txt"
+                ]
+            }
+        }
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 0.0
+        }
+    },
+    "exception_info": null,
+    "started_at": "2026-08-26T17:59:28.964343Z",
+    "finished_at": "2026-08-26T18:07:20.359873Z",
+    "environment_setup": {
+        "started_at": "2026-08-26T17:59:28.969863Z",
+        "finished_at": "2026-08-26T17:59:39.842270Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-08-26T17:59:39.842354Z",
+        "finished_at": "2026-08-26T18:01:45.219069Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-08-26T18:01:45.219192Z",
+        "finished_at": "2026-08-26T18:07:02.316641Z"
+    },
+    "verifier": {
+        "started_at": "2026-08-26T18:07:02.845920Z",
+        "finished_at": "2026-08-26T18:07:08.028190Z"
+    },
+    "step_results": null
+}

@@ -1,0 +1,31 @@
+{
+  "task": {
+    "path": "application/tasks/chat_vita-drive-safety-policy"
+  },
+  "trial_name": "chat_vita-drive-safety-policy__29a7ff9",
+  "trials_dir": "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/jobs/pg-chat-vita-drive-safety-policy-0f5755db",
+  "timeout_multiplier": 1.0,
+  "agent_timeout_multiplier": null,
+  "verifier_timeout_multiplier": null,
+  "agent_setup_timeout_multiplier": null,
+  "environment_build_timeout_multiplier": null,
+  "agent": {
+    "name": "persona-user-sim",
+    "model_name": "anthropic/claude-haiku-4-5",
+    "kwargs": {
+      "persona_path": "persona/datasets/generated-persona-dev-2/persona_0001.yaml",
+      "model_info": {
+        "max_input_tokens": 200000,
+        "max_output_tokens": 16384
+      }
+    }
+  },
+  "environment": {
+    "type": "host",
+    "delete": true
+  },
+  "verifier": {},
+  "artifacts": [],
+  "extra_instruction_paths": [],
+  "job_id": "689405c0-c7a0-4c61-8ab9-c291156832c6"
+}

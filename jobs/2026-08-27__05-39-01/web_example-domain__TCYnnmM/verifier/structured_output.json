@@ -1,0 +1,216 @@
+{
+  "schemaVersion": "1.0",
+  "artifactType": "matraix.trial_evaluation",
+  "taskType": "web",
+  "presenceCheck": {
+    "passed": true,
+    "requiredArtifacts": [
+      "example_choice.json"
+    ],
+    "missingArtifacts": []
+  },
+  "sourceArtifacts": {
+    "taskOutput": "/app/output/example_choice.json",
+    "screenshot": "/app/output/screenshot.png"
+  },
+  "contexts": [
+    {
+      "key": "task_outcome.primary",
+      "label": "Task outcome",
+      "contextType": "task_outcome",
+      "facets": [
+        {
+          "key": "outcome_status",
+          "label": "Outcome status",
+          "role": "primary",
+          "kind": "categorical",
+          "value": "passed"
+        },
+        {
+          "key": "goal_completion_ratio",
+          "label": "Goal completion ratio",
+          "role": "score",
+          "kind": "numerical",
+          "value": 1.0
+        },
+        {
+          "key": "goal_completion_bucket",
+          "label": "Goal completion bucket",
+          "role": "primary",
+          "kind": "categorical",
+          "value": "complete"
+        },
+        {
+          "key": "verifier_mode",
+          "label": "Verifier mode",
+          "role": "evidence",
+          "kind": "categorical",
+          "value": "artifact_exact"
+        },
+        {
+          "key": "primary_failure_reason",
+          "label": "Primary failure reason",
+          "role": "primary",
+          "kind": "categorical",
+          "value": "none"
+        },
+        {
+          "key": "outcome_explanation",
+          "label": "Outcome explanation",
+          "role": "explanation",
+          "kind": "textual",
+          "value": "The persona completed the web task and saved a valid example_choice.json artifact."
+        },
+        {
+          "key": "completion_evidence",
+          "label": "Completion evidence",
+          "role": "evidence",
+          "kind": "textual",
+          "value": "Saved example_choice.json with decision subject Example Domain."
+        }
+      ]
+    },
+    {
+      "key": "web_artifact.primary",
+      "label": "Web artifact",
+      "contextType": "web_artifact",
+      "facets": [
+        {
+          "key": "artifact_type",
+          "label": "Artifact type",
+          "role": "primary",
+          "kind": "categorical",
+          "value": "selection"
+        },
+        {
+          "key": "artifact_status",
+          "label": "Artifact status",
+          "role": "primary",
+          "kind": "categorical",
+          "value": "correct"
+        },
+        {
+          "key": "artifact_subject_label",
+          "label": "Artifact subject label",
+          "role": "evidence",
+          "kind": "categorical",
+          "value": "Example Domain"
+        },
+        {
+          "key": "artifact_subject_id",
+          "label": "Artifact subject id",
+          "role": "evidence",
+          "kind": "categorical",
+          "value": "example-domain"
+        },
+        {
+          "key": "artifact_evidence",
+          "label": "Artifact evidence",
+          "role": "explanation",
+          "kind": "textual",
+          "value": "The submission artifact example_choice.json matches the persona decision."
+        }
+      ]
+    },
+    {
+      "key": "web_interaction.primary",
+      "label": "Web interaction",
+      "contextType": "web_interaction",
+      "facets": [
+        {
+          "key": "navigation_path_type",
+          "label": "Navigation path type",
+          "role": "primary",
+          "kind": "categorical",
+          "value": "direct"
+        },
+        {
+          "key": "web_interaction_notes",
+          "label": "Web interaction notes",
+          "role": "explanation",
+          "kind": "textual",
+          "value": "The persona used a quick pick browsing pattern before submitting."
+        }
+      ]
+    },
+    {
+      "key": "decision.primary",
+      "label": "Primary decision",
+      "contextType": "decision",
+      "facets": [
+        {
+          "key": "decision_outcome",
+          "label": "Decision outcome",
+          "role": "primary",
+          "kind": "categorical",
+          "value": "selected"
+        },
+        {
+          "key": "basis_primary",
+          "label": "Primary basis",
+          "role": "primary",
+          "kind": "categorical",
+          "value": "fit"
+        },
+        {
+          "key": "reason",
+          "label": "Reason",
+          "role": "explanation",
+          "kind": "textual",
+          "explainsFacetKey": "decision_outcome",
+          "value": "This example domain accurately demonstrates standard illustrative documentation structure."
+        },
+        {
+          "key": "decision_subject_id",
+          "label": "Decision subject ID",
+          "role": "evidence",
+          "kind": "categorical",
+          "value": "example-domain"
+        },
+        {
+          "key": "decision_subject_label",
+          "label": "Decision subject label",
+          "role": "evidence",
+          "kind": "categorical",
+          "value": "Example Domain"
+        },
+        {
+          "key": "task_site_url",
+          "label": "Site URL",
+          "role": "evidence",
+          "kind": "textual",
+          "value": "https://example.com/"
+        },
+        {
+          "key": "task_more_info_url",
+          "label": "More info URL",
+          "role": "evidence",
+          "kind": "textual",
+          "value": "https://iana.org/domains/example"
+        }
+      ]
+    },
+    {
+      "key": "decision.process",
+      "label": "Decision process",
+      "contextType": "decision_process",
+      "facets": [
+        {
+          "key": "exploration_style",
+          "label": "Exploration style",
+          "role": "primary",
+          "kind": "categorical",
+          "value": "quick_pick"
+        },
+        {
+          "key": "comparison_notes",
+          "label": "Comparison notes",
+          "role": "explanation",
+          "kind": "textual",
+          "explainsFacetKey": "exploration_style",
+          "value": "The persona used a quick pick browsing pattern to evaluate Example Domain."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+artifactName: user_feedback.json
+instructions: |
+  Đánh giá trung thực khả năng kích hoạt và điều phối các kịch bản chế độ đặc biệt (Special Modes) của trợ lý Vita.
+  Tập trung vào tính đồng bộ giữa các thiết bị (cửa sổ, gương, nắp sạc, điều hòa) và sự thuận tiện.
+fields:
+  - key: needConstraintSatisfaction
+    prompt: Trợ lý Vita có kích hoạt chính xác chế độ đặc biệt (Rửa xe / Cắm trại / Thú cưng / Giao xe) theo nhu cầu của bạn không?
+    kind: enum
+    choices: [yes, partially, no]
+  - key: personalPreferenceSatisfaction
+    prompt: Trợ lý có thông báo rõ các hệ thống con đã được tự động kích hoạt/bảo vệ không?
+    kind: enum
+    choices: [yes, partially, no]
+  - key: overallExperienceRating
+    prompt: Đánh giá tổng quan trải nghiệm sử dụng các chế độ xe đặc biệt từ 1 đến 10?
+    kind: integer
+    minimum: 1
+    maximum: 10
+    explanation:
+      key: reason
+      prompt: Nêu ngắn gọn lý do cho số điểm trên.
+  - key: askedUsefulClarificationQuestions
+    prompt: Trợ lý có xác nhận các điều kiện an toàn (ví dụ xe đã đỗ về số P) trước khi bật chế độ không?
+    kind: boolean
+    explanation:
+      key: clarifyingNotes
+      prompt: Chi tiết lời xác nhận hoặc thông báo của trợ lý.

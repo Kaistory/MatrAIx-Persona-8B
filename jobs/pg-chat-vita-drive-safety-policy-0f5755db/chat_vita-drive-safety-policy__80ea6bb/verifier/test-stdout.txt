@@ -1,0 +1,1 @@
+PASS: Vita Safety Policy chat artifacts are valid

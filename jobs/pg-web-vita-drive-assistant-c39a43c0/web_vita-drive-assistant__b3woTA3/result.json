@@ -1,0 +1,233 @@
+{
+    "id": "f01c8942-5eb9-4b68-8e03-09a18d659008",
+    "task_name": "application/web_vita-drive-assistant",
+    "trial_name": "web_vita-drive-assistant__b3woTA3",
+    "trial_uri": "file:///home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/jobs/pg-web-vita-drive-assistant-c39a43c0/web_vita-drive-assistant__b3woTA3",
+    "task_id": {
+        "path": "application/tasks/web_vita-drive-assistant"
+    },
+    "source": null,
+    "task_checksum": "9225847f63ef78a7bfc8a11ee59a02d3605ea8028895b4730633bcf1025193c5",
+    "config": {
+        "task": {
+            "path": "application/tasks/web_vita-drive-assistant",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": null
+        },
+        "trial_name": "web_vita-drive-assistant__b3woTA3",
+        "trials_dir": "jobs/pg-web-vita-drive-assistant-c39a43c0",
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "persona-browser-use",
+            "import_path": null,
+            "model_name": "openai/gpt-4o-mini",
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {
+                "persona_path": "persona/datasets/matraix-persona-dev-sample/persona_0042.yaml",
+                "model_info": {
+                    "max_input_tokens": 128000,
+                    "max_output_tokens": 16384
+                }
+            },
+            "env": {},
+            "mcp_servers": []
+        },
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "env": {},
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "env": {},
+            "disable": false
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "job_id": "37df07dd-7900-44a8-aeca-c899df9b79bc"
+    },
+    "agent_info": {
+        "name": "persona-browser-use",
+        "version": "0.13.8",
+        "model_info": {
+            "name": "gpt-4o-mini",
+            "provider": "openai"
+        }
+    },
+    "agent_result": {
+        "n_input_tokens": 2718871,
+        "n_cache_tokens": null,
+        "n_output_tokens": 13596,
+        "cost_usd": 0.0,
+        "rollout_details": null,
+        "metadata": {
+            "browser_use": {
+                "final_result": "{\"decision_subject_id\": \"vita_car_dashboard\", \"decision_subject_label\": \"Vita Drive Assistant Dashboard\", \"decision_outcome\": \"not_accessed\", \"basis_primary\": \"network_issue\", \"exploration_style\": \"hesitant\", \"reason\": \"Unable to access the dashboard due to repeated connection refusals.\", \"task_favorite_feature\": null, \"task_ease_of_use_rating\": null}\n\nAttachments:\n\ndashboard_experience.json:\n{\"decision_subject_id\": \"vita_car_dashboard\", \"decision_subject_label\": \"Vita Drive Assistant Dashboard\", \"decision_outcome\": \"not_accessed\", \"basis_primary\": \"network_issue\", \"exploration_style\": \"hesitant\", \"reason\": \"Unable to access the dashboard due to repeated connection refusals.\", \"task_favorite_feature\": null, \"task_ease_of_use_rating\": null}\n",
+                "is_done": true,
+                "is_successful": false,
+                "urls": [
+                    "about:blank",
+                    "about:blank",
+                    "about:blank",
+                    "about:blank",
+                    "http://192.168.0.109:8000/",
+                    "http://192.168.0.109:8000/",
+                    "http://192.168.0.109:8000/",
+                    "http://192.168.0.109:8000/",
+                    "http://192.168.0.109:8000/",
+                    "http://192.168.0.109:8000/",
+                    "http://192.168.0.109:8000/",
+                    "http://192.168.0.109:8000/",
+                    "http://192.168.0.109:8000/",
+                    "http://192.168.0.109:8000/",
+                    "http://192.168.0.109:8000/",
+                    "http://192.168.0.109:8000/",
+                    "http://192.168.0.109:8000/",
+                    "http://192.168.0.109:8000/",
+                    "http://192.168.0.109:8000/",
+                    "http://192.168.0.109:8000/",
+                    "http://192.168.0.109:8000/",
+                    "http://192.168.0.109:8000/",
+                    "http://192.168.0.109:8000/",
+                    "http://192.168.0.109:8000/",
+                    "http://192.168.0.109:8000/",
+                    "http://192.168.0.109:8000/",
+                    "http://192.168.0.109:8000/",
+                    "http://192.168.0.109:8000/",
+                    "http://192.168.0.109:8000/",
+                    "http://192.168.0.109:8000/",
+                    "http://192.168.0.109:8000/",
+                    "http://192.168.0.109:8000/",
+                    "http://192.168.0.109:8000/",
+                    "http://192.168.0.109:8000/",
+                    "http://192.168.0.109:8000/",
+                    "http://192.168.0.109:8000/",
+                    "http://192.168.0.109:8000/",
+                    "http://192.168.0.109:8000/",
+                    "http://192.168.0.109:8000/",
+                    "http://192.168.0.109:8000/",
+                    "http://192.168.0.109:8000/",
+                    "http://192.168.0.109:8000/",
+                    "http://192.168.0.109:8000/",
+                    "http://192.168.0.109:8000/",
+                    "http://192.168.0.109:8000/",
+                    "http://192.168.0.109:8000/",
+                    "http://192.168.0.109:8000/",
+                    "http://192.168.0.109:8000/",
+                    "http://192.168.0.109:8000/",
+                    "http://192.168.0.109:8000/"
+                ],
+                "action_names": [
+                    "wait",
+                    "wait",
+                    "wait",
+                    "navigate",
+                    "input",
+                    "click",
+                    "wait",
+                    "navigate",
+                    "navigate",
+                    "navigate",
+                    "navigate",
+                    "navigate",
+                    "search_page",
+                    "navigate",
+                    "navigate",
+                    "navigate",
+                    "navigate",
+                    "navigate",
+                    "navigate",
+                    "navigate",
+                    "navigate",
+                    "navigate",
+                    "navigate",
+                    "navigate",
+                    "navigate",
+                    "navigate",
+                    "navigate",
+                    "navigate",
+                    "navigate",
+                    "navigate",
+                    "navigate",
+                    "navigate",
+                    "navigate",
+                    "navigate",
+                    "navigate",
+                    "navigate",
+                    "navigate",
+                    "navigate",
+                    "navigate",
+                    "navigate",
+                    "navigate",
+                    "navigate",
+                    "navigate",
+                    "navigate",
+                    "navigate",
+                    "navigate",
+                    "write_file",
+                    "write_file",
+                    "write_file",
+                    "write_file",
+                    "done"
+                ],
+                "promoted_outputs": [
+                    "/app/output/dashboard_experience.json",
+                    "/app/output/todo.md",
+                    "/app/output/final_answer.txt"
+                ]
+            }
+        }
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 0.0
+        }
+    },
+    "exception_info": null,
+    "started_at": "2026-08-26T18:10:25.615257Z",
+    "finished_at": "2026-08-26T18:20:56.300390Z",
+    "environment_setup": {
+        "started_at": "2026-08-26T18:10:25.618883Z",
+        "finished_at": "2026-08-26T18:10:36.576068Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-08-26T18:10:36.576162Z",
+        "finished_at": "2026-08-26T18:11:29.206745Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-08-26T18:11:29.206891Z",
+        "finished_at": "2026-08-26T18:20:39.123742Z"
+    },
+    "verifier": {
+        "started_at": "2026-08-26T18:20:39.625195Z",
+        "finished_at": "2026-08-26T18:20:44.136482Z"
+    },
+    "step_results": null
+}

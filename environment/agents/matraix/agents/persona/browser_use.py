@@ -9,6 +9,7 @@ from harbor.models.agent.context import AgentContext
 from harbor.models.agent.name import AgentName
 
 from matraix.agents.installed.browser_use import BrowserUseHarborAgent
+from matraix.agents.persona.cua_submission import materialize_final_answer_file
 from matraix.agents.persona.mixin import PersonaMixin
 
 
@@ -45,3 +46,8 @@ class PersonaBrowserUse(PersonaMixin, BrowserUseHarborAgent):
             "PERSONA_SYSTEM": self._render_persona_system(),
         }
         await super().run(instruction, environment, context)
+        await materialize_final_answer_file(
+            environment,
+            self.logs_dir,
+            logger=self.logger,
+        )

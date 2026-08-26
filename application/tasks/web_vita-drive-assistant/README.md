@@ -1,20 +1,24 @@
-# Web Task: Vita Drive Assistant Lab
+# Web Task: Vita Drive Assistant (VinFast VF9 Cockpit & Controls)
 
-Mô phỏng trải nghiệm người dùng đối với bảng điều khiển xe thông minh **Vita Drive Assistant Lab** chạy local trên trình duyệt.
+Mô phỏng trải nghiệm người dùng đối với bảng điều khiển xe điện thông minh **VinFast VF9 Dashboard & Cockpit** (điều khiển xe, điều hòa 3 vùng, giải trí, trợ lý giọng nói) trên trình duyệt web.
 
 ## Suggested setup (non-binding)
 
 - **Agent driver:** `persona-browser-use` (hoặc `persona-openhands-sdk`)
-- **Website URL:** `http://172.17.0.1:5173/` (Localhost từ máy host vào Docker container)
-- **Local repo:** `/home/khaidq9/Documents/GitHub/vita-drive-assistant-lab/apps/web`
-- **Output:** `/app/output/dashboard_experience.json`
+- **Website URL:** `http://172.17.0.1:5173/`
+- **Local repo:** `/home/khaidq9/Documents/GitHub/vita-drive-assistant-lab`
+- **Output:** `/app/output/dashboard_experience.json` và `/app/output/user_feedback.json`
 
-## Khởi động website trước khi chạy test
+## Khởi động toàn bộ stack trước khi chạy test
 
 ```bash
-cd /home/khaidq9/Documents/GitHub/vita-drive-assistant-lab/apps/web
+cd /home/khaidq9/Documents/GitHub/vita-drive-assistant-lab
 npm run dev
 ```
+
+- Web Frontend: `http://localhost:5173` (hoặc `http://172.17.0.1:5173`) (mật khẩu: `dev`)
+- Backend API: `http://localhost:3001`
+- Python Agent: `http://localhost:8787`
 
 ## Chạy kiểm thử mẫu qua CLI
 

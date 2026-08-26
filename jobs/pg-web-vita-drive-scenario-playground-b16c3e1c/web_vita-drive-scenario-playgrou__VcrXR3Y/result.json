@@ -1,0 +1,134 @@
+{
+    "id": "9eef5d4c-6686-48af-8121-9c42e76b2561",
+    "task_name": "application/web_vita-drive-scenario-playground",
+    "trial_name": "web_vita-drive-scenario-playgrou__VcrXR3Y",
+    "trial_uri": "file:///home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/jobs/pg-web-vita-drive-scenario-playground-b16c3e1c/web_vita-drive-scenario-playgrou__VcrXR3Y",
+    "task_id": {
+        "path": "application/tasks/web_vita-drive-scenario-playground"
+    },
+    "source": null,
+    "task_checksum": "9c71cbf6594581ce4da20fd2b09dd0edeef4d81438960710fed541e684837633",
+    "config": {
+        "task": {
+            "path": "application/tasks/web_vita-drive-scenario-playground",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": null
+        },
+        "trial_name": "web_vita-drive-scenario-playgrou__VcrXR3Y",
+        "trials_dir": "jobs/pg-web-vita-drive-scenario-playground-b16c3e1c",
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "persona-browser-use",
+            "import_path": null,
+            "model_name": "openai/gpt-4o-mini",
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {
+                "persona_path": "persona/datasets/generated-persona-dev-1/persona_0042.yaml",
+                "model_info": {
+                    "max_input_tokens": 128000,
+                    "max_output_tokens": 16384
+                }
+            },
+            "env": {},
+            "mcp_servers": []
+        },
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "env": {},
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "env": {},
+            "disable": false
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "job_id": "566c0c2c-9fd7-476c-9e19-0f62313328f8"
+    },
+    "agent_info": {
+        "name": "persona-browser-use",
+        "version": "0.13.8",
+        "model_info": {
+            "name": "gpt-4o-mini",
+            "provider": "openai"
+        }
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "rollout_details": null,
+        "metadata": {
+            "browser_use": {
+                "final_result": null,
+                "is_done": false,
+                "is_successful": null,
+                "urls": [
+                    "about:blank",
+                    "about:blank",
+                    "about:blank",
+                    "about:blank"
+                ],
+                "action_names": [
+                    "wait",
+                    "wait",
+                    "wait",
+                    "navigate"
+                ],
+                "promoted_outputs": []
+            }
+        }
+    },
+    "verifier_result": null,
+    "exception_info": {
+        "exception_type": "CancelledError",
+        "exception_message": "",
+        "exception_traceback": "Traceback (most recent call last):\n  File \"/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/trial/trial.py\", line 323, in run\n    await self._run()\n  File \"/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/trial/single_step.py\", line 33, in _run\n    await self._run_agent()\n  File \"/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/trial/single_step.py\", line 68, in _run_agent\n    await self._run_agent_phase(\n  File \"/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/trial/trial.py\", line 408, in _run_agent_phase\n    await asyncio.wait_for(\n  File \"/home/khaidq9/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/asyncio/tasks.py\", line 520, in wait_for\n    return await fut\n           ^^^^^^^^^\n  File \"/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/agents/matraix/agents/persona/browser_use.py\", line 48, in run\n    await super().run(instruction, environment, context)\n  File \"/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/agents/installed/base.py\", line 53, in wrapper\n    return await fn(self, instruction, *args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/agents/matraix/agents/installed/browser_use.py\", line 218, in run\n    await self.exec_as_agent(environment, command=command.strip(), env=env)\n  File \"/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/agents/installed/base.py\", line 407, in exec_as_agent\n    return await self._exec(\n           ^^^^^^^^^^^^^^^^^\n  File \"/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/agents/installed/base.py\", line 358, in _exec\n    result = await environment.exec(\n             ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/environments/docker/docker.py\", line 709, in exec\n    return await self._compose_exec(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/environments/docker/docker.py\", line 785, in _compose_exec\n    return await self._run_docker_compose_command(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/environments/docker/docker.py\", line 404, in _run_docker_compose_command\n    stdout_bytes, stderr_bytes = await process.communicate()\n                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/khaidq9/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/asyncio/subprocess.py\", line 201, in communicate\n    stdin, stdout, stderr = await tasks.gather(stdin, stdout, stderr)\n                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/khaidq9/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/asyncio/subprocess.py\", line 181, in _read_stream\n    output = await stream.read()\n             ^^^^^^^^^^^^^^^^^^^\n  File \"/home/khaidq9/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/asyncio/streams.py\", line 706, in read\n    block = await self.read(self._limit)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/khaidq9/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/asyncio/streams.py\", line 713, in read\n    await self._wait_for_data('read')\n  File \"/home/khaidq9/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/asyncio/streams.py\", line 545, in _wait_for_data\n    await self._waiter\nasyncio.exceptions.CancelledError\n",
+        "occurred_at": "2026-08-27T04:25:25.130264"
+    },
+    "started_at": "2026-08-26T21:21:58.215394Z",
+    "finished_at": "2026-08-26T21:25:26.013440Z",
+    "environment_setup": {
+        "started_at": "2026-08-26T21:21:58.221353Z",
+        "finished_at": "2026-08-26T21:24:36.851400Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-08-26T21:24:36.851521Z",
+        "finished_at": "2026-08-26T21:24:38.349825Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-08-26T21:24:38.349993Z",
+        "finished_at": "2026-08-26T21:25:24.763400Z"
+    },
+    "verifier": null,
+    "step_results": null
+}

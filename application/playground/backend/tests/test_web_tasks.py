@@ -40,23 +40,47 @@ def test_notion_plan_comparison_is_registered():
     assert task.submission_profile == "notion_plan_comparison"
 
 
-def test_allrecipes_recipe_choice_is_registered():
-    task = get_web_eval_task("web-allrecipes-recipe-choice")
+def test_vita_drive_assistant_is_registered():
+    task = get_web_eval_task("web-vita-drive-assistant")
 
-    assert task.task_path == "application/tasks/web_allrecipes-recipe-choice"
+    assert task.task_path == "application/tasks/web_vita-drive-assistant"
     assert task.task_kind == "task"
-    assert task.site_name == "Allrecipes"
-    assert task.site_url == "https://www.allrecipes.com/"
-    assert task.output_artifact == "recipe_choice.json"
-    assert task.submission_profile == "recipe_choice"
+    assert task.site_name == "Vita Drive Assistant"
+    assert task.site_url == "http://172.17.0.1:5173/"
+    assert task.output_artifact == "dashboard_experience.json"
+    assert task.submission_profile == "dashboard_experience"
 
 
-def test_openlibrary_book_choice_is_registered():
-    task = get_web_eval_task("web-openlibrary-book-choice")
+def test_vita_drive_scenario_playground_is_registered():
+    task = get_web_eval_task("web-vita-drive-scenario-playground")
 
-    assert task.task_path == "application/tasks/web_openlibrary-book-choice"
+    assert task.task_path == "application/tasks/web_vita-drive-scenario-playground"
     assert task.task_kind == "task"
-    assert task.site_name == "Open Library"
-    assert task.site_url == "https://openlibrary.org/"
-    assert task.output_artifact == "book_choice.json"
-    assert task.submission_profile == "book_choice"
+    assert task.site_name == "Vita Drive Scenario Playground"
+    assert task.site_url == "http://172.17.0.1:5173/"
+    assert task.output_artifact == "playground_experience.json"
+    assert task.submission_profile == "playground_experience"
+
+
+def test_vita_drive_soul_studio_is_registered():
+    task = get_web_eval_task("web-vita-drive-soul-studio")
+
+    assert task.task_path == "application/tasks/web_vita-drive-soul-studio"
+    assert task.task_kind == "task"
+    assert task.site_name == "Vita Drive Soul Studio"
+    assert task.site_url == "http://172.17.0.1:5173/"
+    assert task.output_artifact == "soul_studio_experience.json"
+    assert task.submission_profile == "soul_studio_experience"
+
+
+def test_example_domain_is_registered():
+    task = get_web_eval_task("web-example-domain")
+
+    assert task.task_path == "application/tasks/web_example-domain"
+    assert task.task_kind == "task"
+    assert task.site_name == "Example Domain"
+    assert task.site_url == "https://example.com/"
+    assert task.output_artifact == "example_choice.json"
+    assert task.submission_profile == "example_choice"
+
+

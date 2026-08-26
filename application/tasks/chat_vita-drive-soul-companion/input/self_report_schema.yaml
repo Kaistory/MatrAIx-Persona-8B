@@ -1,0 +1,27 @@
+artifactName: user_feedback.json
+instructions: |
+  Đánh giá trung thực tính tự nhiên, sự thấu cảm và mức độ thoải mái khi trò chuyện với trợ lý Vita (Vita Soul).
+  Tập trung vào phong cách ngôn ngữ tiếng Việt, sự gần gũi và tính đồng hành khi lái xe.
+fields:
+  - key: needConstraintSatisfaction
+    prompt: Trợ lý Vita có phản hồi phù hợp với cảm xúc và câu chuyện bạn chia sẻ không?
+    kind: enum
+    choices: [yes, partially, no]
+  - key: personalPreferenceSatisfaction
+    prompt: Giọng điệu và cách dùng từ của trợ lý có ấm áp, tự nhiên và dễ chịu khi lái xe không?
+    kind: enum
+    choices: [yes, partially, no]
+  - key: overallExperienceRating
+    prompt: Đánh giá tổng quan trải nghiệm trò chuyện đồng hành từ 1 đến 10?
+    kind: integer
+    minimum: 1
+    maximum: 10
+    explanation:
+      key: reason
+      prompt: Nêu ngắn gọn lý do cho số điểm trên.
+  - key: askedUsefulClarificationQuestions
+    prompt: Trợ lý có duy trì mạch hội thoại hoặc đặt câu hỏi gợi mở tự nhiên không?
+    kind: boolean
+    explanation:
+      key: clarifyingNotes
+      prompt: Chi tiết ấn tượng về phong cách biểu đạt của trợ lý.

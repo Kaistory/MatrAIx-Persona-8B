@@ -1,0 +1,71 @@
+{
+    "schema_version": 1,
+    "created_at": "2026-08-26T18:31:55.215320Z",
+    "harbor": {
+        "version": "0.1.0",
+        "is_editable": false
+    },
+    "invocation": [
+        "/home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/environment/runtime/harbor/cli/main.py",
+        "run",
+        "--yes",
+        "-c",
+        "configs/jobs/application-task-job-recipe/pg-web-vita-drive-assistant-2a5edbf9.yaml"
+    ],
+    "n_concurrent_trials": 1,
+    "retry": {
+        "max_retries": 0,
+        "exclude_exceptions": [
+            "RewardFileNotFoundError",
+            "RewardFileEmptyError",
+            "VerifierOutputParseError",
+            "VerifierTimeoutError",
+            "AgentTimeoutError"
+        ],
+        "wait_multiplier": 1.0,
+        "min_wait_sec": 1.0,
+        "max_wait_sec": 60.0
+    },
+    "trials": [
+        {
+            "task": {
+                "name": "web_vita-drive-assistant",
+                "type": "local",
+                "digest": "sha256:83a781fccabad4be7f348fb61edff69642fb2e6f0f1852b3b6d6bb11bd21b822",
+                "path": "application/tasks/web_vita-drive-assistant"
+            },
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "persona-browser-use",
+                "model_name": "anthropic/claude-haiku-4-5",
+                "skills": [],
+                "extra_allowed_hosts": [],
+                "kwargs": {
+                    "persona_path": "persona/datasets/matraix-persona-dev-sample/persona_0042.yaml",
+                    "model_info": {
+                        "max_input_tokens": 200000,
+                        "max_output_tokens": 16384
+                    }
+                },
+                "env": {},
+                "mcp_servers": []
+            },
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "env": {},
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "env": {},
+                "disable": false
+            }
+        }
+    ]
+}
