@@ -1,16 +1,1077 @@
 {
   "schemaVersion": "1.0",
   "artifactType": "job_aggregation",
-  "generatedAt": "2026-08-26T22:26:11Z",
+  "generatedAt": "2026-08-27T02:43:54Z",
   "coverage": {
     "trialCount": 1,
-    "completedTrials": 0,
-    "pendingTrials": 1,
-    "artifactReadyTrials": 0,
+    "completedTrials": 1,
+    "pendingTrials": 0,
+    "artifactReadyTrials": 1,
     "completedWithoutArtifactTrials": 0
   },
-  "fields": [],
-  "contexts": [],
+  "fields": [
+    {
+      "key": "decision.primary.basis_primary",
+      "facetKey": "basis_primary",
+      "contextKey": "decision.primary",
+      "contextLabel": "Primary decision",
+      "label": "Primary basis",
+      "kind": "categorical",
+      "role": "primary",
+      "explainsFacetKey": null,
+      "group": "decision.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "categorical": {
+        "count": 1,
+        "distinctCount": 1,
+        "counts": [
+          {
+            "value": "quality",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "decision.primary.decision_outcome",
+      "facetKey": "decision_outcome",
+      "contextKey": "decision.primary",
+      "contextLabel": "Primary decision",
+      "label": "Decision outcome",
+      "kind": "categorical",
+      "role": "primary",
+      "explainsFacetKey": null,
+      "group": "decision.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "categorical": {
+        "count": 1,
+        "distinctCount": 1,
+        "counts": [
+          {
+            "value": "selected",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "decision.primary.decision_subject_id",
+      "facetKey": "decision_subject_id",
+      "contextKey": "decision.primary",
+      "contextLabel": "Primary decision",
+      "label": "Decision subject id",
+      "kind": "categorical",
+      "role": "primary",
+      "explainsFacetKey": null,
+      "group": "decision.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "categorical": {
+        "count": 1,
+        "distinctCount": 1,
+        "counts": [
+          {
+            "value": "vita_soul_studio",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "decision.primary.decision_subject_label",
+      "facetKey": "decision_subject_label",
+      "contextKey": "decision.primary",
+      "contextLabel": "Primary decision",
+      "label": "Decision subject label",
+      "kind": "categorical",
+      "role": "identifier",
+      "explainsFacetKey": null,
+      "group": "decision.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "categorical": {
+        "count": 1,
+        "distinctCount": 1,
+        "counts": [
+          {
+            "value": "Vita Soul Studio & Voice Persona",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "decision.primary.ease_of_use_rating",
+      "facetKey": "ease_of_use_rating",
+      "contextKey": "decision.primary",
+      "contextLabel": "Primary decision",
+      "label": "Ease of use rating",
+      "kind": "numerical",
+      "role": "metric",
+      "explainsFacetKey": null,
+      "group": "decision.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "numerical": {
+        "count": 1,
+        "min": 5.0,
+        "max": 5.0,
+        "avg": 5.0,
+        "std": 0.0,
+        "counts": [
+          {
+            "value": "5",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "decision.primary.exploration_style",
+      "facetKey": "exploration_style",
+      "contextKey": "decision.primary",
+      "contextLabel": "Primary decision",
+      "label": "Exploration style",
+      "kind": "categorical",
+      "role": "control",
+      "explainsFacetKey": null,
+      "group": "decision.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "categorical": {
+        "count": 1,
+        "distinctCount": 1,
+        "counts": [
+          {
+            "value": "quick_pick",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "decision.primary.favorite_feature",
+      "facetKey": "favorite_feature",
+      "contextKey": "decision.primary",
+      "contextLabel": "Primary decision",
+      "label": "Favorite feature",
+      "kind": "categorical",
+      "role": "evidence",
+      "explainsFacetKey": null,
+      "group": "decision.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "categorical": {
+        "count": 1,
+        "distinctCount": 1,
+        "counts": [
+          {
+            "value": "profile_switching",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "decision.primary.favorite_profile",
+      "facetKey": "favorite_profile",
+      "contextKey": "decision.primary",
+      "contextLabel": "Primary decision",
+      "label": "Favorite profile",
+      "kind": "categorical",
+      "role": "evidence",
+      "explainsFacetKey": null,
+      "group": "decision.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "categorical": {
+        "count": 1,
+        "distinctCount": 1,
+        "counts": [
+          {
+            "value": "sweet",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "decision.primary.reason",
+      "facetKey": "reason",
+      "contextKey": "decision.primary",
+      "contextLabel": "Primary decision",
+      "label": "Reason",
+      "kind": "textual",
+      "role": "explanation",
+      "explainsFacetKey": null,
+      "group": "decision.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "textual": {
+        "count": 1,
+        "uniqueCount": 1,
+        "samples": [
+          "Giao diện dễ sử dụng và các profile giọng nói đa dạng, giúp tạo cảm giác gần gũi và thân thiện."
+        ],
+        "counts": [
+          {
+            "value": "Giao diện dễ sử dụng và các profile giọng nói đa dạng, giúp tạo cảm giác gần gũi và thân thiện.",
+            "count": 1,
+            "samples": [
+              "Giao diện dễ sử dụng và các profile giọng nói đa dạng, giúp tạo cảm giác gần gũi và thân thiện."
+            ]
+          }
+        ],
+        "summary": "All 1 answers converge on one theme: \"Giao diện dễ sử dụng và các profile giọng nói đa dạng, giúp tạo cảm giác gần gũi và thân thiện.\".",
+        "summaryType": "heuristic"
+      }
+    },
+    {
+      "key": "task_outcome.primary.completion_evidence",
+      "facetKey": "completion_evidence",
+      "contextKey": "task_outcome.primary",
+      "contextLabel": "Task outcome",
+      "label": "Completion evidence",
+      "kind": "textual",
+      "role": "evidence",
+      "explainsFacetKey": null,
+      "group": "task_outcome.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "textual": {
+        "count": 1,
+        "uniqueCount": 1,
+        "samples": [
+          "Saved soul_studio_experience.json with subject Vita Soul Studio & Voice Persona."
+        ],
+        "counts": [
+          {
+            "value": "Saved soul_studio_experience.json with subject Vita Soul Studio & Voice Persona.",
+            "count": 1,
+            "samples": [
+              "Saved soul_studio_experience.json with subject Vita Soul Studio & Voice Persona."
+            ]
+          }
+        ],
+        "summary": "All 1 answers converge on one theme: \"Saved soul_studio_experience.json with subject Vita Soul Studio & Voice Persona.\".",
+        "summaryType": "heuristic"
+      }
+    },
+    {
+      "key": "task_outcome.primary.goal_completion_bucket",
+      "facetKey": "goal_completion_bucket",
+      "contextKey": "task_outcome.primary",
+      "contextLabel": "Task outcome",
+      "label": "Goal completion bucket",
+      "kind": "categorical",
+      "role": "primary",
+      "explainsFacetKey": null,
+      "group": "task_outcome.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "categorical": {
+        "count": 1,
+        "distinctCount": 1,
+        "counts": [
+          {
+            "value": "complete",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "task_outcome.primary.goal_completion_ratio",
+      "facetKey": "goal_completion_ratio",
+      "contextKey": "task_outcome.primary",
+      "contextLabel": "Task outcome",
+      "label": "Goal completion ratio",
+      "kind": "numerical",
+      "role": "score",
+      "explainsFacetKey": null,
+      "group": "task_outcome.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "numerical": {
+        "count": 1,
+        "min": 1.0,
+        "max": 1.0,
+        "avg": 1.0,
+        "std": 0.0,
+        "counts": [
+          {
+            "value": "1",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "task_outcome.primary.outcome_explanation",
+      "facetKey": "outcome_explanation",
+      "contextKey": "task_outcome.primary",
+      "contextLabel": "Task outcome",
+      "label": "Outcome explanation",
+      "kind": "textual",
+      "role": "explanation",
+      "explainsFacetKey": null,
+      "group": "task_outcome.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "textual": {
+        "count": 1,
+        "uniqueCount": 1,
+        "samples": [
+          "The persona explored Vita Soul Studio and saved a valid soul_studio_experience.json artifact."
+        ],
+        "counts": [
+          {
+            "value": "The persona explored Vita Soul Studio and saved a valid soul_studio_experience.json artifact.",
+            "count": 1,
+            "samples": [
+              "The persona explored Vita Soul Studio and saved a valid soul_studio_experience.json artifact."
+            ]
+          }
+        ],
+        "summary": "All 1 answers converge on one theme: \"The persona explored Vita Soul Studio and saved a valid soul_studio_experience.json artifact.\".",
+        "summaryType": "heuristic"
+      }
+    },
+    {
+      "key": "task_outcome.primary.outcome_status",
+      "facetKey": "outcome_status",
+      "contextKey": "task_outcome.primary",
+      "contextLabel": "Task outcome",
+      "label": "Outcome status",
+      "kind": "categorical",
+      "role": "primary",
+      "explainsFacetKey": null,
+      "group": "task_outcome.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "categorical": {
+        "count": 1,
+        "distinctCount": 1,
+        "counts": [
+          {
+            "value": "passed",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "task_outcome.primary.primary_failure_reason",
+      "facetKey": "primary_failure_reason",
+      "contextKey": "task_outcome.primary",
+      "contextLabel": "Task outcome",
+      "label": "Primary failure reason",
+      "kind": "categorical",
+      "role": "primary",
+      "explainsFacetKey": null,
+      "group": "task_outcome.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "categorical": {
+        "count": 1,
+        "distinctCount": 1,
+        "counts": [
+          {
+            "value": "none",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "task_outcome.primary.verifier_mode",
+      "facetKey": "verifier_mode",
+      "contextKey": "task_outcome.primary",
+      "contextLabel": "Task outcome",
+      "label": "Verifier mode",
+      "kind": "categorical",
+      "role": "evidence",
+      "explainsFacetKey": null,
+      "group": "task_outcome.primary",
+      "description": null,
+      "unit": null,
+      "higherIsBetter": null,
+      "categories": null,
+      "order": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "presentCount": 1,
+      "missingCount": 0,
+      "categorical": {
+        "count": 1,
+        "distinctCount": 1,
+        "counts": [
+          {
+            "value": "artifact_exact",
+            "count": 1
+          }
+        ]
+      }
+    }
+  ],
+  "contexts": [
+    {
+      "key": "decision.primary",
+      "label": "Primary decision",
+      "contextType": "decision",
+      "questionType": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "scaleLabels": null,
+      "summaryAnalyses": [],
+      "signalScans": [],
+      "distributions": [
+        {
+          "id": "decision.basis_by_segment",
+          "facetKey": "basis_primary",
+          "title": "Primary basis"
+        },
+        {
+          "id": "decision.outcome_by_segment",
+          "facetKey": "decision_outcome",
+          "title": "Decision outcome"
+        }
+      ],
+      "facets": [
+        {
+          "key": "decision.primary.decision_subject_id",
+          "facetKey": "decision_subject_id",
+          "contextKey": "decision.primary",
+          "contextLabel": "Primary decision",
+          "label": "Decision subject id",
+          "kind": "categorical",
+          "role": "primary",
+          "explainsFacetKey": null,
+          "group": "decision.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "categorical": {
+            "count": 1,
+            "distinctCount": 1,
+            "counts": [
+              {
+                "value": "vita_soul_studio",
+                "count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": "decision.primary.decision_subject_label",
+          "facetKey": "decision_subject_label",
+          "contextKey": "decision.primary",
+          "contextLabel": "Primary decision",
+          "label": "Decision subject label",
+          "kind": "categorical",
+          "role": "identifier",
+          "explainsFacetKey": null,
+          "group": "decision.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "categorical": {
+            "count": 1,
+            "distinctCount": 1,
+            "counts": [
+              {
+                "value": "Vita Soul Studio & Voice Persona",
+                "count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": "decision.primary.decision_outcome",
+          "facetKey": "decision_outcome",
+          "contextKey": "decision.primary",
+          "contextLabel": "Primary decision",
+          "label": "Decision outcome",
+          "kind": "categorical",
+          "role": "primary",
+          "explainsFacetKey": null,
+          "group": "decision.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "categorical": {
+            "count": 1,
+            "distinctCount": 1,
+            "counts": [
+              {
+                "value": "selected",
+                "count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": "decision.primary.basis_primary",
+          "facetKey": "basis_primary",
+          "contextKey": "decision.primary",
+          "contextLabel": "Primary decision",
+          "label": "Primary basis",
+          "kind": "categorical",
+          "role": "primary",
+          "explainsFacetKey": null,
+          "group": "decision.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "categorical": {
+            "count": 1,
+            "distinctCount": 1,
+            "counts": [
+              {
+                "value": "quality",
+                "count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": "decision.primary.exploration_style",
+          "facetKey": "exploration_style",
+          "contextKey": "decision.primary",
+          "contextLabel": "Primary decision",
+          "label": "Exploration style",
+          "kind": "categorical",
+          "role": "control",
+          "explainsFacetKey": null,
+          "group": "decision.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "categorical": {
+            "count": 1,
+            "distinctCount": 1,
+            "counts": [
+              {
+                "value": "quick_pick",
+                "count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": "decision.primary.reason",
+          "facetKey": "reason",
+          "contextKey": "decision.primary",
+          "contextLabel": "Primary decision",
+          "label": "Reason",
+          "kind": "textual",
+          "role": "explanation",
+          "explainsFacetKey": null,
+          "group": "decision.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "textual": {
+            "count": 1,
+            "uniqueCount": 1,
+            "samples": [
+              "Giao diện dễ sử dụng và các profile giọng nói đa dạng, giúp tạo cảm giác gần gũi và thân thiện."
+            ],
+            "counts": [
+              {
+                "value": "Giao diện dễ sử dụng và các profile giọng nói đa dạng, giúp tạo cảm giác gần gũi và thân thiện.",
+                "count": 1,
+                "samples": [
+                  "Giao diện dễ sử dụng và các profile giọng nói đa dạng, giúp tạo cảm giác gần gũi và thân thiện."
+                ]
+              }
+            ],
+            "summary": "All 1 answers converge on one theme: \"Giao diện dễ sử dụng và các profile giọng nói đa dạng, giúp tạo cảm giác gần gũi và thân thiện.\".",
+            "summaryType": "heuristic"
+          }
+        },
+        {
+          "key": "decision.primary.favorite_feature",
+          "facetKey": "favorite_feature",
+          "contextKey": "decision.primary",
+          "contextLabel": "Primary decision",
+          "label": "Favorite feature",
+          "kind": "categorical",
+          "role": "evidence",
+          "explainsFacetKey": null,
+          "group": "decision.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "categorical": {
+            "count": 1,
+            "distinctCount": 1,
+            "counts": [
+              {
+                "value": "profile_switching",
+                "count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": "decision.primary.favorite_profile",
+          "facetKey": "favorite_profile",
+          "contextKey": "decision.primary",
+          "contextLabel": "Primary decision",
+          "label": "Favorite profile",
+          "kind": "categorical",
+          "role": "evidence",
+          "explainsFacetKey": null,
+          "group": "decision.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "categorical": {
+            "count": 1,
+            "distinctCount": 1,
+            "counts": [
+              {
+                "value": "sweet",
+                "count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": "decision.primary.ease_of_use_rating",
+          "facetKey": "ease_of_use_rating",
+          "contextKey": "decision.primary",
+          "contextLabel": "Primary decision",
+          "label": "Ease of use rating",
+          "kind": "numerical",
+          "role": "metric",
+          "explainsFacetKey": null,
+          "group": "decision.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "numerical": {
+            "count": 1,
+            "min": 5.0,
+            "max": 5.0,
+            "avg": 5.0,
+            "std": 0.0,
+            "counts": [
+              {
+                "value": "5",
+                "count": 1
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "key": "task_outcome.primary",
+      "label": "Task outcome",
+      "contextType": "task_outcome",
+      "questionType": null,
+      "scaleMin": null,
+      "scaleMax": null,
+      "scaleLabels": null,
+      "summaryAnalyses": [],
+      "signalScans": [],
+      "distributions": [],
+      "facets": [
+        {
+          "key": "task_outcome.primary.outcome_status",
+          "facetKey": "outcome_status",
+          "contextKey": "task_outcome.primary",
+          "contextLabel": "Task outcome",
+          "label": "Outcome status",
+          "kind": "categorical",
+          "role": "primary",
+          "explainsFacetKey": null,
+          "group": "task_outcome.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "categorical": {
+            "count": 1,
+            "distinctCount": 1,
+            "counts": [
+              {
+                "value": "passed",
+                "count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": "task_outcome.primary.goal_completion_ratio",
+          "facetKey": "goal_completion_ratio",
+          "contextKey": "task_outcome.primary",
+          "contextLabel": "Task outcome",
+          "label": "Goal completion ratio",
+          "kind": "numerical",
+          "role": "score",
+          "explainsFacetKey": null,
+          "group": "task_outcome.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "numerical": {
+            "count": 1,
+            "min": 1.0,
+            "max": 1.0,
+            "avg": 1.0,
+            "std": 0.0,
+            "counts": [
+              {
+                "value": "1",
+                "count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": "task_outcome.primary.goal_completion_bucket",
+          "facetKey": "goal_completion_bucket",
+          "contextKey": "task_outcome.primary",
+          "contextLabel": "Task outcome",
+          "label": "Goal completion bucket",
+          "kind": "categorical",
+          "role": "primary",
+          "explainsFacetKey": null,
+          "group": "task_outcome.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "categorical": {
+            "count": 1,
+            "distinctCount": 1,
+            "counts": [
+              {
+                "value": "complete",
+                "count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": "task_outcome.primary.verifier_mode",
+          "facetKey": "verifier_mode",
+          "contextKey": "task_outcome.primary",
+          "contextLabel": "Task outcome",
+          "label": "Verifier mode",
+          "kind": "categorical",
+          "role": "evidence",
+          "explainsFacetKey": null,
+          "group": "task_outcome.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "categorical": {
+            "count": 1,
+            "distinctCount": 1,
+            "counts": [
+              {
+                "value": "artifact_exact",
+                "count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": "task_outcome.primary.primary_failure_reason",
+          "facetKey": "primary_failure_reason",
+          "contextKey": "task_outcome.primary",
+          "contextLabel": "Task outcome",
+          "label": "Primary failure reason",
+          "kind": "categorical",
+          "role": "primary",
+          "explainsFacetKey": null,
+          "group": "task_outcome.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "categorical": {
+            "count": 1,
+            "distinctCount": 1,
+            "counts": [
+              {
+                "value": "none",
+                "count": 1
+              }
+            ]
+          }
+        },
+        {
+          "key": "task_outcome.primary.outcome_explanation",
+          "facetKey": "outcome_explanation",
+          "contextKey": "task_outcome.primary",
+          "contextLabel": "Task outcome",
+          "label": "Outcome explanation",
+          "kind": "textual",
+          "role": "explanation",
+          "explainsFacetKey": null,
+          "group": "task_outcome.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "textual": {
+            "count": 1,
+            "uniqueCount": 1,
+            "samples": [
+              "The persona explored Vita Soul Studio and saved a valid soul_studio_experience.json artifact."
+            ],
+            "counts": [
+              {
+                "value": "The persona explored Vita Soul Studio and saved a valid soul_studio_experience.json artifact.",
+                "count": 1,
+                "samples": [
+                  "The persona explored Vita Soul Studio and saved a valid soul_studio_experience.json artifact."
+                ]
+              }
+            ],
+            "summary": "All 1 answers converge on one theme: \"The persona explored Vita Soul Studio and saved a valid soul_studio_experience.json artifact.\".",
+            "summaryType": "heuristic"
+          }
+        },
+        {
+          "key": "task_outcome.primary.completion_evidence",
+          "facetKey": "completion_evidence",
+          "contextKey": "task_outcome.primary",
+          "contextLabel": "Task outcome",
+          "label": "Completion evidence",
+          "kind": "textual",
+          "role": "evidence",
+          "explainsFacetKey": null,
+          "group": "task_outcome.primary",
+          "description": null,
+          "unit": null,
+          "higherIsBetter": null,
+          "categories": null,
+          "order": null,
+          "scaleMin": null,
+          "scaleMax": null,
+          "presentCount": 1,
+          "missingCount": 0,
+          "textual": {
+            "count": 1,
+            "uniqueCount": 1,
+            "samples": [
+              "Saved soul_studio_experience.json with subject Vita Soul Studio & Voice Persona."
+            ],
+            "counts": [
+              {
+                "value": "Saved soul_studio_experience.json with subject Vita Soul Studio & Voice Persona.",
+                "count": 1,
+                "samples": [
+                  "Saved soul_studio_experience.json with subject Vita Soul Studio & Voice Persona."
+                ]
+              }
+            ],
+            "summary": "All 1 answers converge on one theme: \"Saved soul_studio_experience.json with subject Vita Soul Studio & Voice Persona.\".",
+            "summaryType": "heuristic"
+          }
+        }
+      ]
+    }
+  ],
   "reporting": {
     "status": "not_applicable",
     "llmEnabled": false,
@@ -21,6 +1082,6 @@
     "readyUnits": 0,
     "completedUnits": 0,
     "failedUnits": 0,
-    "updatedAt": "2026-08-26T22:26:11Z"
+    "updatedAt": "2026-08-27T02:43:54Z"
   }
 }

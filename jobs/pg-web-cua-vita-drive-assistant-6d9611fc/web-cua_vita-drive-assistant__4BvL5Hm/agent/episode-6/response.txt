@@ -3,6 +3,6 @@
   "plan": "I will attempt to navigate back to the initial URL to see if that changes anything.",
   "action": {
     "type": "navigate",
-    "url": "http://172.17.0.1:5173/"
+    "url": "http://172.20.10.6:5173/"
   }
 }

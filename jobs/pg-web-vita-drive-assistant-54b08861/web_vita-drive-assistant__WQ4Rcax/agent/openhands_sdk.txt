@@ -1095,7 +1095,7 @@ Default written language: use your primary language for outputs.
 
 Bạn đang trải nghiệm bảng điều khiển xe thông minh **Vita Drive Assistant Lab** 
 trên nền web tại:
-http://172.17.0.1:5173/
+http://172.20.10.6:5173/
 *(Lưu ý: Nếu gặp màn hình yêu cầu đăng nhập, nhập mật khẩu là `dev` rồi bấm nút 
 "Đăng nhập" để vào buồng lái).*
 
@@ -1116,7 +1116,7 @@ mỹ và trải nghiệm tổng thể.
 
 # Trải nghiệm Dashboard Xe Thông Minh Vita Drive Assistant
 
-Đọc bối cảnh trong `input/context.md`, truy cập http://172.17.0.1:5173/ (nếu có 
+Đọc bối cảnh trong `input/context.md`, truy cập http://172.20.10.6:5173/ (nếu có 
 màn hình đăng nhập, nhập mật khẩu là "dev" rồi bấm nút "Đăng nhập" để vào) và 
 tương tác với giao diện buồng lái xe thông minh.
 
@@ -1155,7 +1155,7 @@ Agent Action ──────────────────────�
 
 Summary: Access the vehicle dashboard website
 
-$ curl http://172.17.0.1:5173/
+$ curl http://172.20.10.6:5173/
 
 Tokens: ↑ input 13.1K (total 13.1K) • cache hit 0.00% (total 0.00%) • ↓ output 
 41 (total 41) • $ (total 0.0020)
@@ -1235,7 +1235,7 @@ Agent Action ──────────────────────�
 
 Summary: Interact with the vehicle dashboard
 
-$ open http://172.17.0.1:5173/
+$ open http://172.20.10.6:5173/
 
 Tokens: ↑ input 13.62K (total 40.09K) • cache hit 97.70% (total 65.77%) • ↓ 
 output 41 (total 127) • $ (total 0.0041)
@@ -1255,7 +1255,7 @@ Message from Agent ────────────────────�
 
 It seems that I can't directly open the web interface for the Vita Drive 
 Assistant Lab. However, you can access it by entering the URL 
-[http://172.17.0.1:5173/](http://172.17.0.1:5173/) in your browser. If prompted,
+[http://172.20.10.6:5173/](http://172.20.10.6:5173/) in your browser. If prompted,
 use the password `dev` to log in.
 
 After you’ve logged in, please explore the dashboard and its features. Once you 

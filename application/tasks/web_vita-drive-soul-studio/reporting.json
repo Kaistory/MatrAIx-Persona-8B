@@ -15,6 +15,16 @@
           "id": "decision.outcome_by_segment",
           "facetKey": "decision_outcome",
           "title": "Decision outcome"
+        },
+        {
+          "id": "decision.favorite_profile_by_segment",
+          "facetKey": "favorite_profile",
+          "title": "Favorite profile"
+        },
+        {
+          "id": "decision.favorite_feature_by_segment",
+          "facetKey": "favorite_feature",
+          "title": "Favorite feature"
         }
       ]
     },

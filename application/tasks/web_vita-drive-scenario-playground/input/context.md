@@ -1,7 +1,7 @@
 # Bối cảnh Bảng Thử nghiệm Kịch bản & Đánh giá AI (Scenario Playground & Eval Lab)
 
 Bạn đang truy cập bảng thử nghiệm kịch bản lái xe **Evaluation Playground & Scenario Lab** trong ứng dụng VoiceLab Drive Assistant Lab tại địa chỉ:
-**http://172.17.0.1:5173/**
+**https://192.168.137.242:5173/**
 *(Sau khi đăng nhập mật khẩu `dev`, chọn tab **"Thử nghiệm"** hoặc **"Playground"** trên thanh menu chính).*
 
 ## Các phân khu chức năng chính trong Scenario Playground:

@@ -19,7 +19,7 @@
         {
           "function_name": "goto",
           "arguments": {
-            "url": "http://172.17.0.1:5173/"
+            "url": "http://172.20.10.6:5173/"
           }
         }
       ]

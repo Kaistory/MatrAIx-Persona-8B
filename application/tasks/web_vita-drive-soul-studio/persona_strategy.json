@@ -12,7 +12,9 @@
     "intent": [
       "Get task done",
       "Casual conversation",
-      "Explore UI"
+      "Explore UI",
+      "Voice customization",
+      "In-cabin safety"
     ]
   },
   "sampling": {

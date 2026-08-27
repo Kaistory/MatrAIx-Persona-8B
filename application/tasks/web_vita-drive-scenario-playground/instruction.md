@@ -1,6 +1,6 @@
 # Trải nghiệm Scenario Playground & Evaluation Lab (VinFast VF9)
 
-Truy cập địa chỉ `http://172.17.0.1:5173/` (nếu có màn hình đăng nhập, nhập mật khẩu là `dev` rồi bấm nút **"Đăng nhập"**), sau đó chọn tab **"Thử nghiệm" (Playground)** trên thanh menu chính để khám phá bảng thử nghiệm kịch bản lái xe và đánh giá tự động của trợ lý Vita.
+Truy cập địa chỉ `https://192.168.137.242:5173/` (nếu có màn hình đăng nhập, nhập mật khẩu là `dev` rồi bấm nút **"Đăng nhập"**), sau đó chọn tab **"Thử nghiệm" (Playground)** trên thanh menu chính để khám phá bảng thử nghiệm kịch bản lái xe và đánh giá tự động của trợ lý Vita.
 
 ### Nhiệm vụ của bạn:
 1. **Khám phá Scenario Playground & Đánh giá**:

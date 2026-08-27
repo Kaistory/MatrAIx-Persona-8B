@@ -1,7 +1,7 @@
 # Bối cảnh Hệ thống Buồng lái Thông minh Vita Drive Assistant (VinFast VF9) - CocoaAgent
 
 Bạn đang trải nghiệm giao diện buồng lái xe thông minh **VoiceLab / Vita Drive Assistant Lab** (mô phỏng xe điện VinFast VF9 2026 thị trường Việt Nam) thông qua môi trường CocoaAgent tại:
-**http://172.17.0.1:5173/**
+**https://192.168.137.242:5173/**
 *(Lưu ý: Nếu gặp màn hình yêu cầu đăng nhập, nhập mật khẩu là `dev` rồi bấm nút "Đăng nhập" để vào buồng lái).*
 
 ## Các phân khu chức năng chính trên Dashboard xe:

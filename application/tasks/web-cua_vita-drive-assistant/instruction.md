@@ -1,6 +1,6 @@
 # Trải nghiệm Dashboard Buồng Lái Xe Thông Minh Vita Drive Assistant (Computer Use / VinFast VF9)
 
-Sử dụng trình duyệt máy tính (Chromium) để truy cập địa chỉ `http://172.17.0.1:5173/` (nếu có màn hình đăng nhập, nhập mật khẩu là `dev` rồi bấm nút **"Đăng nhập"** để vào buồng lái) và tương tác với bảng điều khiển xe điện thông minh VinFast VF9.
+Sử dụng trình duyệt máy tính (Chromium) để truy cập địa chỉ `https://192.168.137.242:5173/` (nếu có màn hình đăng nhập, nhập mật khẩu là `dev` rồi bấm nút **"Đăng nhập"** để vào buồng lái) và tương tác với bảng điều khiển xe điện thông minh VinFast VF9.
 
 ### Nhiệm vụ của bạn:
 1. **Khám phá Cockpit & Thao tác xe qua giao diện màn hình**:

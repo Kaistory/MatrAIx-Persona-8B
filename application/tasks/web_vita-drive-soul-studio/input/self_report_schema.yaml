@@ -1,0 +1,17 @@
+artifactName: user_feedback.json
+instructions: |
+  Reflect honestly as the persona after exploring Vita Drive Soul Studio and voice profiles.
+  Focus on usability, voice naturalness, safety principles, and alignment with your driving needs.
+fields:
+  - key: overallExperienceRating
+    prompt: Overall, how would you rate your experience with Vita Soul Studio from 1 to 10?
+    kind: integer
+    minimum: 1
+    maximum: 10
+    explanation:
+      key: personaFeedbackSummary
+      prompt: Briefly explain your rating in your own persona voice.
+  - key: satisfactionBucket
+    prompt: Did Vita Soul Studio satisfy your voice persona and customization expectations?
+    kind: enum
+    choices: [yes, partially, no]

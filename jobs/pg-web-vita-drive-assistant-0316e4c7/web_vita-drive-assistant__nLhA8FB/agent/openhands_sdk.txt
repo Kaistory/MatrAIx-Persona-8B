@@ -1082,7 +1082,7 @@ Default written language: use your primary language for outputs.
 
 Bạn đang trải nghiệm bảng điều khiển xe thông minh **Vita Drive Assistant Lab** 
 trên nền web tại:
-`http://172.17.0.1:5173/`
+`http://172.20.10.6:5173/`
 
 ## Tính năng và tương tác trên Dashboard xe:
 - **Vehicle Stage & Controls**: Khu vực hiển thị mô hình xe 3D và các nút điều 
@@ -1101,7 +1101,7 @@ mỹ và trải nghiệm tổng thể.
 
 # Trải nghiệm Dashboard Xe Thông Minh Vita Drive Assistant
 
-Đọc bối cảnh trong `input/context.md`, truy cập `http://172.17.0.1:5173/` và 
+Đọc bối cảnh trong `input/context.md`, truy cập `http://172.20.10.6:5173/` và 
 tương tác với giao diện buồng lái xe thông minh.
 
 Sau khi trải nghiệm các tính năng trên website, hãy lưu kết quả quyết định và 
@@ -1139,7 +1139,7 @@ Agent Action ──────────────────────�
 
 Summary: Access the Vita Drive Assistant Dashboard
 
-$ curl -L http://172.17.0.1:5173/
+$ curl -L http://172.20.10.6:5173/
 
 Tokens: ↑ input 12.91K (total 12.91K) • cache hit 21.81% (total 21.81%) • ↓ 
 output 38 (total 38) • $ (total 0.0017)
@@ -1179,7 +1179,7 @@ Agent Action ──────────────────────�
 
 Summary: Trying to access the web app again to explore the features.
 
-$ curl -L http://172.17.0.1:5173/
+$ curl -L http://172.20.10.6:5173/
 
 Tokens: ↑ input 13.17K (total 26.08K) • cache hit 98.16% (total 60.36%) • ↓ 
 output 44 (total 82) • $ (total 0.0028)
@@ -1219,7 +1219,7 @@ Agent Action ──────────────────────�
 
 Summary: Verbose output to troubleshoot the connection to the dashboard.
 
-$ curl http://172.17.0.1:5173/ -v
+$ curl http://172.20.10.6:5173/ -v
 
 Tokens: ↑ input 13.43K (total 39.52K) • cache hit 98.15% (total 73.21%) • ↓ 
 output 42 (total 124) • $ (total 0.0038)
@@ -1277,7 +1277,7 @@ Agent Action ──────────────────────�
 
 Summary: Fetching the main TypeScript file to explore the structure.
 
-$ curl -L http://172.17.0.1:5173/src/main.tsx
+$ curl -L http://172.20.10.6:5173/src/main.tsx
 
 Tokens: ↑ input 13.9K (total 53.41K) • cache hit 96.72% (total 79.32%) • ↓ 
 output 46 (total 170) • $ (total 0.0049)

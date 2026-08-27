@@ -3,6 +3,6 @@
   "plan": "I will navigate to the designated URL for the Vita Drive Assistant Dashboard.",
   "action": {
     "type": "navigate",
-    "url": "http://172.17.0.1:5173/"
+    "url": "http://172.20.10.6:5173/"
   }
 }

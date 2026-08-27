@@ -1,0 +1,243 @@
+{
+    "id": "15911c92-452e-4b91-8029-38c0db2df25d",
+    "task_name": "application/web_vita-drive-soul-studio",
+    "trial_name": "web_vita-drive-soul-studio__2WkCHHW",
+    "trial_uri": "file:///home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/jobs/pg-web-vita-drive-soul-studio-08c46ad5/web_vita-drive-soul-studio__2WkCHHW",
+    "task_id": {
+        "path": "application/tasks/web_vita-drive-soul-studio"
+    },
+    "source": null,
+    "task_checksum": "9210ec06dd6e39b140beebc687b351cf2b52e950421496e1e91b4e6860e4f8d2",
+    "config": {
+        "task": {
+            "path": "application/tasks/web_vita-drive-soul-studio",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": null
+        },
+        "trial_name": "web_vita-drive-soul-studio__2WkCHHW",
+        "trials_dir": "jobs/pg-web-vita-drive-soul-studio-08c46ad5",
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "persona-browser-use",
+            "import_path": null,
+            "model_name": "openai/gpt-4o-mini",
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {
+                "persona_path": "persona/datasets/generated-persona-dev-1/persona_0042.yaml",
+                "model_info": {
+                    "max_input_tokens": 128000,
+                    "max_output_tokens": 16384
+                }
+            },
+            "env": {},
+            "mcp_servers": []
+        },
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "env": {},
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "env": {},
+            "disable": false
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "job_id": "064c69e7-4371-4a5c-8a21-8c5cc8352a6d"
+    },
+    "agent_info": {
+        "name": "persona-browser-use",
+        "version": "0.13.8",
+        "model_info": {
+            "name": "gpt-4o-mini",
+            "provider": "openai"
+        }
+    },
+    "agent_result": {
+        "n_input_tokens": 2917154,
+        "n_cache_tokens": null,
+        "n_output_tokens": 16213,
+        "cost_usd": 0.0,
+        "rollout_details": null,
+        "metadata": {
+            "browser_use": {
+                "final_result": "{\"decision_subject_id\": \"vita_soul_studio\", \"decision_subject_label\": \"Vita Soul Studio & Voice Persona\", \"decision_outcome\": \"failed\", \"basis_primary\": \"other\", \"exploration_style\": \"hesitant\", \"reason\": \"Unable to access the Vita Soul Studio due to persistent SSL certificate issues.\", \"task_favorite_feature\": \"N/A\", \"task_favorite_profile\": \"N/A\", \"task_ease_of_use_rating\": 1}\n\nAttachments:\n\nsoul_studio_experience.json:\n{\"decision_subject_id\": \"vita_soul_studio\", \"decision_subject_label\": \"Vita Soul Studio & Voice Persona\", \"decision_outcome\": \"failed\", \"basis_primary\": \"other\", \"exploration_style\": \"hesitant\", \"reason\": \"Unable to access the Vita Soul Studio due to persistent SSL certificate issues.\", \"task_favorite_feature\": \"N/A\", \"task_favorite_profile\": \"N/A\", \"task_ease_of_use_rating\": 1}\n",
+                "is_done": true,
+                "is_successful": false,
+                "urls": [
+                    "about:blank",
+                    "about:blank",
+                    "about:blank",
+                    "https://192.168.137.242:5173/",
+                    "about:blank",
+                    "https://192.168.137.242:5173/",
+                    "about:blank",
+                    "about:blank",
+                    "about:blank",
+                    "about:blank",
+                    "about:blank",
+                    "https://192.168.137.242:5173/",
+                    "https://192.168.137.242:5173/",
+                    "https://192.168.137.242:5173/",
+                    "https://duckduckgo.com/?q=how+to+bypass+SSL+certificate+issues+in+internal+applications&ia=web",
+                    "https://duckduckgo.com/?q=how+to+bypass+SSL+certificate+issues+in+internal+applications&ia=web",
+                    "https://duckduckgo.com/?q=how+to+bypass+SSL+certificate+issues+in+internal+applications&ia=web",
+                    "https://duckduckgo.com/?q=how+to+handle+SSL+certificate+issues+in+internal+applications&ia=web",
+                    "https://duckduckgo.com/?q=how+to+handle+SSL+certificate+issues+in+internal+applications&ia=web",
+                    "https://duckduckgo.com/?q=how+to+handle+SSL+certificate+issues+in+internal+applications&ia=web",
+                    "https://duckduckgo.com/?q=how+to+handle+SSL+certificate+issues+in+internal+applications&ia=web",
+                    "https://duckduckgo.com/?q=how+to+handle+SSL+certificate+issues+in+internal+applications&ia=web",
+                    "https://duckduckgo.com/?q=how+to+handle+SSL+certificate+issues+in+internal+applications&ia=web",
+                    "https://dev.to/aicontentlab/ssltls-certificate-troubleshooting-guide-5gnl",
+                    "https://duckduckgo.com/?q=how+to+handle+SSL+certificate+issues+in+internal+applications&ia=web",
+                    "https://dev.to/rjkothari/how-to-secure-your-intranet-with-ssl-a-developers-guide-oh9",
+                    "https://dev.to/rjkothari",
+                    "https://dev.to/rjkothari",
+                    "https://dev.to/rjkothari/how-to-secure-your-intranet-with-ssl-a-developers-guide-oh9",
+                    "https://dev.to/rjkothari/how-to-secure-your-intranet-with-ssl-a-developers-guide-oh9",
+                    "https://dev.to/search?utf8=%E2%9C%93&q=",
+                    "https://duckduckgo.com/?q=alternative+methods+of+testing+or+feedback+collection+related+to+internal+applications&ia=web",
+                    "https://duckduckgo.com/?q=alternative+methods+of+testing+or+feedback+collection+related+to+internal+applications&ia=web",
+                    "https://duckduckgo.com/?q=alternative+methods+of+testing+or+feedback+collection+related+to+internal+applications&ia=web",
+                    "https://duckduckgo.com/?q=alternative+methods+of+testing+or+feedback+collection+related+to+internal+applications&ia=web",
+                    "https://duckduckgo.com/?q=alternative+methods+of+testing+or+feedback+collection+related+to+internal+applications&ia=web",
+                    "https://duckduckgo.com/?q=alternative+methods+of+testing+or+feedback+collection+related+to+internal+applications&ia=web",
+                    "https://duckduckgo.com/?q=consult+IT+support+for+guidance+on+accessing+internal+development+environments&ia=web",
+                    "https://duckduckgo.com/?q=consult+IT+support+for+guidance+on+accessing+internal+development+environments&ia=web",
+                    "https://duckduckgo.com/?q=consult+IT+support+for+guidance+on+accessing+internal+development+environments&ia=web",
+                    "https://duckduckgo.com/?q=alternative+methods+of+testing+or+feedback+collection+related+to+internal+applications&ia=web",
+                    "https://duckduckgo.com/?q=alternative+methods+of+testing+or+feedback+collection+related+to+internal+applications&ia=web",
+                    "https://duckduckgo.com/?q=alternative+methods+of+testing+or+feedback+collection+related+to+internal+applications&ia=web",
+                    "https://duckduckgo.com/?q=alternative+methods+of+testing+or+feedback+collection+related+to+internal+applications&ia=web",
+                    "https://duckduckgo.com/?q=alternative+methods+of+testing+or+feedback+collection+related+to+internal+applications&ia=web",
+                    "https://duckduckgo.com/?q=alternative+methods+of+testing+or+feedback+collection+related+to+internal+applications&ia=web",
+                    "https://duckduckgo.com/?q=alternative+methods+of+testing+or+feedback+collection+related+to+internal+applications&ia=web",
+                    "https://duckduckgo.com/?q=alternative+methods+of+testing+or+feedback+collection+related+to+internal+applications&ia=web",
+                    "https://duckduckgo.com/?q=alternative+methods+of+testing+or+feedback+collection+related+to+internal+applications&ia=web",
+                    "https://duckduckgo.com/?q=alternative+methods+of+testing+or+feedback+collection+related+to+internal+applications&ia=web"
+                ],
+                "action_names": [
+                    "wait",
+                    "wait",
+                    "navigate",
+                    "click",
+                    "click",
+                    "click",
+                    "click",
+                    "wait",
+                    "wait",
+                    "navigate",
+                    "click",
+                    "click",
+                    "click",
+                    "click",
+                    "click",
+                    "click",
+                    "click",
+                    "click",
+                    "click",
+                    "click",
+                    "navigate",
+                    "navigate",
+                    "navigate",
+                    "search",
+                    "search_page",
+                    "search_page",
+                    "search",
+                    "search_page",
+                    "search",
+                    "search_page",
+                    "search_page",
+                    "search",
+                    "click",
+                    "search",
+                    "click",
+                    "click",
+                    "click",
+                    "click",
+                    "click",
+                    "click",
+                    "search",
+                    "search_page",
+                    "search_page",
+                    "search_page",
+                    "search_page",
+                    "search_page",
+                    "search",
+                    "search_page",
+                    "search_page",
+                    "search",
+                    "search_page",
+                    "search_page",
+                    "search_page",
+                    "search_page",
+                    "search_page",
+                    "search_page",
+                    "write_file",
+                    "write_file",
+                    "done",
+                    "write_file",
+                    "done"
+                ],
+                "promoted_outputs": [
+                    "/app/output/todo.md",
+                    "/app/output/soul_studio_experience.json",
+                    "/app/output/final_answer.txt"
+                ]
+            }
+        }
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 1.0
+        }
+    },
+    "exception_info": null,
+    "started_at": "2026-08-27T04:54:08.137792Z",
+    "finished_at": "2026-08-27T05:01:54.579552Z",
+    "environment_setup": {
+        "started_at": "2026-08-27T04:54:08.151105Z",
+        "finished_at": "2026-08-27T04:54:15.177648Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-08-27T04:54:15.177786Z",
+        "finished_at": "2026-08-27T04:54:18.665700Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-08-27T04:54:18.665964Z",
+        "finished_at": "2026-08-27T05:01:41.048139Z"
+    },
+    "verifier": {
+        "started_at": "2026-08-27T05:01:42.226762Z",
+        "finished_at": "2026-08-27T05:01:42.835157Z"
+    },
+    "step_results": null
+}

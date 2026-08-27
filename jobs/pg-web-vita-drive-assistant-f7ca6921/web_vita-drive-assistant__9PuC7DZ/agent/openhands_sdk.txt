@@ -1095,7 +1095,7 @@ Default written language: use your primary language for outputs.
 
 Bạn đang trải nghiệm bảng điều khiển xe thông minh **Vita Drive Assistant Lab** 
 trên nền web tại:
-`http://172.17.0.1:5173/`
+`http://172.20.10.6:5173/`
 
 ## Tính năng và tương tác trên Dashboard xe:
 - **Vehicle Stage & Controls**: Khu vực hiển thị mô hình xe 3D và các nút điều 
@@ -1114,7 +1114,7 @@ mỹ và trải nghiệm tổng thể.
 
 # Trải nghiệm Dashboard Xe Thông Minh Vita Drive Assistant
 
-Đọc bối cảnh trong `input/context.md`, truy cập `http://172.17.0.1:5173/` và 
+Đọc bối cảnh trong `input/context.md`, truy cập `http://172.20.10.6:5173/` và 
 tương tác với giao diện buồng lái xe thông minh.
 
 Sau khi trải nghiệm các tính năng trên website, hãy lưu kết quả quyết định và 
@@ -1152,7 +1152,7 @@ Agent Action ──────────────────────�
 
 Summary: Access the smart vehicle dashboard
 
-$ curl -L http://172.17.0.1:5173/
+$ curl -L http://172.20.10.6:5173/
 
 Tokens: ↑ input 13.01K (total 13.01K) • cache hit 46.26% (total 46.26%) • ↓ 
 output 43 (total 43) • $ (total 0.0015)
@@ -1192,7 +1192,7 @@ Agent Action ──────────────────────�
 
 Summary: Access the smart vehicle dashboard to evaluate features.
 
-$ open http://172.17.0.1:5173/
+$ open http://172.20.10.6:5173/
 
 Tokens: ↑ input 13.27K (total 26.27K) • cache hit 97.44% (total 72.10%) • ↓ 
 output 44 (total 87) • $ (total 0.0026)
@@ -1211,7 +1211,7 @@ Result:
 Message from Agent ─────────────────────────────────────────────────────────────
 
 Looks like I can't directly open web pages from here. However, you can try 
-accessing the dashboard by entering `http://172.17.0.1:5173/` in your web 
+accessing the dashboard by entering `http://172.20.10.6:5173/` in your web 
 browser. Once you have explored the interface, I can help you document your 
 experience and evaluations. 
 

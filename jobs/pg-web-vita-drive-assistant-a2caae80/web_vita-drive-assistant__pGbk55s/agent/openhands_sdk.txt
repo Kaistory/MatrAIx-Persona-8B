@@ -472,7 +472,7 @@ Default written language: use your primary language for outputs.
 
 Bạn đang trải nghiệm bảng điều khiển xe thông minh **Vita Drive Assistant Lab** 
 trên nền web tại:
-http://172.17.0.1:5173/
+http://172.20.10.6:5173/
 *(Lưu ý: Nếu gặp màn hình yêu cầu đăng nhập, bạn chỉ cần bấm nút "Đăng nhập" để 
 vào buồng lái).*
 
@@ -493,7 +493,7 @@ mỹ và trải nghiệm tổng thể.
 
 # Trải nghiệm Dashboard Xe Thông Minh Vita Drive Assistant
 
-Đọc bối cảnh trong `input/context.md`, truy cập http://172.17.0.1:5173/ (nếu có 
+Đọc bối cảnh trong `input/context.md`, truy cập http://172.20.10.6:5173/ (nếu có 
 màn hình đăng nhập, bấm nút "Đăng nhập" để vào) và tương tác với giao diện buồng
 lái xe thông minh.
 
@@ -532,7 +532,7 @@ Agent Action ──────────────────────�
 
 Summary: Access the Vita Drive Assistant Dashboard
 
-$ open http://172.17.0.1:5173/
+$ open http://172.20.10.6:5173/
 
 Tokens: ↑ input 7.8K (total 7.8K) • cache hit 0.00% (total 0.00%) • ↓ output 42 
 (total 42) • $ (total 0.0012)
@@ -552,7 +552,7 @@ Agent Action ──────────────────────�
 
 Summary: Attempt to launch the Vita Drive Assistant Dashboard
 
-$ xdg-open http://172.17.0.1:5173/
+$ xdg-open http://172.20.10.6:5173/
 
 Tokens: ↑ input 7.91K (total 15.71K) • cache hit 98.75% (total 49.71%) • ↓ 
 output 46 (total 88) • $ (total 0.0018)
@@ -585,7 +585,7 @@ Summary: Unable to access Vita Drive Assistant Dashboard
 
 Finish with message:
 I cannot directly access the Vita Drive Assistant Dashboard. You may want to 
-open the link http://172.17.0.1:5173/ in your own browser to explore the 
+open the link http://172.20.10.6:5173/ in your own browser to explore the 
 features and functionalities.
 
 Tokens: ↑ input 8.08K (total 31.81K) • cache hit 98.19% (total 74.44%) • ↓ 

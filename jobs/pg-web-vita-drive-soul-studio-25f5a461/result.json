@@ -1,0 +1,47 @@
+{
+    "id": "2cabd661-df6a-48b1-886f-0b365363b508",
+    "started_at": "2026-08-27T13:24:12.087909",
+    "updated_at": "2026-08-27T13:24:56.726653",
+    "finished_at": "2026-08-27T13:24:56.726653",
+    "n_total_trials": 2,
+    "stats": {
+        "n_completed_trials": 2,
+        "n_errored_trials": 2,
+        "n_running_trials": 0,
+        "n_pending_trials": 0,
+        "n_cancelled_trials": 0,
+        "n_retries": 0,
+        "evals": {
+            "persona-browser-use__deepseek-v4-pro__adhoc": {
+                "n_trials": 2,
+                "n_errors": 2,
+                "metrics": [
+                    {
+                        "mean": 0.0
+                    }
+                ],
+                "pass_at_k": {
+                    "2": 0.0
+                },
+                "reward_stats": {
+                    "reward": {
+                        "0.0": [
+                            "web_vita-drive-soul-studio__dfEuqgL",
+                            "web_vita-drive-soul-studio__VnaQSap"
+                        ]
+                    }
+                },
+                "exception_stats": {
+                    "NonZeroAgentExitCodeError": [
+                        "web_vita-drive-soul-studio__dfEuqgL",
+                        "web_vita-drive-soul-studio__VnaQSap"
+                    ]
+                }
+            }
+        },
+        "n_input_tokens": 0,
+        "n_cache_tokens": null,
+        "n_output_tokens": 0,
+        "cost_usd": 0.0
+    }
+}

@@ -1,10 +1,10 @@
 INFO     [service] Using anonymized telemetry, see https://docs.browser-use.com/development/monitoring/telemetry.
-INFO     [Agent] 🔗 Found URL in task: http://172.17.0.1:5173/`, adding as initial action...
+INFO     [Agent] 🔗 Found URL in task: http://172.20.10.6:5173/`, adding as initial action...
 INFO     [Agent] [34m🎯 Task: <context>
 # Bối cảnh bài toán
 
 Bạn đang trải nghiệm bảng điều khiển xe thông minh **Vita Drive Assistant Lab** trên nền web tại:
-`http://172.17.0.1:5173/`
+`http://172.20.10.6:5173/`
 
 ## Tính năng và tương tác trên Dashboard xe:
 - **Vehicle Stage & Controls**: Khu vực hiển thị mô hình xe 3D và các nút điều khiển nhanh xe (đèn, cửa kính, khóa cửa, trạng thái xe).
@@ -17,7 +17,7 @@ Hãy đóng vai Persona của bạn, khám phá giao diện dashboard xe, thử 
 
 # Trải nghiệm Dashboard Xe Thông Minh Vita Drive Assistant
 
-Đọc bối cảnh trong `input/context.md`, truy cập `http://172.17.0.1:5173/` và tương tác với giao diện buồng lái xe thông minh.
+Đọc bối cảnh trong `input/context.md`, truy cập `http://172.20.10.6:5173/` và tương tác với giao diện buồng lái xe thông minh.
 
 Sau khi trải nghiệm các tính năng trên website, hãy lưu kết quả quyết định và đánh giá của bạn vào `/app/output/dashboard_experience.json`:
 
@@ -50,8 +50,8 @@ INFO     [utils] 📦 Downloading Force Background Tab extension...
 INFO     [utils] 📂 Extracting Force Background Tab extension...
 INFO     [utils] [BrowserProfile] ✅ Cookie extension: nature.com, qatarairways.com pre-populated in storage
 INFO     [BrowserSession] Setting viewport to 1920x1080 with device scale factor 1.0 whereas original device scale factor was 1.0
-INFO     [Agent]   ▶️   [34mnavigate[0m: [35murl[0m: http://172.17.0.1:5173/`, [35mnew_tab[0m: False
-INFO     [tools] 🔗 Navigated to http://172.17.0.1:5173/`
+INFO     [Agent]   ▶️   [34mnavigate[0m: [35murl[0m: http://172.20.10.6:5173/`, [35mnew_tab[0m: False
+INFO     [tools] 🔗 Navigated to http://172.20.10.6:5173/`
 INFO     [Agent] 
 
 INFO     [Agent] 📍 Step 1:

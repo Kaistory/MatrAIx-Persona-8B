@@ -1,0 +1,1 @@
+PASS: Vita Soul Studio web evaluation artifacts are valid

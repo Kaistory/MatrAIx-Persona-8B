@@ -1,0 +1,117 @@
+{
+    "id": "6c224edb-7c24-46b7-9e9d-29308841b1a5",
+    "task_name": "application/web_vita-drive-soul-studio",
+    "trial_name": "web_vita-drive-soul-studio__6DwmjU6",
+    "trial_uri": "file:///home/khaidq9/Documents/GitHub/MatrAIx-Persona-8B/jobs/web-vita-drive-soul-studio-n1/web_vita-drive-soul-studio__6DwmjU6",
+    "task_id": {
+        "path": "application/tasks/web_vita-drive-soul-studio"
+    },
+    "source": null,
+    "task_checksum": "405ccd5e2c2a1eaef646b3136e9d83d57fc132e88740c244a06b854ffc151492",
+    "config": {
+        "task": {
+            "path": "application/tasks/web_vita-drive-soul-studio",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": null
+        },
+        "trial_name": "web_vita-drive-soul-studio__6DwmjU6",
+        "trials_dir": "jobs/web-vita-drive-soul-studio-n1",
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "persona-openhands-sdk",
+            "import_path": null,
+            "model_name": "openai/gpt-4o-mini",
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {
+                "persona_path": "persona/datasets/matraix-persona-dev-sample/persona_0042.yaml",
+                "model_info": {
+                    "max_input_tokens": 128000,
+                    "max_output_tokens": 16384
+                }
+            },
+            "env": {},
+            "mcp_servers": []
+        },
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "env": {},
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "env": {},
+            "disable": false
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "job_id": "6cc601b6-5521-443a-8c61-12bcc392e0cf"
+    },
+    "agent_info": {
+        "name": "persona-openhands-sdk",
+        "version": "1.43.1",
+        "model_info": {
+            "name": "gpt-4o-mini",
+            "provider": "openai"
+        }
+    },
+    "agent_result": {
+        "n_input_tokens": 8430,
+        "n_cache_tokens": 0,
+        "n_output_tokens": 8,
+        "cost_usd": 0.0012693,
+        "rollout_details": null,
+        "metadata": null
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 0.0
+        }
+    },
+    "exception_info": null,
+    "started_at": "2026-08-27T04:37:58.339692Z",
+    "finished_at": "2026-08-27T04:46:35.139027Z",
+    "environment_setup": {
+        "started_at": "2026-08-27T04:37:58.343712Z",
+        "finished_at": "2026-08-27T04:46:03.695692Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-08-27T04:46:03.701451Z",
+        "finished_at": "2026-08-27T04:46:09.526507Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-08-27T04:46:09.534123Z",
+        "finished_at": "2026-08-27T04:46:22.780734Z"
+    },
+    "verifier": {
+        "started_at": "2026-08-27T04:46:23.491710Z",
+        "finished_at": "2026-08-27T04:46:23.854891Z"
+    },
+    "step_results": null
+}

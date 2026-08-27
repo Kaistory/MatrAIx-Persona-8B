@@ -6,7 +6,7 @@ Mô phỏng trải nghiệm người dùng đối với bảng điều khiển x
 
 - **Agent driver:** `persona-cocoa`
 - **Environment:** `application/shared-web-cocoa` (AIO Sandbox + CocoaAgent)
-- **Website URL:** `http://172.17.0.1:5173/`
+- **Website URL:** `https://192.168.137.242:5173/`
 - **Output:** `/app/output/dashboard_experience.json` và `/app/output/user_feedback.json`
 
 ## Khởi động frontend/backend trước khi chạy test

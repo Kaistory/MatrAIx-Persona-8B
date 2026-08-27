@@ -8,10 +8,10 @@ services:
     build:
       context: /home/khaidq9/Documents/GitHub/vita-drive-assistant-lab
       dockerfile: Dockerfile
-    expose:
-      - "8888"
-      - "3001"
-      - "8787"
+    ports:
+      - "8888:8888"
+      - "3001:3001"
+      - "8787:8787"
     environment:
       - PORT=3001
       - OPENAI_API_KEY=${OPENAI_API_KEY:-}

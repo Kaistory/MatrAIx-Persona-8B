@@ -3,7 +3,7 @@ INFO     [Agent] [34m🎯 Task: <context>
 # Bối cảnh Giao diện Vita Soul Studio & Cá tính Giọng nói (VinFast VF9)
 
 Bạn đang truy cập không gian thử nghiệm và thiết kế giọng nói **Vita Soul Studio** trong ứng dụng VoiceLab Drive Assistant Lab tại địa chỉ:
-**http://172.17.0.1:5173/**
+**http://172.20.10.6:5173/**
 *(Sau khi đăng nhập mật khẩu `dev`, chọn tab **"Vita Soul"** trên thanh menu chính).*
 
 ## Các phân khu chức năng chính trong Vita Soul Studio:
@@ -33,7 +33,7 @@ Hãy khám phá giao diện Soul Studio, thử nghiệm các profile và lưu l�
 
 # Trải nghiệm Vita Soul Studio & Cá tính Giọng nói (VinFast VF9)
 
-Truy cập địa chỉ `http://172.17.0.1:5173/` (nếu có màn hình đăng nhập, nhập mật khẩu là `dev` rồi bấm nút **"Đăng nhập"**), sau đó chuyển sang tab **"Vita Soul"** (hoặc Soul Studio) trên thanh điều hướng để khám phá không gian thiết kế cá tính giọng nói của trợ lý xe thông minh.
+Truy cập địa chỉ `http://172.20.10.6:5173/` (nếu có màn hình đăng nhập, nhập mật khẩu là `dev` rồi bấm nút **"Đăng nhập"**), sau đó chuyển sang tab **"Vita Soul"** (hoặc Soul Studio) trên thanh điều hướng để khám phá không gian thiết kế cá tính giọng nói của trợ lý xe thông minh.
 
 ### Nhiệm vụ của bạn:
 1. **Khám phá Soul Studio & Hồ sơ biểu đạt**:
@@ -99,8 +99,8 @@ INFO     [Agent] 📍 Step 3:
 INFO     [Agent]   [32m👍 Eval: The attempt to access the Vita Soul Studio was unsuccessful due to an empty page. Verdict: Failure.[0m
 INFO     [Agent]   🧠 Memory: I have tried accessing the Vita Soul Studio twice, but both attempts resulted in an empty page. I will now refresh the page to see if it loads properly.
 INFO     [Agent]   [34m🎯 Next goal: Refresh the page to attempt loading the Vita Soul Studio again.[0m
-INFO     [Agent]   ▶️   [34mnavigate[0m: [35murl[0m: http://172.17.0.1:5173/, [35mnew_tab[0m: False
-INFO     [tools] 🔗 Navigated to http://172.17.0.1:5173/
+INFO     [Agent]   ▶️   [34mnavigate[0m: [35murl[0m: http://172.20.10.6:5173/, [35mnew_tab[0m: False
+INFO     [tools] 🔗 Navigated to http://172.20.10.6:5173/
 INFO     [Agent] 
 
 INFO     [Agent] 📍 Step 4:

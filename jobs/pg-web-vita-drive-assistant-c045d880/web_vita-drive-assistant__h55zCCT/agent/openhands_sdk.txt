@@ -1091,7 +1091,7 @@ only
 
 Bạn đang trải nghiệm bảng điều khiển xe thông minh **Vita Drive Assistant Lab** 
 trên nền web tại:
-http://172.17.0.1:5173/
+http://172.20.10.6:5173/
 
 ## Tính năng và tương tác trên Dashboard xe:
 - **Vehicle Stage & Controls**: Khu vực hiển thị mô hình xe 3D và các nút điều 
@@ -1110,7 +1110,7 @@ mỹ và trải nghiệm tổng thể.
 
 # Trải nghiệm Dashboard Xe Thông Minh Vita Drive Assistant
 
-Đọc bối cảnh trong `input/context.md`, truy cập http://172.17.0.1:5173/ và tương
+Đọc bối cảnh trong `input/context.md`, truy cập http://172.20.10.6:5173/ và tương
 tác với giao diện buồng lái xe thông minh.
 
 Sau khi trải nghiệm các tính năng trên website, hãy lưu kết quả quyết định và 
@@ -1148,7 +1148,7 @@ Agent Action ──────────────────────�
 
 Summary: Accessing the Vita Drive Assistant Dashboard
 
-$ curl http://172.17.0.1:5173/
+$ curl http://172.20.10.6:5173/
 
 Tokens: ↑ input 12.98K (total 12.98K) • cache hit 99.62% (total 99.62%) • ↓ 
 output 37 (total 37) • $ (total 0.0010)
@@ -1188,7 +1188,7 @@ Agent Action ──────────────────────�
 
 Summary: Fetching headers from the Vita Drive Assistant dashboard
 
-$ curl -I http://172.17.0.1:5173/
+$ curl -I http://172.20.10.6:5173/
 
 Tokens: ↑ input 13.23K (total 26.21K) • cache hit 97.70% (total 98.65%) • ↓ 
 output 40 (total 77) • $ (total 0.0020)
@@ -1216,7 +1216,7 @@ Agent Action ──────────────────────�
 
 Summary: Opening the Vita Drive Assistant Dashboard in a web browser
 
-$ xdg-open http://172.17.0.1:5173/
+$ xdg-open http://172.20.10.6:5173/
 
 Tokens: ↑ input 13.47K (total 39.68K) • cache hit 97.87% (total 98.39%) • ↓ 
 output 42 (total 119) • $ (total 0.0031)
@@ -1236,7 +1236,7 @@ Agent Action ──────────────────────�
 
 Summary: Attempting to open the Vita Drive Assistant in the browser
 
-$ open http://172.17.0.1:5173/
+$ open http://172.20.10.6:5173/
 
 Tokens: ↑ input 13.58K (total 53.26K) • cache hit 98.98% (total 98.54%) • ↓ 
 output 41 (total 160) • $ (total 0.0041)
@@ -1256,7 +1256,7 @@ Agent Action ──────────────────────�
 
 Summary: Downloading the dashboard page for offline inspection
 
-$ wget http://172.17.0.1:5173/ -O dashboard.html
+$ wget http://172.20.10.6:5173/ -O dashboard.html
 
 Tokens: ↑ input 13.68K (total 66.94K) • cache hit 99.15% (total 98.66%) • ↓ 
 output 41 (total 201) • $ (total 0.0052)
@@ -1276,7 +1276,7 @@ Agent Action ──────────────────────�
 
 Summary: Trying to access the dashboard using a text-based browser
 
-$ lynx http://172.17.0.1:5173/
+$ lynx http://172.20.10.6:5173/
 
 Tokens: ↑ input 13.79K (total 80.73K) • cache hit 99.33% (total 98.78%) • ↓ 
 output 41 (total 242) • $ (total 0.0063)
@@ -1296,7 +1296,7 @@ Agent Action ──────────────────────�
 
 Summary: Converting HTML content from the dashboard to plain text
 
-$ curl -s http://172.17.0.1:5173/ | html2text
+$ curl -s http://172.20.10.6:5173/ | html2text
 
 Tokens: ↑ input 13.89K (total 94.63K) • cache hit 98.57% (total 98.75%) • ↓ 
 output 46 (total 288) • $ (total 0.0074)

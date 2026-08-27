@@ -3,6 +3,6 @@
   "plan": "I will type the URL again to see if I can access the dashboard.",
   "action": {
     "type": "type",
-    "text": "http://172.17.0.1:5173/"
+    "text": "http://172.20.10.6:5173/"
   }
 }

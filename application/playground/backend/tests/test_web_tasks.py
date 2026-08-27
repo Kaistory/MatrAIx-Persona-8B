@@ -46,7 +46,7 @@ def test_vita_drive_assistant_is_registered():
     assert task.task_path == "application/tasks/web_vita-drive-assistant"
     assert task.task_kind == "task"
     assert task.site_name == "Vita Drive Assistant"
-    assert task.site_url == "http://172.17.0.1:5173/"
+    assert task.site_url == "http://172.20.10.6:5173/"
     assert task.output_artifact == "dashboard_experience.json"
     assert task.submission_profile == "dashboard_experience"
 
@@ -57,7 +57,7 @@ def test_vita_drive_scenario_playground_is_registered():
     assert task.task_path == "application/tasks/web_vita-drive-scenario-playground"
     assert task.task_kind == "task"
     assert task.site_name == "Vita Drive Scenario Playground"
-    assert task.site_url == "http://172.17.0.1:5173/"
+    assert task.site_url == "http://172.20.10.6:5173/"
     assert task.output_artifact == "playground_experience.json"
     assert task.submission_profile == "playground_experience"
 
@@ -68,7 +68,7 @@ def test_vita_drive_soul_studio_is_registered():
     assert task.task_path == "application/tasks/web_vita-drive-soul-studio"
     assert task.task_kind == "task"
     assert task.site_name == "Vita Drive Soul Studio"
-    assert task.site_url == "http://172.17.0.1:5173/"
+    assert task.site_url == "http://172.20.10.6:5173/"
     assert task.output_artifact == "soul_studio_experience.json"
     assert task.submission_profile == "soul_studio_experience"
 

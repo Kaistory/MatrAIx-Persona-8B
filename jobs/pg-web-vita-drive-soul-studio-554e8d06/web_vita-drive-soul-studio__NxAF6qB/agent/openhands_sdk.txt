@@ -1087,7 +1087,7 @@ Default written language: use your primary language for outputs.
 
 Bạn đang truy cập không gian thử nghiệm và thiết kế giọng nói **Vita Soul 
 Studio** trong ứng dụng VoiceLab Drive Assistant Lab tại địa chỉ:
-**http://172.17.0.1:5173/**
+**http://172.20.10.6:5173/**
 *(Sau khi đăng nhập mật khẩu `dev`, chọn tab **"Vita Soul"** trên thanh menu 
 chính).*
 
@@ -1131,7 +1131,7 @@ của Persona.
 
 # Trải nghiệm Vita Soul Studio & Cá tính Giọng nói (VinFast VF9)
 
-Truy cập địa chỉ `http://172.17.0.1:5173/` (nếu có màn hình đăng nhập, nhập mật 
+Truy cập địa chỉ `http://172.20.10.6:5173/` (nếu có màn hình đăng nhập, nhập mật 
 khẩu là `dev` rồi bấm nút **"Đăng nhập"**), sau đó chuyển sang tab **"Vita 
 Soul"** (hoặc Soul Studio) trên thanh điều hướng để khám phá không gian thiết kế
 cá tính giọng nói của trợ lý xe thông minh.

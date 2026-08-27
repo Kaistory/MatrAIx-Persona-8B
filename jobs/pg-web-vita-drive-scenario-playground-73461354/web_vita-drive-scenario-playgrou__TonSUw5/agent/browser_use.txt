@@ -32,7 +32,7 @@ Hãy khám phá giao diện Scenario Playground, thử nghiệm các kịch bả
 
 # Trải nghiệm Scenario Playground & Evaluation Lab (VinFast VF9)
 
-Truy cập địa chỉ `http://172.17.0.1:5173/` (nếu có màn hình đăng nhập, nhập mật khẩu là `dev` rồi bấm nút **"Đăng nhập"**), sau đó chọn tab **"Thử nghiệm" (Playground)** trên thanh menu chính để khám phá bảng thử nghiệm kịch bản lái xe và đánh giá tự động của trợ lý Vita.
+Truy cập địa chỉ `http://172.20.10.6:5173/` (nếu có màn hình đăng nhập, nhập mật khẩu là `dev` rồi bấm nút **"Đăng nhập"**), sau đó chọn tab **"Thử nghiệm" (Playground)** trên thanh menu chính để khám phá bảng thử nghiệm kịch bản lái xe và đánh giá tự động của trợ lý Vita.
 
 ### Nhiệm vụ của bạn:
 1. **Khám phá Scenario Playground & Đánh giá**:
@@ -81,9 +81,9 @@ INFO     [Agent]
 INFO     [Agent] 📍 Step 1:
 INFO     [Agent]   ❔ Eval: N/A - No actions have been taken yet.
 INFO     [Agent]   🧠 Memory: The task requires exploring the Scenario Playground and saving an evaluation report. The initial navigation step is crucial for accessing the necessary features.
-INFO     [Agent]   [34m🎯 Next goal: Navigate to 'http://172.17.0.1:5173/' and log in with the password 'dev'.[0m
-INFO     [Agent]   ▶️   [34mnavigate[0m: [35murl[0m: http://172.17.0.1:5173/, [35mnew_tab[0m: False
-INFO     [tools] 🔗 Navigated to http://172.17.0.1:5173/
+INFO     [Agent]   [34m🎯 Next goal: Navigate to 'http://172.20.10.6:5173/' and log in with the password 'dev'.[0m
+INFO     [Agent]   ▶️   [34mnavigate[0m: [35murl[0m: http://172.20.10.6:5173/, [35mnew_tab[0m: False
+INFO     [tools] 🔗 Navigated to http://172.20.10.6:5173/
 INFO     [Agent] 
 
 INFO     [Agent] 📍 Step 2:

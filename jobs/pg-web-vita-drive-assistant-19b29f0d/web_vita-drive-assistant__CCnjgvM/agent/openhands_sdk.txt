@@ -1117,7 +1117,7 @@ Default written language: use your primary language for outputs.
 
 Bạn đang trải nghiệm bảng điều khiển xe thông minh **Vita Drive Assistant Lab** 
 trên nền web tại:
-`http://172.17.0.1:5173/`
+`http://172.20.10.6:5173/`
 
 ## Tính năng và tương tác trên Dashboard xe:
 - **Vehicle Stage & Controls**: Khu vực hiển thị mô hình xe 3D và các nút điều 
@@ -1136,7 +1136,7 @@ mỹ và trải nghiệm tổng thể.
 
 # Trải nghiệm Dashboard Xe Thông Minh Vita Drive Assistant
 
-Đọc bối cảnh trong `input/context.md`, truy cập `http://172.17.0.1:5173/` và 
+Đọc bối cảnh trong `input/context.md`, truy cập `http://172.20.10.6:5173/` và 
 tương tác với giao diện buồng lái xe thông minh.
 
 Sau khi trải nghiệm các tính năng trên website, hãy lưu kết quả quyết định và 
@@ -1174,7 +1174,7 @@ Agent Action ──────────────────────�
 
 Summary: Access the Vita Drive Assistant Dashboard
 
-$ open http://172.17.0.1:5173/
+$ open http://172.20.10.6:5173/
 
 Tokens: ↑ input 13.23K (total 13.23K) • cache hit 0.00% (total 0.00%) • ↓ output
 43 (total 43) • $ (total 0.0020)
@@ -1194,7 +1194,7 @@ Agent Action ──────────────────────�
 
 Summary: Curl to retrieve the content of the Vita Drive Assistant Dashboard
 
-$ curl http://172.17.0.1:5173/
+$ curl http://172.20.10.6:5173/
 
 Tokens: ↑ input 13.34K (total 26.57K) • cache hit 98.85% (total 49.62%) • ↓ 
 output 48 (total 91) • $ (total 0.0031)
@@ -1248,7 +1248,7 @@ Drive Assistant Lab** through terminal commands. This interaction requires a web
 browser, which I can't invoke directly in this environment. 
 
 Please access the dashboard using a web browser with the link: 
-[http://172.17.0.1:5173/](http://172.17.0.1:5173/) to explore its features, such
+[http://172.20.10.6:5173/](http://172.20.10.6:5173/) to explore its features, such
 as vehicle controls, climate control, navigation, and the voice assistant. 
 
 Feel free to summarize your experience and the features you liked, and I can 

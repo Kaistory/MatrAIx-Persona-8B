@@ -22,7 +22,7 @@ harbor.agents.installed.base.NonZeroAgentExitCodeError: Command failed (exit 1):
 # Bối cảnh bài toán
 
 Bạn đang trải nghiệm bảng điều khiển xe thông minh **Vita Drive Assistant Lab** trên nền web tại:
-http://172.17.0.1:5173/
+http://172.20.10.6:5173/
 *(Lưu ý: Nếu gặp màn hình yêu cầu đăng nhập, nhập mật khẩu là `dev` rồi bấm nút "Đăng nhập" để vào buồng lái).*
 
 ## Tính năng và tương tác trên Dashboard xe:
@@ -36,7 +36,7 @@ Hãy đóng vai Persona của bạn, khám phá giao diện dashboard xe, thử 
 
 # Trải nghiệm Dashboard Xe Thông Minh Vita Drive Assistant
 
-Đọc bối cảnh trong `input/context.md`, truy cập http://172.17.0.1:5173/ (nếu có màn hình đăng nhập, nhập mật khẩu là "dev" rồi bấm nút "Đăng nhập" để vào) và tương tác với giao diện buồng lái xe thông minh.
+Đọc bối cảnh trong `input/context.md`, truy cập http://172.20.10.6:5173/ (nếu có màn hình đăng nhập, nhập mật khẩu là "dev" rồi bấm nút "Đăng nhập" để vào) và tương tác với giao diện buồng lái xe thông minh.
 
 Sau khi trải nghiệm các tính năng trên website, hãy lưu kết quả quyết định và đánh giá của bạn vào `/app/output/dashboard_experience.json`:
 
@@ -61,12 +61,12 @@ Yêu cầu:
 - `task_ease_of_use_rating`: Điểm đánh giá độ dễ dùng từ 1 đến 5 (số nguyên).
 '     --model=dashscope/qwen3-vl-plus     --trajectory-path="$TRAJECTORY_PATH"     2>&1 | stdbuf -oL tee /logs/agent/browser_use.txt
 stdout: INFO     [service] Using anonymized telemetry, see https://docs.browser-use.com/development/monitoring/telemetry.
-INFO     [Agent] 🔗 Found URL in task: http://172.17.0.1:5173/, adding as initial action...
+INFO     [Agent] 🔗 Found URL in task: http://172.20.10.6:5173/, adding as initial action...
 INFO     [Agent] [34m🎯 Task: <context>
 # Bối cảnh bài toán
 
 Bạn đang trải nghiệm bảng điều khiển xe thông minh **Vita Drive Assistant Lab** trên nền web tại:
-http://172.17.0.1:5173/
+http://172.20.10.6:5173/
 *(Lưu ý: Nếu gặp màn hình yêu cầu đăng nhập, nhập mật khẩu là `dev` rồi bấm nút "Đăng nhập" để vào buồng lái).*
 
 ## Tính năng và tương tác trên Dashboard xe:

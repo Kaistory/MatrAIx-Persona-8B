@@ -32,7 +32,7 @@ Hãy khám phá giao diện Scenario Playground, thử nghiệm các kịch bả
 
 # Trải nghiệm Scenario Playground & Evaluation Lab (VinFast VF9)
 
-Truy cập địa chỉ `http://172.17.0.1:5173/` (nếu có màn hình đăng nhập, nhập mật khẩu là `dev` rồi bấm nút **"Đăng nhập"**), sau đó chọn tab **"Thử nghiệm" (Playground)** trên thanh menu chính để khám phá bảng thử nghiệm kịch bản lái xe và đánh giá tự động của trợ lý Vita.
+Truy cập địa chỉ `http://172.20.10.6:5173/` (nếu có màn hình đăng nhập, nhập mật khẩu là `dev` rồi bấm nút **"Đăng nhập"**), sau đó chọn tab **"Thử nghiệm" (Playground)** trên thanh menu chính để khám phá bảng thử nghiệm kịch bản lái xe và đánh giá tự động của trợ lý Vita.
 
 ### Nhiệm vụ của bạn:
 1. **Khám phá Scenario Playground & Đánh giá**:
@@ -106,7 +106,7 @@ INFO     [Agent] 📍 Step 4:
 INFO     [Agent]   ❔ Eval: Waiting for the page to load was necessary, but it remains uncertain if any content will appear. Verdict: Uncertain.
 INFO     [Agent]   🧠 Memory: The browser state shows an empty DOM tree after waiting for 15 seconds. No interactive elements are available yet, and I need to refresh the page to check if it loads correctly.
 INFO     [Agent]   [34m🎯 Next goal: Refresh the page to see if the Scenario Playground loads any content.[0m
-INFO     [Agent]   ▶️   [34mnavigate[0m: [35murl[0m: http://172.17.0.1:5173/, [35mnew_tab[0m: False
+INFO     [Agent]   ▶️   [34mnavigate[0m: [35murl[0m: http://172.20.10.6:5173/, [35mnew_tab[0m: False
 ERROR    [BrowserSession] Navigation failed: RuntimeError: Navigation failed: net::ERR_CONNECTION_REFUSED
 ERROR    [BrowserSession] 🚌 [BrowserSession.on_NavigateToUrlEvent(#b86f)]          ❌ Failed (0.13s): RuntimeError: Navigation failed: net::ERR_CONNECTION_REFUSED
 ERROR    [bubus] ❌ EventBus_c3efa218🟢(⏳ 0 | ▶️ 1 | ✅ 18 ➡️ 31 👂) Error in event handler browser_use.browser.watchdog_base.BrowserSession.on_NavigateToUrlEvent(?▶ NavigateToUrlEvent#b86f 🏃) -> 
@@ -114,7 +114,7 @@ ERROR    [bubus] ❌ EventBus_c3efa218🟢(⏳ 0 | ▶️ 1 | ✅ 18 ➡️ 31 �
 RuntimeError: Navigation failed: net::ERR_CONNECTION_REFUSED
 
 ERROR    [BrowserSession] ❌ Navigation failed: Navigation failed: net::ERR_CONNECTION_REFUSED
-WARNING  [BrowserSession] ⚠️ Navigation failed - site unavailable: http://172.17.0.1:5173/ - Navigation failed: net::ERR_CONNECTION_REFUSED
+WARNING  [BrowserSession] ⚠️ Navigation failed - site unavailable: http://172.20.10.6:5173/ - Navigation failed: net::ERR_CONNECTION_REFUSED
 INFO     [Agent] 
 
 INFO     [Agent] 📍 Step 5:

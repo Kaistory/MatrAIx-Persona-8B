@@ -20,7 +20,7 @@ with sync_playwright() as p:
     page = browser.new_page(viewport={"width": 1280, "height": 800})
     
     # 1. Mở trang đăng nhập
-    page.goto("http://172.17.0.1:5173/", wait_until="networkidle", timeout=15000)
+    page.goto("https://192.168.137.242:5173/", wait_until="networkidle", timeout=15000)
     page.screenshot(path=str(screenshots_dir / "01_login_gate.png"), full_page=True)
     
     # 2. Đăng nhập vào Dashboard buồng lái xe VF9
@@ -51,7 +51,7 @@ trajectory = {
                 {"type": "text", "text": "Truy cập vào trang đăng nhập VoiceLab."},
                 {"type": "image", "source": {"path": "screenshots/01_login_gate.png"}}
             ],
-            "tool_calls": [{"function_name": "goto", "arguments": {"url": "http://172.17.0.1:5173/"}}]
+            "tool_calls": [{"function_name": "goto", "arguments": {"url": "https://192.168.137.242:5173/"}}]
         },
         {
             "source": "agent",

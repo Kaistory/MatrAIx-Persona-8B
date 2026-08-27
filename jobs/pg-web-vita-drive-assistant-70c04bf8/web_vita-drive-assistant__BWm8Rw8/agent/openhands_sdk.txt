@@ -1113,7 +1113,7 @@ Default written language: use your primary language for outputs.
 
 Bạn đang trải nghiệm bảng điều khiển xe thông minh **Vita Drive Assistant Lab** 
 trên nền web tại:
-http://172.17.0.1:5173/
+http://172.20.10.6:5173/
 *(Lưu ý: Nếu gặp màn hình yêu cầu đăng nhập, nhập mật khẩu là `dev` rồi bấm nút 
 "Đăng nhập" để vào buồng lái).*
 
@@ -1134,7 +1134,7 @@ mỹ và trải nghiệm tổng thể.
 
 # Trải nghiệm Dashboard Xe Thông Minh Vita Drive Assistant
 
-Đọc bối cảnh trong `input/context.md`, truy cập http://172.17.0.1:5173/ (nếu có 
+Đọc bối cảnh trong `input/context.md`, truy cập http://172.20.10.6:5173/ (nếu có 
 màn hình đăng nhập, nhập mật khẩu là "dev" rồi bấm nút "Đăng nhập" để vào) và 
 tương tác với giao diện buồng lái xe thông minh.
 
@@ -1173,7 +1173,7 @@ Agent Action ──────────────────────�
 
 Summary: Access the vehicle dashboard at the specified URL
 
-$ open http://172.17.0.1:5173/
+$ open http://172.20.10.6:5173/
 
 Tokens: ↑ input 13.21K (total 13.21K) • cache hit 0.00% (total 0.00%) • ↓ output
 45 (total 45) • $ (total 0.0020)
@@ -1261,7 +1261,7 @@ Here's the result of running `cat -n` on /app/input/context.md:
      2  
      3  Bạn đang trải nghiệm bảng điều khiển xe thông minh **Vita Drive 
 Assistant Lab** trên nền web tại:
-     4  http://172.17.0.1:5173/
+     4  http://172.20.10.6:5173/
      5  *(Lưu ý: Nếu gặp màn hình yêu cầu đăng nhập, nhập mật khẩu là `dev` rồi 
 bấm nút "Đăng nhập" để vào buồng lái).*
      6  
@@ -1285,7 +1285,7 @@ Agent Action ──────────────────────�
 
 Summary: Open browser to access the vehicle dashboard
 
-$ xdg-open http://172.17.0.1:5173/
+$ xdg-open http://172.20.10.6:5173/
 
 Tokens: ↑ input 14.17K (total 68.04K) • cache hit 96.63% (total 78.82%) • ↓ 
 output 46 (total 195) • $ (total 0.0063)
@@ -1305,7 +1305,7 @@ Agent Action ──────────────────────�
 
 Summary: Attempt to access the dashboard through curl
 
-$ curl http://172.17.0.1:5173/
+$ curl http://172.20.10.6:5173/
 
 Tokens: ↑ input 14.29K (total 82.33K) • cache hit 98.56% (total 82.25%) • ↓ 
 output 43 (total 238) • $ (total 0.0074)

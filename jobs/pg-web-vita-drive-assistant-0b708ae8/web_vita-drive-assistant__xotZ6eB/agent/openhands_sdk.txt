@@ -438,7 +438,7 @@ You are Casey Brooks.
 
 Bạn đang trải nghiệm bảng điều khiển xe thông minh **Vita Drive Assistant Lab** 
 trên nền web tại:
-http://172.17.0.1:5173/
+http://172.20.10.6:5173/
 *(Lưu ý: Nếu gặp màn hình yêu cầu đăng nhập, nhập mật khẩu là `dev` rồi bấm nút 
 "Đăng nhập" để vào buồng lái).*
 
@@ -459,7 +459,7 @@ mỹ và trải nghiệm tổng thể.
 
 # Trải nghiệm Dashboard Xe Thông Minh Vita Drive Assistant
 
-Đọc bối cảnh trong `input/context.md`, truy cập http://172.17.0.1:5173/ (nếu có 
+Đọc bối cảnh trong `input/context.md`, truy cập http://172.20.10.6:5173/ (nếu có 
 màn hình đăng nhập, nhập mật khẩu là "dev" rồi bấm nút "Đăng nhập" để vào) và 
 tương tác với giao diện buồng lái xe thông minh.
 
@@ -498,7 +498,7 @@ Agent Action ──────────────────────�
 
 Summary: Access the Vita Drive Assistant Lab dashboard
 
-$ curl -L http://172.17.0.1:5173/
+$ curl -L http://172.20.10.6:5173/
 
 Tokens: ↑ input 7.58K (total 7.58K) • cache hit 0.00% (total 0.00%) • ↓ output 
 45 (total 45) • $ (total 0.0012)
@@ -538,7 +538,7 @@ Agent Action ──────────────────────�
 
 Summary: Log in to the Vita Drive Assistant
 
-$ echo 'dev' | curl -X POST --data-binary @- http://172.17.0.1:5173/login
+$ echo 'dev' | curl -X POST --data-binary @- http://172.20.10.6:5173/login
 
 Tokens: ↑ input 7.85K (total 15.43K) • cache hit 96.23% (total 48.93%) • ↓ 
 output 57 (total 102) • $ (total 0.0018)
@@ -557,7 +557,7 @@ Agent Action ──────────────────────�
 
 Summary: Access the dashboard after logging in
 
-$ curl -L http://172.17.0.1:5173/dashboard
+$ curl -L http://172.20.10.6:5173/dashboard
 
 Tokens: ↑ input 7.96K (total 23.39K) • cache hit 98.08% (total 65.66%) • ↓ 
 output 44 (total 146) • $ (total 0.0024)
@@ -597,7 +597,7 @@ Agent Action ──────────────────────�
 
 Summary: Retrieve vehicle controls and climate settings
 
-$ curl -X GET http://172.17.0.1:5173/api/vehicle-controls
+$ curl -X GET http://172.20.10.6:5173/api/vehicle-controls
 
 Tokens: ↑ input 8.22K (total 31.62K) • cache hit 96.51% (total 73.68%) • ↓ 
 output 156 (total 302) • $ (total 0.0032)
@@ -606,7 +606,7 @@ Agent Action ──────────────────────�
 
 Summary: Retrieve navigation and music player settings
 
-$ curl -X GET http://172.17.0.1:5173/api/navigation
+$ curl -X GET http://172.20.10.6:5173/api/navigation
 
 Tokens: ↑ input (total 31.62K) • cache hit (total 73.68%) • ↓ output (total 302)
 • $ (total 0.0032)
@@ -615,7 +615,7 @@ Agent Action ──────────────────────�
 
 Summary: Access chat and voice assistant features
 
-$ curl -X GET http://172.17.0.1:5173/api/chat
+$ curl -X GET http://172.20.10.6:5173/api/chat
 
 Tokens: ↑ input (total 31.62K) • cache hit (total 73.68%) • ↓ output (total 302)
 • $ (total 0.0032)

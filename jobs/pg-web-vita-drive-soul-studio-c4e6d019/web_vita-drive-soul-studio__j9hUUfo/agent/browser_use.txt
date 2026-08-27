@@ -3,7 +3,7 @@ INFO     [Agent] [34m🎯 Task: <context>
 # Bối cảnh Giao diện Vita Soul Studio & Cá tính Giọng nói (VinFast VF9)
 
 Bạn đang truy cập không gian thử nghiệm và thiết kế giọng nói **Vita Soul Studio** trong ứng dụng VoiceLab Drive Assistant Lab tại địa chỉ:
-**http://172.17.0.1:5173/**
+**http://172.20.10.6:5173/**
 *(Lưu ý: Nếu gặp màn hình yêu cầu đăng nhập, nhập mật khẩu là `dev` rồi bấm nút **"Đăng nhập"** để vào hệ thống, sau đó chọn tab **"Vita Soul"** trên thanh menu chính).*
 
 ## Các phân khu chức năng chính trong Vita Soul Studio:
@@ -33,7 +33,7 @@ Hãy khám phá giao diện Soul Studio, thử nghiệm các profile và lưu l�
 
 # Trải nghiệm Vita Soul Studio & Cá tính Giọng nói (VinFast VF9)
 
-Truy cập địa chỉ `http://172.17.0.1:5173/`.
+Truy cập địa chỉ `http://172.20.10.6:5173/`.
 - **Đăng nhập**: Nếu xuất hiện màn hình yêu cầu đăng nhập, hãy nhập mật khẩu là `dev` rồi bấm nút **"Đăng nhập"** (hoặc "Login") để vào hệ thống.
 - **Điều hướng**: Sau khi vào trong, bấm chuyển sang tab **"Vita Soul"** (hoặc "Soul Studio") trên thanh điều hướng để khám phá không gian thiết kế cá tính giọng nói của trợ lý xe thông minh.
 
@@ -122,8 +122,8 @@ WARNING  [Agent] Model returned empty action. Retrying...
 INFO     [Agent]   [31m⚠️ Eval: The page remains empty with no interactive elements available. Verdict: Failure.[0m
 INFO     [Agent]   🧠 Memory: I have attempted to wait for the page to load multiple times without success. The current state shows no interactive elements, indicating a potential issue with loading the site.
 INFO     [Agent]   [34m🎯 Next goal: Create a plan to troubleshoot the loading issue and attempt to access the Vita Soul Studio.[0m
-INFO     [Agent]   ▶️   [34mnavigate[0m: [35murl[0m: http://172.17.0.1:5173/, [35mnew_tab[0m: False
-INFO     [tools] 🔗 Navigated to http://172.17.0.1:5173/
+INFO     [Agent]   ▶️   [34mnavigate[0m: [35murl[0m: http://172.20.10.6:5173/, [35mnew_tab[0m: False
+INFO     [tools] 🔗 Navigated to http://172.20.10.6:5173/
 INFO     [Agent] 📋 Plan updated with 4 steps
 INFO     [Agent] 
 
@@ -270,7 +270,7 @@ WARNING  [bubus]
 INFO     [Agent]   [31m⚠️ Eval: Failed to access interactive elements due to an empty DOM. Verdict: Failure.[0m
 INFO     [Agent]   🧠 Memory: I have successfully navigated to the Vita Soul Studio page but encountered issues with loading interactive elements. The next step is to refresh or retry accessing the page.
 INFO     [Agent]   [34m🎯 Next goal: Attempt to refresh the page and check if interactive elements load properly.[0m
-INFO     [Agent]   ▶️   [34mnavigate[0m: [35murl[0m: http://172.17.0.1:5173/, [35mnew_tab[0m: False
+INFO     [Agent]   ▶️   [34mnavigate[0m: [35murl[0m: http://172.20.10.6:5173/, [35mnew_tab[0m: False
 WARNING  [cdp_use.client] Received duplicate response for request 298 - ignoring
 WARNING  [cdp_use.client] Received duplicate response for request 299 - ignoring
 WARNING  [cdp_use.client] Received duplicate response for request 300 - ignoring
@@ -279,7 +279,7 @@ WARNING  [cdp_use.client] Received duplicate response for request 302 - ignoring
 WARNING  [cdp_use.client] Received duplicate response for request 303 - ignoring
 WARNING  [cdp_use.client] Received duplicate response for request 304 - ignoring
 WARNING  [cdp_use.client] Received duplicate response for request 305 - ignoring
-INFO     [tools] 🔗 Navigated to http://172.17.0.1:5173/
+INFO     [tools] 🔗 Navigated to http://172.20.10.6:5173/
 INFO     [Agent] 📋 Plan updated with 5 steps
 INFO     [Agent] 
 

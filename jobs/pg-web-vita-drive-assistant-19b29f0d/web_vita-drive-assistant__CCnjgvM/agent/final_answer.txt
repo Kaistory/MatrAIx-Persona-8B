@@ -1,5 +1,5 @@
 It seems I'm unable to directly access the dashboard interface for the **Vita Drive Assistant Lab** through terminal commands. This interaction requires a web browser, which I can't invoke directly in this environment. 
 
-Please access the dashboard using a web browser with the link: [http://172.17.0.1:5173/](http://172.17.0.1:5173/) to explore its features, such as vehicle controls, climate control, navigation, and the voice assistant. 
+Please access the dashboard using a web browser with the link: [http://172.20.10.6:5173/](http://172.20.10.6:5173/) to explore its features, such as vehicle controls, climate control, navigation, and the voice assistant. 
 
 Feel free to summarize your experience and the features you liked, and I can help you format it into the required JSON output!

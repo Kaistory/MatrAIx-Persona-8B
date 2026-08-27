@@ -1,5 +1,5 @@
 version = "1.0"
-artifacts = [ "/app/output",]
+artifacts = ["/app/output"]
 
 [task]
 name = "application/web_vita-drive-soul-studio"
@@ -8,7 +8,18 @@ name = "application/web_vita-drive-soul-studio"
 difficulty = "medium"
 type = "web"
 domain = "automotive-ai"
-tags = [ "vita soul", "tts studio", "voice persona", "elevenlabs", "in-cabin assistant", "car ui", "browser-use browsing",]
+tags = [
+    "vita soul",
+    "tts studio",
+    "voice persona",
+    "elevenlabs",
+    "in-cabin assistant",
+    "car ui",
+    "cockpit stage",
+    "soul core",
+    "profile authoring",
+    "browser-use browsing",
+]
 
 [verifier]
 timeout_sec = 300.0

@@ -5,7 +5,7 @@ Mô phỏng trải nghiệm người dùng đối với bảng điều khiển x
 ## Suggested setup (non-binding)
 
 - **Agent driver:** `persona-browser-use` (hoặc `persona-openhands-sdk`)
-- **Website URL:** `http://172.17.0.1:5173/`
+- **Website URL:** `https://192.168.137.242:5173/`
 - **Local repo:** `/home/khaidq9/Documents/GitHub/vita-drive-assistant-lab`
 - **Output:** `/app/output/dashboard_experience.json` và `/app/output/user_feedback.json`
 

@@ -96,8 +96,8 @@
                     "about:blank",
                     "about:blank",
                     "about:blank",
-                    "http://172.17.0.1:5173/",
-                    "http://172.17.0.1:5173/"
+                    "http://172.20.10.6:5173/",
+                    "http://172.20.10.6:5173/"
                 ],
                 "action_names": [
                     "wait",
